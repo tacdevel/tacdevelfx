@@ -1,0 +1,22 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="TCDFx.Build.props"/>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags></PackageTags>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <PackageProjectUrl>https://github.com/tacdevel/tcdfx</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/tacdevel/tcdfx</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="../LICENSE.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+    </Content>
+    <Content Include="../THIRD_PARTY_NOTICES.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
