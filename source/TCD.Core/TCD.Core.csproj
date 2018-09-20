@@ -7,4 +7,8 @@
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- This targets netstandard1.6, so those deps are included. See https://github.com/dotnet/core-setup/pull/4586 -->
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+  </ItemGroup>
 </Project>
