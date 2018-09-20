@@ -1,3 +1,0 @@
-[submodule "external/core-setup"]
-	path = external/core-setup
-	url = https://github.com/dotnet/core-setup
