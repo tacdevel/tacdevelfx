@@ -35,6 +35,10 @@ namespace TCD.InteropServices
 
         public bool IsInvalid => Handle.IsInvalid || Handle.IsClosed;
 
+        protected virtual void InitializeComponent() { }
+
+        protected virtual void InitializeEvents() { }
+
         public override bool Equals(object obj)
         {
             if (!(obj is NativeComponent<T>))
@@ -48,16 +52,13 @@ namespace TCD.InteropServices
 
         public override string ToString() => handleCache[this].DangerousGetHandle().ToString();
 
-        protected virtual void InitializeComponent() { }
-
-        protected virtual void InitializeEvents() { }
-
         protected override void ReleaseUnmanagedResources() { }
 
         protected override void ReleaseManagedResources()
         {
             if (!IsInvalid)
             {
+                //TODO: Make sure this works properly. I have a feeling a NullReferenceException is in the near future.
                 handleCache[this].Dispose();
                 handleCache.Remove(this);
             }
