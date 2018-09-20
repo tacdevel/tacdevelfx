@@ -14,9 +14,11 @@
   <ItemGroup>
     <Content Include="../LICENSE.md">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
     </Content>
     <Content Include="../THIRD_PARTY_NOTICES.md">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
     </Content>
   </ItemGroup>
 </Project>

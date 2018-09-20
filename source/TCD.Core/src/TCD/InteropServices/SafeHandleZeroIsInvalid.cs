@@ -17,5 +17,7 @@ namespace TCD.InteropServices
         protected SafeHandleZeroIsInvalid(bool ownsHandle) : base(IntPtr.Zero, ownsHandle) { }
 
         public override bool IsInvalid => handle == IntPtr.Zero;
+
+        public static implicit operator IntPtr(SafeHandleZeroIsInvalid safeHandle) => safeHandle.handle;
     }
 }

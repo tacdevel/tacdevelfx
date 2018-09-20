@@ -91,11 +91,11 @@ namespace TCD.InteropServices
             switch (PlatformHelper.CurrentPlatform)
             {
                 case PlatformHelper.Platform.Windows:
-                    return Kernel32.GetProcAddress(Handle.DangerousGetHandle(), name);
+                    return Kernel32.GetProcAddress(Handle, name);
                 case PlatformHelper.Platform.Linux:
                 case PlatformHelper.Platform.MacOS:
                 case PlatformHelper.Platform.FreeBSD:
-                    return Libdl.dlsym(Handle.DangerousGetHandle(), name);
+                    return Libdl.dlsym(Handle, name);
                 default:
                     return IntPtr.Zero;
             }
