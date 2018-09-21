@@ -1,4 +1,5 @@
-# LibUISharp
+# TCDFx
+<!--
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?longCache=true)](https://github.com/tom-corwin/LibUISharp/blob/master/LICENSE.md)
 [![Build status](https://ci.appveyor.com/api/projects/status/o2y9fu126dqmi4pv?svg=true)](https://ci.appveyor.com/project/tom-corwin/libuisharp)
 [![CodeFactor](https://www.codefactor.io/repository/github/tom-corwin/libuisharp/badge)](https://www.codefactor.io/repository/github/tom-corwin/libuisharp)
@@ -63,3 +64,4 @@ Contributing is as easy as filing an issue, fixing a bug, or suggesting a new fe
 Although the document is a work in progress, please see the [CONTRIBUTING.md](https://github.com/tom-corwin/LibUISharp/blob/master/CONTRIBUTING.md) file for more information on contributing.
 
 For all a list of all contributors with some stats about their contributions, see the [Contributors](https://github.com/tom-corwin/LibUISharp/graphs/contributors) page.
+-->
