@@ -9,7 +9,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using TCD.Internal;
 
 namespace TCD.Drawing
 {
@@ -282,7 +281,7 @@ namespace TCD.Drawing
         /// Returns the hash code for this instance.
         /// </summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-        public override int GetHashCode() => unchecked(HashHelper.GenerateHash(X, Y, Width, Height));
+        public override int GetHashCode() => unchecked(this.GenerateHashCode());
 
         /// <summary>
         /// Tests whether two specified <see cref="RectangleD"/> structures are equivalent.

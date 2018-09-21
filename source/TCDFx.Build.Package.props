@@ -12,11 +12,11 @@
     <RepositoryUrl>https://github.com/tacdevel/tcdfx</RepositoryUrl>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="../LICENSE.md">
+    <Content Include="../../LICENSE.md">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
-    <Content Include="../THIRD_PARTY_NOTICES.md">
+    <Content Include="../../THIRD_PARTY_NOTICES.md">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>

@@ -14,5 +14,4 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 
-// Every other TCD.* package should be listed here
 [assembly: InternalsVisibleTo("TCD.Drawing.Primitives")]

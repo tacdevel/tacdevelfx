@@ -7,7 +7,7 @@
  * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
  ***************************************************************************/
 
- using System;
+using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using TCD.Native;
