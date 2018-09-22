@@ -16,8 +16,6 @@ namespace TCD.Native
 {
     internal static class AssemblyRef
     {
-        internal static T Call<T>(NativeAssembly asm) where T : Delegate => asm.LoadFunction<T>(typeof(T).Name);
-
         internal static NativeAssembly Libui
         {
             get
@@ -31,7 +29,7 @@ namespace TCD.Native
         }
     }
 
-    // Any system libraries should be here (i.e. OS-Specific)
+    // System libraries should be here (i.e. OS-Specific)
     internal static class AssemblyRef_DllImport
     {
         // Windows

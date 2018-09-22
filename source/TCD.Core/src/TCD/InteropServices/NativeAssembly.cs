@@ -75,7 +75,9 @@ namespace TCD.InteropServices
             Handle = new SafeLibraryHandle(value);
         }
 
-        public T LoadFunction<T>(string name)
+        public T LoadFunction<T>() where T : Delegate => LoadFunction<T>(typeof(T).Name);
+
+        public T LoadFunction<T>(string name) where T : Delegate
         {
             IntPtr funcPtr = LoadFunction(name);
             if (funcPtr == IntPtr.Zero)
