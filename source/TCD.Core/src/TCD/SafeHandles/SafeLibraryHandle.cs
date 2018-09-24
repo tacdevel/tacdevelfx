@@ -1,11 +1,20 @@
-﻿using System;
+﻿/****************************************************************************
+ * FileName:   SafeLibraryHandle.cs
+ * Assembly:   TCD.Core.dll
+ * Package:    TCD.Core
+ * Date:       20180918
+ * License:    MIT License
+ * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
+ ***************************************************************************/
+
+using System;
 using TCD.InteropServices;
 using TCD.Native;
 
 namespace TCD.SafeHandles
 {
     /// <summary>
-    /// Reresents a wrapper class for a native assembly handle.
+    /// Represents a wrapper class for a native assembly handle.
     /// </summary>
     public sealed class SafeLibraryHandle : SafeHandleZeroIsInvalid
     {

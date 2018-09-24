@@ -21,6 +21,12 @@ namespace TCD.InteropServices
         private static Dictionary<NativeComponent, IntPtr> handleCache = new Dictionary<NativeComponent, IntPtr>();
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="NativeComponent"/> class with the specified handle.
+        /// </summary>
+        /// <param name="handle"></param>
+        protected NativeComponent(IntPtr handle) => Handle = handle;
+
+        /// <summary>
         /// Gets the handle for this <see cref="NativeComponent"/>.
         /// </summary>
         public IntPtr Handle
@@ -28,7 +34,7 @@ namespace TCD.InteropServices
             get => handleCache[this];
             protected internal set
             {
-                if (handleCache.ContainsValue(value) || handleCache.ContainsKey(this))
+                if (handleCache.ContainsKey(this))
                     throw new DuplicateHandleException();
 
                 handleCache.Add(this, value);
@@ -109,6 +115,12 @@ namespace TCD.InteropServices
         where T : SafeHandle
     {
         private static Dictionary<NativeComponent<T>, T> handleCache = new Dictionary<NativeComponent<T>, T>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NativeComponent{T}"/> class with the specified handle.
+        /// </summary>
+        /// <param name="handle"></param>
+        protected NativeComponent(T handle) => Handle = handle;
 
         /// <summary>
         /// Gets the handle for this <see cref="NativeComponent{T}"/>.
