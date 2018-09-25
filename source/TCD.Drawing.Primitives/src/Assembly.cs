@@ -1,7 +1,7 @@
 /****************************************************************************
  * FileName:   Assembly.cs
  * Assembly:   TCD.Drawing.Primitives.dll
- * Package:    TCD..Drawing.Primitives
+ * Package:    TCD.Drawing.Primitives
  * Date:       20180913
  * License:    MIT License
  * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
