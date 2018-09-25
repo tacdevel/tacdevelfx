@@ -26,11 +26,20 @@ namespace TCD.UI
         /// Initializes a new instance of the <see cref="CheckBox"/> class with the specified text.
         /// </summary>
         /// <param name="text">The text specified by the <see cref="CheckBox"/>.</param>
-        /// <param name="checked">The state of the <see cref="CheckBox"/>.</param>
-        public CheckBox(string text, bool @checked = false) : base(new SafeControlHandle(Libui.NewCheckbox(text)))
+        public CheckBox(string text) : base(new SafeControlHandle(Libui.NewCheckbox(text)))
         {
             this.text = text;
-            Checked = @checked;
+            InitializeEvents();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckBox"/> class with the specified text and checked state.
+        /// </summary>
+        /// <param name="text">The text specified by the <see cref="CheckBox"/>.</param>
+        /// <param name="checked">The state of the <see cref="CheckBox"/>.</param>
+        public CheckBox(string text, bool @checked) : this(text)
+        {
+            this.text = text;
             InitializeEvents();
         }
 

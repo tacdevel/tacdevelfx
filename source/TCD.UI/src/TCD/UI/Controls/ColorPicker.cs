@@ -26,11 +26,16 @@ namespace TCD.UI
         /// Initializes a new instance of the <see cref="ColorPicker"/> class.
         /// </summary>
         /// <param name="color">The color of the <see cref="ColorPicker"/>.</param>
-        public ColorPicker(Color color = null) : base(new SafeControlHandle(Libui.NewColorButton()))
+        public ColorPicker() : base(new SafeControlHandle(Libui.NewColorButton())) => InitializeEvents();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ColorPicker"/> class.
+        /// </summary>
+        /// <param name="color">The color of the <see cref="ColorPicker"/>.</param>
+        public ColorPicker(Color color) : this()
         {
-            if (color != null)
+            if (color != Color.Empty)
                 Color = color;
-            InitializeEvents();
         }
 
         /// <summary>
