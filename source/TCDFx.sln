@@ -8,6 +8,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCD.Drawing.Primitives", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCD.UI", "TCD.UI\TCD.UI.csproj", "{99631435-696E-4CE0-8D3A-76883A7983A2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{49E49B9B-108E-44FD-BE05-F511FCE91509}"
+	ProjectSection(SolutionItems) = preProject
+		TCDFx.Build.Package.props = TCDFx.Build.Package.props
+		TCDFx.Build.props = TCDFx.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{74E7F38D-57AD-45A7-8258-9AE044B5A42D}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		..\CODE_OF_CONDUCT.md = ..\CODE_OF_CONDUCT.md
+		..\Directory.props = ..\Directory.props
+		..\LICENSE.md = ..\LICENSE.md
+		..\README.md = ..\README.md
+		..\THIRD_PARTY_NOTICES.md = ..\THIRD_PARTY_NOTICES.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +46,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8982D6BE-25B6-4984-9703-DBDCEE417CB9} = {49E49B9B-108E-44FD-BE05-F511FCE91509}
+		{15495FB9-2C49-4789-AB1F-CDB2B8794EFB} = {49E49B9B-108E-44FD-BE05-F511FCE91509}
+		{99631435-696E-4CE0-8D3A-76883A7983A2} = {49E49B9B-108E-44FD-BE05-F511FCE91509}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {879FEE46-8719-4B71-8405-D6325F886278}
