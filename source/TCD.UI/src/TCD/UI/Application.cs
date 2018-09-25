@@ -57,6 +57,11 @@ namespace TCD.UI
         /// </summary>
         public override bool IsInvalid => !initialized;
 
+        /// <summary>
+        /// Starts an application with a user-interface and opens the specified window.
+        /// </summary>
+        /// <param name="window">The specified window to open.</param>
+        /// <returns>0 if successful, else returns -1.</returns>
         public int Run(Window window)
         {
             if (window.IsInvalid) throw new InvalidHandleException();
@@ -64,11 +69,6 @@ namespace TCD.UI
             return Run(() => { window.Show(); });
         }
 
-        /// <summary>
-        /// Starts an application with a user-interface and opens the specified window.
-        /// </summary>
-        /// <param name="window">The specified window to open.</param>
-        /// <returns>0 if successful, else returns -1.</returns>
         private int Run(Action action)
         {
             try
