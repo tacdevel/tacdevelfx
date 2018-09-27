@@ -1,5 +1,5 @@
 ﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\Directory.props"/>
+  <Import Project="..\TCDFx.props"/>
   <PropertyGroup>
     <EnableDefaultItems>false</EnableDefaultItems>
     <RootNamespace>$(MSBuildProjectName)</RootNamespace>

@@ -33,7 +33,53 @@ namespace TCD.InteropServices
         /// </summary>
         /// <param name="names">An ordered list of assembly names to attempt to load.</param>
         /// <param name="resolver">The resolver used to identify possible load targets for the assembly.</param>
-        public NativeAssembly(NativeAssemblyResolver resolver, params string[] names)
+        public NativeAssembly(NativeAssemblyResolver resolver, params string[] names) : base(new SafeLibraryHandle(GetHandle(resolver, names))) { }
+
+        /// <summary>
+        /// Loads a function whose signature and name match the given delegate type's signature and name.
+        /// </summary>
+        /// <typeparam name="T">The type of delegate to return.</typeparam>
+        /// <returns>A delegate wrapping the native function.</returns>
+        public T LoadFunction<T>() where T : Delegate => LoadFunction<T>(typeof(T).Name);
+
+        /// <summary>
+        /// Loads a function whose signature matches the given delegate type's signature.
+        /// </summary>
+        /// <typeparam name="T">The type of delegate to return.</typeparam>
+        /// <param name="name">The name of the native function.</param>
+        /// <returns>A delegate wrapping the native function.</returns>
+        public T LoadFunction<T>(string name) where T : Delegate
+        {
+            IntPtr funcPtr = LoadFunction(name);
+            if (funcPtr == IntPtr.Zero)
+                throw new InvalidOperationException($"No function was found with the name {name}.");
+
+            return Marshal.GetDelegateForFunctionPointer<T>(funcPtr);
+        }
+
+        /// <summary>
+        /// Loads a function pointer with the given name.
+        /// </summary>
+        /// <param name="name">The name of the native function.</param>
+        /// <returns>A fuction pointer for the given name, or <see cref="IntPtr.Zero"/> if no function with the specified name was found.</returns>
+        public IntPtr LoadFunction(string name)
+        {
+            if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
+
+            switch (PlatformHelper.CurrentPlatform)
+            {
+                case PlatformHelper.Platform.Windows:
+                    return Kernel32.GetProcAddress(Handle, name);
+                case PlatformHelper.Platform.Linux:
+                case PlatformHelper.Platform.MacOS:
+                case PlatformHelper.Platform.FreeBSD:
+                    return Libdl.dlsym(Handle, name);
+                default:
+                    return IntPtr.Zero;
+            }
+        }
+
+        private static IntPtr GetHandle(NativeAssemblyResolver resolver, params string[] names)
         {
             if (names == null || names.Length == 0) throw new ArgumentNullException(nameof(names));
 
@@ -86,51 +132,7 @@ namespace TCD.InteropServices
             }
 
             if (value == IntPtr.Zero) throw new FileNotFoundException($"Could not load a library with the specified name(s): [ {string.Join(", ", names)} ]");
-            Handle = new SafeLibraryHandle(value);
-        }
-
-        /// <summary>
-        /// Loads a function whose signature and name match the given delegate type's signature and name.
-        /// </summary>
-        /// <typeparam name="T">The type of delegate to return.</typeparam>
-        /// <returns>A delegate wrapping the native function.</returns>
-        public T LoadFunction<T>() where T : Delegate => LoadFunction<T>(typeof(T).Name);
-
-        /// <summary>
-        /// Loads a function whose signature matches the given delegate type's signature.
-        /// </summary>
-        /// <typeparam name="T">The type of delegate to return.</typeparam>
-        /// <param name="name">The name of the native function.</param>
-        /// <returns>A delegate wrapping the native function.</returns>
-        public T LoadFunction<T>(string name) where T : Delegate
-        {
-            IntPtr funcPtr = LoadFunction(name);
-            if (funcPtr == IntPtr.Zero)
-                throw new InvalidOperationException($"No function was found with the name {name}.");
-
-            return Marshal.GetDelegateForFunctionPointer<T>(funcPtr);
-        }
-
-        /// <summary>
-        /// Loads a function pointer with the given name.
-        /// </summary>
-        /// <param name="name">The name of the native function.</param>
-        /// <returns>A fuction pointer for the given name, or <see cref="IntPtr.Zero"/> if no function with the specified name was found.</returns>
-        public IntPtr LoadFunction(string name)
-        {
-            if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
-
-            switch (PlatformHelper.CurrentPlatform)
-            {
-                case PlatformHelper.Platform.Windows:
-                    return Kernel32.GetProcAddress(Handle, name);
-                case PlatformHelper.Platform.Linux:
-                case PlatformHelper.Platform.MacOS:
-                case PlatformHelper.Platform.FreeBSD:
-                    return Libdl.dlsym(Handle, name);
-                default:
-                    return IntPtr.Zero;
-            }
+            return value;
         }
     }
 }
