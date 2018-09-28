@@ -71,7 +71,7 @@ namespace TCD.InteropServices
         /// <summary>
         /// Indicates whether this and another <see cref="NativeComponent"/> object are equal.
         /// </summary>
-        /// <param name="obj">The object to compare with this <see cref="NativeComponent"/>.</param>
+        /// <param name="component">The component to compare with this <see cref="NativeComponent"/>.</param>
         /// <returns>true if obj and this <see cref="NativeComponent"/> represent the same value; otherwise, false.</returns>
         public bool Equals(NativeComponent component) => handleCache[this] == handleCache[component];
 
@@ -170,7 +170,7 @@ namespace TCD.InteropServices
         /// <summary>
         /// Indicates whether this and another <see cref="NativeComponent{T}"/> object are equal.
         /// </summary>
-        /// <param name="obj">The object to compare with this <see cref="NativeComponent{T}"/>.</param>
+        /// <param name="component">The component to compare with this <see cref="NativeComponent{T}"/>.</param>
         /// <returns>true if obj and this <see cref="NativeComponent{T}"/> represent the same value; otherwise, false.</returns>
         public bool Equals(NativeComponent<T> component) => handleCache[this] == handleCache[component];
 

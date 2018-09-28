@@ -18,7 +18,7 @@ namespace TCD.InteropServices
     public abstract class SafeHandleZeroIsInvalid : SafeHandle
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref"SafeHandleZeroIsInvalid"/> class, specifying whether the handle is to be reliably released.
+        /// Initializes a new instance of the <see cref="SafeHandleZeroIsInvalid"/> class, specifying whether the handle is to be reliably released.
         /// </summary>
         /// <param name="ownsHandle"><see langword="true"/> to reliably release the handle during the finalization phase; <see langword="false"/> to prevent reliable release (not recommended).</param>
         protected SafeHandleZeroIsInvalid(bool ownsHandle) : base(IntPtr.Zero, ownsHandle) { }
