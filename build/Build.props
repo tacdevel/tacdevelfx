@@ -18,6 +18,7 @@
     <RepoBuildDocPath>$(RepoBasePath)build\doc\</RepoBuildDocPath>
     <RepoBuildObjPath>$(RepoBasePath)build\obj\</RepoBuildObjPath>
     <RepoBuildPkgPath>$(RepoBasePath)build\pkg\</RepoBuildPkgPath>
+    <RepoExternalPath>$(RepoBasePath)external\</RepoExternalPath>
     <RepoSourcePath>$(RepoBasePath)source\</RepoSourcePath>
   </PropertyGroup>
 

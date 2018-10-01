@@ -11,7 +11,6 @@ If you notice that we accidentally failed to list a required notice, please brin
 
 **Repository URL**: https://github.com/mellinoe/nativelibraryloader
 
-
 ### Copyright Notice(s):
 
 Copyright (c) 2017 Eric Mellino and contributors to the nativelibraryloader project.

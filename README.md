@@ -7,7 +7,7 @@
 -->
 TCDFx (or the TCD Framework) is a collection of packages targeting .NET Standard, allowing users to create desktop UI applications on Windows, macOS, and Linux.
 
-**Please Note**: This software is a work-in-progress with no releases yet, and is not to be considered complete, usable, or buildable.
+**Please Note**: This software is a work-in-progress with no releases yet, and is not to be considered complete nor usable.
 
 ## Packages
 
