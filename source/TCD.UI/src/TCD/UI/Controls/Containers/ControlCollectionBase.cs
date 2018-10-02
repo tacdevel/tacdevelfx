@@ -38,19 +38,19 @@ namespace TCD.UI.Controls.Containers
 
         //TODO: Implement this.
         /// <summary>
-        /// Gets the number of elements contained in the <see cref="ControlCollectionBase"/>.
+        /// Gets the number of elements contained in the <see cref="ControlCollectionBase{TControl}"/>.
         /// </summary>
         public int Count => size + 1;
 
         /// <summary>
-        /// Gets a value indicating whether the <see cref="ControlCollectionBase"/> is read-only.
+        /// Gets a value indicating whether the <see cref="ControlCollectionBase{TControl}"/> is read-only.
         /// </summary>
         public bool IsReadOnly => isReadOnly == false;
 
         /// <summary>
-        /// Adds a <see cref="Control"/> to the end of the <see cref="ControlCollectionBase"/>.
+        /// Adds a <see cref="Control"/> to the end of the <see cref="ControlCollectionBase{TControl}"/>.
         /// </summary>
-        /// <param name="child">The <see cref="Control"/> to be added to the end of the <see cref="ControlCollectionBase"/>.</param>
+        /// <param name="child">The <see cref="Control"/> to be added to the end of the <see cref="ControlCollectionBase{TControl}"/>.</param>
         public virtual void Add(TControl child)
         {
             if (child == null) throw new ArgumentNullException(nameof(child));
@@ -76,10 +76,10 @@ namespace TCD.UI.Controls.Containers
         }
 
         /// <summary>
-        /// Adds a control to the <see cref="ControlCollectionBase"/> at the specified index.
+        /// Adds a control to the <see cref="ControlCollectionBase{TControl}"/> at the specified index.
         /// </summary>
         /// <param name="index">The zero-based index at which item should be inserted.</param>
-        /// <param name="child">The <see cref="Control"/> to insert into the <see cref="ControlCollectionBase"/>.</param>
+        /// <param name="child">The <see cref="Control"/> to insert into the <see cref="ControlCollectionBase{TControl}"/>.</param>
         public virtual void Insert(int index, TControl child)
         {
             if (index < 0 || index > size) throw new ArgumentOutOfRangeException(nameof(index));
@@ -109,10 +109,10 @@ namespace TCD.UI.Controls.Containers
         }
 
         /// <summary>
-        /// Removes the first occurrence of a specific <see cref="Control"/> from the <see cref="ControlCollectionBase"/>.
+        /// Removes the first occurrence of a specific <see cref="Control"/> from the <see cref="ControlCollectionBase{TControl}"/>.
         /// </summary>
-        /// <param name="child">The <see cref="Control"/> to remove from the <see cref="ControlCollectionBase"/>.</param>
-        /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="ControlCollectionBase"/>.</returns>
+        /// <param name="child">The <see cref="Control"/> to remove from the <see cref="ControlCollectionBase{TControl}"/>.</param>
+        /// <returns>true if item is successfully removed; otherwise, false. This method also returns false if item was not found in the <see cref="ControlCollectionBase{TControl}"/>.</returns>
         public virtual bool Remove(TControl child)
         {
             if (child == null) throw new ArgumentNullException(nameof(child));
@@ -137,7 +137,7 @@ namespace TCD.UI.Controls.Containers
         }
 
         /// <summary>
-        /// Removes all elements from the <see cref="ControlCollectionBase"/>.
+        /// Removes all elements from the <see cref="ControlCollectionBase{TControl}"/>.
         /// </summary>
         public void Clear()
         {
@@ -152,10 +152,10 @@ namespace TCD.UI.Controls.Containers
         }
 
         /// <summary>
-        /// Determines whether a <see cref="Control"/> is in the <see cref="ControlCollectionBase"/>.
+        /// Determines whether a <see cref="Control"/> is in the <see cref="ControlCollectionBase{TControl}"/>.
         /// </summary>
-        /// <param name="child">The <see cref="Control"/> to locate in the <see cref="ControlCollectionBase"/>.</param>
-        /// <returns>true if item is found in the <see cref="ControlCollectionBase"/>; otherwise, false.</returns>
+        /// <param name="child">The <see cref="Control"/> to locate in the <see cref="ControlCollectionBase{TControl}"/>.</param>
+        /// <returns>true if item is found in the <see cref="ControlCollectionBase{TControl}"/>; otherwise, false.</returns>
         public bool Contains(TControl child)
         {
             if (innerArray == null || child == null || child.IsInvalid)
@@ -171,9 +171,9 @@ namespace TCD.UI.Controls.Containers
         }
 
         /// <summary>
-        /// Copies the entire <see cref="ControlCollectionBase"/> to a compatible one-dimensional array, starting at the specified index of the target array.
+        /// Copies the entire <see cref="ControlCollectionBase{TControl}"/> to a compatible one-dimensional array, starting at the specified index of the target array.
         /// </summary>
-        /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from <see cref="ControlCollectionBase"/>. The <see cref="Array"/> must have zero-based indexing.</param>
+        /// <param name="array">The one-dimensional <see cref="Array"/> that is the destination of the elements copied from <see cref="ControlCollectionBase{TControl}"/>. The <see cref="Array"/> must have zero-based indexing.</param>
         /// <param name="index">The zero-based index in <paramref name="array"/> at which copying begins.</param>
         public void CopyTo(Array array, int index)
         {
@@ -183,9 +183,9 @@ namespace TCD.UI.Controls.Containers
         }
 
         /// <summary>
-        /// Determines the index of a specific value in the <see cref="ControlCollectionBase"/>.
+        /// Determines the index of a specific value in the <see cref="ControlCollectionBase{TControl}"/>.
         /// </summary>
-        /// <param name="value">The control to locate in the <see cref="ControlCollectionBase"/>.</param>
+        /// <param name="value">The control to locate in the <see cref="ControlCollectionBase{TControl}"/>.</param>
         /// <returns>The index of item if found in the list; otherwise, -1.</returns>
         public int IndexOf(TControl value)
         {

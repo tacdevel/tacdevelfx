@@ -26,11 +26,7 @@ namespace TCD.UI.Controls.Containers
         /// Initializes a new instance of the <see cref="GroupContainer"/> class with the specified title.
         /// </summary>
         /// <param name="title">The title of this <see cref="GroupContainer"/>.</param>
-        public GroupContainer(string title) : base(new SafeControlHandle(Libui.NewGroup(title)))
-        {
-            this.title = title;
-            IsMargined = isMargined;
-        }
+        public GroupContainer(string title) : base(new SafeControlHandle(Libui.NewGroup(title))) => this.title = title;
 
         /// <summary>
         /// Gets or sets the title for this <see cref="GroupContainer"/> control.

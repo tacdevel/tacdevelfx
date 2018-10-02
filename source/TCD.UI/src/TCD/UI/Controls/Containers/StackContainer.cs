@@ -1,5 +1,5 @@
 ﻿/****************************************************************************
- * FileName:   FormContainer.cs
+ * FileName:   StackContainerBase.cs
  * Assembly:   TCD.UI.dll
  * Package:    TCD.UI
  * Date:       20181002
@@ -8,78 +8,66 @@
  ***************************************************************************/
 
 using System;
-using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
 
 namespace TCD.UI.Controls.Containers
 {
     /// <summary>
-    /// Represents a container control that lists controls vertically with a corresponding label.
+    /// The base class for a <see cref="Control"/> that arranges child elements in one orientation.
     /// </summary>
-    public class FormContainer : MultiChildContainer<Control, FormContainer.ControlCollection>
+    public abstract class StackContainerBase : MultiChildContainer<Control, StackContainerBase.ControlCollection>
     {
-        private bool isPadded = false;
+        private bool isPadded;
+
+        internal StackContainerBase(SafeControlHandle handle, bool cacheable = true) : base(handle, cacheable) { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FormContainer"/> class.
-        /// </summary>
-        public FormContainer() : base(new SafeControlHandle(Libui.NewForm())) { }
-
-        /// <summary>
-        /// Gets or sets a value indiating whether this <see cref="FormContainer"/> has interior padding or not.
+        /// Gets or sets a value indicating whether this <see cref="StackContainerBase"/> has interior isPadded or not.
         /// </summary>
         public bool IsPadded
         {
             get
             {
-                if (IsInvalid) throw new InvalidHandleException();
-                isPadded = Libui.FormPadded(Handle);
+                isPadded = Libui.BoxPadded(Handle);
                 return isPadded;
             }
             set
             {
-                if (isPadded == value) return;
-                if (IsInvalid) throw new InvalidHandleException();
-                Libui.FormSetPadded(Handle, value);
-                isPadded = value;
+                if (isPadded != value)
+                {
+                    Libui.BoxSetPadded(Handle, value);
+                    isPadded = value;
+                }
             }
         }
 
         /// <summary>
-        /// Represents a collection of child <see cref="Control"/> objects inside of a <see cref="FormContainer"/>.
+        /// Represents a collection of child <see cref="Control"/> objects inside of a <see cref="StackContainerBase"/>.
         /// </summary>
-        public sealed class ControlCollection : ControlCollectionBase<Control>
+        public class ControlCollection : ControlCollectionBase<Control>
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="ControlCollection"/> class with the specified parent.
             /// </summary>
-            /// <param name="owner">The parent <see cref="FormContainer"/> of this <see cref="ControlCollection"/>.</param>
-            public ControlCollection(FormContainer owner) : base(owner) { }
-
-            /// <summary>
-            /// <see cref="ControlCollection"/> does not support this method, and will throw a <see cref="NotSupportedException"/>.
-            /// </summary>
-            /// <param name="child">The <see cref="Control"/> to be added to the end of the <see cref="ControlCollection"/>.</param>
-            public override void Add(Control child) => throw new NotSupportedException();
+            /// <param name="owner">The parent <see cref="StackContainerBase"/> of this <see cref="ControlCollection"/>.</param>
+            public ControlCollection(StackContainerBase owner) : base(owner) { }
 
             /// <summary>
             /// Adds a <see cref="Control"/> to the end of the <see cref="ControlCollection"/>.
             /// </summary>
-            /// <param name="label">The text beside the child <see cref="Control"/>.</param>
+            /// <param name="child">The <see cref="Control"/> to be added to the end of the <see cref="ControlCollection"/>.</param>
+            public override void Add(Control child) => Add(child, false);
+
+            /// <summary>
+            /// Adds a <see cref="Control"/> to the end of the <see cref="ControlCollection"/>.
+            /// </summary>
             /// <param name="child">The <see cref="Control"/> to be added to the end of the <see cref="ControlCollection"/>.</param>
             /// <param name="stretches">Whether or not <paramref name="child"/> stretches the area of the parent <see cref="Control"/></param>
-            public void Add(string label, Control child, bool stretches = false)
+            public void Add(Control child, bool stretches)
             {
-                if (string.IsNullOrEmpty(label)) throw new ArgumentNullException(nameof(label));
-                if (child == null) throw new ArgumentNullException(nameof(child));
-                if (child.IsInvalid) throw new InvalidHandleException();
-                if (Owner.IsInvalid) throw new InvalidHandleException();
-                if (Contains(child)) throw new InvalidOperationException("Cannot add the same control more than once.");
-                if (child.TopLevel) throw new ArgumentException("Cannot add a top-level control to a ControlCollectionBase.");
-
-                Libui.FormAppend(Owner.Handle, label, child.Handle, stretches);
                 base.Add(child);
+                Libui.BoxAppend(Owner.Handle, child.Handle, stretches);
             }
 
             /// <summary>
@@ -96,14 +84,11 @@ namespace TCD.UI.Controls.Containers
             /// <returns>true if child is successfully removed; otherwise, false. This method also returns false if child was not found in the <see cref="ControlCollection"/>.</returns>
             public new bool Remove(Control child)
             {
-                if (child == null) throw new ArgumentNullException(nameof(child));
-                if (child.IsInvalid) throw new InvalidHandleException();
-                if (!Contains(child)) return false;
-
-                if (Owner.IsInvalid) throw new InvalidHandleException();
-                Libui.FormDelete(Owner.Handle, child.Index);
                 if (base.Remove(child))
+                {
+                    Libui.BoxDelete(Owner.Handle, child.Index);
                     return true;
+                }
                 return false;
             }
         }

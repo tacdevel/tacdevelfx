@@ -1,4 +1,13 @@
-﻿using System;
+﻿/****************************************************************************
+ * FileName:   GridContainer.cs
+ * Assembly:   TCD.UI.dll
+ * Package:    TCD.UI
+ * Date:       20181002
+ * License:    MIT License
+ * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
+ ***************************************************************************/
+
+using System;
 using System.Drawing;
 using TCD.InteropServices;
 using TCD.Native;
@@ -16,11 +25,7 @@ namespace TCD.UI.Controls.Containers
         /// <summary>
         /// Initializes a new instance of the <see cref="GridContainer"/> class.
         /// </summary>
-        public GridContainer(bool isPadded = false) : base(new SafeControlHandle(Libui.NewGrid()))
-        {
-            if (isPadded)
-                IsPadded = true;
-        }
+        public GridContainer() : base(new SafeControlHandle(Libui.NewGrid())) { }
 
 
         /// <summary>
