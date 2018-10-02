@@ -1,29 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TCDFxVersionMajor>0</TCDFxVersionMajor>
-    <TCDFxVersionMinor>1</TCDFxVersionMinor>
-    <TCDFxVersionPatch>0</TCDFxVersionPatch>
-    <TCDFxVersionSuffix></TCDFxVersionSuffix>
-    <TCDFxAuthors>Thomas Corwin, et al.</TCDFxAuthors>
-    <TCDFxCopyright>Copyright (c) Thomas Corwin, et al. All Rights Reserved.</TCDFxCopyright>
-    <TCDFxRepoURL>https://github.com/tacdevel/TCDFx</TCDFxRepoURL>
-  </PropertyGroup>
-
-  <!-- Repository Paths -->
-  <PropertyGroup>
-    <RepoBasePath>$(MSBuildThisFileDirectory)..\</RepoBasePath>
-    <RepoBuildPath>$(RepoBasePath)build\</RepoBuildPath>
-    <RepoBuildBinPath>$(RepoBasePath)build\bin\</RepoBuildBinPath>
-    <RepoBuildDocPath>$(RepoBasePath)build\doc\</RepoBuildDocPath>
-    <RepoBuildObjPath>$(RepoBasePath)build\obj\</RepoBuildObjPath>
-    <RepoBuildPkgPath>$(RepoBasePath)build\pkg\</RepoBuildPkgPath>
-    <RepoExternalPath>$(RepoBasePath)external\</RepoExternalPath>
-    <RepoSourcePath>$(RepoBasePath)source\</RepoSourcePath>
-  </PropertyGroup>
-
+  <Import Project="Build.Common.props" />
+  
   <!-- MSBuild Output Paths -->
   <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <BaseIntermediateOutputPath>$(RepoBuildObjPath)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <BaseOutputPath>$(RepoBuildBinPath)$(MSBuildProjectName)\</BaseOutputPath>
@@ -36,9 +17,9 @@
   <PropertyGroup>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
-    <Version>$(TCDFxVersion)</Version>
-    <Authors>$(TCDFxAuthors)</Authors>
-    <Copyright>$(TCDFxCopyright)</Copyright>
+    <Version>$(RepoVersion)</Version>
+    <Authors>$(RepoAuthors)</Authors>
+    <Copyright>$(RepoCopyright)</Copyright>
     <Description />
     <EnableDefaultItems>false</EnableDefaultItems>
     <RootNamespace>$(MSBuildProjectName)</RootNamespace>
@@ -65,12 +46,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags></PackageTags>
     <PackageId>$(MSBuildProjectName)</PackageId>
-    <PackageProjectUrl>https://github.com/tacdevel/tcdfx</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>$(RepoURL)</PackageProjectUrl>
+    <PackageLicenseUrl>$(RepoURL)/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/tacdevel/tcdfx</RepositoryUrl>
+    <RepositoryUrl>$(RepoURL)</RepositoryUrl>
   </PropertyGroup>
 
   <!-- Shared License Files -->

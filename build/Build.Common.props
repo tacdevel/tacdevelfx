@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- General Info -->
+  <PropertyGroup>
+    <RepoVersionMajor>0</RepoVersionMajor>
+    <RepoVersionMinor>1</RepoVersionMinor>
+    <RepoVersionPatch>0</RepoVersionPatch>
+    <RepoVersionSuffix></RepoVersionSuffix>
+    <RepoAuthors>Thomas Corwin, et al.</RepoAuthors>
+    <RepoCopyright>Copyright (c) Thomas Corwin, et al. All Rights Reserved.</RepoCopyright>
+    <RepoURL>https://github.com/tacdevel/tcdfx</RepoURL>
+  </PropertyGroup>
+
+  <!-- Repository Paths -->
+  <PropertyGroup>
+    <RepoBasePath>$(MSBuildThisFileDirectory)..\</RepoBasePath>
+    <RepoBuildPath>$(RepoBasePath)build\</RepoBuildPath>
+    <RepoBuildBinPath>$(RepoBuildPath)bin\</RepoBuildBinPath>
+    <RepoBuildDocPath>$(RepoBuildPath)doc\</RepoBuildDocPath>
+    <RepoBuildObjPath>$(RepoBuildPath)obj\</RepoBuildObjPath>
+    <RepoBuildPkgPath>$(RepoBuildPath)pkg\</RepoBuildPkgPath>
+    <RepoBuildToolsPath>$(RepoBuildPath)tool\</RepoBuildToolsPath>
+    <RepoExternalPath>$(RepoBasePath)external\</RepoExternalPath>
+    <RepoSourcePath>$(RepoBasePath)source\</RepoSourcePath>
+  </PropertyGroup>
+</Project>
