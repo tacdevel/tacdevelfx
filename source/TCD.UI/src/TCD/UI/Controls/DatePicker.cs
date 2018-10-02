@@ -21,18 +21,7 @@ namespace TCD.UI.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="DatePicker"/> class.
         /// </summary>
-        public DatePicker(int? year = null, int? month = null, int? day = null) : base(new SafeControlHandle(Libui.NewDatePicker()))
-        {
-            DateTime dt = DateTime.Now;
-            if (year != null)
-                dt = new DateTime((int)year, dt.Month, dt.Day);
-            if (month != null)
-                dt = new DateTime(dt.Year, (int)month, dt.Day);
-            if (day != null)
-                dt = new DateTime(dt.Year, dt.Month, (int)day);
-            DateTime = dt;
-            InitializeEvents();
-        }
+        public DatePicker() : base(new SafeControlHandle(Libui.NewDatePicker())) => InitializeEvents();
 
         /// <summary>
         /// Gets the year component from <see cref="DateTime"/>.

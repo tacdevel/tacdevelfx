@@ -1,5 +1,5 @@
 ﻿/****************************************************************************
- * FileName:   TextBox.cs
+ * FileName:   NonWrappingTextBlock.cs
  * Assembly:   TCD.UI.dll
  * Package:    TCD.UI
  * Date:       20181001
@@ -10,16 +10,13 @@
 using TCD.Native;
 using TCD.SafeHandles;
 
-namespace TCD.UI
+namespace TCD.UI.Controls
 {
     /// <summary>
-    /// Represents a control that can be used to display or edit text.
-    /// </summary>
-    public class TextBox : TextBoxBase
+    /// Represents a control that can be used to display or edit multiple lines of text that are not wrapped.
+    /// </summary>summary>
+    public class NonWrappingTextBlock : TextBlockBase
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TextBox"/> class.
-        /// </summary>
-        public TextBox() : base(new SafeControlHandle(Libui.NewEntry()), true) { }
+        public NonWrappingTextBlock() : base(new SafeControlHandle(Libui.NewNonWrappingMultilineEntry()), true) { }
     }
 }

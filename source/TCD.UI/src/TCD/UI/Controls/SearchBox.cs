@@ -1,5 +1,5 @@
 ﻿/****************************************************************************
- * FileName:   TextBox.cs
+ * FileName:   SearchBox.cs
  * Assembly:   TCD.UI.dll
  * Package:    TCD.UI
  * Date:       20181001
@@ -13,13 +13,13 @@ using TCD.SafeHandles;
 namespace TCD.UI
 {
     /// <summary>
-    /// Represents a control that can be used to display or edit text.
+    /// Represents a <see cref="TextBox"/> that displays a search icon.
     /// </summary>
-    public class TextBox : TextBoxBase
+    public class SearchBox : TextBoxBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextBox"/> class.
+        /// Initializes a new instance of the <see cref="SearchBox"/> class.
         /// </summary>
-        public TextBox() : base(new SafeControlHandle(Libui.NewEntry()), true) { }
+        public SearchBox() : base(new SafeControlHandle(Libui.NewSearchEntry()), true) { }
     }
 }

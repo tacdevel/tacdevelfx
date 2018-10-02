@@ -1,5 +1,5 @@
 ﻿/****************************************************************************
- * FileName:   TextBox.cs
+ * FileName:   VerticalSeparator.cs
  * Assembly:   TCD.UI.dll
  * Package:    TCD.UI
  * Date:       20181001
@@ -10,16 +10,16 @@
 using TCD.Native;
 using TCD.SafeHandles;
 
-namespace TCD.UI
+namespace TCD.UI.Controls
 {
     /// <summary>
-    /// Represents a control that can be used to display or edit text.
+    /// Represents a control that is used to separate user-interface (UI) content vertically.
     /// </summary>
-    public class TextBox : TextBoxBase
+    public class VerticalSeparator : SeparatorBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TextBox"/> class.
+        /// Initializes a new instance of the <see cref="VerticalSeparator"/> class.
         /// </summary>
-        public TextBox() : base(new SafeControlHandle(Libui.NewEntry()), true) { }
+        public VerticalSeparator() : base(new SafeControlHandle(Libui.NewVerticalSeparator())) { }
     }
 }
