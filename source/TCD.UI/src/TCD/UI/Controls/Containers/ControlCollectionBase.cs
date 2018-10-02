@@ -12,7 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TCD.InteropServices;
 
-namespace TCD.UI.Controls
+namespace TCD.UI.Controls.Containers
 {
     /// <summary>
     /// Provides the base implementation for collections of <see cref="Control"/> objects.
@@ -27,14 +27,14 @@ namespace TCD.UI.Controls
         private TControl[] innerArray;
         private int size;
 
-        internal ControlCollectionBase(MultiChildContainer<TControl, ControlCollectionBase<TControl>> owner, int defaultCapacity = 4, int growFactor = 2)
+        internal ControlCollectionBase(ContainerBase owner, int defaultCapacity = 4, int growFactor = 2)
         {
             Owner = owner;
             this.defaultCapacity = defaultCapacity;
             this.growFactor = growFactor;
         }
 
-        internal MultiChildContainer<TControl, ControlCollectionBase<TControl>> Owner { get; }
+        internal ContainerBase Owner { get; }
 
         //TODO: Implement this.
         /// <summary>

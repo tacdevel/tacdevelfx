@@ -10,7 +10,7 @@
 using System;
 using TCD.SafeHandles;
 
-namespace TCD.UI.Controls
+namespace TCD.UI.Controls.Containers
 {
     public abstract class MultiChildContainer<TControl, TCollection> : ContainerBase
         where TControl : Control

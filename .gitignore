@@ -27,6 +27,9 @@ project.fragment.lock.json
 *.userosscache
 *.sln.docstates
 
+## Visual Studio Extensions
+CodeNav.json
+
 ## Visual Studio Code
 .vscode/*
 !.vscode/settings.json
