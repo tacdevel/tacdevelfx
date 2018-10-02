@@ -1,8 +1,8 @@
 ﻿/****************************************************************************
- * FileName:   DateTimePicker.cs
+ * FileName:   DatePicker.cs
  * Assembly:   TCD.UI.dll
  * Package:    TCD.UI
- * Date:       20180930
+ * Date:       20181001
  * License:    MIT License
  * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
  ***************************************************************************/
@@ -14,14 +14,25 @@ using TCD.SafeHandles;
 namespace TCD.UI.Controls
 {
     /// <summary>
-    /// Represents a control that allows the user to select and display a date and time.
+    /// Represents a control that allows the user to select and display a date.
     /// </summary>
-    public class DateTimePicker : DateTimePickerBase
+    public class DatePicker : DateTimePickerBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DateTimePicker"/> class.
+        /// Initializes a new instance of the <see cref="DatePicker"/> class.
         /// </summary>
-        public DateTimePicker() : base(new SafeControlHandle(Libui.NewDateTimePicker())) => InitializeEvents();
+        public DatePicker(int? year = null, int? month = null, int? day = null) : base(new SafeControlHandle(Libui.NewDatePicker()))
+        {
+            DateTime dt = DateTime.Now;
+            if (year != null)
+                dt = new DateTime((int)year, dt.Month, dt.Day);
+            if (month != null)
+                dt = new DateTime(dt.Year, (int)month, dt.Day);
+            if (day != null)
+                dt = new DateTime(dt.Year, dt.Month, (int)day);
+            DateTime = dt;
+            InitializeEvents();
+        }
 
         /// <summary>
         /// Gets the year component from <see cref="DateTime"/>.
@@ -37,20 +48,5 @@ namespace TCD.UI.Controls
         /// Gets the day component from <see cref="DateTime"/>.
         /// </summary>
         public int Day => DateTime.Day;
-
-        /// <summary>
-        /// Gets the hour component from <see cref="DateTime"/>.
-        /// </summary>
-        public int Hour => DateTime.Hour;
-
-        /// <summary>
-        /// Gets the minute component from <see cref="DateTime"/>.
-        /// </summary>
-        public int Minute => DateTime.Minute;
-
-        /// <summary>
-        /// Gets the second component from <see cref="DateTime"/>.
-        /// </summary>
-        public int Second => DateTime.Second;
     }
 }

@@ -1,8 +1,8 @@
 ﻿/****************************************************************************
- * FileName:   DateTimePicker.cs
+ * FileName:   TimePicker.cs
  * Assembly:   TCD.UI.dll
  * Package:    TCD.UI
- * Date:       20180930
+ * Date:       20181001
  * License:    MIT License
  * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
  ***************************************************************************/
@@ -14,29 +14,14 @@ using TCD.SafeHandles;
 namespace TCD.UI.Controls
 {
     /// <summary>
-    /// Represents a control that allows the user to select and display a date and time.
+    /// Represents a control that allows the user to select and display a time.
     /// </summary>
-    public class DateTimePicker : DateTimePickerBase
+    public class TimePicker : DateTimePickerBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DateTimePicker"/> class.
+        /// Initializes a new instance of the <see cref="TimePicker"/> class.
         /// </summary>
-        public DateTimePicker() : base(new SafeControlHandle(Libui.NewDateTimePicker())) => InitializeEvents();
-
-        /// <summary>
-        /// Gets the year component from <see cref="DateTime"/>.
-        /// </summary>
-        public int Year => DateTime.Year;
-
-        /// <summary>
-        /// Gets the month component from <see cref="DateTime"/>.
-        /// </summary>
-        public int Month => DateTime.Month;
-
-        /// <summary>
-        /// Gets the day component from <see cref="DateTime"/>.
-        /// </summary>
-        public int Day => DateTime.Day;
+        public TimePicker() : base(new SafeControlHandle(Libui.NewTimePicker())) => InitializeEvents();
 
         /// <summary>
         /// Gets the hour component from <see cref="DateTime"/>.

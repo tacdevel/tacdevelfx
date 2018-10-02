@@ -32,17 +32,6 @@ namespace TCD.UI
             InitializeEvents();
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CheckBox"/> class with the specified text and checked state.
-        /// </summary>
-        /// <param name="text">The text specified by the <see cref="CheckBox"/>.</param>
-        /// <param name="checked">The state of the <see cref="CheckBox"/>.</param>
-        public CheckBox(string text, bool @checked) : this(text)
-        {
-            this.text = text;
-            InitializeEvents();
-        }
-
         //TODO: Maybe add separate Checked and Unchecked events.
         /// <summary>
         /// Occurs when the <see cref="Checked"/> property is changed.

@@ -14,7 +14,6 @@ using TCD.SafeHandles;
 
 namespace TCD.UI.Controls
 {
-    //TODO: An Items property.
     /// <summary>
     /// Represents a selection control with a drop-down list that can be shown or hidden by clicking the arrow on the control.
     /// </summary>
@@ -25,13 +24,7 @@ namespace TCD.UI.Controls
         /// <summary>
         /// Initalizes a new instance of the <see cref="ComboBox"/> class.
         /// </summary>
-        public ComboBox(int startIndex = 0, params string[] items) : base(new SafeControlHandle(Libui.NewCombobox()))
-        {
-            if (items != null && items.Length > 0)
-                Add(items);
-            SelectedIndex = startIndex;
-            InitializeEvents();
-        }
+        public ComboBox() : base(new SafeControlHandle(Libui.NewCombobox())) => InitializeEvents();
 
         /// <summary>
         /// Occurs when a drop-down item is selected.

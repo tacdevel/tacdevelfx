@@ -29,16 +29,6 @@ namespace TCD.UI
         public ColorPicker() : base(new SafeControlHandle(Libui.NewColorButton())) => InitializeEvents();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ColorPicker"/> class.
-        /// </summary>
-        /// <param name="color">The color of the <see cref="ColorPicker"/>.</param>
-        public ColorPicker(Color color) : this()
-        {
-            if (color != Color.Empty)
-                Color = color;
-        }
-
-        /// <summary>
         /// Occurs when the <see cref="Color"/> property is changed.
         /// </summary>
         public event Event<ColorPicker> ColorChanged;
