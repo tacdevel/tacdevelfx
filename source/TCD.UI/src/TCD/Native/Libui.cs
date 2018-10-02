@@ -360,8 +360,8 @@ namespace TCD.Native
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFormSetPadded(IntPtr f, bool padded);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewForm();
 
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridAppend(IntPtr g, IntPtr c, int left, int top, int xspan, int yspan, int hexpand, NativeAlignment halign, int vexpand, NativeAlignment valign);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridInsertAt(IntPtr g, IntPtr c, IntPtr existing, RelativeAlignment at, int xspan, int yspan, int hexpand, NativeAlignment halign, int vexpand, NativeAlignment valign);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridAppend(IntPtr g, IntPtr c, int left, int top, int xspan, int yspan, int hexpand, Align halign, int vexpand, Align valign);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridInsertAt(IntPtr g, IntPtr c, IntPtr existing, RelativeAlignment at, int xspan, int yspan, int hexpand, Align halign, int vexpand, Align valign);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiGridPadded(IntPtr g);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridSetPadded(IntPtr g, bool padded);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewGrid();
@@ -468,8 +468,8 @@ namespace TCD.Native
         internal static IntPtr NewForm() => AssemblyRef.Libui.LoadFunction<Signatures.uiNewForm>()();
         #endregion FormContainer
         #region GridContainer
-        internal static void GridAppend(IntPtr g, IntPtr c, int left, int top, int xspan, int yspan, int hexpand, NativeAlignment halign, int vexpand, NativeAlignment valign) => AssemblyRef.Libui.LoadFunction<Signatures.uiGridAppend>()(g, c, left, top, xspan, yspan, hexpand, halign, vexpand, valign);
-        internal static void GridInsertAt(IntPtr g, IntPtr c, IntPtr existing, RelativeAlignment at, int xspan, int yspan, int hexpand, NativeAlignment halign, int vexpand, NativeAlignment valign) => AssemblyRef.Libui.LoadFunction<Signatures.uiGridInsertAt>()(g, c, existing, at, xspan, yspan, hexpand, halign, vexpand, valign);
+        internal static void GridAppend(IntPtr g, IntPtr c, int left, int top, int xspan, int yspan, int hexpand, Align halign, int vexpand, Align valign) => AssemblyRef.Libui.LoadFunction<Signatures.uiGridAppend>()(g, c, left, top, xspan, yspan, hexpand, halign, vexpand, valign);
+        internal static void GridInsertAt(IntPtr g, IntPtr c, IntPtr existing, RelativeAlignment at, int xspan, int yspan, int hexpand, Align halign, int vexpand, Align valign) => AssemblyRef.Libui.LoadFunction<Signatures.uiGridInsertAt>()(g, c, existing, at, xspan, yspan, hexpand, halign, vexpand, valign);
         internal static bool GridPadded(IntPtr g) => AssemblyRef.Libui.LoadFunction<Signatures.uiGridPadded>()(g);
         internal static void GridSetPadded(IntPtr g, bool padded) => AssemblyRef.Libui.LoadFunction<Signatures.uiGridSetPadded>()(g, padded);
         internal static IntPtr NewGrid() => AssemblyRef.Libui.LoadFunction<Signatures.uiNewGrid>()();
