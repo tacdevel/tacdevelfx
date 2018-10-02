@@ -8,7 +8,6 @@
  ***************************************************************************/
 
 using System;
-using System.Runtime.InteropServices;
 using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
@@ -40,15 +39,15 @@ namespace TCD.UI.Controls
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.DateTimePickerTime(Handle, out NativeDateTime time);
-                dateTime = NativeDateTime.ToDateTime(time);
+                Libui.DateTimePickerTime(Handle, out Libui.Time time);
+                dateTime = Libui.Time.ToDateTime(time);
                 return (DateTime)dateTime;
             }
             set
             {
                 if (dateTime == value) return;
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.DateTimePickerSetTime(Handle, NativeDateTime.FromDateTime(value));
+                Libui.DateTimePickerSetTime(Handle, Libui.Time.FromDateTime(value));
                 dateTime = value;
             }
         }
@@ -198,67 +197,5 @@ namespace TCD.UI.Controls
         /// Gets the second component from <see cref="DateTime"/>.
         /// </summary>
         public int Second => DateTime.Second;
-    }
-
-    //TODO: IEquatable<UIDateTime>, object overrides.
-    [StructLayout(LayoutKind.Sequential)]
-    internal class NativeDateTime
-    {
-#pragma warning disable IDE0032 // Use auto property
-#pragma warning disable IDE0044 // Add readonly modifier
-        private int sec, min, hour, day, mon, year;
-        private readonly int wday, yday; // Must be uninitialized.
-        private readonly int isdst = -1; //Must be -1.
-#pragma warning restore IDE0032 // Use auto property
-#pragma warning restore IDE0044 // Add readonly modifier
-
-        public NativeDateTime(int year, int month, int day, int hour, int minute, int second)
-        {
-            sec = second;
-            min = minute;
-            this.hour = hour;
-            this.day = day;
-            mon = month;
-            this.year = year;
-        }
-
-        public int Second
-        {
-            get => sec;
-            set => sec = value;
-        }
-
-        public int Minute
-        {
-            get => min;
-            set => min = value;
-        }
-
-        public int Hour
-        {
-            get => hour;
-            set => hour = value;
-        }
-
-        public int Day
-        {
-            get => day;
-            set => day = value;
-        }
-
-        public int Month
-        {
-            get => mon;
-            set => mon = value;
-        }
-
-        public int Year
-        {
-            get => year;
-            set => year = value;
-        }
-
-        public static DateTime ToDateTime(NativeDateTime dt) => new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
-        public static NativeDateTime FromDateTime(DateTime dt) => new NativeDateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
     }
 }

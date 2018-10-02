@@ -18,6 +18,76 @@ namespace TCD.Native
     internal static class Libui
     {
         private const CallingConvention Cdecl = CallingConvention.Cdecl;
+        
+        internal enum Align : long
+        {
+            Fill,
+            Start,
+            Center,
+            End
+        }
+
+        //TODO: IEquatable<UIDateTime>, object overrides.
+        [StructLayout(LayoutKind.Sequential)]
+        internal class Time
+        {
+#pragma warning disable IDE0032 // Use auto property
+#pragma warning disable IDE0044 // Add readonly modifier
+            private int sec, min, hour, day, mon, year;
+            private readonly int wday, yday; // Must be uninitialized.
+            private readonly int isdst = -1; //Must be -1.
+#pragma warning restore IDE0032 // Use auto property
+#pragma warning restore IDE0044 // Add readonly modifier
+
+            public Time(int year, int month, int day, int hour, int minute, int second)
+            {
+                sec = second;
+                min = minute;
+                this.hour = hour;
+                this.day = day;
+                mon = month;
+                this.year = year;
+            }
+
+            public int Second
+            {
+                get => sec;
+                set => sec = value;
+            }
+
+            public int Minute
+            {
+                get => min;
+                set => min = value;
+            }
+
+            public int Hour
+            {
+                get => hour;
+                set => hour = value;
+            }
+
+            public int Day
+            {
+                get => day;
+                set => day = value;
+            }
+
+            public int Month
+            {
+                get => mon;
+                set => mon = value;
+            }
+
+            public int Year
+            {
+                get => year;
+                set => year = value;
+            }
+
+            public static DateTime ToDateTime(Time dt) => new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+            public static Time FromDateTime(DateTime dt) => new Time(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+        }
 
         // Keep the delegates in this class in order with libui\ui.h
         private static class Signatures
@@ -149,8 +219,8 @@ namespace TCD.Native
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiRadioButtonsOnSelected(IntPtr r, RadioButtonsOnSelectedCallback f, IntPtr data);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewRadioButtons();
 
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerTime(IntPtr d, out NativeDateTime time);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerSetTime(IntPtr d, NativeDateTime time);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerTime(IntPtr d, out Time time);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerSetTime(IntPtr d, Time time);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerOnChanged(IntPtr d, DateTimePickerOnChangedCallback f, IntPtr data);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewDateTimePicker();
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewDatePicker();
@@ -367,8 +437,8 @@ namespace TCD.Native
         internal static void ControlDisable(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlDisable>()(c);
         #endregion Control
         #region DateTimePicker
-        internal static void DateTimePickerTime(IntPtr d, out NativeDateTime time) => AssemblyRef.Libui.LoadFunction<Signatures.uiDateTimePickerTime>()(d, out time);
-        internal static void DateTimePickerSetTime(IntPtr d, NativeDateTime time) => AssemblyRef.Libui.LoadFunction<Signatures.uiDateTimePickerSetTime>()(d, time);
+        internal static void DateTimePickerTime(IntPtr d, out Time time) => AssemblyRef.Libui.LoadFunction<Signatures.uiDateTimePickerTime>()(d, out time);
+        internal static void DateTimePickerSetTime(IntPtr d, Time time) => AssemblyRef.Libui.LoadFunction<Signatures.uiDateTimePickerSetTime>()(d, time);
         internal static void DateTimePickerOnChanged(IntPtr d, DateTimePickerOnChangedCallback f, IntPtr data) => AssemblyRef.Libui.LoadFunction<Signatures.uiDateTimePickerOnChanged>()(d, f, data);
         internal static IntPtr NewDateTimePicker() => AssemblyRef.Libui.LoadFunction<Signatures.uiNewDateTimePicker>()();
         internal static IntPtr NewDatePicker() => AssemblyRef.Libui.LoadFunction<Signatures.uiNewDatePicker>()();

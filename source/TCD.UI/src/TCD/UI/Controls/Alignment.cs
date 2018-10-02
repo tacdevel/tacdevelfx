@@ -84,12 +84,4 @@ namespace TCD.UI.Controls
         /// </summary>
         BottomRight = 13
     }
-
-    internal enum NativeAlignment : long
-    {
-        Fill,
-        Start,
-        Center,
-        End
-    }
 }
