@@ -25,7 +25,7 @@ namespace TCD.Native
             internal string szCSDVersion;
         }
 
-        [DllImport(AssemblyRef_DllImport.Ntdll)]
+        [DllImport(AssemblyRef.Ntdll)]
         internal static extern int RtlGetVersion(out RTL_OSVERSIONINFOEX lpVersionInformation);
     }
 }

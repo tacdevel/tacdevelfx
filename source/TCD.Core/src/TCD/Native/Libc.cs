@@ -14,7 +14,7 @@ namespace TCD.Native
 {
     internal static class Libc
     {
-        [DllImport(AssemblyRef_DllImport.Libc)]
+        [DllImport(AssemblyRef.Libc)]
         internal static extern unsafe int sysctl(int* name, uint namelen, byte* oldp, uint* oldlenp, IntPtr newp, uint newlen);
     }
 }

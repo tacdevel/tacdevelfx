@@ -14,13 +14,13 @@ namespace TCD.Native
 {
     internal static class Kernel32
     {
-        [DllImport(AssemblyRef_DllImport.Kernel32)]
+        [DllImport(AssemblyRef.Kernel32)]
         internal static extern IntPtr LoadLibrary(string fileName);
 
-        [DllImport(AssemblyRef_DllImport.Kernel32)]
+        [DllImport(AssemblyRef.Kernel32)]
         internal static extern IntPtr GetProcAddress(IntPtr module, string procName);
 
-        [DllImport(AssemblyRef_DllImport.Kernel32)]
+        [DllImport(AssemblyRef.Kernel32)]
         internal static extern int FreeLibrary(IntPtr module);
     }
 }
