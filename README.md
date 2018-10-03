@@ -11,11 +11,11 @@ TCDFx (or the TCD Framework) is a collection of packages targeting .NET Standard
 
 ## Packages
 
-| Package Name           | Description                                                                                                         |
-| :--------------------- | :------------------------------------------------------------------------------------------------------------------ |
-| TCD.Core               | Contains shared code for other TCDFx packages, as well as various classes to simplify native interop.               |
-| TCD.Drawing.Primitives | Contains primitive 2D drawing structures, such as Point and Size.                                                   |
-| TCD.UI                 | Contains UI and Drawing/Text typess to help create UI applications using [libui](https://github.com/andlabs/libui). |
+| Package Name           | Description                                                                                                |
+| :--------------------- | :--------------------------------------------------------------------------------------------------------- |
+| TCD.Core               | Contains base classes, such as `Disposable`, and event delegates.                                          |
+| TCD.Drawing.Primitives | Contains primitive 2D drawing structures, such as Point and Size.                                          |
+| TCD.UI                 | Contains classes and types to help create UI applications using [libui](https://github.com/andlabs/libui). |
 
 
 <!--

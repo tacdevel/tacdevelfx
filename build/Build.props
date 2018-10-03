@@ -4,7 +4,6 @@
   
   <!-- MSBuild Output Paths -->
   <PropertyGroup>
-    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <BaseIntermediateOutputPath>$(RepoBuildObjPath)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
     <BaseOutputPath>$(RepoBuildBinPath)$(MSBuildProjectName)\</BaseOutputPath>
@@ -15,6 +14,10 @@
 
   <!-- MSBuild Properties -->
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <OutputType>Library</OutputType>
+    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
     <Version>$(RepoVersion)</Version>
