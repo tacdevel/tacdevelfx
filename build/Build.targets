@@ -10,7 +10,7 @@
       <RepoMyGetPushURL>https://www.myget.org/F/tacdevel-ci/api/v2/package</RepoMyGetPushURL>
       <RepoMyGetKey>d0f080b5-d29b-4292-9ba0-991200d10f1f</RepoMyGetKey>
     </PropertyGroup>
-    <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoMyGetKey) -s $(RepoMyGetPushURL) --no-service-endpoint/>
+    <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoMyGetKey) -s $(RepoMyGetPushURL) --no-service-endpoint" />
   </Target>
   
   <Target Condition="'$(Build.SourceBranchName)'='master'" Name="PushToNuGet">
