@@ -2,7 +2,7 @@
   <!-- General Info -->
   <PropertyGroup>
     <RepoVersionMajor>0</RepoVersionMajor>
-    <RepoVersionMinor>1</RepoVersionMinor>
+    <RepoVersionMinor>2</RepoVersionMinor>
     <RepoVersionPatch>0</RepoVersionPatch>
     <RepoVersion>$(RepoVersionMajor).$(RepoVersionMinor).$(RepoVersionPatch)</RepoVersion>
     <RepoVersion Condition="'$(RepoVersionSuffix)'!=''">$(RepoVersion)-$(RepoVersionSuffix)</RepoVersion>

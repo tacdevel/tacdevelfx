@@ -11,22 +11,22 @@ TCDFx (or the TCD Framework) is a collection of packages targeting .NET Standard
 
 ## Packages
 
-| Package Name           | Description                                                                                                |
-| :--------------------- | :--------------------------------------------------------------------------------------------------------- |
-| TCD.Core               | Contains base classes, such as `Disposable`, and event delegates.                                          |
-| TCD.Drawing.Primitives | Contains primitive 2D drawing structures, such as Point and Size.                                          |
-| TCD.UI                 | Contains classes and types to help create UI applications using [libui](https://github.com/andlabs/libui). |
+| Package Name               | Description                                                                                                |
+| :------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| TCD.Core                   | Contains base classes, such as `Disposable`, and event delegates.                                          |
+| TCD.Drawing.Primitives     | Contains primitive 2D drawing structures, such as Point and Size.                                          |
+| TCD.UI *(No Packages Yet)* | Contains classes and types to help create UI applications using [libui](https://github.com/andlabs/libui). |
 
 
-<!--
-## Obtaining the Libraries
+## Using The Libraries
 
-Add this line to you `csproj` project file:
+For now, there are only pre-release packages available on our MyGet feed. Starting with v0.2.0, there will be packages on NuGet.
+
+Run the following command in your project's working directory, where `<PackageName>` is the name of the package you want to use:
 
 ```
-<PackageReference Include="{PACKAGE_NAME}" Version="0.1.0" />
+dotnet add package <PackageName> --version 0.1.0 --source https://www.myget.org/F/tacdevel-ci/api/v3/index.json 
 ```
--->
 
 ## Supported Platforms
 
