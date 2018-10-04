@@ -12,12 +12,4 @@
     </PropertyGroup>
     <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoMyGetKey) -s $(RepoMyGetPushURL) --no-service-endpoint" />
   </Target>
-  
-  <Target Condition="'$(Build.SourceBranchName)'='master'" Name="PushToNuGet">
-    <PropertyGroup>
-      <RepoNuGetPushURL></RepoNuGetPushURL>
-      <RepoNuGetKey></RepoNuGetKey>
-    </PropertyGroup>
-    <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoNuGetKey) -s $(RepoNuGetPushURL) />
-  </Target>
 </Project>
