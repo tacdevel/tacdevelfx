@@ -8,7 +8,7 @@
     <Exec Command="dotnet build %(ProjectFile.Identity) -c $(Configuration) --no-dependencies --no-restore" />
   </Target>
 
-  <Target Condition="'$(Build.SourceBranchName)'=='develop'" Name="PushToMyGet" >
+  <Target Name="PushToMyGet" >
     <PropertyGroup>
       <RepoMyGetPushURL>https://www.myget.org/F/tacdevel-ci/api/v2/package</RepoMyGetPushURL>
       <RepoMyGetKey>d0f080b5-d29b-4292-9ba0-991200d10f1f</RepoMyGetKey>
