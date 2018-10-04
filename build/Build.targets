@@ -5,21 +5,19 @@
     <Exec Command="dotnet clean %(ProjectFile.Identity) -c $(Configuration)" />
   </Target>
 
-  <!--
-  <Target Condition="'$(RepoPushType)'='MyGet'" Name="PushToMyGet" AfterTargets="Build">
+  <Target Condition="'$(Build.SourceBranchName)'='develop'" Name="PushToMyGet">
     <PropertyGroup>
-      <RepoMyGetPushURL></RepoMyGetPushURL>
-      <RepoMyGetKey></RepoMyGetKey>
+      <RepoMyGetPushURL>https://www.myget.org/F/tacdevel-ci/api/v2/package</RepoMyGetPushURL>
+      <RepoMyGetKey>d0f080b5-d29b-4292-9ba0-991200d10f1f</RepoMyGetKey>
     </PropertyGroup>
-    <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoMyGetKey) -s $(RepoMyGetPushURL) />
+    <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoMyGetKey) -s $(RepoMyGetPushURL) --no-service-endpoint/>
   </Target>
   
-  <Target Condition="'$(RepoPushType)'='MyGet'" Name="PushToNuGet" AfterTargets="Build">
+  <Target Condition="'$(Build.SourceBranchName)'='master'" Name="PushToNuGet">
     <PropertyGroup>
       <RepoNuGetPushURL></RepoNuGetPushURL>
       <RepoNuGetKey></RepoNuGetKey>
     </PropertyGroup>
     <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoNuGetKey) -s $(RepoNuGetPushURL) />
   </Target>
-  -->
 </Project>

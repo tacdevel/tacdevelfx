@@ -6,7 +6,6 @@
     <RepoVersionMajor>0</RepoVersionMajor>
     <RepoVersionMinor>1</RepoVersionMinor>
     <RepoVersionPatch>0</RepoVersionPatch>
-    <RepoVersionSuffix />
     <RepoAuthors>Thomas Corwin, et al.</RepoAuthors>
     <RepoCopyright>Copyright (c) Thomas Corwin, et al. All Rights Reserved.</RepoCopyright>
     <RepoURL>https://github.com/tacdevel/tcdfx</RepoURL>
