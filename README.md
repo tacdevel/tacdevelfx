@@ -25,7 +25,7 @@ For now, there are only pre-release packages available on our MyGet feed. Starti
 Run the following command in your project's working directory, where `<PackageName>` is the name of the package you want to use:
 
 ```
-dotnet add package <PackageName> --version 0.1.0 --source https://www.myget.org/F/tacdevel-ci/api/v3/index.json 
+dotnet add package <PackageName> --version 0.2.0-build-* --source https://www.myget.org/F/tacdevel-ci/api/v3/index.json 
 ```
 
 ## Supported Platforms
