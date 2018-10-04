@@ -1,11 +1,11 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- General Info -->
   <PropertyGroup>
-    <RepoVersion>$(RepoVersionMajor).$(RepoVersionMinor).$(RepoVersionPatch)</RepoVersion>
-    <RepoVersion Condition="'$(RepoVersionSuffix)'!=''">$(RepoVersion)-$(RepoVersionSuffix)</RepoVersion>
     <RepoVersionMajor>0</RepoVersionMajor>
     <RepoVersionMinor>1</RepoVersionMinor>
     <RepoVersionPatch>0</RepoVersionPatch>
+    <RepoVersion>$(RepoVersionMajor).$(RepoVersionMinor).$(RepoVersionPatch)</RepoVersion>
+    <RepoVersion Condition="'$(RepoVersionSuffix)'!=''">$(RepoVersion)-$(RepoVersionSuffix)</RepoVersion>
     <RepoAuthors>Thomas Corwin, et al.</RepoAuthors>
     <RepoCopyright>Copyright (c) Thomas Corwin, et al. All Rights Reserved.</RepoCopyright>
     <RepoURL>https://github.com/tacdevel/tcdfx</RepoURL>
