@@ -1,4 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\build\Build.props" />
+
+  <!-- MSBuild Output Paths -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(RepoBuildObjPath)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <BaseOutputPath>$(RepoBuildBinPath)$(MSBuildProjectName)\</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
+    <DocumentationFile Condition="'$(Configuration)'=='Release'">$(RepoBuildDocPath)$(MSBuildProjectName).xml</DocumentationFile>
+    <PackageOutputPath Condition="'$(Configuration)'=='Release'">$(RepoBuildPkgPath)</PackageOutputPath>
+  </PropertyGroup>
+
+  <!-- MSBuild Properties -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <OutputType>Library</OutputType>
+    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
+    <Version>$(RepoVersion)</Version>
+    <Authors>$(RepoAuthors)</Authors>
+    <Copyright>$(RepoCopyright)</Copyright>
+    <Description />
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- MSBuild Properties (Debug)-->
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <!-- MSBuild Properties (Release) -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <Optimize>true</Optimize>
+    <DebugType>embedded</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags></PackageTags>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <PackageProjectUrl>$(RepoURL)</PackageProjectUrl>
+    <PackageLicenseUrl>$(RepoURL)/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>$(RepoURL)</RepositoryUrl>
+  </PropertyGroup>
+
+  <!-- Shared License Files -->
+  <ItemGroup>
+    <Content Include="../../LICENSE.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="../../THIRD_PARTY_NOTICES.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
 </Project>

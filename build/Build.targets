@@ -1,0 +1,25 @@
+<Project ToolsVersion="15.0" InitialTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Build" Outputs="%(ProjectFile.Identity)">
+    <Exec Command="dotnet restore %(ProjectFile.Identity) --disable-parallel --force --no-dependencies" />
+    <Exec Command="dotnet build %(ProjectFile.Identity) -c $(Configuration) --no-dependencies --no-restore" />
+    <Exec Command="dotnet clean %(ProjectFile.Identity) -c $(Configuration)" />
+  </Target>
+
+  <!--
+  <Target Condition="'$(RepoPushType)'='MyGet'" Name="PushToMyGet" AfterTargets="Build">
+    <PropertyGroup>
+      <RepoMyGetPushURL></RepoMyGetPushURL>
+      <RepoMyGetKey></RepoMyGetKey>
+    </PropertyGroup>
+    <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoMyGetKey) -s $(RepoMyGetPushURL) />
+  </Target>
+  
+  <Target Condition="'$(RepoPushType)'='MyGet'" Name="PushToNuGet" AfterTargets="Build">
+    <PropertyGroup>
+      <RepoNuGetPushURL></RepoNuGetPushURL>
+      <RepoNuGetKey></RepoNuGetKey>
+    </PropertyGroup>
+    <Exec Command="dotnet nuget push $(RepoBuildPkgPath) -k $(RepoNuGetKey) -s $(RepoNuGetPushURL) />
+  </Target>
+  -->
+</Project>
