@@ -1,11 +1,11 @@
-<Project ToolsVersion="15.0" InitialTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="Build" Outputs="%(ProjectFile.Identity)">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Build" Outputs="%(ProjectFile.Identity)" >
     <Exec Command="dotnet restore %(ProjectFile.Identity) --disable-parallel --force --no-dependencies" />
     <Exec Command="dotnet build %(ProjectFile.Identity) -c $(Configuration) --no-dependencies --no-restore" />
     <Exec Command="dotnet clean %(ProjectFile.Identity) -c $(Configuration)" />
   </Target>
 
-  <Target Condition="'$(Build.SourceBranchName)'='develop'" Name="PushToMyGet">
+  <Target Condition="'$(Build.SourceBranchName)'='develop'" Name="PushToMyGet" >
     <PropertyGroup>
       <RepoMyGetPushURL>https://www.myget.org/F/tacdevel-ci/api/v2/package</RepoMyGetPushURL>
       <RepoMyGetKey>d0f080b5-d29b-4292-9ba0-991200d10f1f</RepoMyGetKey>

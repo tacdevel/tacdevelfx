@@ -1,8 +1,8 @@
 # TCDFx
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?longCache=true)](https://github.com/tom-corwin/LibUISharp/blob/master/LICENSE.md)
 [![CodeFactor](https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge)](https://www.codefactor.io/repository/github/tacdevel/tcdfx)
+[![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tcdfx-ci-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=2)
 <!--
-[![Build status](https://ci.appveyor.com/api/projects/status/o2y9fu126dqmi4pv?svg=true)](https://ci.appveyor.com/project/tom-corwin/libuisharp)
 [![NuGet](https://img.shields.io/nuget/vpre/LibUISharp.svg)](https://www.nuget.org/packages/LibUISharp)
 -->
 TCDFx (or the TCD Framework) is a collection of packages targeting .NET Standard, allowing users to create desktop UI applications on Windows, macOS, and Linux.

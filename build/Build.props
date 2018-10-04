@@ -13,7 +13,7 @@
 
   <!-- Repository Paths -->
   <PropertyGroup>
-    <RepoBasePath>$(MSBuildThisFileDirectory)..\</RepoBasePath>
+    <RepoBasePath>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), README.md))\</RepoBasePath>
     <RepoBuildPath>$(RepoBasePath)build\</RepoBuildPath>
     <RepoBuildBinPath>$(RepoBuildPath)bin\</RepoBuildBinPath>
     <RepoBuildDocPath>$(RepoBuildPath)doc\</RepoBuildDocPath>

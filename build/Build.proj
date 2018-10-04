@@ -1,4 +1,4 @@
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" InitialTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="Build.props" />
   <PropertyGroup>
     <Configuration>Release</Configuration>
@@ -6,7 +6,7 @@
   <ItemGroup>
     <ProjectFile Include="$(RepoSourcePath)TCD.Core\TCD.Core.csproj" />
     <ProjectFile Include="$(RepoSourcePath)TCD.Drawing.Primitives\TCD.Drawing.Primitives.csproj" />
-    <ProjectFile Include="$(RepoSourcePath)TCD.UI\TCD.UI.csproj" />
+    <!-- <ProjectFile Include="$(RepoSourcePath)TCD.UI\TCD.UI.csproj" /> -->
   </ItemGroup>
   <Import Project="Build.targets" />
 </Project>
