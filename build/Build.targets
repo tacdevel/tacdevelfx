@@ -1,8 +1,11 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="Build" Outputs="%(ProjectFile.Identity)" >
+  <Target Name="Clean">
+    <Exec Command="dotnet clean %(ProjectFile.Identity) -c $(Configuration)" />
+  </Target>
+  
+  <Target Name="Build" Outputs="%(ProjectFile.Identity)" DependsOnTargets="Clean" >
     <Exec Command="dotnet restore %(ProjectFile.Identity) --disable-parallel --force --no-dependencies" />
     <Exec Command="dotnet build %(ProjectFile.Identity) -c $(Configuration) --no-dependencies --no-restore" />
-    <Exec Command="dotnet clean %(ProjectFile.Identity) -c $(Configuration)" />
   </Target>
 
   <Target Condition="'$(Build.SourceBranchName)'='develop'" Name="PushToMyGet" >
