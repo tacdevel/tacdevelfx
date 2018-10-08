@@ -1,42 +1,29 @@
-# TCDFx
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?longCache=true)](https://github.com/tom-corwin/LibUISharp/blob/master/LICENSE.md)
 [![CodeFactor](https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge)](https://www.codefactor.io/repository/github/tacdevel/tcdfx)
-[![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tcdfx-ci-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=2)
-<!--
-[![NuGet](https://img.shields.io/nuget/vpre/LibUISharp.svg)](https://www.nuget.org/packages/LibUISharp)
--->
+![Libraries.io for GitHub](https://img.shields.io/librariesio/github/tacdevel/tcdfx.svg)  
+![C# Version](https://img.shields.io/badge/C%23-7.3-05930C.svg)
+![Target Frameworkss](https://img.shields.io/badge/target--frameworks-netstandard2.0-5C2D91.svg)
+![Supported Platforms](https://img.shields.io/badge/supported--platforms-win--x64;osx--x64;linux--x64-blue.svg)
+# TCDFx (TCD Framework)
+
+
 TCDFx (or the TCD Framework) is a collection of packages targeting .NET Standard, allowing users to create desktop UI applications on Windows, macOS, and Linux.
 
-**Please Note**: This software is a work-in-progress with no releases yet, and is not to be considered complete nor usable.
+**Please Note**: This software is a work-in-progress with no stable releases yet, and is not to be considered complete nor stable, and anything is subject to change.
 
 ## Packages
 
-| Package Name               | Description                                                                                                |
-| :------------------------- | :--------------------------------------------------------------------------------------------------------- |
-| TCD.Core                   | Contains base classes, such as `Disposable`, and event delegates.                                          |
-| TCD.Drawing.Primitives     | Contains primitive 2D drawing structures, such as Point and Size.                                          |
-| TCD.UI *(No Packages Yet)* | Contains classes and types to help create UI applications using [libui](https://github.com/andlabs/libui). |
-
-
-## Using The Libraries
-
-For now, there are only pre-release packages available on our MyGet feed. Starting with v0.2.0, there will be packages on NuGet.
-
-Run the following command in your project's working directory, where `<PackageName>` is the name of the package you want to use:
-
-```
-dotnet add package <PackageName> --version 0.2.0-build-* --source https://www.myget.org/F/tacdevel-ci/api/v3/index.json 
-```
-
-## Supported Platforms
-
-Although the TCDFx packages can be used on [any platform supported by .NET Core 2.1](https://github.com/dotnet/core/blob/master/release-notes/2.1/2.1-supported-os.md), only 64-bit platforms are currently supported.
+| Package Name           | Description | Development Branch | Release Branch |
+| :--------------------- | :---------- | :----------------- | :------------- |
+| TCD.Core               | Contains base classes, such as `Disposable`, and event delegates. | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Core-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=5)<br/>![NuGet](https://img.shields.io/nuget/vpre/TCD.Core.svg) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Core-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=6)<br/>![NuGet](https://img.shields.io/nuget/v/TCD./core.svg) |
+| TCD.Drawing.Primitives | Contains primitive 2D drawing structures, such as `Point` and `Size`. | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Drawing.Primitives-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=7)<br/>![NuGet](https://img.shields.io/nuget/vpre/TCD.Drawing.Primitives.svg) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Drawing.Primitives-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=8)<br/>![NuGet](https://img.shields.io/nuget/v/TCD.Drawing.Primitives.svg) |
+| TCD.UI                 | Contains classes and types to help create UI applications using [libui](https://github.com/andlabs/libui). | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.UI-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=9)<br/>![NuGet](https://img.shields.io/nuget/vpre/TCD.UI.svg) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.UI-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10)<br/>![NuGet](https://img.shields.io/nuget/v/TCD.UI.svg) |
 
 ## Contributing
 
 Contributing is as easy as filing an issue, fixing a bug, or suggesting a new feature.
 
-For all a list of all contributors with some stats about their contributions, see the [Contributors](https://github.com/tacdevel/TCDFx/graphs/contributors) page.
+For all a list of all contributors with some stats about their contributions, see the [Contributors](https://github.com/tacdevel/tcdfxx/graphs/contributors) page.
 
 ## Building From Source
 
