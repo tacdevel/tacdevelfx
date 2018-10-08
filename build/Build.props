@@ -13,7 +13,7 @@
     <TCDFxVersionMinor>2</TCDFxVersionMinor>
     <TCDFxVersionPatch>0</TCDFxVersionPatch>
     <TCDFxVersion Condition="'$(TCDFxVersionSuffix)'==''">$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersion>
-    <TCDFxVersion Condition="'$(TCDFxVersionSuffix)'!=''">$$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)-$(TCDFxVersionSuffix)</TCDFxVersion>
+    <TCDFxVersion Condition="'$(TCDFxVersionSuffix)'!=''">$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)-$(TCDFxVersionSuffix)</TCDFxVersion>
   </PropertyGroup>
 
   <!-- Global Repository Paths -->
