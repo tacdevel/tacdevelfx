@@ -10,8 +10,8 @@
   <!-- Global Version Information -->
   <PropertyGroup>
     <TCDFxVersionMajor>0</TCDFxVersionMajor>
-    <TCDFxVersionMinor>1</TCDFxVersionMinor>
-    <TCDFxVersionPatch>1</TCDFxVersionPatch>
+    <TCDFxVersionMinor>2</TCDFxVersionMinor>
+    <TCDFxVersionPatch>0</TCDFxVersionPatch>
     <TCDFxVersion Condition="'$(TCDFxVersionSuffix)'==''">$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersion>
     <TCDFxVersion Condition="'$(TCDFxVersionSuffix)'!=''">$$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)-$(TCDFxVersionSuffix)</TCDFxVersion>
   </PropertyGroup>
