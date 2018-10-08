@@ -1,14 +1,13 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\build\Build.props" />
-
-  <!-- MSBuild Output Paths -->
+  <!-- Output Paths -->
   <PropertyGroup>
-    <BaseIntermediateOutputPath>$(RepoBuildObjPath)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>$(TCDFxBuildObjPath)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
-    <BaseOutputPath>$(RepoBuildBinPath)$(MSBuildProjectName)\</BaseOutputPath>
+    <BaseOutputPath>$(TCDFxBuildBinPath)$(MSBuildProjectName)\</BaseOutputPath>
     <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
-    <DocumentationFile Condition="'$(Configuration)'=='Release'">$(RepoBuildDocPath)$(MSBuildProjectName).xml</DocumentationFile>
-    <PackageOutputPath Condition="'$(Configuration)'=='Release'">$(RepoBuildPkgPath)</PackageOutputPath>
+    <DocumentationFile Condition="'$(Configuration)'=='Release'">$(TCDFxBuildDocPath)$(MSBuildProjectName).xml</DocumentationFile>
+    <PackageOutputPath Condition="'$(Configuration)'=='Release'">$(TCDFxBuildPkgPath)$(MSBuildProjectName)\</PackageOutputPath>
   </PropertyGroup>
 
   <!-- MSBuild Properties -->
@@ -19,9 +18,9 @@
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
-    <Version>$(RepoVersion)</Version>
-    <Authors>$(RepoAuthors)</Authors>
-    <Copyright>$(RepoCopyright)</Copyright>
+    <Version>$(TCDFxVersion)</Version>
+    <Authors>$(TCDFxAuthors)</Authors>
+    <Copyright>$(TCDFxCopyrights)</Copyright>
     <Description />
     <EnableDefaultItems>false</EnableDefaultItems>
     <RootNamespace>$(MSBuildProjectName)</RootNamespace>
@@ -48,12 +47,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageTags></PackageTags>
     <PackageId>$(MSBuildProjectName)</PackageId>
-    <PackageProjectUrl>$(RepoURL)</PackageProjectUrl>
-    <PackageLicenseUrl>$(RepoURL)/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>$(TCDFxRepoURL)</PackageProjectUrl>
+    <PackageLicenseUrl>$(TCDFxLicenseURL)</PackageLicenseUrl>
     <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>$(RepoURL)</RepositoryUrl>
+    <RepositoryUrl>$(TCDFxRepoURL)</RepositoryUrl>
   </PropertyGroup>
 
   <!-- Shared License Files -->

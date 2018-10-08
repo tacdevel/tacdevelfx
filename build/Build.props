@@ -1,24 +1,29 @@
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- General Info -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Global Repository Information -->
   <PropertyGroup>
-    <RepoVersionMajor>0</RepoVersionMajor>
-    <RepoVersionMinor>2</RepoVersionMinor>
-    <RepoVersionPatch>0</RepoVersionPatch>
-    <RepoVersion>$(RepoVersionMajor).$(RepoVersionMinor).$(RepoVersionPatch)</RepoVersion>
-    <RepoVersion Condition="'$(RepoVersionSuffix)'!=''">$(RepoVersion)-$(RepoVersionSuffix)</RepoVersion>
-    <RepoAuthors>Thomas Corwin, et al.</RepoAuthors>
-    <RepoCopyright>Copyright (c) Thomas Corwin, et al. All Rights Reserved.</RepoCopyright>
-    <RepoURL>https://github.com/tacdevel/tcdfx</RepoURL>
+    <TCDFxAuthors>Thomas Corwin, et al.</TCDFxAuthors>
+    <TCDFxCopyrights>Copyright (c) Thomas Corwin, et al. All Rights Reserved.</TCDFxCopyrights>
+    <TCDFxRepositoryURL>https://github.com/tacdevel/tcdfx</TCDFxRepositoryURL>
+    <TCDFxLicenseURL>$(TCDFxRepositoryURL)/blob/master/LICENSE.md</TCDFxLicenseURL>
   </PropertyGroup>
 
-  <!-- Repository Paths -->
+  <!-- Global Version Information -->
   <PropertyGroup>
-    <RepoBasePath>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), README.md))\</RepoBasePath>
-    <RepoBuildPath>$(RepoBasePath)build\</RepoBuildPath>
-    <RepoBuildBinPath>$(RepoBuildPath)bin\</RepoBuildBinPath>
-    <RepoBuildDocPath>$(RepoBuildPath)doc\</RepoBuildDocPath>
-    <RepoBuildObjPath>$(RepoBuildPath)obj\</RepoBuildObjPath>
-    <RepoBuildPkgPath>$(RepoBuildPath)pkg\</RepoBuildPkgPath>
-    <RepoSourcePath>$(RepoBasePath)source\</RepoSourcePath>
+    <TCDFxVersionMajor>0</TCDFxVersionMajor>
+    <TCDFxVersionMinor>1</TCDFxVersionMinor>
+    <TCDFxVersionPatch>0</TCDFxVersionPatch>
+    <TCDFxVersion>$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersion>
+    <TCDFxVersion Condition="'$(TCDFxVersionSuffix)'!=''">$(TCDFxVersion)-$(TCDFxVersionSuffix)</TCDFxVersion>
+  </PropertyGroup>
+
+  <!-- Global Repository Paths -->
+  <PropertyGroup>
+    <TCDFxBasePath>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), README.md))\</TCDFxBasePath>
+    <TCDFxBuildPath>$(TCDFxBasePath)build\</TCDFxBuildPath>
+    <TCDFxBuildBinPath>$(TCDFxBuildPath)bin\</TCDFxBuildBinPath>
+    <TCDFxBuildDocPath>$(TCDFxBuildPath)doc\</TCDFxBuildDocPath>
+    <TCDFxBuildObjPath>$(TCDFxBuildPath)obj\</TCDFxBuildObjPath>
+    <TCDFxBuildPkgPath>$(TCDFxBuildPath)pkg\</TCDFxBuildPkgPath>
+    <TCDFxSourcePath>$(TCDFxBasePath)source\</TCDFxSourcePath>
   </PropertyGroup>
 </Project>
