@@ -18,7 +18,7 @@ namespace TCD.Native
     internal static class Libui
     {
         private const CallingConvention Cdecl = CallingConvention.Cdecl;
-        
+
         internal enum Align : long
         {
             Fill,
@@ -87,6 +87,41 @@ namespace TCD.Native
 
             public static DateTime ToDateTime(Time dt) => new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
             public static Time FromDateTime(DateTime dt) => new Time(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct NativeSurfaceHandler
+        {
+            private IntPtr draw;
+            private IntPtr mouseEvent;
+            private IntPtr mouseCrossed;
+            private IntPtr dragBroken;
+            private IntPtr keyEvent;
+
+            public Libui.AreaHandlerDrawCallback Draw
+            {
+                set => draw = Marshal.GetFunctionPointerForDelegate(value);
+            }
+
+            public Libui.AreaHandlerMouseEventCallback MouseEvent
+            {
+                set => mouseEvent = Marshal.GetFunctionPointerForDelegate(value);
+            }
+
+            public Libui.AreaHandlerMouseCrossedCallback MouseCrossed
+            {
+                set => mouseCrossed = Marshal.GetFunctionPointerForDelegate(value);
+            }
+
+            public Libui.AreaHandlerDragBrokenCallback DragBroken
+            {
+                set => dragBroken = Marshal.GetFunctionPointerForDelegate(value);
+            }
+
+            public Libui.AreaHandlerKeyEventCallback KeyEvent
+            {
+                set => keyEvent = Marshal.GetFunctionPointerForDelegate(value);
+            }
         }
 
         // Keep the delegates in this class in order with libui\ui.h
