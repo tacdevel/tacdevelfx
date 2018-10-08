@@ -8,6 +8,6 @@
   </Target>
   <!--<Target Name="BuildAndRunTests" DependsOnTargets="CleanProjectBuildPaths;BuildProjects" />-->
   <Target Name="PushPackgesToNuGet" DependsOnTargets="CleanProjectBuildPaths;BuildProjects">
-    <Exec Command="dotnet nuget push $(TCDFxBuildPkgPath) -k $(TCDFxCINuGetKey) -s $(TCDFxCINuGetPushURL) --no-service-endpoint" />
+    <Exec Command="dotnet nuget push $(TCDFxBuildPkgPath)$(TCDFxTargetProject)\ -k $(TCDFxCINuGetKey) -s $(TCDFxCINuGetPushURL) --no-service-endpoint" />
   </Target>
 </Project>
