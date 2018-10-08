@@ -4,7 +4,7 @@
     <Configuration>Release</Configuration>
   </PropertyGroup>
   <ItemGroup>
-    <TCDFxProject Include="$(TCDFxSourcePath)@(TCDFxTargetProjects)\@(TCDFxTargetProjects).csproj" />
+    <TCDFxProject Include="$(TCDFxSourcePath)$(TCDFxTargetProject)\$(TCDFxTargetProject).csproj" />
   </ItemGroup>
   <Import Project="Build.CI.targets" />
 </Project>
