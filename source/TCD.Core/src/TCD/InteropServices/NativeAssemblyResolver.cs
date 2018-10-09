@@ -32,7 +32,5 @@ namespace TCD.InteropServices
         /// Gets a resolver that enumerates load targets from a dependency.
         /// </summary>
         public static NativeAssemblyResolver Dependency => new DependencyNativeAssemblyResolver();
-
-        //TODO: public static NativeAssemblyResolver Embedded => new EmbeddedNativeAssemblyResolver();
     }
 }

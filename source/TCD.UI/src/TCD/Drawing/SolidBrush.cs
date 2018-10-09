@@ -52,5 +52,12 @@ namespace TCD.Drawing
                 }
             }
         }
+
+        /// <summary>
+        /// Converts the specified <see cref="Color"/> structure to a <see cref="SolidBrush"/> structure.
+        /// </summary>
+        /// <param name="color">The <see cref="Color"/> to be converted.</param>
+        /// <returns>The <see cref="SolidBrush"/> that results from the conversion.</returns>
+        public static explicit operator SolidBrush(Color color) => new SolidBrush(color);
     }
 }

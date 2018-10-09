@@ -111,13 +111,5 @@ namespace TCD.Drawing
         /// <param name="right">The <see cref="Color"/> that is to the right of the inequality operator.</param>
         /// <returns><see langword="true"/> if the two <see cref="Color"/> structures are different; otherwise, <see langword="false"/>.</returns>
         public static bool operator !=(Color left, Color right) => !(left == right);
-
-        //TODO: Move the following operator to SolidBrush.cs in TCD.Drawing.SolidBrush.
-        // <summary>
-        // Converts the specified <see cref="Color"/> structure to a <see cref="SolidBrush"/> structure.
-        // </summary>
-        // <param name="color">The <see cref="Color"/> to be converted.</param>
-        // <returns>The <see cref="SolidBrush"/> that results from the conversion.</returns>
-        // public static explicit operator SolidBrush(Color color) => new SolidBrush(color);
     }
 }
