@@ -3,6 +3,31 @@
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\win-x64\libui.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="lib\linux-x64\libui.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="lib\linux-x64\libui.so.0">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="lib\osx-x64\libui.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="lib\osx-x64\libui.A.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ref\*.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TCD.Core\TCD.Core.csproj" />
     <ProjectReference Include="..\TCD.Drawing.Primitives\TCD.Drawing.Primitives.csproj" />
   </ItemGroup>
