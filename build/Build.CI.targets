@@ -1,12 +1,9 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="CleanProjectBuildPaths">
-    <Exec Command="dotnet clean %(TCDFxProject.Identity) -c $(Configuration)" />
-  </Target>
-  <Target Name="BuildProjects" Outputs="%(TCDFxProject.Identity)" DependsOnTargets="CleanProjectBuildPaths" >
+  <Target Name="BuildProjects" Outputs="%(TCDFxProject.Identity)" >
     <Exec Command="dotnet restore %(TCDFxProject.Identity) --disable-parallel --force" />
     <Exec Command="dotnet build %(TCDFxProject.Identity) -c $(Configuration) --no-restore" />
   </Target>
-  <!--<Target Name="BuildAndRunTests" DependsOnTargets="CleanProjectBuildPaths;BuildProjects" />-->
+  <!--<Target Name="BuildAndRunTests" DependsOnTargets="BuildProjects" />-->
   <Target Name="PushPackagesToNuGet" DependsOnTargets="CleanProjectBuildPaths;BuildProjects">
     <Exec Command="dotnet nuget push $(TCDFxBuildPkgPath)$(TCDFxTargetProject)\ -k $(TCDFxCINuGetKey) -s $(TCDFxCINuGetPushURL) --no-service-endpoint" />
   </Target>
