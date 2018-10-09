@@ -1,7 +1,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="BuildProjects" Outputs="%(TCDFxProject.Identity)" >
-    <Exec Command="dotnet restore %(TCDFxProject.Identity) --disable-parallel --force" />
-    <Exec Command="dotnet build %(TCDFxProject.Identity) -c $(Configuration) --no-restore" />
+    <Exec Command="dotnet restore %(TCDFxProject.Identity) --no-dependencies --disable-parallel --force" />
+    <Exec Command="dotnet build %(TCDFxProject.Identity) -c $(Configuration) --no-restore --no-dependencies " />
   </Target>
   <!--<Target Name="BuildAndRunTests" DependsOnTargets="BuildProjects" />-->
   <Target Name="PushPackagesToNuGet" DependsOnTargets="BuildProjects">
