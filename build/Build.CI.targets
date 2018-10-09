@@ -4,7 +4,7 @@
     <Exec Command="dotnet build %(TCDFxProject.Identity) -c $(Configuration) --no-restore" />
   </Target>
   <!--<Target Name="BuildAndRunTests" DependsOnTargets="BuildProjects" />-->
-  <Target Name="PushPackagesToNuGet" DependsOnTargets="CleanProjectBuildPaths;BuildProjects">
+  <Target Name="PushPackagesToNuGet" DependsOnTargets="BuildProjects">
     <Exec Command="dotnet nuget push $(TCDFxBuildPkgPath)$(TCDFxTargetProject)\ -k $(TCDFxCINuGetKey) -s $(TCDFxCINuGetPushURL) --no-service-endpoint" />
   </Target>
 </Project>
