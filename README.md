@@ -1,9 +1,14 @@
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?longCache=true)](https://github.com/tom-corwin/LibUISharp/blob/master/LICENSE.md)
+[![License](https://badgen.net/badge/license/MIT/blue)](https://github.com/tom-corwin/LibUISharp/blob/master/LICENSE.md)
+[![Contributors](https://badgen.net/github/contributors/tacdevel/tcdfx)](https://github.com/tacdevel/tcdfxx/graphs/contributors)
 [![CodeFactor](https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge)](https://www.codefactor.io/repository/github/tacdevel/tcdfx)
-![Libraries.io for GitHub](https://img.shields.io/librariesio/github/tacdevel/tcdfx.svg)  
-![C# Version](https://img.shields.io/badge/C%23-7.3-05930C.svg)
-![Target Frameworkss](https://img.shields.io/badge/target--frameworks-netstandard2.0-5C2D91.svg)
-![Supported Platforms](https://img.shields.io/badge/supported--platforms-win--x64;osx--x64;linux--x64-blue.svg)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx)](https://dependabot.com)  
+[![Open Issues](https://badgen.net/github/open-issues/tacdevel/tcdfx/)](https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aopen)
+[![Closed Issues](https://badgen.net/github/closed-issues/tacdevel/tcdfx/)](https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aclosed)
+[![Help Wanted](https://badgen.net/github/label-issues/tacdevel/tcdfx/help%20wanted/open)](https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![Good First Issue](https://badgen.net/github/label-issues/tacdevel/tcdfx/good%20first%20issue/open)](https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)  
+![C# Version](https://badgen.net/badge/C%23/7.3/green)
+![Target Frameworks](https://badgen.net/badge/framework/netstandard2.0/purple)
+![Supported Platforms](https://badgen.net/badge/platform/win--x64,osx--x64,linux--x64/blue?list=1)
 # TCDFx (TCD Framework)
 
 
@@ -15,9 +20,9 @@ TCDFx (or the TCD Framework) is a collection of packages targeting .NET Standard
 
 | Package Name           | Development Branch | Release Branch |
 | :--------------------- | :----------------- | :------------- |
-| TCD.Core               | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Core-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=5) ![NuGet](https://img.shields.io/nuget/vpre/TCD.Core.svg) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Core-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=6) ![NuGet](https://img.shields.io/nuget/v/TCD.Core.svg) |
-| TCD.Drawing.Primitives | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Drawing.Primitives-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=7) ![NuGet](https://img.shields.io/nuget/vpre/TCD.Drawing.Primitives.svg) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Drawing.Primitives-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=8) ![NuGet](https://img.shields.io/nuget/v/TCD.Drawing.Primitives.svg) |
-| TCD.UI                 | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.UI-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=9) ![NuGet](https://img.shields.io/nuget/vpre/TCD.UI.svg) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.UI-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10) ![NuGet](https://img.shields.io/nuget/v/TCD.UI.svg) |
+| TCD.Core               | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Core-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=5) ![NuGet](https://badgen.net/nuget/v/TCD.Core/vpre) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Core-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=6) ![NuGet](https://badgen.net/nuget/v/TCD.Core) |
+| TCD.Drawing.Primitives | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Drawing.Primitives-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=7) ![NuGet](https://badgen.net/nuget/v/TCD.Drawing.Primitives/vpre) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Drawing.Primitives-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=8) ![NuGet](https://badgen.net/nuget/v/TCD.Drawing.Primitives) |
+| TCD.UI                 | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.UI-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=9) ![NuGet](https://badgen.net/nuget/v/TCD.UI/vpre) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.UI-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10) ![NuGet](https://badgen.net/nuget/v/TCD.UI) |
 
 ## Contributing
 
