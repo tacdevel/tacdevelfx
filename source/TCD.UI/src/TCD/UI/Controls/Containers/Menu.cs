@@ -13,7 +13,7 @@ using TCD.Native;
 using TCD.SafeHandles;
 using TCD.UI.Controls.Containers;
 
-namespace TCD.UI.Controls
+namespace TCD.UI.Controls.Containers
 {
     /// <summary>
     /// Represents a menu control that enables you to add elements associated with commands and event handlers.
@@ -24,7 +24,7 @@ namespace TCD.UI.Controls
         /// Initializes a new instance of the <see cref="Menu"/> class with the specified name.
         /// </summary>
         /// <param name="name">The specified name.</param>
-        internal Menu(string name) : base(new SafeControlHandle(Libui.NewMenu(name))) => Name = name;
+        public Menu(string name) : base(new SafeControlHandle(Libui.NewMenu(name))) => Name = name;
 
         /// <summary>
         /// Gets the name of this <see cref="Menu"/>.

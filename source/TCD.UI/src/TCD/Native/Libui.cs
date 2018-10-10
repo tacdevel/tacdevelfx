@@ -19,6 +19,12 @@ namespace TCD.Native
     {
         private const CallingConvention Cdecl = CallingConvention.Cdecl;
 
+        internal enum ForEach : long
+        {
+            Continue,
+            Stop
+        }
+
         internal enum Align : long
         {
             Fill,
@@ -27,7 +33,6 @@ namespace TCD.Native
             End
         }
 
-        //TODO: IEquatable<UIDateTime>, object overrides.
         [StructLayout(LayoutKind.Sequential)]
         internal class Time
         {
@@ -90,7 +95,7 @@ namespace TCD.Native
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        internal struct NativeSurfaceHandler
+        internal struct AreaHandler
         {
             private IntPtr draw;
             private IntPtr mouseEvent;
@@ -122,287 +127,6 @@ namespace TCD.Native
             {
                 set => keyEvent = Marshal.GetFunctionPointerForDelegate(value);
             }
-        }
-
-        // Keep the delegates in this class in order with libui\ui.h
-        private static class Signatures
-        {
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiInit(ref StartupOptions options);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiUnInit();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeInitError(string err);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMain();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMainSteps();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiMainStep(bool wait);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiQuit();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiQueueMain(QueueMainCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTimer(int milliseconds, TimerCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOnShouldQuit(OnShouldQuitCallback f, IntPtr data);
-
-            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeText(string text);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlDestroy(IntPtr c);
-            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiControlHandle(uiControl c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiControlParent(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlSetParent(IntPtr c, IntPtr parent);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiControlToplevel(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiControlVisible(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlShow(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlHide(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiControlEnabled(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlEnable(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlDisable(IntPtr c);
-            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlVerifySetParent(IntPtr c, IntPtr parent);
-            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiControlEnabledToUser(IntPtr c);
-            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAllocControl(UIntPtr n, uint OSsig, uint typesig, string typenamestr);
-            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeControl(uiControl c);
-            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiUserBugCannotSetParentOnTopLevel(string type);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiWindowTitle(IntPtr w);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetTitle(IntPtr w, string title);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowContentSize(IntPtr w, out int width, out int height);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetContentSize(IntPtr w, int width, int height);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiWindowFullscreen(IntPtr w);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetFullscreen(IntPtr w, bool fullscreen);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowOnContentSizeChanged(IntPtr w, WindowOnContentSizeChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowOnClosing(IntPtr w, WindowOnClosingCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiWindowBorderless(IntPtr w);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetBorderless(IntPtr w, bool borderless);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetChild(IntPtr w, IntPtr child);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiWindowMargined(IntPtr w);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetMargined(IntPtr w, bool margined);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewWindow(string title, int width, int height, bool hasMenubar);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiButtonText(IntPtr b);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiButtonSetText(IntPtr b, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiButtonOnClicked(IntPtr b, ButtonOnClickedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewButton(string text);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiBoxAppend(IntPtr b, IntPtr child, bool stretchy);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiBoxDelete(IntPtr b, int index);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiBoxPadded(IntPtr b);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiBoxSetPadded(IntPtr b, bool padded);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewHorizontalBox();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewVerticalBox();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiCheckboxText(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiCheckboxSetText(IntPtr c, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiCheckboxOnToggled(IntPtr c, CheckboxOnToggledCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiCheckboxChecked(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiCheckboxSetChecked(IntPtr c, bool @checked);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewCheckbox(string text);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiEntryText(IntPtr e);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEntrySetText(IntPtr e, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEntryOnChanged(IntPtr e, EntryOnChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiEntryReadOnly(IntPtr e);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEntrySetReadOnly(IntPtr e, bool @readonly);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewEntry();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewPasswordEntry();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSearchEntry();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiLabelText(IntPtr l);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiLabelSetText(IntPtr l, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewLabel(string text);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTabAppend(IntPtr t, string name, IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTabInsertAt(IntPtr t, string name, int before, IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTabDelete(IntPtr t, int index);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiTabNumPages(IntPtr t);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiTabMargined(IntPtr t, int page);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTabSetMargined(IntPtr t, int page, bool margined);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewTab();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiGroupTitle(IntPtr g);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGroupSetTitle(IntPtr g, string title);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGroupSetChild(IntPtr g, IntPtr child);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiGroupMargined(IntPtr g);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGroupSetMargined(IntPtr g, bool margined);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewGroup(string title);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiSpinboxValue(IntPtr s);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiSpinboxSetValue(IntPtr s, int value);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiSpinboxOnChanged(IntPtr s, SpinboxOnChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSpinbox(int min, int max);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiSliderValue(IntPtr s);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiSliderSetValue(IntPtr s, int value);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiSliderOnChanged(IntPtr s, SliderOnChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSlider(int min, int max);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiProgressBarValue(IntPtr p);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiProgressBarSetValue(IntPtr p, int n);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewProgressBar();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewHorizontalSeparator();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewVerticalSeparator();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiComboboxAppend(IntPtr c, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiComboboxSelected(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiComboboxSetSelected(IntPtr c, int n);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiComboboxOnSelected(IntPtr c, ComboboxOnSelectedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewCombobox();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEditableComboboxAppend(IntPtr c, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiEditableComboboxText(IntPtr c);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEditableComboboxSetText(IntPtr c, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEditableComboboxOnChanged(IntPtr c, EditableComboboxOnChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewEditableCombobox();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiRadioButtonsAppend(IntPtr r, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiRadioButtonsSelected(IntPtr r);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiRadioButtonsSetSelected(IntPtr r, int n);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiRadioButtonsOnSelected(IntPtr r, RadioButtonsOnSelectedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewRadioButtons();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerTime(IntPtr d, out Time time);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerSetTime(IntPtr d, Time time);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerOnChanged(IntPtr d, DateTimePickerOnChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewDateTimePicker();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewDatePicker();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewTimePicker();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiMultilineEntryText(IntPtr e);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMultilineEntrySetText(IntPtr e, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMultilineEntryAppend(IntPtr e, string text);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMultilineEntryOnChanged(IntPtr e, MultilineEntryOnChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiMultilineEntryReadOnly(IntPtr e);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMultilineEntrySetReadOnly(IntPtr e, bool @readonly);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewMultilineEntry();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewNonWrappingMultilineEntry();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuItemEnable(IntPtr m);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuItemDisable(IntPtr m);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuItemOnClicked(IntPtr m, MenuItemOnClickedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiMenuItemChecked(IntPtr m);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuItemSetChecked(IntPtr m, bool @checked);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendItem(IntPtr m, string name);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendCheckItem(IntPtr m, string name);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendQuitItem(IntPtr m);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendPreferencesItem(IntPtr m);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendAboutItem(IntPtr m);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuAppendSeparator(IntPtr m);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewMenu(string name);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiOpenFile(IntPtr parent);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiSaveFile(IntPtr parent);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMsgBox(IntPtr parent, string title, string description);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMsgBoxError(IntPtr parent, string title, string description);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaSetSize(IntPtr a, int width, int height);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaQueueRedrawAll(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaScrollTo(IntPtr a, double x, double y, double width, double height);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaBeginUserWindowMove(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaBeginUserWindowResize(IntPtr a, WindowEdge edge);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewArea(NativeSurfaceHandler ah);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewScrollingArea(NativeSurfaceHandler ah, int width, int height);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiDrawNewPath(FillMode fillMode);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawFreePath(IntPtr p);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathNewFigure(IntPtr p, double x, double y);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathNewFigureWithArc(IntPtr p, double xCenter, double yCenter, double radius, double startAngle, double sweep, bool negative);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathLineTo(IntPtr p, double x, double y);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathArcTo(IntPtr p, double xCenter, double yCenter, double radius, double startAngle, double sweep, bool negative);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathBezierTo(IntPtr p, double c1x, double c1y, double c2x, double c2y, double endX, double endY);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathCloseFigure(IntPtr p);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathAddRectangle(IntPtr p, double x, double y, double width, double height);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathEnd(IntPtr p);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawStroke(IntPtr context, IntPtr path, ref Brush brush, ref StrokeOptions strokeParam);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawFill(IntPtr context, IntPtr path, ref Brush brush);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixSetIdentity(Matrix matrix);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixTranslate(Matrix matrix, double x, double y);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixScale(Matrix matrix, double xCenter, double yCenter, double x, double y);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixRotate(Matrix matrix, double x, double y, double amount);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixSkew(Matrix matrix, double x, double y, double xamount, double yamount);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixMultiply(Matrix dest, Matrix src);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiDrawMatrixInvertible(Matrix matrix);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiDrawMatrixInvert(Matrix matrix);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixTransformPoint(Matrix matrix, out double x, out double y);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixTransformSize(Matrix matrix, out double x, out double y);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawTransform(IntPtr context, Matrix matrix);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawClip(IntPtr context, IntPtr path);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawSave(IntPtr context);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawRestore(IntPtr context);
-
-            //TODO: Functions for the following delegates.
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeAttribute(IntPtr a);
-            //[UnmanagedFunctionPointer(Cdecl)] internal delegate uiAttributeType uiAttributeGetType(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFamilyAttribute(string family);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiAttributeFamily(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSizeAttribute(double size);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate double uiAttributeSize(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewWeightAttribute(FontWeight weight);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate FontWeight uiAttributeWeight(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewItalicAttribute(FontStyle italic);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate FontStyle uiAttributeItalic(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewStretchAttribute(FontStretch stretch);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate FontStretch uiAttributeStretch(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewColorAttribute(double r, double g, double b, double a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributeColor(IntPtr a, out double r, out double g, out double b, out double alpha);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewBackgroundAttribute(double r, double g, double b, double a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewUnderlineAttribute(UnderlineStyle u);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate UnderlineStyle uiAttributeUnderline(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewUnderlineColorAttribute(UnderlineColor u, double r, double g, double b, double a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributeUnderlineColor(IntPtr a, out UnderlineColor u, out double r, out double g, out double b, out double alpha);
-
-            //[UnmanagedFunctionPointer(Cdecl)] internal delegate uiForEach uiOpenTypeFeaturesForEachFunc(IntPtr otf, char a, char b, char c, char d, uint value, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewOpenTypeFeatures();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeOpenTypeFeatures(IntPtr otf);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiOpenTypeFeaturesClone(IntPtr otf);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesAdd(IntPtr otf, char a, char b, char c, char d, uint value);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesRemove(IntPtr otf, char a, char b, char c, char d);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiOpenTypeFeaturesGet(IntPtr otf, char a, char b, char c, char d, out uint value);
-            //[UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesForEach(IntPtr otf, uiOpenTypeFeaturesForEachFunc f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFeaturesAttribute(IntPtr otf);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiAttributeFeatures(IntPtr a);
-
-            //[UnmanagedFunctionPointer(Cdecl)] internal delegate uiForEach uiAttributedStringForEachAttributeFunc(IntPtr s, IntPtr a, UIntPtr start, UIntPtr end, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewAttributedString(string initialString);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeAttributedString(IntPtr s);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiAttributedStringString(IntPtr s);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringLen(IntPtr s);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringAppendUnattributed(IntPtr s, IntPtr str);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringInsertAtUnattributed(IntPtr s, IntPtr str, UIntPtr at);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringDelete(IntPtr s, UIntPtr start, UIntPtr end);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringSetAttribute(IntPtr s, IntPtr a, UIntPtr start, UIntPtr end);
-            //[UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringForEachAttribute(IntPtr s, uiAttributedStringForEachAttributeFunc f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringNumGraphemes(IntPtr s);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringByteIndexToGrapheme(IntPtr s, UIntPtr pos);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringGraphemeToByteIndex(IntPtr s, UIntPtr pos);
-
-            //[UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiDrawNewTextLayout(uiDrawTextLayoutParams param);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawFreeTextLayout(IntPtr tl);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawText(IntPtr c, IntPtr tl, double x, double y);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawTextLayoutExtents(IntPtr tl, out double width, out double height);
-            //TODO: Functions for the above delegates.
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFontButtonFont(IntPtr b, out Font desc);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFontButtonOnChanged(IntPtr b, FontButtonOnChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFontButton();
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeFontButtonFont(Font desc);
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiColorButtonColor(IntPtr b, out double red, out double green, out double blue, out double alpha);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiColorButtonSetColor(IntPtr b, double red, double green, double blue, double alpha);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiColorButtonOnChanged(IntPtr b, ColorButtonOnChangedCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewColorButton();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFormAppend(IntPtr f, string label, IntPtr c, bool stretchy);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFormDelete(IntPtr f, int index);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiFormPadded(IntPtr f);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFormSetPadded(IntPtr f, bool padded);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewForm();
-
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridAppend(IntPtr g, IntPtr c, int left, int top, int xspan, int yspan, int hexpand, Align halign, int vexpand, Align valign);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridInsertAt(IntPtr g, IntPtr c, IntPtr existing, RelativeAlignment at, int xspan, int yspan, int hexpand, Align halign, int vexpand, Align valign);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiGridPadded(IntPtr g);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridSetPadded(IntPtr g, bool padded);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewGrid();
-
-            //TODO: uiImage
-            //TODO: uiTable
         }
 
         #region Application
@@ -606,13 +330,13 @@ namespace TCD.Native
         internal static void AreaScrollTo(IntPtr a, double x, double y, double width, double height) => AssemblyRef.Libui.LoadFunction<Signatures.uiAreaScrollTo>()(a, x, y, width, height);
         internal static void AreaBeginUserWindowMove(IntPtr a) => AssemblyRef.Libui.LoadFunction<Signatures.uiAreaBeginUserWindowMove>()(a);
         internal static void AreaBeginUserWindowResize(IntPtr a, WindowEdge edge) => AssemblyRef.Libui.LoadFunction<Signatures.uiAreaBeginUserWindowResize>()(a, edge);
-        internal static IntPtr NewArea(NativeSurfaceHandler ah) => AssemblyRef.Libui.LoadFunction<Signatures.uiNewArea>()(ah);
-        internal static IntPtr NewScrollingArea(NativeSurfaceHandler ah, int width, int height) => AssemblyRef.Libui.LoadFunction<Signatures.uiNewScrollingArea>()(ah, width, height);
-        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerDrawCallback(NativeSurfaceHandler handler, IntPtr area, DrawEventArgs args);
-        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerMouseEventCallback(NativeSurfaceHandler handler, IntPtr area, MouseEventArgs args);
-        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerMouseCrossedCallback(NativeSurfaceHandler handler, IntPtr area, bool left);
-        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerDragBrokenCallback(NativeSurfaceHandler handler, IntPtr area);
-        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerKeyEventCallback(NativeSurfaceHandler handler, IntPtr area, KeyEventArgs args);
+        internal static IntPtr NewArea(AreaHandler ah) => AssemblyRef.Libui.LoadFunction<Signatures.uiNewArea>()(ah);
+        internal static IntPtr NewScrollingArea(AreaHandler ah, int width, int height) => AssemblyRef.Libui.LoadFunction<Signatures.uiNewScrollingArea>()(ah, width, height);
+        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerDrawCallback(AreaHandler handler, IntPtr area, DrawEventArgs args);
+        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerMouseEventCallback(AreaHandler handler, IntPtr area, MouseEventArgs args);
+        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerMouseCrossedCallback(AreaHandler handler, IntPtr area, bool left);
+        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerDragBrokenCallback(AreaHandler handler, IntPtr area);
+        [UnmanagedFunctionPointer(Cdecl)] internal delegate void AreaHandlerKeyEventCallback(AreaHandler handler, IntPtr area, KeyEventArgs args);
         #endregion Surface
         #region TabContainer
         internal static void TabAppend(IntPtr t, string name, IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiTabAppend>()(t, name, c);
@@ -667,5 +391,289 @@ namespace TCD.Native
         [UnmanagedFunctionPointer(Cdecl)] internal delegate void WindowOnContentSizeChangedCallback(IntPtr w, IntPtr data);
         [UnmanagedFunctionPointer(Cdecl)] internal delegate bool WindowOnClosingCallback(IntPtr w, IntPtr data);
         #endregion Window
+
+        // Keep the delegates in this class in order with libui\ui.h
+        private static class Signatures
+        {
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiInit(ref StartupOptions options);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiUnInit();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeInitError(string err);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMain();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMainSteps();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiMainStep(bool wait);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiQuit();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiQueueMain(QueueMainCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTimer(int milliseconds, TimerCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOnShouldQuit(OnShouldQuitCallback f, IntPtr data);
+
+            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeText(string text);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlDestroy(IntPtr c);
+            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiControlHandle(uiControl c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiControlParent(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlSetParent(IntPtr c, IntPtr parent);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiControlToplevel(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiControlVisible(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlShow(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlHide(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiControlEnabled(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlEnable(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlDisable(IntPtr c);
+            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiControlVerifySetParent(IntPtr c, IntPtr parent);
+            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiControlEnabledToUser(IntPtr c);
+            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAllocControl(UIntPtr n, uint OSsig, uint typesig, string typenamestr);
+            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeControl(uiControl c);
+            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiUserBugCannotSetParentOnTopLevel(string type);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiWindowTitle(IntPtr w);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetTitle(IntPtr w, string title);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowContentSize(IntPtr w, out int width, out int height);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetContentSize(IntPtr w, int width, int height);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiWindowFullscreen(IntPtr w);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetFullscreen(IntPtr w, bool fullscreen);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowOnContentSizeChanged(IntPtr w, WindowOnContentSizeChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowOnClosing(IntPtr w, WindowOnClosingCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiWindowBorderless(IntPtr w);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetBorderless(IntPtr w, bool borderless);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetChild(IntPtr w, IntPtr child);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiWindowMargined(IntPtr w);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiWindowSetMargined(IntPtr w, bool margined);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewWindow(string title, int width, int height, bool hasMenubar);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiButtonText(IntPtr b);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiButtonSetText(IntPtr b, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiButtonOnClicked(IntPtr b, ButtonOnClickedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewButton(string text);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiBoxAppend(IntPtr b, IntPtr child, bool stretchy);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiBoxDelete(IntPtr b, int index);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiBoxPadded(IntPtr b);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiBoxSetPadded(IntPtr b, bool padded);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewHorizontalBox();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewVerticalBox();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiCheckboxText(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiCheckboxSetText(IntPtr c, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiCheckboxOnToggled(IntPtr c, CheckboxOnToggledCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiCheckboxChecked(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiCheckboxSetChecked(IntPtr c, bool @checked);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewCheckbox(string text);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiEntryText(IntPtr e);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEntrySetText(IntPtr e, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEntryOnChanged(IntPtr e, EntryOnChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiEntryReadOnly(IntPtr e);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEntrySetReadOnly(IntPtr e, bool @readonly);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewEntry();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewPasswordEntry();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSearchEntry();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiLabelText(IntPtr l);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiLabelSetText(IntPtr l, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewLabel(string text);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTabAppend(IntPtr t, string name, IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTabInsertAt(IntPtr t, string name, int before, IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTabDelete(IntPtr t, int index);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiTabNumPages(IntPtr t);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiTabMargined(IntPtr t, int page);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiTabSetMargined(IntPtr t, int page, bool margined);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewTab();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiGroupTitle(IntPtr g);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGroupSetTitle(IntPtr g, string title);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGroupSetChild(IntPtr g, IntPtr child);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiGroupMargined(IntPtr g);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGroupSetMargined(IntPtr g, bool margined);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewGroup(string title);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiSpinboxValue(IntPtr s);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiSpinboxSetValue(IntPtr s, int value);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiSpinboxOnChanged(IntPtr s, SpinboxOnChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSpinbox(int min, int max);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiSliderValue(IntPtr s);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiSliderSetValue(IntPtr s, int value);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiSliderOnChanged(IntPtr s, SliderOnChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSlider(int min, int max);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiProgressBarValue(IntPtr p);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiProgressBarSetValue(IntPtr p, int n);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewProgressBar();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewHorizontalSeparator();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewVerticalSeparator();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiComboboxAppend(IntPtr c, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiComboboxSelected(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiComboboxSetSelected(IntPtr c, int n);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiComboboxOnSelected(IntPtr c, ComboboxOnSelectedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewCombobox();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEditableComboboxAppend(IntPtr c, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiEditableComboboxText(IntPtr c);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEditableComboboxSetText(IntPtr c, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiEditableComboboxOnChanged(IntPtr c, EditableComboboxOnChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewEditableCombobox();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiRadioButtonsAppend(IntPtr r, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiRadioButtonsSelected(IntPtr r);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiRadioButtonsSetSelected(IntPtr r, int n);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiRadioButtonsOnSelected(IntPtr r, RadioButtonsOnSelectedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewRadioButtons();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerTime(IntPtr d, out Time time);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerSetTime(IntPtr d, Time time);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDateTimePickerOnChanged(IntPtr d, DateTimePickerOnChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewDateTimePicker();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewDatePicker();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewTimePicker();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiMultilineEntryText(IntPtr e);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMultilineEntrySetText(IntPtr e, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMultilineEntryAppend(IntPtr e, string text);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMultilineEntryOnChanged(IntPtr e, MultilineEntryOnChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiMultilineEntryReadOnly(IntPtr e);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMultilineEntrySetReadOnly(IntPtr e, bool @readonly);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewMultilineEntry();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewNonWrappingMultilineEntry();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuItemEnable(IntPtr m);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuItemDisable(IntPtr m);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuItemOnClicked(IntPtr m, MenuItemOnClickedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiMenuItemChecked(IntPtr m);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuItemSetChecked(IntPtr m, bool @checked);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendItem(IntPtr m, string name);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendCheckItem(IntPtr m, string name);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendQuitItem(IntPtr m);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendPreferencesItem(IntPtr m);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiMenuAppendAboutItem(IntPtr m);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMenuAppendSeparator(IntPtr m);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewMenu(string name);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiOpenFile(IntPtr parent);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiSaveFile(IntPtr parent);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMsgBox(IntPtr parent, string title, string description);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiMsgBoxError(IntPtr parent, string title, string description);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaSetSize(IntPtr a, int width, int height);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaQueueRedrawAll(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaScrollTo(IntPtr a, double x, double y, double width, double height);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaBeginUserWindowMove(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAreaBeginUserWindowResize(IntPtr a, WindowEdge edge);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewArea(AreaHandler ah);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewScrollingArea(AreaHandler ah, int width, int height);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiDrawNewPath(FillMode fillMode);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawFreePath(IntPtr p);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathNewFigure(IntPtr p, double x, double y);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathNewFigureWithArc(IntPtr p, double xCenter, double yCenter, double radius, double startAngle, double sweep, bool negative);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathLineTo(IntPtr p, double x, double y);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathArcTo(IntPtr p, double xCenter, double yCenter, double radius, double startAngle, double sweep, bool negative);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathBezierTo(IntPtr p, double c1x, double c1y, double c2x, double c2y, double endX, double endY);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathCloseFigure(IntPtr p);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathAddRectangle(IntPtr p, double x, double y, double width, double height);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawPathEnd(IntPtr p);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawStroke(IntPtr context, IntPtr path, ref Brush brush, ref StrokeOptions strokeParam);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawFill(IntPtr context, IntPtr path, ref Brush brush);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixSetIdentity(Matrix matrix);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixTranslate(Matrix matrix, double x, double y);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixScale(Matrix matrix, double xCenter, double yCenter, double x, double y);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixRotate(Matrix matrix, double x, double y, double amount);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixSkew(Matrix matrix, double x, double y, double xamount, double yamount);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixMultiply(Matrix dest, Matrix src);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiDrawMatrixInvertible(Matrix matrix);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiDrawMatrixInvert(Matrix matrix);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixTransformPoint(Matrix matrix, out double x, out double y);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawMatrixTransformSize(Matrix matrix, out double x, out double y);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawTransform(IntPtr context, Matrix matrix);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawClip(IntPtr context, IntPtr path);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawSave(IntPtr context);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawRestore(IntPtr context);
+
+            //TODO: Functions for the following delegates.
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeAttribute(IntPtr a);
+            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate uiAttributeType uiAttributeGetType(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFamilyAttribute(string family);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiAttributeFamily(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSizeAttribute(double size);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate double uiAttributeSize(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewWeightAttribute(FontWeight weight);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate FontWeight uiAttributeWeight(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewItalicAttribute(FontStyle italic);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate FontStyle uiAttributeItalic(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewStretchAttribute(FontStretch stretch);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate FontStretch uiAttributeStretch(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewColorAttribute(double r, double g, double b, double a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributeColor(IntPtr a, out double r, out double g, out double b, out double alpha);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewBackgroundAttribute(double r, double g, double b, double a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewUnderlineAttribute(UnderlineStyle u);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate UnderlineStyle uiAttributeUnderline(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewUnderlineColorAttribute(UnderlineColor u, double r, double g, double b, double a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributeUnderlineColor(IntPtr a, out UnderlineColor u, out double r, out double g, out double b, out double alpha);
+
+            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate uiForEach uiOpenTypeFeaturesForEachFunc(IntPtr otf, char a, char b, char c, char d, uint value, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewOpenTypeFeatures();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeOpenTypeFeatures(IntPtr otf);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiOpenTypeFeaturesClone(IntPtr otf);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesAdd(IntPtr otf, char a, char b, char c, char d, uint value);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesRemove(IntPtr otf, char a, char b, char c, char d);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiOpenTypeFeaturesGet(IntPtr otf, char a, char b, char c, char d, out uint value);
+            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesForEach(IntPtr otf, uiOpenTypeFeaturesForEachFunc f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFeaturesAttribute(IntPtr otf);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiAttributeFeatures(IntPtr a);
+
+            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate uiForEach uiAttributedStringForEachAttributeFunc(IntPtr s, IntPtr a, UIntPtr start, UIntPtr end, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewAttributedString(string initialString);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeAttributedString(IntPtr s);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiAttributedStringString(IntPtr s);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringLen(IntPtr s);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringAppendUnattributed(IntPtr s, IntPtr str);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringInsertAtUnattributed(IntPtr s, IntPtr str, UIntPtr at);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringDelete(IntPtr s, UIntPtr start, UIntPtr end);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringSetAttribute(IntPtr s, IntPtr a, UIntPtr start, UIntPtr end);
+            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringForEachAttribute(IntPtr s, uiAttributedStringForEachAttributeFunc f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringNumGraphemes(IntPtr s);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringByteIndexToGrapheme(IntPtr s, UIntPtr pos);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringGraphemeToByteIndex(IntPtr s, UIntPtr pos);
+
+            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiDrawNewTextLayout(uiDrawTextLayoutParams param);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawFreeTextLayout(IntPtr tl);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawText(IntPtr c, IntPtr tl, double x, double y);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawTextLayoutExtents(IntPtr tl, out double width, out double height);
+            //TODO: Functions for the above delegates.
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFontButtonFont(IntPtr b, out Font desc);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFontButtonOnChanged(IntPtr b, FontButtonOnChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFontButton();
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeFontButtonFont(Font desc);
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiColorButtonColor(IntPtr b, out double red, out double green, out double blue, out double alpha);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiColorButtonSetColor(IntPtr b, double red, double green, double blue, double alpha);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiColorButtonOnChanged(IntPtr b, ColorButtonOnChangedCallback f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewColorButton();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFormAppend(IntPtr f, string label, IntPtr c, bool stretchy);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFormDelete(IntPtr f, int index);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiFormPadded(IntPtr f);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFormSetPadded(IntPtr f, bool padded);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewForm();
+
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridAppend(IntPtr g, IntPtr c, int left, int top, int xspan, int yspan, int hexpand, Align halign, int vexpand, Align valign);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridInsertAt(IntPtr g, IntPtr c, IntPtr existing, RelativeAlignment at, int xspan, int yspan, int hexpand, Align halign, int vexpand, Align valign);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate bool uiGridPadded(IntPtr g);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiGridSetPadded(IntPtr g, bool padded);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewGrid();
+
+            internal delegate IntPtr uiNewImage(double width, double height);
+            internal delegate void uiFreeImage(IntPtr i);
+            internal delegate void uiImageAppend(IntPtr i, IntPtr pixels, int pixelWidth, int pixelHeight, int byteStride);
+
+            //TODO: uiTable
+        }
     }
 }

@@ -22,10 +22,10 @@ namespace TCD.Drawing
     /// </summary>
     public abstract class SurfaceBase : Control
     {
-        private static Dictionary<SurfaceBase, Libui.NativeSurfaceHandler> handlerCache = new Dictionary<SurfaceBase, Libui.NativeSurfaceHandler>();
+        private static Dictionary<SurfaceBase, Libui.AreaHandler> handlerCache = new Dictionary<SurfaceBase, Libui.AreaHandler>();
         private static Dictionary<IntPtr, SurfaceBase> surfaceCache = new Dictionary<IntPtr, SurfaceBase>();
 
-        internal SurfaceBase(SurfaceHandler handler, bool scrollable, int width, int height, bool cacheable = true) : base(GetHandle(handler, scrollable, width, height, out Libui.NativeSurfaceHandler outHandler), cacheable)
+        internal SurfaceBase(SurfaceHandler handler, bool scrollable, int width, int height, bool cacheable = true) : base(GetHandle(handler, scrollable, width, height, out Libui.AreaHandler outHandler), cacheable)
         {
             handlerCache.Add(this, outHandler);
             surfaceCache.Add(Handle, this);
@@ -65,9 +65,9 @@ namespace TCD.Drawing
             Libui.AreaBeginUserWindowResize(Handle, edge);
         }
 
-        private static SafeControlHandle GetHandle(SurfaceHandler handler, bool scrollable, int width, int height, out Libui.NativeSurfaceHandler outHandler)
+        private static SafeControlHandle GetHandle(SurfaceHandler handler, bool scrollable, int width, int height, out Libui.AreaHandler outHandler)
         {
-            outHandler = new Libui.NativeSurfaceHandler
+            outHandler = new Libui.AreaHandler
             {
                 Draw = (nativeHandler, surface, args) => handler.Draw(surfaceCache[surface], ref args),
                 MouseEvent = (nativeHandler, surface, args) => handler.MouseEvent(surfaceCache[surface], ref args),
