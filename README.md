@@ -8,7 +8,7 @@
 [![Good First Issue](https://badgen.net/github/label-issues/tacdevel/tcdfx/good%20first%20issue/open)](https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)  
 ![C# Version](https://badgen.net/badge/C%23/7.3/green)
 ![Target Frameworks](https://badgen.net/badge/framework/netstandard2.0/purple)
-![Supported Platforms](https://badgen.net/badge/platform/win--x64,osx--x64,linux--x64/blue?list=1)
+![Supported Platforms](https://badgen.net/badge/platform/win-x64,osx-x64,linux-x64/blue?list=1)
 # TCDFx (TCD Framework)
 
 
