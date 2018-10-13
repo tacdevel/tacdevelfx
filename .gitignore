@@ -26,6 +26,7 @@ project.fragment.lock.json
 *.user
 *.userosscache
 *.sln.docstates
+CodeNav.json
 
 ## Visual Studio Code
 .vscode/*
