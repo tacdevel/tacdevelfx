@@ -28,6 +28,11 @@ namespace TCD.InteropServices
         /// </summary>
         public override bool IsInvalid => handle == IntPtr.Zero;
 
+        /// <summary>
+        /// Converts the specified <see cref="SafeHandleZeroIsInvalid"/> structure to a <see cref="IntPtr"/> structure.
+        /// </summary>
+        /// <param name="safeHandle">The <see cref="SafeHandleZeroIsInvalid"/> to be converted.</param>
+        /// <returns>The <see cref="IntPtr"/> that results from the conversion.</returns>
         public static implicit operator IntPtr(SafeHandleZeroIsInvalid safeHandle) => safeHandle.handle;
     }
 }
