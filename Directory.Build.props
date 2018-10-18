@@ -34,6 +34,7 @@
 
     <TCDFxToolsPath>$(TCDFxBasePath)tools\</TCDFxToolsPath>
     <TCDFxToolsBuildPath>$(TCDFxToolsPath)build\</TCDFxToolsBuildPath>
+    <TCDFxToolsCommonPath>$(TCDFxToolsPath)Common\</TCDFxToolsCommonPath>
     <TCDFxToolsBuildBinPath>$(TCDFxToolsBuildPath)bin\</TCDFxToolsBuildBinPath>
     <TCDFxToolsBuildObjPath>$(TCDFxToolsBuildPath)obj\</TCDFxToolsBuildObjPath>
     <TCDFxToolsBuildPkgPath>$(TCDFxToolsBuildPath)pkg\</TCDFxToolsBuildPkgPath>

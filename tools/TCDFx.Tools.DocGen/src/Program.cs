@@ -1,75 +1,103 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
+using System.Reflection;
+using System.Xml;
 using TCDFx.Tools.DocGen;
 
-internal class Program
+internal partial class Program
 {
-    // Usage: docgen {outputPath} {xmlFile1} [xmlFile2] ...
-    private static void Main(string[] args)
+    internal static string TargetAssembly { get; private set; }
+    internal static string XmlDocFilePath { get; private set; }
+    internal static string OutputPath { get; private set; }
+    internal static bool MultiPage { get; private set; } = true;
+
+    private static int Main(string[] unused)
     {
-        ParseArguments(args, out string fullOutPath, out string[] xmlFiles);
+        ErrorCode code = ParseArguments();
 
-        foreach (string file in xmlFiles)
+        if (code != ErrorCode.Success)
         {
-            Console.WriteLine($"[DocGen(INF)]: Parsing {file}...");
-
-            //TODO: Read XmlDoc.
-            //TODO: Generate Markdown from XmlDoc.
+            PrintHelpText();
+            return (int)code;
         }
+
+        try
+        {
+            // Load the assembly.
+            Assembly asm = Assembly.LoadFile(TargetAssembly);
+
+            // Load XML document.
+            XmlDocument xml = new XmlDocument();
+            xml.Load(XmlDocFilePath);
+            XmlDocFile xmlDocs = new XmlDocFile(xml);
+
+            // Initialize the generator.
+            MarkdownGenerator generator;
+            if (MultiPage)
+                generator = new MultiPageGenerator(xmlDocs, asm);
+            else
+                generator = new SinglePageGenerator(xmlDocs, asm);
+
+            // Create output path if it doesn't exist.
+            if (!Directory.Exists(Path.GetDirectoryName(OutputPath)))
+                Directory.CreateDirectory(OutputPath);
+
+            // Generate documentation.
+            generator.Generate(OutputPath);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return (int)ErrorCode.Unknown;
+        }
+
+        return (int)ErrorCode.Success;
     }
 
-    private static void ParseArguments(string[] args, out string fullOutPath, out string[] xmlFiles)
+    private static ErrorCode ParseArguments()
     {
-        Console.WriteLine("[DocGen(INF)]: Arguments:");
-        foreach (string arg in args)
-            Console.WriteLine($"                 {arg}");
+        Arguments args = new Arguments(Arguments.SplitCommandLine());
 
-        if (args.Length < 2)
+        if (args.Count < 2) return ErrorCode.MissingArguments;
+
+        if (!args.Exists("asm")) return ErrorCode.MissingArgument;
+        if (string.IsNullOrWhiteSpace(args.Single("asm"))) return ErrorCode.NullArgument;
+        if (!File.Exists(Path.GetFullPath(args.Single("asm")))) return ErrorCode.InvalidArgument;
+        TargetAssembly = Path.GetFullPath(args.Single("asm"));
+
+        if (!args.Exists("out")) return ErrorCode.MissingArgument;
+        if (string.IsNullOrWhiteSpace(args.Single("out"))) return ErrorCode.NullArgument;
+        OutputPath = Path.GetDirectoryName(args.Single("out"));
+
+        if (args.Exists("xml") && args.IsTrue("noxml")) return ErrorCode.InvalidArgument;
+        if (args.Exists("xml"))
         {
-            Console.WriteLine("[DocGen(ERR)]: Missing required arguments.");
-            throw new ArgumentException();
+            if (string.IsNullOrWhiteSpace(args.Single("xml"))) return ErrorCode.NullArgument;
+            if (!File.Exists(Path.GetFullPath(args.Single("xml")))) return ErrorCode.InvalidArgument;
+            XmlDocFilePath = Path.GetFullPath(args.Single("xml"));
         }
+        else if (args.IsTrue("noxml"))
+            XmlDocFilePath = null;
+        else return ErrorCode.MissingArgument;
 
-        string path;
-        if (Directory.Exists(args[0]))
-            path = args[0];
-        else if (Directory.Exists(Path.GetFullPath(args[0])))
-            path = Path.GetFullPath(args[0]);
-        else
-        {
-            Console.WriteLine($"[DocGen(ERR)]: {args[0]} is not a valid directory.");
-            throw new ArgumentException();
-        }
+        if (args.IsTrue("onepage"))
+            MultiPage = false;
+        return ErrorCode.Success;
+    }
 
-        if (Directory.EnumerateFileSystemEntries(path).Any())
-        {
-            Console.WriteLine($"[DocGen(ERR)]: {args[0]} must be an empty directory.");
-            throw new ArgumentException();
-        }
-
-        // Chop the / off the end, if found. It's not needed, but will cause issues on some platforms due to producing "//" during path concatenation.
-        if (path.EndsWith("/"))
-            path = path.Substring(0, path.Length - 1);
-
-        fullOutPath = path;
-
-        string[] files = new string[args.Length - 1];
-        for (int i = 1; i < args.Length; i++)
-        {
-            string file;
-            if (File.Exists(args[i]))
-                file = args[i];
-            else if (File.Exists(Path.GetFullPath(args[i])))
-                file = Path.GetFullPath(args[i]);
-            else
-            {
-                Console.WriteLine($"[DocGen(ERR)]: {args[i]} does not exist.");
-                throw new ArgumentException();
-            }
-            files[i - 1] = file;
-        }
-
-        xmlFiles = files;
+    private static void PrintHelpText()
+    {
+        Console.WriteLine();
+        Console.WriteLine("TCDFx Documentation Generator - Help Text");
+        Console.WriteLine("=========================================");
+        Console.WriteLine();
+        Console.WriteLine(@"Usage: dotnet docgen -asm:Path\To\Assembly -out:Path\To\Assembly -xml:Path\To\Xml [-noxml] [-onepage]");
+        Console.WriteLine();
+        Console.WriteLine(@"Options:  -asm        The path to the assembly.");
+        Console.WriteLine(@"Options:  -out        The output path.");
+        Console.WriteLine(@"Options:  -xml        The path to the xmldoc file.");
+        Console.WriteLine(@"Options:  -noxml      Specifies not to use xmldoc. (Omit the '-xml' option when using this option.");
+        Console.WriteLine(@"Options:  -onepage    Specifies to generate the documentation as one page.");
     }
 }

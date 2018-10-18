@@ -1,5 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(TCDFxToolsCommonPath)src\Program.Arguments.cs" Link="src\Program.Arguments.cs" />
   </ItemGroup>
 </Project>
