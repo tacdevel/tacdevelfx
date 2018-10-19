@@ -6,7 +6,7 @@ namespace TCDFx.Tools.DocGen
     {
         private readonly FieldInfo field;
 
-        public FieldMemberPage(FieldInfo field, XmlDocMember member) : base(member)
+        public FieldPage(FieldInfo field, XmlDocMember member) : base(member)
         {
             this.field = field;
             Title = $"{Utilities.GetFieldSignature(field, false)} field ({Utilities.GetDisplayTitle(field.DeclaringType)})";

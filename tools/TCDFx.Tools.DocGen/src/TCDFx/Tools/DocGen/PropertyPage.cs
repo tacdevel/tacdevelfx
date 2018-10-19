@@ -17,7 +17,7 @@ namespace TCDFx.Tools.DocGen
             writer.WriteHeader(1, Title);
             writer.WriteParagraph(Member?.Summary ?? "_(No Description)_");
             writer.WriteHeader(2, "Signature");
-            writer.WriteCodeBlock("csharp", Utilities.GetPropertySignature(_property, true, true, true));
+            writer.WriteCodeBlock("csharp", Utilities.GetPropertySignature(property, true, true, true));
         }
     }
 }

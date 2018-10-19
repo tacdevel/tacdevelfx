@@ -89,15 +89,29 @@ internal partial class Program
     private static void PrintHelpText()
     {
         Console.WriteLine();
-        Console.WriteLine("TCDFx Documentation Generator - Help Text");
-        Console.WriteLine("=========================================");
+        Console.WriteLine($"TCDFx Documentation Generator ({typeof(Program).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyFileVersionAttribute>().Version})");
         Console.WriteLine();
-        Console.WriteLine(@"Usage: dotnet docgen -asm:Path\To\Assembly -out:Path\To\Assembly -xml:Path\To\Xml [-noxml] [-onepage]");
+        Console.WriteLine(@"Syntax:                    docgen [arguments] [flags]");
         Console.WriteLine();
-        Console.WriteLine(@"Options:  -asm        The path to the assembly.");
-        Console.WriteLine(@"Options:  -out        The output path.");
-        Console.WriteLine(@"Options:  -xml        The path to the xmldoc file.");
-        Console.WriteLine(@"Options:  -noxml      Specifies not to use xmldoc. (Omit the '-xml' option when using this option.");
-        Console.WriteLine(@"Options:  -onepage    Specifies to generate the documentation as one page.");
+        Console.WriteLine(@"Description:               Generates Markdown API documentation from .NET Core");
+        Console.WriteLine(@"                           assemblies, and optionally, the corresponding XML");
+        Console.WriteLine(@"                           documentation.");
+        Console.WriteLine();
+        Console.WriteLine(@"Arguments:");
+        Console.WriteLine();
+        Console.WriteLine(@"  -asm:<path-to-assembly>  The absolute or relative path of the target assembly.");
+        Console.WriteLine();
+        Console.WriteLine(@"  -out:<output-path>       The absolute or relative output path where all markdown");
+        Console.WriteLine(@"                           will be generated.");
+        Console.WriteLine();
+        Console.WriteLine(@"  -xml:<path-to-xmldoc>    The absolute or relative path to the pre-generated XML");
+        Console.WriteLine(@"                           documentation file.");
+        Console.WriteLine();
+        Console.WriteLine(@"Flags:");
+        Console.WriteLine();
+        Console.WriteLine(@"  -noxml                   Specifies not to use XML documentation.");
+        Console.WriteLine(@"                           (Omit the '-xml' argument when using this option.");
+        Console.WriteLine();
+        Console.WriteLine(@"  -onepage                 Specifies to generate the documentation as a single page.");
     }
 }
