@@ -19,11 +19,24 @@
   <!-- Global Repository Paths -->
   <PropertyGroup>
     <TCDFxBasePath>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), README.md))\</TCDFxBasePath>
-    <TCDFxBuildPath>$(TCDFxBasePath)build\</TCDFxBuildPath>
-    <TCDFxBuildBinPath>$(TCDFxBuildPath)bin\</TCDFxBuildBinPath>
-    <TCDFxBuildDocPath>$(TCDFxBuildPath)doc\</TCDFxBuildDocPath>
-    <TCDFxBuildObjPath>$(TCDFxBuildPath)obj\</TCDFxBuildObjPath>
-    <TCDFxBuildPkgPath>$(TCDFxBuildPath)pkg\</TCDFxBuildPkgPath>
+    
     <TCDFxSourcePath>$(TCDFxBasePath)source\</TCDFxSourcePath>
+    <TCDFxSourceBuildPath>$(TCDFxSourcePath)build\</TCDFxSourceBuildPath>
+    <TCDFxSourceBuildBinPath>$(TCDFxSourceBuildPath)bin\</TCDFxSourceBuildBinPath>
+    <TCDFxSourceBuildDocPath>$(TCDFxSourceBuildPath)doc\</TCDFxSourceBuildDocPath>
+    <TCDFxSourceBuildObjPath>$(TCDFxSourceBuildPath)obj\</TCDFxSourceBuildObjPath>
+    <TCDFxSourceBuildPkgPath>$(TCDFxSourceBuildPath)pkg\</TCDFxSourceBuildPkgPath>
+
+    <TCDFxExamplesPath>$(TCDFxBasePath)examples\</TCDFxExamplesPath>
+    <TCDFxExamplesBuildPath>$(TCDFxExamplesPath)build\</TCDFxExamplesBuildPath>
+    <TCDFxExamplesBuildBinPath>$(TCDFxExamplesBuildPath)bin\</TCDFxExamplesBuildBinPath>
+    <TCDFxExamplesBuildObjPath>$(TCDFxExamplesBuildPath)obj\</TCDFxExamplesBuildObjPath>
+
+    <TCDFxToolsPath>$(TCDFxBasePath)tools\</TCDFxToolsPath>
+    <TCDFxToolsBuildPath>$(TCDFxToolsPath)build\</TCDFxToolsBuildPath>
+    <TCDFxToolsCommonPath>$(TCDFxToolsPath)Common\</TCDFxToolsCommonPath>
+    <TCDFxToolsBuildBinPath>$(TCDFxToolsBuildPath)bin\</TCDFxToolsBuildBinPath>
+    <TCDFxToolsBuildObjPath>$(TCDFxToolsBuildPath)obj\</TCDFxToolsBuildObjPath>
+    <TCDFxToolsBuildPkgPath>$(TCDFxToolsBuildPath)pkg\</TCDFxToolsBuildPkgPath>
   </PropertyGroup>
 </Project>
