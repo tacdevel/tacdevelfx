@@ -64,7 +64,8 @@ namespace TCD.Drawing
         /// <param name="matrix"></param>
         public void Transform(Matrix matrix) => Libui.DrawTransform(Surface.Handle, matrix);
 
-        /// <summary>
+        //TODO: Add this back in when finished with Drawing.TextLayout.
+        /* /// <summary>
         /// Draws a <see cref="TextLayout"/> at the given location in this <see cref="Context"/>.
         /// </summary>
         /// <param name="layout">The text to draw.</param>
@@ -77,6 +78,6 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="layout">The text to draw.</param>
         /// <param name="location">The location at which to draw the text.</param>
-        public void DrawText(TextLayout layout, PointD location) => DrawText(layout, location.X, location.Y);
+        public void DrawText(TextLayout layout, PointD location) => DrawText(layout, location.X, location.Y); */
     }
 }

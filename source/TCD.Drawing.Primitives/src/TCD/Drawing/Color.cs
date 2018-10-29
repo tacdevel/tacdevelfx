@@ -13,7 +13,6 @@ using System.Runtime.InteropServices;
 namespace TCD.Drawing
 {
     //TODO: Maybe add CYMK/HSL/HSV color(s) too.
-    //TODO: ToString() overrides.
     /// <summary>
     /// Represents an ARGB (alpha, red, green, blue) color.
     /// </summary>
@@ -95,6 +94,8 @@ namespace TCD.Drawing
         /// </summary>
         /// <returns>A hash code for this <see cref="Color"/>.</returns>
         public override int GetHashCode() => unchecked(this.GenerateHashCode());
+        
+        public override string ToString() => $"[R: {R}, G: {G}, B: {B}, A: {A}]";
 
         /// <summary>
         /// Tests whether two specified <see cref="Color"/> structures are equivalent.
@@ -111,13 +112,5 @@ namespace TCD.Drawing
         /// <param name="right">The <see cref="Color"/> that is to the right of the inequality operator.</param>
         /// <returns><see langword="true"/> if the two <see cref="Color"/> structures are different; otherwise, <see langword="false"/>.</returns>
         public static bool operator !=(Color left, Color right) => !(left == right);
-
-        //TODO: Move the following operator to SolidBrush.cs in TCD.Drawing.SolidBrush.
-        // <summary>
-        // Converts the specified <see cref="Color"/> structure to a <see cref="SolidBrush"/> structure.
-        // </summary>
-        // <param name="color">The <see cref="Color"/> to be converted.</param>
-        // <returns>The <see cref="SolidBrush"/> that results from the conversion.</returns>
-        // public static explicit operator SolidBrush(Color color) => new SolidBrush(color);
     }
 }

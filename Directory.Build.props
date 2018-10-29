@@ -1,0 +1,42 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Global Repository Information -->
+  <PropertyGroup>
+    <TCDFxAuthors>Thomas Corwin, et al.</TCDFxAuthors>
+    <TCDFxCopyrights>Copyright (c) Thomas Corwin, et al. All Rights Reserved.</TCDFxCopyrights>
+    <TCDFxRepositoryURL>https://github.com/tacdevel/tcdfx</TCDFxRepositoryURL>
+    <TCDFxLicenseURL>$(TCDFxRepositoryURL)/blob/master/LICENSE.md</TCDFxLicenseURL>
+  </PropertyGroup>
+
+  <!-- Global Version Information -->
+  <PropertyGroup>
+    <TCDFxVersionMajor>0</TCDFxVersionMajor>
+    <TCDFxVersionMinor>3</TCDFxVersionMinor>
+    <TCDFxVersionPatch>0</TCDFxVersionPatch>
+    <TCDFxVersionPrefix>$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersionPrefix>
+  </PropertyGroup>
+
+  <!-- Global Repository Paths -->
+  <PropertyGroup>
+    <TCDFxBasePath>$(MSBuildThisFileDirectory)</TCDFxBasePath>
+    
+    <TCDFxSourcePath>$(TCDFxBasePath)source\</TCDFxSourcePath>
+    <TCDFxSourceBuildPath>$(TCDFxSourcePath)build\</TCDFxSourceBuildPath>
+    <TCDFxSourceBuildBinPath>$(TCDFxSourceBuildPath)bin\</TCDFxSourceBuildBinPath>
+    <TCDFxSourceBuildDocPath>$(TCDFxSourceBuildPath)doc\</TCDFxSourceBuildDocPath>
+    <TCDFxSourceBuildObjPath>$(TCDFxSourceBuildPath)obj\</TCDFxSourceBuildObjPath>
+    <TCDFxSourceBuildPkgPath>$(TCDFxSourceBuildPath)pkg\</TCDFxSourceBuildPkgPath>
+    <TCDFxSourceCommonPath>$(TCDFxSourcePath)Common\</TCDFxSourceCommonPath>
+
+    <TCDFxExamplesPath>$(TCDFxBasePath)examples\</TCDFxExamplesPath>
+    <TCDFxExamplesBuildPath>$(TCDFxExamplesPath)build\</TCDFxExamplesBuildPath>
+    <TCDFxExamplesBuildBinPath>$(TCDFxExamplesBuildPath)bin\</TCDFxExamplesBuildBinPath>
+    <TCDFxExamplesBuildObjPath>$(TCDFxExamplesBuildPath)obj\</TCDFxExamplesBuildObjPath>
+
+    <TCDFxToolsPath>$(TCDFxBasePath)tools\</TCDFxToolsPath>
+    <TCDFxToolsBuildPath>$(TCDFxToolsPath)build\</TCDFxToolsBuildPath>
+    <TCDFxToolsBuildBinPath>$(TCDFxToolsBuildPath)bin\</TCDFxToolsBuildBinPath>
+    <TCDFxToolsBuildObjPath>$(TCDFxToolsBuildPath)obj\</TCDFxToolsBuildObjPath>
+    <TCDFxToolsBuildPkgPath>$(TCDFxToolsBuildPath)pkg\</TCDFxToolsBuildPkgPath>
+    <TCDFxToolsCommonPath>$(TCDFxToolsPath)Common\</TCDFxToolsCommonPath>
+  </PropertyGroup>
+</Project>

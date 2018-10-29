@@ -26,6 +26,7 @@ project.fragment.lock.json
 *.user
 *.userosscache
 *.sln.docstates
+CodeNav.json
 
 ## Visual Studio Code
 .vscode/*
@@ -48,6 +49,7 @@ test-results/
 # Misc. Files
 ##############################
 ## Build Directories
+[Bb]uild/
 [Bb]in/
 [Oo]bj/
 [Pp]kg/
