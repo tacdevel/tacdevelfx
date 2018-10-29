@@ -18,7 +18,7 @@
     <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
-    <Version>$(TCDFxVersion)</Version>
+    <VersionPrefix>$(TCDFxVersionPrefix)</VersionPrefix>
     <Authors>$(TCDFxAuthors)</Authors>
     <Copyright>$(TCDFxCopyrights)</Copyright>
     <Description />

@@ -10,7 +10,7 @@
 namespace TCD.Drawing
 {
     // This list is based on https://www.w3schools.com/colors/colors_hex.asp.
-    // Please keep this in order with the above list.
+    // Please keep this in order.
 
     /// <summary>
     /// Provides a set of predefined <see cref="Color"/> objects.

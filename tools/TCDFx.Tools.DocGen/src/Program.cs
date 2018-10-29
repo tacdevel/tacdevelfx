@@ -14,7 +14,6 @@ internal partial class Program
     private static int Main(string[] unused)
     {
         ErrorCode code = ParseArguments();
-
         if (code != ErrorCode.Success)
         {
             PrintHelpText();
@@ -27,9 +26,12 @@ internal partial class Program
             Assembly asm = Assembly.LoadFile(TargetAssembly);
 
             // Load XML document.
-            XmlDocument xml = new XmlDocument();
-            xml.Load(XmlDocFilePath);
-            XmlDocFile xmlDocs = new XmlDocFile(xml);
+            if (XmlDocFilePath != null)
+            {
+                XmlDocument xml = new XmlDocument();
+                xml.Load(XmlDocFilePath);
+                XmlDocFile xmlDocs = new XmlDocFile(xml);
+            }
 
             // Initialize the generator.
             MarkdownGenerator generator;

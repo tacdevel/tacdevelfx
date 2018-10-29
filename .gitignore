@@ -49,6 +49,7 @@ test-results/
 # Misc. Files
 ##############################
 ## Build Directories
+[Bb]uild/
 [Bb]in/
 [Oo]bj/
 [Pp]kg/

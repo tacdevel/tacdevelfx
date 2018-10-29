@@ -10,15 +10,14 @@
   <!-- Global Version Information -->
   <PropertyGroup>
     <TCDFxVersionMajor>0</TCDFxVersionMajor>
-    <TCDFxVersionMinor>2</TCDFxVersionMinor>
+    <TCDFxVersionMinor>3</TCDFxVersionMinor>
     <TCDFxVersionPatch>0</TCDFxVersionPatch>
-    <TCDFxVersion Condition="'$(TCDFxVersionSuffix)'==''">$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersion>
-    <TCDFxVersion Condition="'$(TCDFxVersionSuffix)'!=''">$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)-$(TCDFxVersionSuffix)</TCDFxVersion>
+    <TCDFxVersionPrefix>$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersionPrefix>
   </PropertyGroup>
 
   <!-- Global Repository Paths -->
   <PropertyGroup>
-    <TCDFxBasePath>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), README.md))\</TCDFxBasePath>
+    <TCDFxBasePath>$(MSBuildThisFileDirectory)</TCDFxBasePath>
     
     <TCDFxSourcePath>$(TCDFxBasePath)source\</TCDFxSourcePath>
     <TCDFxSourceBuildPath>$(TCDFxSourcePath)build\</TCDFxSourceBuildPath>
@@ -26,6 +25,7 @@
     <TCDFxSourceBuildDocPath>$(TCDFxSourceBuildPath)doc\</TCDFxSourceBuildDocPath>
     <TCDFxSourceBuildObjPath>$(TCDFxSourceBuildPath)obj\</TCDFxSourceBuildObjPath>
     <TCDFxSourceBuildPkgPath>$(TCDFxSourceBuildPath)pkg\</TCDFxSourceBuildPkgPath>
+    <TCDFxSourceCommonPath>$(TCDFxSourcePath)Common\</TCDFxSourceCommonPath>
 
     <TCDFxExamplesPath>$(TCDFxBasePath)examples\</TCDFxExamplesPath>
     <TCDFxExamplesBuildPath>$(TCDFxExamplesPath)build\</TCDFxExamplesBuildPath>
@@ -34,9 +34,9 @@
 
     <TCDFxToolsPath>$(TCDFxBasePath)tools\</TCDFxToolsPath>
     <TCDFxToolsBuildPath>$(TCDFxToolsPath)build\</TCDFxToolsBuildPath>
-    <TCDFxToolsCommonPath>$(TCDFxToolsPath)Common\</TCDFxToolsCommonPath>
     <TCDFxToolsBuildBinPath>$(TCDFxToolsBuildPath)bin\</TCDFxToolsBuildBinPath>
     <TCDFxToolsBuildObjPath>$(TCDFxToolsBuildPath)obj\</TCDFxToolsBuildObjPath>
     <TCDFxToolsBuildPkgPath>$(TCDFxToolsBuildPath)pkg\</TCDFxToolsBuildPkgPath>
+    <TCDFxToolsCommonPath>$(TCDFxToolsPath)Common\</TCDFxToolsCommonPath>
   </PropertyGroup>
 </Project>

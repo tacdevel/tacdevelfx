@@ -2,38 +2,40 @@
 [![Contributors](https://badgen.net/github/contributors/tacdevel/tcdfx)](https://github.com/tacdevel/tcdfxx/graphs/contributors)
 [![Open Issues](https://badgen.net/github/open-issues/tacdevel/tcdfx/)](https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aopen)
 [![Closed Issues](https://badgen.net/github/closed-issues/tacdevel/tcdfx/)](https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aclosed)
-[![Help Wanted](https://badgen.net/github/label-issues/tacdevel/tcdfx/help%20wanted/open)](https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![Help Wanted Issues](https://badgen.net/github/label-issues/tacdevel/tcdfx/help%20wanted/open)](https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 [![Good First Issue](https://badgen.net/github/label-issues/tacdevel/tcdfx/good%20first%20issue/open)](https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)  
-[![CodeFactor](https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge)](https://www.codefactor.io/repository/github/tacdevel/tcdfx)
+[![CodeFactor Status](https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge)](https://www.codefactor.io/repository/github/tacdevel/tcdfx)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx)](https://dependabot.com)  
 ![C# Version](https://badgen.net/badge/C%23/7.3/green)
 ![Target Frameworks](https://badgen.net/badge/framework/netstandard2.0/purple)
-![Supported Platforms](https://badgen.net/badge/platform/win-x64,osx-x64,linux-x64/blue?list=1)
+
+**Please Note**: This software is a work-in-progress with no stable releases yet, and is not to be considered complete nor stable. *ANYTHING* in this repo is subject to change without notice.
 
 # TCDFx (TCD Framework)
 
-TCDFx (or the TCD Framework) is a collection of packages targeting .NET Standard, allowing users to create desktop UI applications on Windows, macOS, and Linux.
-
-**Please Note**: This software is a work-in-progress with no stable releases yet, and is not to be considered complete nor stable, and anything is subject to change.
+TCDFx (also known as the TCD Framework) is a collection of libraries targeting .NET Standard and tools targeting .NET Core, providing APIs for UI application development, alternative P/Invoke types, and documentation generation.
 
 For examples, see the `examples\` directory.
 
 ## Packages
 
-| Package Name           | Development Branch | Release Branch |
-| :--------------------- | :----------------- | :------------- |
-| TCD.Core               | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Core-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=5)<br/>![NuGet](https://badgen.net/nuget/v/TCD.Core/pre) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Core-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=6)<br/>![NuGet](https://badgen.net/nuget/v/TCD.Core) |
-| TCD.Drawing.Primitives | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Drawing.Primitives-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=7)<br/>![NuGet](https://badgen.net/nuget/v/TCD.Drawing.Primitives/pre) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.Drawing.Primitives-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=8)<br/>![NuGet](https://badgen.net/nuget/v/TCD.Drawing.Primitives) |
-| TCD.UI                 | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.UI-develop)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=9)<br/>![NuGet](https://badgen.net/nuget/v/TCD.UI/pre) | [![Build status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/TCD.UI-master)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10)<br/>![NuGet](https://badgen.net/nuget/v/TCD.UI) |
+| Package Name                         | Build Status | Package Versions |
+| :----------------------------------- | :----------- | :--------------- |
+| TCD.Collections.MultiValueDictionary | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Collections.MultiValueDictionary)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10) | ![NuGet](https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary/pre) ![NuGet](https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary) |
+| TCD.Disposable                       | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Disposable)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=11) | ![NuGet](https://badgen.net/nuget/v/TCD.Disposable/pre) ![NuGet](https://badgen.net/nuget/v/TCD.Disposable) |
+| TCD.Drawing.Primitives               | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Drawing.Primitives)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=12) | ![NuGet](https://badgen.net/nuget/v/TCD.Drawing.Primitives/pre) ![NuGet](https://badgen.net/nuget/v/TCD.Drawing.Primitives) |
+| TCD.InteropServices                  | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.InteropServices)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=13) | ![NuGet](https://badgen.net/nuget/v/TCD.InteropServices/pre) ![NuGet](https://badgen.net/nuget/v/TCD.InteropServices) |
+| TCD.UI                               | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.UI)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=14) | ![NuGet](https://badgen.net/nuget/v/TCD.UI/pre) ![NuGet](https://badgen.net/nuget/v/TCD.UI) |
+| TCDFx.Tools.DocGen                   | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tools/TCDFx.Tools.DocGen)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=15) | ![NuGet](https://badgen.net/nuget/v/TCDFx.Tools.DocGen/pre) ![NuGet](https://badgen.net/nuget/v/TCDFx.Tools.DocGen) |
 
-## Installing TCDFx Packages
+### Installing TCDFx Packages
 
 All libraries in the TCD Framework are packaged as NuGet Packages (`.nupkg`) and version numbers use SemVer 2.0.0.
 
 Replace `{PackageName}` with the package you want to use.  
 Replace `{PackageVersion}` with the version of the package.
 
-### Install using Visual Studio
+#### Install using Visual Studio
 
 Open the Package Management Console, and enter the following:
 
@@ -41,7 +43,7 @@ Open the Package Management Console, and enter the following:
 PM> Install-Package {PackageName} -Version {PackageVersion}
 ```
 
-### Install using .NET CLI
+#### Install using .NET CLI
 
 Open a terminal (or `Command Prompt` on Windows), and enter the following:
 
@@ -49,7 +51,7 @@ Open a terminal (or `Command Prompt` on Windows), and enter the following:
 dotnet add package {PackageName} --version {PackageVersion}
 ```
 
-### Install using a PackageReference
+#### Install using a PackageReference
 
 Add the following `<PackageReference />` to your `.csproj`:
 
