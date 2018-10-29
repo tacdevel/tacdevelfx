@@ -11,6 +11,7 @@ resources:
 trigger:
   - master
 
+jobs:
 - job: macOS
   pool:
     vmImage: 'macOS-10.13'
