@@ -24,7 +24,6 @@ jobs:
     workingDirectory: source\$(build.projectName)
     displayName: Build
 
-jobs:
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
@@ -37,7 +36,6 @@ jobs:
     workingDirectory: source\$(build.projectName)
     displayName: Build
 
-jobs:
 - job: Windows
   pool:
     vmImage: 'VS2017-Win2016'
