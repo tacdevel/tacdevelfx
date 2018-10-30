@@ -26,11 +26,12 @@ internal partial class Program
             Assembly asm = Assembly.LoadFile(TargetAssembly);
 
             // Load XML document.
+            XmlDocFile xmlDocs = null;
             if (XmlDocFilePath != null)
             {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(XmlDocFilePath);
-                XmlDocFile xmlDocs = new XmlDocFile(xml);
+                xmlDocs = new XmlDocFile(xml);
             }
 
             // Initialize the generator.
