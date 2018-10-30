@@ -18,7 +18,7 @@ namespace TCD.InteropServices
     /// </summary>
     public abstract class NativeComponent : Disposable, IEquatable<NativeComponent>
     {
-        private static Dictionary<NativeComponent, IntPtr> handleCache = new Dictionary<NativeComponent, IntPtr>();
+        private static readonly Dictionary<NativeComponent, IntPtr> handleCache = new Dictionary<NativeComponent, IntPtr>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeComponent"/> class with the specified handle.
@@ -114,7 +114,7 @@ namespace TCD.InteropServices
     public abstract class NativeComponent<T> : Disposable, IEquatable<NativeComponent<T>>
         where T : SafeHandle
     {
-        private static Dictionary<NativeComponent<T>, T> handleCache = new Dictionary<NativeComponent<T>, T>();
+        private static readonly Dictionary<NativeComponent<T>, T> handleCache = new Dictionary<NativeComponent<T>, T>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeComponent{T}"/> class with the specified handle.
