@@ -9,11 +9,14 @@
 ![C# Version](https://badgen.net/badge/C%23/7.3/green)
 ![Target Frameworks](https://badgen.net/badge/framework/netstandard2.0/purple)
 
-**Please Note**: This software is a work-in-progress with no stable releases yet, and is not to be considered complete nor stable. *ANYTHING* in this repo is subject to change without notice.
+**Please Note**: This software is a work-in-progress with no stable releases yet, and is not to be
+considered complete nor stable. *ANYTHING* in this repo is subject to change without notice.
 
 # TCDFx (TCD Framework)
 
-TCDFx (also known as the TCD Framework) is a collection of libraries targeting .NET Standard and tools targeting .NET Core, providing APIs for UI application development, alternative P/Invoke types, and documentation generation.
+TCDFx (also known as the TCD Framework) is a collection of libraries targeting .NET Standard and
+tools targeting .NET Core, providing APIs for UI application development, alternative P/Invoke
+types, and documentation generation.
 
 For examples, see the `examples\` directory.
 
@@ -30,7 +33,8 @@ For examples, see the `examples\` directory.
 
 ### Installing TCDFx Packages
 
-All libraries in the TCD Framework are packaged as NuGet Packages (`.nupkg`) and version numbers use SemVer 2.0.0.
+All libraries in the TCD Framework are packaged as NuGet Packages (`.nupkg`) and version numbers
+use SemVer 2.0.0.
 
 Replace `{PackageName}` with the package you want to use.  
 Replace `{PackageVersion}` with the version of the package.
@@ -63,12 +67,13 @@ Add the following `<PackageReference />` to your `.csproj`:
 
 Contributing is as easy as filing an issue, fixing a bug, or suggesting a new feature.
 
-For all a list of all contributors with some stats about their contributions, see the [Contributors](https://github.com/tacdevel/tcdfx/graphs/contributors) page.
+For all a list of all contributors with some stats about their contributions, see the
+[Contributors](https://github.com/tacdevel/tcdfx/graphs/contributors) page.
 
 ## Building From Source
 
-TCDFx is built with .NET Core 2.1, so you can build the packages with either Visual Studio, Visual Studio Code,
-or just by running a couple simple commands. Use the steps below to get started!
+TCDFx is built with .NET Core 2.1, so you can build the packages with either Visual Studio, Visual
+Studio Code, or just by running a couple simple commands. Use the steps below to get started!
 
 ### Prerequisites
 
