@@ -14,12 +14,7 @@ namespace TCD.Collections
         public TValue1 Value1 { get; set; }
         public TValue2 Value2 { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is MultiObjectContainer<TValue1, TValue2>)
-                return Equals((MultiObjectContainer<TValue1, TValue2>)obj);
-            return false;
-        }
+        public override bool Equals(object obj) => obj is MultiObjectContainer<TValue1, TValue2> ? Equals((MultiObjectContainer<TValue1, TValue2>)obj) : false;
 
         public bool Equals(MultiObjectContainer<TValue1, TValue2> moc) =>
             EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
@@ -46,19 +41,14 @@ namespace TCD.Collections
         public TValue2 Value2 { get; set; }
         public TValue3 Value3 { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is MultiObjectContainer<TValue1, TValue2, TValue3>)
-                return Equals((MultiObjectContainer<TValue1, TValue2, TValue3>)obj);
-            return false;
-        }
+        public override bool Equals(object obj) => obj is MultiObjectContainer<TValue1, TValue2, TValue3> ? Equals((MultiObjectContainer<TValue1, TValue2, TValue3>)obj) : false;
 
         public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3> moc) =>
             EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
             EqualityComparer<TValue2>.Default.Equals(Value2, moc.Value2) &&
             EqualityComparer<TValue3>.Default.Equals(Value3, moc.Value3);
 
-        public override int GetHashCode() => this.GenerateHashCode("Value1", "Value2", "Value3" );
+        public override int GetHashCode() => this.GenerateHashCode("Value1", "Value2", "Value3");
 
         public override string ToString() => $"[{Value1}, {Value2}, {Value3}]";
 
@@ -81,12 +71,9 @@ namespace TCD.Collections
         public TValue3 Value3 { get; set; }
         public TValue4 Value4 { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>)
-                return Equals((MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>)obj);
-            return false;
-        }
+        public override bool Equals(object obj) => obj is MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>
+                ? Equals((MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>)obj)
+                : false;
 
         public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> moc) =>
             EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
@@ -94,7 +81,7 @@ namespace TCD.Collections
             EqualityComparer<TValue3>.Default.Equals(Value3, moc.Value3) &&
             EqualityComparer<TValue4>.Default.Equals(Value4, moc.Value4);
 
-        public override int GetHashCode() => this.GenerateHashCode("Value1", "Value2", "Value3", "Value4" );
+        public override int GetHashCode() => this.GenerateHashCode("Value1", "Value2", "Value3", "Value4");
 
         public override string ToString() => $"[{Value1}, {Value2}, {Value3}, {Value4}]";
 
@@ -119,12 +106,9 @@ namespace TCD.Collections
         public TValue4 Value4 { get; set; }
         public TValue5 Value5 { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>)
-                return Equals((MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>)obj);
-            return false;
-        }
+        public override bool Equals(object obj) => obj is MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>
+                ? Equals((MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>)obj)
+                : false;
 
         public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> moc) =>
             EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
@@ -133,7 +117,7 @@ namespace TCD.Collections
             EqualityComparer<TValue4>.Default.Equals(Value4, moc.Value4) &&
             EqualityComparer<TValue5>.Default.Equals(Value5, moc.Value5);
 
-        public override int GetHashCode() => this.GenerateHashCode("Value1", "Value2", "Value3", "Value4", "Value5" );
+        public override int GetHashCode() => this.GenerateHashCode("Value1", "Value2", "Value3", "Value4", "Value5");
 
         public override string ToString() => $"[{Value1}, {Value2}, {Value3}, {Value4}, {Value5}]";
 
