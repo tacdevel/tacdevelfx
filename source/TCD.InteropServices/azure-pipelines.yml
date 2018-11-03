@@ -18,8 +18,8 @@ jobs:
 
   steps:
   - script: |
-      dotnet restore --no-dependencies --disable-parallel --force
-      dotnet build -c $(build.configuration) --no-restore --no-dependencies --version-suffix $(build.buildNumber)
+      dotnet restore  --disable-parallel --force
+      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
 
     workingDirectory: source/$(build.projectName)
     displayName: Build
@@ -30,8 +30,8 @@ jobs:
 
   steps:
   - script: |
-      dotnet restore --no-dependencies --disable-parallel --force
-      dotnet build -c $(build.configuration) --no-restore --no-dependencies --version-suffix $(build.buildNumber)
+      dotnet restore --disable-parallel --force
+      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
 
     workingDirectory: source/$(build.projectName)
     displayName: Build
@@ -42,8 +42,8 @@ jobs:
 
   steps:
   - script: |
-      dotnet restore --no-dependencies --disable-parallel --force
-      dotnet build -c $(build.configuration) --no-restore --no-dependencies --version-suffix $(build.buildNumber)
+      dotnet restore --disable-parallel --force
+      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
       dotnet nuget push ..\build\pkg\$(build.projectName)\ -k $(build.nuget.apiKey) -s $(build.nuget.pushUrl) --no-service-endpoint
 
     workingDirectory: source\$(build.projectName)
