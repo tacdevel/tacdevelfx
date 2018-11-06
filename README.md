@@ -77,15 +77,15 @@ Studio Code, or just by running a couple simple commands. Use the steps below to
 
 ### Prerequisites
 
-| Operating System | Prerequisites                                                                                                            |
-| :--------------- | :----------------------------------------------------------------------------------------------------------------------- |
-| Windows 7/8.1/10 | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio 2017 (v15.8.x)<br/>Visual Studio Code (With the C# extension) |
-| Mac OS X         | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                  |
-| Linux            | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                  |
+| Operating System | Prerequisites |
+| :--------------- | :------------ |
+| Windows 7/8.1/10 | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio 2017 (v15.8.x)<br/>Visual Studio 2019/0x10 (v16.0.x)<br/>Visual Studio Code (With the C# extension) |
+| Mac OS X         | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension) |
+| Linux            | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension) |
 
 ### Build Using Visual Studio (Windows)
 
-*Ensure you have the latest version of Visual Studio 2017 installed with the .NET Core workload.*
+*Ensure you have the latest version of Visual Studio 2017/2019 installed with the .NET Core workload.*
 
 1. Open the `tcdfx.sln` file.
 2. Then, navigate to the `Build>Build Solution` menu item.
