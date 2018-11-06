@@ -152,13 +152,10 @@ internal partial class Program
 
             //only return value if its NOT true, there is only a single item for that argument
             //and the argument is defined
-            if (this[argument] != null && !IsTrue(argument))
-                return this[argument][0];
-
-            return null;
+            return this[argument] != null && !IsTrue(argument) ? this[argument][0] : null;
         }
 
-        public bool Exists(string argument) => (this[argument] != null && this[argument].Count > 0);
+        public bool Exists(string argument) => this[argument] != null && this[argument].Count > 0;
 
         private Collection<string> this[string name] => _parameters.ContainsKey(name) ? _parameters[name] : null;
     }
