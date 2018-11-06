@@ -1,9 +1,8 @@
-﻿namespace TCD.Drawing
+﻿namespace TCD.Drawing.Text
 {
     /// <summary>
     /// Identifies the underline style of text.
     /// </summary>
-    [NativeType("uiUnderline")]
     public enum UnderlineStyle : long
     {
         /// <summary>

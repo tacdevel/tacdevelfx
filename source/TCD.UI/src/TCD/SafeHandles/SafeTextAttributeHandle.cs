@@ -1,8 +1,8 @@
 ﻿/****************************************************************************
- * FileName:   SafeControlHandle.cs
+ * FileName:   SafeTextAttributeHandle.cs
  * Assembly:   TCD.UI.dll
  * Package:    TCD.UI
- * Date:       20180921
+ * Date:       20181029
  * License:    MIT License
  * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
  ***************************************************************************/
@@ -14,16 +14,16 @@ using TCD.Native;
 namespace TCD.SafeHandles
 {
     /// <summary>
-    /// Represents a wrapper class for a UI control handle.
+    /// Provides a managed wrapper for a path handle.
     /// </summary>
-    public sealed class SafeControlHandle : SafeHandleZeroIsInvalid
+    public sealed class SafeTextAttributeHandle : SafeHandleZeroIsInvalid
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SafeControlHandle"/> class.
         /// </summary>
         /// <param name="existingHandle"> An <see cref="IntPtr"/> object that represents the pre-existing handle to use.</param>
         /// <param name="ownsHandle"><see langword="true"/> to reliably release the handle during the finalization phase; <see langword="false"/> to prevent reliable release (not recommended).</param>
-        public SafeControlHandle(IntPtr existingHandle, bool ownsHandle = true) : base(ownsHandle) => SetHandle(existingHandle);
+        public SafeTextAttributeHandle(IntPtr existingHandle, bool ownsHandle = true) : base(ownsHandle) => SetHandle(existingHandle);
 
         /// <summary>
         /// Executes the code required to free the handle.
@@ -34,7 +34,7 @@ namespace TCD.SafeHandles
             bool released;
             try
             {
-                Libui.ControlDestroy(this);
+                Libui.FreeAttribute(handle);
                 handle = IntPtr.Zero;
                 released = true;
             }

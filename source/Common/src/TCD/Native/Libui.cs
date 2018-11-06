@@ -8,15 +8,19 @@
 using System;
 using System.Runtime.InteropServices;
 using TCD.Drawing;
+using TCD.Drawing.Text;
+using TCD.InteropServices;
 using TCD.UI;
 using TCD.UI.Controls;
 
 namespace TCD.Native
 {
-    internal static class Libui
+    internal static partial class Libui
     {
         private const CallingConvention Cdecl = CallingConvention.Cdecl;
 
+        #region Types
+        #region Enums
         internal enum ForEach : long
         {
             Continue,
@@ -30,17 +34,19 @@ namespace TCD.Native
             Center,
             End
         }
+        #endregion Enums
 
+        #region Structs
         [StructLayout(LayoutKind.Sequential)]
-        internal class Time
+        internal sealed class Time
         {
 #pragma warning disable IDE0032 // Use auto property
 #pragma warning disable IDE0044 // Add readonly modifier
             private int sec, min, hour, day, mon, year;
             private readonly int wday, yday; // Must be uninitialized.
             private readonly int isdst = -1; //Must be -1.
-#pragma warning restore IDE0032 // Use auto property
 #pragma warning restore IDE0044 // Add readonly modifier
+#pragma warning restore IDE0032 // Use auto property
 
             public Time(int year, int month, int day, int hour, int minute, int second)
             {
@@ -101,31 +107,44 @@ namespace TCD.Native
             private IntPtr dragBroken;
             private IntPtr keyEvent;
 
-            public Libui.AreaHandlerDrawCallback Draw
+            public AreaHandlerDrawCallback Draw
             {
                 set => draw = Marshal.GetFunctionPointerForDelegate(value);
             }
 
-            public Libui.AreaHandlerMouseEventCallback MouseEvent
+            public AreaHandlerMouseEventCallback MouseEvent
             {
                 set => mouseEvent = Marshal.GetFunctionPointerForDelegate(value);
             }
 
-            public Libui.AreaHandlerMouseCrossedCallback MouseCrossed
+            public AreaHandlerMouseCrossedCallback MouseCrossed
             {
                 set => mouseCrossed = Marshal.GetFunctionPointerForDelegate(value);
             }
 
-            public Libui.AreaHandlerDragBrokenCallback DragBroken
+            public AreaHandlerDragBrokenCallback DragBroken
             {
                 set => dragBroken = Marshal.GetFunctionPointerForDelegate(value);
             }
 
-            public Libui.AreaHandlerKeyEventCallback KeyEvent
+            public AreaHandlerKeyEventCallback KeyEvent
             {
                 set => keyEvent = Marshal.GetFunctionPointerForDelegate(value);
             }
         }
+        #endregion Structs
+        #endregion Types
+
+        #region Functions
+
+
+        #endregion Functions
+    }
+
+    internal static partial class Libui
+    {
+
+
 
         #region Application
         internal static string Init(ref StartupOptions options) => AssemblyRef.Libui.LoadFunction<Signatures.uiInit>()(ref options);
@@ -345,6 +364,9 @@ namespace TCD.Native
         internal static void TabSetMargined(IntPtr t, int page, bool margined) => AssemblyRef.Libui.LoadFunction<Signatures.uiTabSetMargined>()(t, page, margined);
         internal static IntPtr NewTab() => AssemblyRef.Libui.LoadFunction<Signatures.uiNewTab>()();
         #endregion TabContainer
+        #region TextAttribute
+        internal static void FreeAttribute(IntPtr a) => AssemblyRef.Libui.LoadFunction<Signatures.uiFreeAttribute>()(a);
+        #endregion
         #region TextBlock
         internal static string MultilineEntryText(IntPtr e) => AssemblyRef.Libui.LoadFunction<Signatures.uiMultilineEntryText>()(e);
         internal static void MultilineEntrySetText(IntPtr e, string text) => AssemblyRef.Libui.LoadFunction<Signatures.uiMultilineEntrySetText>()(e, text);
@@ -389,7 +411,7 @@ namespace TCD.Native
         [UnmanagedFunctionPointer(Cdecl)] internal delegate void WindowOnContentSizeChangedCallback(IntPtr w, IntPtr data);
         [UnmanagedFunctionPointer(Cdecl)] internal delegate bool WindowOnClosingCallback(IntPtr w, IntPtr data);
         #endregion Window
-
+        
         // Keep the delegates in this class in order with libui\ui.h
         private static class Signatures
         {
@@ -595,7 +617,7 @@ namespace TCD.Native
 
             //TODO: Functions for the following delegates.
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeAttribute(IntPtr a);
-            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate uiAttributeType uiAttributeGetType(IntPtr a);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate uiAttributeType uiAttributeGetType(IntPtr a);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFamilyAttribute(string family);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiAttributeFamily(IntPtr a);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSizeAttribute(double size);
@@ -614,18 +636,18 @@ namespace TCD.Native
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewUnderlineColorAttribute(UnderlineColor u, double r, double g, double b, double a);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributeUnderlineColor(IntPtr a, out UnderlineColor u, out double r, out double g, out double b, out double alpha);
 
-            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate uiForEach uiOpenTypeFeaturesForEachFunc(IntPtr otf, char a, char b, char c, char d, uint value, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate ForEach uiOpenTypeFeaturesForEachFunc(IntPtr otf, char a, char b, char c, char d, uint value, IntPtr data);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewOpenTypeFeatures();
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeOpenTypeFeatures(IntPtr otf);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiOpenTypeFeaturesClone(IntPtr otf);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesAdd(IntPtr otf, char a, char b, char c, char d, uint value);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesRemove(IntPtr otf, char a, char b, char c, char d);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate int uiOpenTypeFeaturesGet(IntPtr otf, char a, char b, char c, char d, out uint value);
-            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesForEach(IntPtr otf, uiOpenTypeFeaturesForEachFunc f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiOpenTypeFeaturesForEach(IntPtr otf, uiOpenTypeFeaturesForEachFunc f, IntPtr data);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFeaturesAttribute(IntPtr otf);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiAttributeFeatures(IntPtr a);
 
-            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate uiForEach uiAttributedStringForEachAttributeFunc(IntPtr s, IntPtr a, UIntPtr start, UIntPtr end, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate ForEach uiAttributedStringForEachAttributeFunc(IntPtr s, IntPtr a, UIntPtr start, UIntPtr end, IntPtr data);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewAttributedString(string initialString);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeAttributedString(IntPtr s);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiAttributedStringString(IntPtr s);
@@ -634,12 +656,12 @@ namespace TCD.Native
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringInsertAtUnattributed(IntPtr s, IntPtr str, UIntPtr at);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringDelete(IntPtr s, UIntPtr start, UIntPtr end);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringSetAttribute(IntPtr s, IntPtr a, UIntPtr start, UIntPtr end);
-            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringForEachAttribute(IntPtr s, uiAttributedStringForEachAttributeFunc f, IntPtr data);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiAttributedStringForEachAttribute(IntPtr s, uiAttributedStringForEachAttributeFunc f, IntPtr data);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringNumGraphemes(IntPtr s);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringByteIndexToGrapheme(IntPtr s, UIntPtr pos);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringGraphemeToByteIndex(IntPtr s, UIntPtr pos);
 
-            //TODO: [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiDrawNewTextLayout(uiDrawTextLayoutParams param);
+            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiDrawNewTextLayout(uiDrawTextLayoutParams param);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawFreeTextLayout(IntPtr tl);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawText(IntPtr c, IntPtr tl, double x, double y);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawTextLayoutExtents(IntPtr tl, out double width, out double height);

@@ -2,6 +2,27 @@
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
+  <!-- These project items will be re-added once they are finished. -->
+  <ItemGroup>
+    <Compile Remove="src\TCD\Drawing\Text\AttributedText.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\BackgroundColorAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\FontFamilyAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\FontFeatures.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\FontFeaturesAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\FontSizeAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\FontStretchAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\FontStyleAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\FontWeightAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\ForegroundColorAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\Libui.uiAttributeType.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\Libui.uiDrawTextLayoutParams.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\Libui.uiForEach.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\TextAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\TextLayout.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\TextLayoutOptions.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\UnderlineColorAttribute.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\UnderlineStyleAttribute.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="$(TCDFxSourceCommonPath)src\TCD\PlatformHelper.cs" Link="src\TCD\PlatformHelper.cs" />
     <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\AssemblyRef.cs" Link="src\TCD\Native\AssemblyRef.cs" />
@@ -30,7 +51,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(TCDFxSourceCommonPath)ref\ui.h" Link="ref\ui.h"/>
+    <None Include="$(TCDFxSourceCommonPath)ref\ui.h" Link="ref\ui.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(TCDFxSourcePath)TCD.Disposable\TCD.Disposable.csproj" />

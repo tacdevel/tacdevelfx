@@ -26,7 +26,7 @@ namespace TCD.SafeHandles
         public SafePathHandle(IntPtr existingHandle, bool ownsHandle = true) : base(ownsHandle) => SetHandle(existingHandle);
 
         /// <summary>
-        /// When overridden in a derived class, executes the code required to free the handle.
+        /// Executes the code required to free the handle.
         /// </summary>
         /// <returns><see langword="true"/> if the handle is released successfully; otherwise, in the event of a catastrophic failure, <see langword="false"/>.</returns>
         protected override bool ReleaseHandle()

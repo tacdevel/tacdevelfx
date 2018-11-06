@@ -3,7 +3,7 @@ using static LibUISharp.Native.NativeMethods;
 
 namespace LibUISharp.Drawing
 {
-    public abstract class TextAttribute : Component
+    public abstract class TextAttribute : NativeComponent<SafeTextAttributeHandle>
     {
         private bool disposed = false;
 
