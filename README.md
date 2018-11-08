@@ -1,13 +1,14 @@
-[![License](https://badgen.net/badge/license/MIT/blue)](https://github.com/tom-corwin/LibUISharp/blob/master/LICENSE.md)
-[![Contributors](https://badgen.net/github/contributors/tacdevel/tcdfx)](https://github.com/tacdevel/tcdfxx/graphs/contributors)
-[![Open Issues](https://badgen.net/github/open-issues/tacdevel/tcdfx/)](https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aopen)
-[![Closed Issues](https://badgen.net/github/closed-issues/tacdevel/tcdfx/)](https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aclosed)
-[![Help Wanted Issues](https://badgen.net/github/label-issues/tacdevel/tcdfx/help%20wanted/open)](https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-[![Good First Issue](https://badgen.net/github/label-issues/tacdevel/tcdfx/good%20first%20issue/open)](https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)  
-[![CodeFactor Status](https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge)](https://www.codefactor.io/repository/github/tacdevel/tcdfx)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx)](https://dependabot.com)  
-![C# Version](https://badgen.net/badge/C%23/7.3/green)
-![Target Frameworks](https://badgen.net/badge/framework/netstandard2.0/purple)
+[![License][Badges.License]][Links.License]
+[![Contributors][Badges.Contributors]][Links.Contributors]
+![C# Version][Badges.CSharpVersion]
+![Target Frameworks][Badges.TargetFrameworks]  
+[![Open Issues][Badges.Issues.Open]][Links.Issues.Open]
+[![Closed Issues][Badges.Issues.Closed]][Links.Issues.Closed]
+[![Help Wanted Issues][Badges.Issues.HelpWanted]][Links.Issues.HelpWanted]
+[![Good First Issues][Badges.Issues.GoodFirstIssue]][Links.Issues.GoodFirstIssue]  
+[![CodeFactor Status][Badges.CodeFactor]][Links.CodeFactor]
+[![Dependabot Status][Badges.Dependabot]][Links.Dependabot]
+[![Gitter Chat][Badges.Gitter]][Links.Gitter]
 
 **Please Note**: This software is a work-in-progress with no stable releases yet, and is not to be
 considered complete nor stable. *ANYTHING* in this repo is subject to change without notice.
@@ -22,14 +23,14 @@ For examples, see the `examples\` directory.
 
 ## Packages
 
-| Package Name                         | Build Status | Package Versions |
-| :----------------------------------- | :----------- | :--------------- |
-| TCD.Collections.MultiValueDictionary | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Collections.MultiValueDictionary)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10) | ![NuGet](https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary/pre) ![NuGet](https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary) |
-| TCD.Disposable                       | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Disposable)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=11) | ![NuGet](https://badgen.net/nuget/v/TCD.Disposable/pre) ![NuGet](https://badgen.net/nuget/v/TCD.Disposable) |
-| TCD.Drawing.Primitives               | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Drawing.Primitives)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=12) | ![NuGet](https://badgen.net/nuget/v/TCD.Drawing.Primitives/pre) ![NuGet](https://badgen.net/nuget/v/TCD.Drawing.Primitives) |
-| TCD.InteropServices                  | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.InteropServices)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=13) | ![NuGet](https://badgen.net/nuget/v/TCD.InteropServices/pre) ![NuGet](https://badgen.net/nuget/v/TCD.InteropServices) |
-| TCD.UI                               | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.UI)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=14) | ![NuGet](https://badgen.net/nuget/v/TCD.UI/pre) ![NuGet](https://badgen.net/nuget/v/TCD.UI) |
-| TCDFx.Tools.DocGen                   | [![Build Status](https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tools/TCDFx.Tools.DocGen)](https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=15) | ![NuGet](https://badgen.net/nuget/v/TCDFx.Tools.DocGen/pre) ![NuGet](https://badgen.net/nuget/v/TCDFx.Tools.DocGen) |
+| Package Name                         | Build Status                                                 | Package Versions                                      |
+| :----------------------------------- | :----------------------------------------------------------- | :---------------------------------------------------- |
+| TCD.Collections.MultiValueDictionary | [![Build Status][Badges.BuildStatus.1]][Links.BuildStatus.1] | ![NuGet][Badges.Nuget.1] ![NuGet][Badges.Nuget.Pre.1] |
+| TCD.Disposable                       | [![Build Status][Badges.BuildStatus.2]][Links.BuildStatus.2] | ![NuGet][Badges.Nuget.2] ![NuGet][Badges.Nuget.Pre.2] |
+| TCD.Drawing.Primitives               | [![Build Status][Badges.BuildStatus.3]][Links.BuildStatus.3] | ![NuGet][Badges.Nuget.3] ![NuGet][Badges.Nuget.Pre.3] |
+| TCD.InteropServices                  | [![Build Status][Badges.BuildStatus.4]][Links.BuildStatus.4] | ![NuGet][Badges.Nuget.4] ![NuGet][Badges.Nuget.Pre.4] |
+| TCD.UI                               | [![Build Status][Badges.BuildStatus.5]][Links.BuildStatus.5] | ![NuGet][Badges.Nuget.5] ![NuGet][Badges.Nuget.Pre.5] |
+| TCDFx.Tools.DocGen                   | [![Build Status][Badges.BuildStatus.6]][Links.BuildStatus.6] | ![NuGet][Badges.Nuget.6] ![NuGet][Badges.Nuget.Pre.6] |
 
 ### Installing TCDFx Packages
 
@@ -68,7 +69,7 @@ Add the following `<PackageReference />` to your `.csproj`:
 Contributing is as easy as filing an issue, fixing a bug, or suggesting a new feature.
 
 For all a list of all contributors with some stats about their contributions, see the
-[Contributors](https://github.com/tacdevel/tcdfx/graphs/contributors) page.
+[Contributors][Links.Contributors] page.
 
 ## Building From Source
 
@@ -97,3 +98,51 @@ Run the following command in a command-line interface in the root directory of t
 ```
 dotnet build .\tcdfx.sln
 ```
+
+<!-- Badges -->
+[Badges.BuildStatus.1]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Collections.MultiValueDictionary
+[Badges.BuildStatus.2]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Disposable
+[Badges.BuildStatus.3]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Drawing.Primitives
+[Badges.BuildStatus.4]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.InteropServices
+[Badges.BuildStatus.5]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.UI
+[Badges.BuildStatus.6]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tools/TCDFx.Tools.DocGen
+[Badges.NuGet.1]: https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary
+[Badges.NuGet.2]: https://badgen.net/nuget/v/TCD.Disposable
+[Badges.NuGet.3]: https://badgen.net/nuget/v/TCD.Drawing.Primitives
+[Badges.NuGet.4]: https://badgen.net/nuget/v/TCD.InteropServices
+[Badges.NuGet.5]: https://badgen.net/nuget/v/TCD.UI
+[Badges.NuGet.6]: https://badgen.net/nuget/v/TCDFx.Tools.DocGen
+[Badges.NuGet.Pre.1]: https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary/pre
+[Badges.NuGet.Pre.2]: https://badgen.net/nuget/v/TCD.Disposable/pre
+[Badges.NuGet.Pre.3]: https://badgen.net/nuget/v/TCD.Drawing.Primitives/pre
+[Badges.NuGet.Pre.4]: https://badgen.net/nuget/v/TCD.InteropServices/pre
+[Badges.NuGet.Pre.5]: https://badgen.net/nuget/v/TCD.UI/pre
+[Badges.NuGet.Pre.6]: https://badgen.net/nuget/v/TCDFx.Tools.DocGen/pre
+[Badges.License]: https://badgen.net/badge/license/MIT/blue
+[Badges.Contributors]: https://badgen.net/github/contributors/tacdevel/tcdfx
+[Badges.CSharpVersion]: https://badgen.net/badge/C%23/7.3/green
+[Badges.TargetFrameworks]: https://badgen.net/badge/targets/netstandard2.0/purple
+[Badges.Issues.Open]: https://badgen.net/github/open-issues/tacdevel/tcdfx/
+[Badges.Issues.Closed]: https://badgen.net/github/closed-issues/tacdevel/tcdfx/
+[Badges.Issues.HelpWanted]: https://badgen.net/github/label-issues/tacdevel/tcdfx/help%20wanted/open
+[Badges.Issues.GoodFirstIssue]: https://badgen.net/github/label-issues/tacdevel/tcdfx/good%20first%20issue/open
+[Badges.CodeFactor]: https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge
+[Badges.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx
+[Badges.Gitter]: https://badgen.net/badge/chat/on%20gitter/cyan
+
+<!-- Links -->
+[Links.BuildStatus.1]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10
+[Links.BuildStatus.2]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=11
+[Links.BuildStatus.3]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=12
+[Links.BuildStatus.4]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=13
+[Links.BuildStatus.5]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=14
+[Links.BuildStatus.6]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=15
+[Links.License]: https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+[Links.Contributors]: https://github.com/tacdevel/tcdfx/graphs/contributors
+[Links.Issues.Open]: https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aopen
+[Links.Issues.Closed]: https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aclosed
+[Links.Issues.HelpWanted]: https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
+[Links.Issues.GoodFirstIssue]: https://github.com/tacdevel/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
+[Links.CodeFactor]: https://www.codefactor.io/repository/github/tacdevel/tcdfx
+[Links.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx
+[Links.Gitter]: https://gitter.im/tacdevel/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
