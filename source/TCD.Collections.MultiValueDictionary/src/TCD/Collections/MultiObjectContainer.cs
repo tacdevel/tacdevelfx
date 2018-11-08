@@ -1,4 +1,13 @@
-﻿using System;
+﻿/****************************************************************************
+ * FileName:   MultiObjectContainer.cs
+ * Assembly:   TCD.Collections.MultiValueDictionary.dll
+ * Package:    TCD.Collections.MultiValueDictionary
+ * Date:       20181029
+ * License:    MIT License
+ * LicenseUrl: https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ ***************************************************************************/
+
+using System;
 using System.Collections.Generic;
 
 namespace TCD.Collections
