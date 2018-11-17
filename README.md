@@ -30,7 +30,6 @@ For examples, see the `examples\` directory.
 | TCD.Drawing.Primitives               | [![Build Status][Badges.BuildStatus.3]][Links.BuildStatus.3] | ![NuGet][Badges.Nuget.3] ![NuGet][Badges.Nuget.Pre.3] |
 | TCD.InteropServices                  | [![Build Status][Badges.BuildStatus.4]][Links.BuildStatus.4] | ![NuGet][Badges.Nuget.4] ![NuGet][Badges.Nuget.Pre.4] |
 | TCD.UI                               | [![Build Status][Badges.BuildStatus.5]][Links.BuildStatus.5] | ![NuGet][Badges.Nuget.5] ![NuGet][Badges.Nuget.Pre.5] |
-| TCDFx.Tools.DocGen                   | [![Build Status][Badges.BuildStatus.6]][Links.BuildStatus.6] | ![NuGet][Badges.Nuget.6] ![NuGet][Badges.Nuget.Pre.6] |
 
 ### Installing TCDFx Packages
 
