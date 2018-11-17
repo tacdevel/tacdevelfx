@@ -80,7 +80,7 @@ Studio Code, or just by running a couple simple commands. Use the steps below to
 
 | Operating System | Prerequisites |
 | :--------------- | :------------ |
-| Windows 7/8.1/10 | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio 2017 (v15.8.x)<br/>Visual Studio 2019/0x10 (v16.0.x)<br/>Visual Studio Code (With the C# extension) |
+| Windows 7/8.1/10 | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio 2017 (v15.9.x)<br/>Visual Studio 2019/ (v16.0.x)<br/>Visual Studio Code (With the C# extension) |
 | Mac OS X         | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension) |
 | Linux            | .NET Core 2.1 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension) |
 
