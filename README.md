@@ -29,7 +29,7 @@ For examples, see the `examples\` directory.
 | TCD.Disposable                       | [![Build Status][Badges.BuildStatus.2]][Links.BuildStatus.2] | ![NuGet][Badges.Nuget.2] ![NuGet][Badges.Nuget.Pre.2] |
 | TCD.Drawing.Primitives               | [![Build Status][Badges.BuildStatus.3]][Links.BuildStatus.3] | ![NuGet][Badges.Nuget.3] ![NuGet][Badges.Nuget.Pre.3] |
 | TCD.InteropServices                  | [![Build Status][Badges.BuildStatus.4]][Links.BuildStatus.4] | ![NuGet][Badges.Nuget.4] ![NuGet][Badges.Nuget.Pre.4] |
-| TCD.UI                               | [![Build Status][Badges.BuildStatus.5]][Links.BuildStatus.5] | ![NuGet][Badges.Nuget.5] ![NuGet][Badges.Nuget.Pre.5] |
+| TCD.UI (formerly [LibUISharp][Links.LibUISharp]) | [![Build Status][Badges.BuildStatus.5]][Links.BuildStatus.5] | ![NuGet][Badges.Nuget.5] ![NuGet][Badges.Nuget.Pre.5] |
 
 ### Installing TCDFx Packages
 
@@ -145,3 +145,4 @@ dotnet build .\tcdfx.sln
 [Links.CodeFactor]: https://www.codefactor.io/repository/github/tacdevel/tcdfx
 [Links.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx
 [Links.Gitter]: https://gitter.im/tacdevel/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+[Links.LibUISharp]: https://github.com/tom-corwin/LibUISharp
