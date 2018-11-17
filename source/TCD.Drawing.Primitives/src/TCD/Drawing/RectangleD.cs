@@ -12,7 +12,6 @@ using System.Runtime.InteropServices;
 
 namespace TCD.Drawing
 {
-    //TODO: ToString() overrides.
     /// <summary>
     /// Stores a set of four double-precision floating-point numbers that represent the location and size of a rectangle.
     /// </summary>
@@ -282,6 +281,12 @@ namespace TCD.Drawing
         /// </summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() => unchecked(this.GenerateHashCode());
+
+        /// <summary>
+        /// Returns a string that represents this <see cref="RectangleD"/>.
+        /// </summary>
+        /// <returns>A string that represents this <see cref="RectangleD"/>.</returns>
+        public override string ToString() => $"[X: {X}, Y: {Y}, Width: {Width}, Height: {Height}]";
 
         /// <summary>
         /// Tests whether two specified <see cref="RectangleD"/> structures are equivalent.

@@ -12,7 +12,6 @@ using System.Runtime.InteropServices;
 
 namespace TCD.Drawing
 {
-    //TODO: Maybe add CYMK/HSL/HSV color(s) too.
     /// <summary>
     /// Represents an ARGB (alpha, red, green, blue) color.
     /// </summary>
@@ -94,7 +93,11 @@ namespace TCD.Drawing
         /// </summary>
         /// <returns>A hash code for this <see cref="Color"/>.</returns>
         public override int GetHashCode() => unchecked(this.GenerateHashCode());
-        
+
+        /// <summary>
+        /// Returns a string that represents this <see cref="Color"/>.
+        /// </summary>
+        /// <returns>A string that represents this <see cref="Color"/>.</returns>
         public override string ToString() => $"[R: {R}, G: {G}, B: {B}, A: {A}]";
 
         /// <summary>

@@ -12,7 +12,6 @@ using System.Runtime.InteropServices;
 
 namespace TCD.Drawing
 {
-    //TODO: ToString() overrides.
     /// <summary>
     /// Represents an ordered pair of integer x- and y-coordinates that defines a point in a two-dimensional plane.
     /// </summary>
@@ -134,6 +133,12 @@ namespace TCD.Drawing
         /// </summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() => unchecked(this.GenerateHashCode());
+
+        /// <summary>
+        /// Returns a string that represents this <see cref="Point"/>.
+        /// </summary>
+        /// <returns>A string that represents this <see cref="PointD"/>.</returns>
+        public override string ToString() => $"[X: {X}, Y: {Y}]";
 
         /// <summary>
         /// Translates a <see cref="Point"/> by a given <see cref="Size"/>.

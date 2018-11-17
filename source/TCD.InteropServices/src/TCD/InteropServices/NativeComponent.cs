@@ -97,9 +97,8 @@ namespace TCD.InteropServices
         /// </summary>
         protected override void ReleaseManagedResources()
         {
-            if (!IsInvalid)
+            if (!IsInvalid && handleCache.ContainsKey(this))
             {
-                //TODO: Make sure this works properly. I have a feeling a NullReferenceException is in the near future.
                 handleCache[this] = IntPtr.Zero;
                 handleCache.Remove(this);
             }
@@ -196,9 +195,8 @@ namespace TCD.InteropServices
         /// </summary>
         protected override void ReleaseManagedResources()
         {
-            if (!IsInvalid)
+            if (!IsInvalid && handleCache.ContainsKey(this))
             {
-                //TODO: Make sure this works properly. I have a feeling a NullReferenceException is in the near future.
                 handleCache[this].Dispose();
                 handleCache.Remove(this);
             }

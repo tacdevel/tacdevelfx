@@ -12,7 +12,6 @@ using System.Runtime.InteropServices;
 
 namespace TCD.Drawing
 {
-    //TODO: ToString() overrides.
     /// <summary>
     /// Represents an ordered pair of integers that defines a size in a two-dimensional plane.
     /// </summary>
@@ -117,6 +116,12 @@ namespace TCD.Drawing
         /// </summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode() => unchecked(this.GenerateHashCode());
+
+        /// <summary>
+        /// Returns a string that represents this <see cref="Size"/>.
+        /// </summary>
+        /// <returns>A string that represents this <see cref="Size"/>.</returns>
+        public override string ToString() => $"[Width: {Width}, Height: {Height}]";
 
         /// <summary>
         /// Adds the specified <see cref="Size"/> to the other specified <see cref="Size"/>.

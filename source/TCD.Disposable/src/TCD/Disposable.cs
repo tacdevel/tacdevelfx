@@ -61,6 +61,11 @@ namespace TCD
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Safely disposes of this <see cref="Disposable"/>, performing the specified action in the event of an exception.
+        /// </summary>
+        /// <param name="exceptionHandler">The action to be performed on an exception.</param>
+        /// <returns><c>true</c> if properly disposed; otherwise, <c>false</c>.</returns>
         public bool SafeDispose(Action<Exception> exceptionHandler = null)
         {
             if (this == null)
