@@ -1,22 +1,22 @@
-/****************************************************************************
- * FileName:   AssemblyRef.cs
- * Date:       20180913
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+/***************************************************************************************************
+ * FileName:             AssemblyRef.cs
+ * Date:                 20180913
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
+#if TCD_UI
 using System;
 using System.Runtime.InteropServices;
-#if !TCD_CORE || !TCD_DRAWING_PRIMITIVES
 using TCD.InteropServices;
-#endif
 using static TCD.PlatformHelper;
+#endif
 
 namespace TCD.Native
 {
     internal static class AssemblyRef
     {
-#if !TCD_CORE || !TCD_DRAWING_PRIMITIVES
+#if TCD_UI
         internal static NativeAssembly Libui
         {
             get

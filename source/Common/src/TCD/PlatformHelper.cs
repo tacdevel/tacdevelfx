@@ -1,9 +1,9 @@
-﻿/****************************************************************************
- * FileName:   PlatformHelper.cs
- * Date:       20180913
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             PlatformHelper.cs
+ * Date:                 20180913
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.IO;
@@ -13,6 +13,7 @@ using TCD.Native;
 namespace TCD
 {
     // https://github.com/dotnet/core-setup/tree/master/src/Microsoft.DotNet.PlatformAbstractions
+    // NOTE: This file is dependant on './Native/Libc.cs' and './Native/NtDll.cs'.
     internal static class PlatformHelper
     {
         internal static Platform CurrentPlatform
@@ -21,13 +22,13 @@ namespace TCD
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                     return Platform.Windows;
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                     return Platform.Linux;
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                     return Platform.MacOS;
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")))
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")))
                     return Platform.FreeBSD;
-                return Platform.Unknown;
+                else return Platform.Unknown;
             }
         }
 
@@ -167,10 +168,7 @@ namespace TCD
             if (kernelRelease == null)
                 throw new PlatformNotSupportedException("Unknown error trying to read macOS version.");
 
-            if (!Version.TryParse(kernelRelease, out Version version) || version.Major < 5)
-                return "10.0";
-            else
-                return $"10.{version.Major - 4}";
+            return !Version.TryParse(kernelRelease, out Version version) || version.Major < 5 ? "10.0" : $"10.{version.Major - 4}";
         }
 
         private static string GetFreeBSDVersion()

@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   NativeAssembly.cs
- * Assembly:   TCD.Core.dll
- * Package:    TCD.Core
- * Date:       20180919
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             NativeAssembly.cs
+ * Date:                 20180919
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.IO;
@@ -18,7 +16,7 @@ namespace TCD.InteropServices
     /// <summary>
     /// Represents a native shared assembly that function pointers may be loaded from.
     /// </summary>
-    public class NativeAssembly : NativeComponent<SafeLibraryHandle>
+    public class NativeAssembly : NativeComponent<SafeAssemblyHandle>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeAssembly"/> class
@@ -33,7 +31,7 @@ namespace TCD.InteropServices
         /// </summary>
         /// <param name="names">An ordered list of assembly names to attempt to load.</param>
         /// <param name="resolver">The resolver used to identify possible load targets for the assembly.</param>
-        public NativeAssembly(NativeAssemblyResolver resolver, params string[] names) : base(new SafeLibraryHandle(GetHandle(resolver, names))) { }
+        public NativeAssembly(NativeAssemblyResolver resolver, params string[] names) : base(new SafeAssemblyHandle(GetHandle(resolver, names))) { }
 
         /// <summary>
         /// Loads a function whose signature and name match the given delegate type's signature and name.

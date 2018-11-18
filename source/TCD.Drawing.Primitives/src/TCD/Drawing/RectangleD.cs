@@ -1,11 +1,10 @@
-﻿/****************************************************************************
+﻿/*******************************************************************************
  * FileName:   RectangleD.cs
- * Assembly:   TCD.Drawing.Primitives.dll
- * Package:    TCD.Drawing.Primitives
  * Date:       20180913
  * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+ * Copyrights: 2018 (c) Thomas Corwin, et al. All Rights Reserved.
+ * LicenseUrl: https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ ******************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;

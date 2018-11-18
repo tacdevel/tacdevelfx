@@ -2,7 +2,7 @@
   <!-- Global Repository Information -->
   <PropertyGroup>
     <TCDFxAuthors>Thomas Corwin, et al.</TCDFxAuthors>
-    <TCDFxCopyrights>Copyright (c) Thomas Corwin, et al. All Rights Reserved.</TCDFxCopyrights>
+    <TCDFxCopyrights>Copyright 2018 (c) Thomas Corwin, et al. All Rights Reserved.</TCDFxCopyrights>
     <TCDFxRepositoryURL>https://github.com/tacdevel/tcdfx</TCDFxRepositoryURL>
     <TCDFxLicenseURL>$(TCDFxRepositoryURL)/blob/master/LICENSE.md</TCDFxLicenseURL>
   </PropertyGroup>

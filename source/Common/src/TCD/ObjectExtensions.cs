@@ -1,22 +1,20 @@
-﻿/****************************************************************************
- * FileName:   ObjectExtensions.cs
- * Date:       20180913
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             ObjectExtensions.cs
+ * Date:                 20180913
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Reflection;
 
 namespace TCD
 {
-    //TODO: Tests.
     internal static class ObjectExtensions
     {
         public static int GenerateHashCode(this object self)
         {
             PropertyInfo[] props = self.GetType().GetProperties(BindingFlags.Public);
-
             return unchecked(GetHashFromProperties(self, props));
         }
 

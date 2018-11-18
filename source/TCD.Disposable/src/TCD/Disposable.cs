@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   Disposable.cs
- * Assembly:   TCD.Disposable.dll
- * Package:    TCD.Disposable
- * Date:       20180913
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             Disposable.cs
+ * Date:                 20180913
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 
@@ -68,8 +66,7 @@ namespace TCD
         /// <returns><c>true</c> if properly disposed; otherwise, <c>false</c>.</returns>
         public bool SafeDispose(Action<Exception> exceptionHandler = null)
         {
-            if (this == null)
-                return false;
+            if (this == null) return true; // Not intialized, so, already disposed.
 
             try
             {

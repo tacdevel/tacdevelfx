@@ -55,18 +55,18 @@
     <RepositoryUrl>$(TCDFxRepoURL)</RepositoryUrl>
   </PropertyGroup>
 
-  <!-- Shared Source -->
+  <!-- Common Source -->
   <ItemGroup>
-    <Compile Include="$(TCDFxSourceCommonPath)src/Assembly.cs" />
+    <Compile Include="$(TCDFxSourceCommonPath)src\Assembly.cs" Link="src\Assembly.cs"/>
   </ItemGroup>
   
   <!-- Shared Content -->
   <ItemGroup>
-    <Content Include="../../LICENSE.md">
+    <Content Include="..\..\LICENSE.md">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
-    <Content Include="../../THIRD_PARTY_NOTICES.md">
+    <Content Include="..\..\THIRD_PARTY_NOTICES.md">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
