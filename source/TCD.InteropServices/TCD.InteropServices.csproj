@@ -7,11 +7,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(TCDFxSourceCommonPath)src\TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
-    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\PlatformHelper.cs" Link="src\TCD\PlatformHelper.cs" />
     <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\AssemblyRef.cs" Link="src\TCD\Native\AssemblyRef.cs" />
-    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\Kernel32.cs" Link="src\TCD\Native\Kernel32.cs" />
+    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\PlatformHelper.cs" Link="src\TCD\PlatformHelper.cs" />
     <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\Libc.cs" Link="src\TCD\Native\Libc.cs" />
-    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\Libdl.cs" Link="src\TCD\Native\Libdl.cs" />
     <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\Ntdll.cs" Link="src\TCD\Native\Ntdll.cs" />
   </ItemGroup>
   <ItemGroup>
