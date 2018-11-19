@@ -1,4 +1,11 @@
-﻿using System;
+﻿/***************************************************************************************************
+ * FileName:             EditableComboBox.cs
+ * Date:                 20180925
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
+ 
+using System;
 using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
@@ -20,7 +27,7 @@ namespace TCD.UI.Controls
         /// <summary>
         /// Occurs when the <see cref="Text"/> property is changed.
         /// </summary>
-        public event Event<EditableComboBox> TextChanged;
+        public event NativeEventHandler<EditableComboBox> TextChanged;
 
         /// <summary>
         /// Gets or sets the text of this <see cref="EditableComboBox"/>.

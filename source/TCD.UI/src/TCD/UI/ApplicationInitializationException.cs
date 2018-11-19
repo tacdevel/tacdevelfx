@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   ApplicationInitializationException.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20180921
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             ApplicationInitializationException.cs
+ * Date:                 20180921
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Runtime.Serialization;
@@ -13,7 +11,7 @@ using System.Runtime.Serialization;
 namespace TCD.UI
 {
     /// <summary>
-    /// The exception that is thrown when a handle is null or invalid.
+    /// The exception that is thrown when an <see cref="Application"/> class fails to initialize.
     /// </summary>
     [Serializable]
     public sealed class ApplicationInitializationException : SystemException

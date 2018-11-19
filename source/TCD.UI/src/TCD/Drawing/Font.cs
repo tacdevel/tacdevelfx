@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   Font.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20180930
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             Font.cs
+ * Date:                 20180930
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
@@ -76,12 +74,7 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            if (!(obj is Font))
-                return false;
-            return Equals((Font)obj);
-        }
+        public override bool Equals(object obj) => !(obj is Font) ? false : Equals((Font)obj);
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.

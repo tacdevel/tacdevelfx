@@ -26,9 +26,7 @@ namespace TCD
                     return Platform.Linux;
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                     return Platform.MacOS;
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")))
-                    return Platform.FreeBSD;
-                else return Platform.Unknown;
+                else return RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")) ? Platform.FreeBSD : Platform.Unknown;
             }
         }
 
@@ -133,10 +131,7 @@ namespace TCD
         {
             Ntdll.RTL_OSVERSIONINFOEX osvi = new Ntdll.RTL_OSVERSIONINFOEX();
             osvi.dwOSVersionInfoSize = (uint)Marshal.SizeOf(osvi);
-            if (Ntdll.RtlGetVersion(out osvi) == 0)
-                return $"{osvi.dwMajorVersion}.{osvi.dwMinorVersion}.{osvi.dwBuildNumber}";
-            else
-                return string.Empty;
+            return Ntdll.RtlGetVersion(out osvi) == 0 ? $"{osvi.dwMajorVersion}.{osvi.dwMinorVersion}.{osvi.dwBuildNumber}" : string.Empty;
         }
 
         private static unsafe string GetDarwinVersion()

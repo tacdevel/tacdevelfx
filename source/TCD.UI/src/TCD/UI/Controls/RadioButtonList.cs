@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   RadioButtonList.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20181001
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             RadioButtonList.cs
+ * Date:                 20181001
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using TCD.InteropServices;
@@ -29,7 +27,7 @@ namespace TCD.UI.Controls
         /// <summary>
         /// Occurs when the <see cref="SelectedIndex"/> property is changed.
         /// </summary>
-        public event Event<RadioButtonList> SelectedIndexChanged;
+        public event NativeEventHandler<RadioButtonList> SelectedIndexChanged;
 
         /// <summary>
         /// Gets or sets the index of the selected item in the list.

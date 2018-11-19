@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   SurfaceBase.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20181008
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             SurfaceBase.cs
+ * Date:                 20181008
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -13,7 +11,7 @@ using System.Threading;
 using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
-using TCD.UI;
+using TCD.UI.Controls;
 
 namespace TCD.Drawing
 {
@@ -76,10 +74,9 @@ namespace TCD.Drawing
                 KeyEvent = (nativeHandler, surface, args) => handler.KeyEvent(surfaceCache[surface], ref args)
             };
 
-            if (!scrollable)
-                return new SafeControlHandle(Libui.NewArea(outHandler));
-            else
-                return new SafeControlHandle(Libui.NewScrollingArea(outHandler, width, height));
+            return !scrollable
+                ? new SafeControlHandle(Libui.NewArea(outHandler))
+                : new SafeControlHandle(Libui.NewScrollingArea(outHandler, width, height));
         }
     }
 }

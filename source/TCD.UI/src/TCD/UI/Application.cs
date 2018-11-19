@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   Application.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20180921
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             Application.cs
+ * Date:                 20180921
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Collections.Generic;
@@ -43,7 +41,7 @@ namespace TCD.UI
         /// <summary>
         /// Occurs just before an application shuts down.
         /// </summary>
-        public event Event<Application, CloseEventData> Closing;
+        public event NativeEventHandler<Application, CloseEventArgs> Closing;
 
         /// <summary>
         /// Gets the current instance of the <see cref="Application"/>.
@@ -129,7 +127,7 @@ namespace TCD.UI
         /// </summary>
         protected override void InitializeEvents() => Libui.OnShouldQuit(data =>
         {
-            CloseEventData e = new CloseEventData();
+            CloseEventArgs e = new CloseEventArgs();
             Closing.Invoke(this, e);
             return e.Close;
         }, IntPtr.Zero);

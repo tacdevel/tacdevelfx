@@ -1,18 +1,16 @@
-﻿/****************************************************************************
- * FileName:   TextBoxBase.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20181001
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             TextBoxBase.cs
+ * Date:                 20181001
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
 
-namespace TCD.UI
+namespace TCD.UI.Controls
 {
     /// <summary>
     /// Represents a base implementation of controls that can be used to display and edit one line of text.
@@ -30,7 +28,7 @@ namespace TCD.UI
         /// <summary>
         /// Occurs when the <see cref="Text"/> property is changed.
         /// </summary>
-        public event Event<TextBoxBase> TextChanged;
+        public event NativeEventHandler<TextBoxBase> TextChanged;
 
         /// <summary>
         /// Gets or sets the displayed text.

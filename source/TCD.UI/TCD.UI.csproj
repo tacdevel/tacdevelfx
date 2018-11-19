@@ -1,4 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>$(DefineConstants);TCD_UI</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
@@ -24,9 +28,11 @@
     <Compile Remove="src\TCD\Drawing\Text\UnderlineStyleAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\ObjectExtensions.cs" Link="src\TCD\PlatformHelper.cs" />
     <Compile Include="$(TCDFxSourceCommonPath)src\TCD\PlatformHelper.cs" Link="src\TCD\PlatformHelper.cs" />
     <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\AssemblyRef.cs" Link="src\TCD\Native\AssemblyRef.cs" />
-    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\Libui.cs" Link="src\TCD\Native\Libui.cs" />
+    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\Libc.cs" Link="src\TCD\Native\Libc.cs" />
+    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\Native\Ntdll.cs" Link="src\TCD\Native\Ntdll.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(TCDFxSourceCommonPath)lib\win-x64\libui.dll" Link="lib\win-x64\libui.dll">

@@ -103,12 +103,8 @@ namespace TCD.InteropServices
         //TODO: Handle alternative package directories, if they are configured.
         private string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
 
-        private string GetUserDirectory()
-        {
-            if (PlatformHelper.CurrentPlatform == PlatformHelper.Platform.Windows)
-                return Environment.GetEnvironmentVariable("USERPROFILE");
-            else
-                return Environment.GetEnvironmentVariable("HOME");
-        }
+        private string GetUserDirectory() => PlatformHelper.CurrentPlatform == PlatformHelper.Platform.Windows
+                ? Environment.GetEnvironmentVariable("USERPROFILE")
+                : Environment.GetEnvironmentVariable("HOME");
     }
 }

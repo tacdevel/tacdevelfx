@@ -1,18 +1,16 @@
-﻿/****************************************************************************
- * FileName:   Button.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20180925
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             Button.cs
+ * Date:                 20180925
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
 
-namespace TCD.UI
+namespace TCD.UI.Controls
 {
     /// <summary>
     /// Represents a basic button control with text.
@@ -34,7 +32,7 @@ namespace TCD.UI
         /// <summary>
         /// Occurs when this <see cref="Button"/> is clicked.
         /// </summary>
-        public event Event<Button> Click;
+        public event NativeEventHandler<Button> Click;
 
         /// <summary>
         /// Gets or sets the text within this <see cref="Button"/>.

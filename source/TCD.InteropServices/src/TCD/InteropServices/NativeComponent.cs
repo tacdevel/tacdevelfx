@@ -59,12 +59,7 @@ namespace TCD.InteropServices
         /// </summary>
         /// <param name="obj">The object to compare with this <see cref="NativeComponent"/>.</param>
         /// <returns>true if obj and this <see cref="NativeComponent"/> are the same type and represent the same value; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            if (!(obj is NativeComponent))
-                return false;
-            return Equals((NativeComponent)obj);
-        }
+        public override bool Equals(object obj) => !(obj is NativeComponent) ? false : Equals((NativeComponent)obj);
 
         /// <summary>
         /// Indicates whether this and another <see cref="NativeComponent"/> object are equal.
@@ -157,12 +152,7 @@ namespace TCD.InteropServices
         /// </summary>
         /// <param name="obj">The object to compare with this <see cref="NativeComponent{T}"/>.</param>
         /// <returns>true if obj and this <see cref="NativeComponent{T}"/> are the same type and represent the same value; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            if (!(obj is NativeComponent<T>))
-                return false;
-            return Equals((NativeComponent<T>)obj);
-        }
+        public override bool Equals(object obj) => !(obj is NativeComponent<T>) ? false : Equals((NativeComponent<T>)obj);
 
         /// <summary>
         /// Indicates whether this and another <see cref="NativeComponent{T}"/> object are equal.

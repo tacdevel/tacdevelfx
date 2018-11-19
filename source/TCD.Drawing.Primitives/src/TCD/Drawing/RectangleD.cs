@@ -196,9 +196,7 @@ namespace TCD.Drawing
             double y1 = Math.Max(a.Y, b.Y);
             double y2 = Math.Min(a.Y + a.Height, b.Y + b.Height);
 
-            if (x2 >= x1 && y2 >= y1)
-                return new RectangleD(x1, y1, x2 - x1, y2 - y1);
-            return Empty;
+            return x2 >= x1 && y2 >= y1 ? new RectangleD(x1, y1, x2 - x1, y2 - y1) : Empty;
         }
 
         /// <summary>
@@ -261,12 +259,7 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            if (!(obj is RectangleD))
-                return false;
-            return Equals((RectangleD)obj);
-        }
+        public override bool Equals(object obj) => !(obj is RectangleD) ? false : Equals((RectangleD)obj);
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.

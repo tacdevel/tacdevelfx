@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   ControlCollectionBase.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20181001
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             ControlCollectionBase.cs
+ * Date:                 20181001
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Collections;
@@ -23,9 +21,7 @@ namespace TCD.UI.Controls.Containers
     {
         private readonly int defaultCapacity = 4;
         private readonly int growFactor = 2;
-        private bool isReadOnly = false;
         private TControl[] innerArray;
-        private int size;
 
         internal ControlCollectionBase(ContainerBase owner, int defaultCapacity = 4, int growFactor = 2)
         {
@@ -36,16 +32,15 @@ namespace TCD.UI.Controls.Containers
 
         internal ContainerBase Owner { get; }
 
-        //TODO: Implement this.
         /// <summary>
         /// Gets the number of elements contained in the <see cref="ControlCollectionBase{TControl}"/>.
         /// </summary>
-        public int Count => size + 1;
+        public int Count { get; private set; } = 0;
 
         /// <summary>
         /// Gets a value indicating whether the <see cref="ControlCollectionBase{TControl}"/> is read-only.
         /// </summary>
-        public bool IsReadOnly => isReadOnly == false;
+        public bool IsReadOnly { get; private set; } = false;
 
         /// <summary>
         /// Adds a <see cref="Control"/> to the end of the <see cref="ControlCollectionBase{TControl}"/>.
@@ -56,23 +51,23 @@ namespace TCD.UI.Controls.Containers
             if (child == null) throw new ArgumentNullException(nameof(child));
             if (child.IsInvalid) throw new InvalidHandleException();
             if (child.TopLevel) throw new ArgumentException("Cannot add a top-level control to a ControlCollectionBase.");
-            if (isReadOnly) throw new InvalidOperationException("Cannot remove items while the collection is read-only.");
+            if (IsReadOnly) throw new InvalidOperationException("Cannot remove items while the collection is read-only.");
             if (Contains(child)) throw new InvalidOperationException("Cannot add the same control more than once.");
 
             if (innerArray == null)
                 innerArray = new TControl[defaultCapacity];
-            else if (size >= innerArray.Length)
+            else if (Count >= innerArray.Length)
             {
                 TControl[] array = new TControl[innerArray.Length * growFactor];
                 Array.Copy(innerArray, array, innerArray.Length);
                 innerArray = array;
             }
 
-            child.Index = size;
+            child.Index = Count;
             child.Parent = Owner;
-            innerArray[size] = child;
+            innerArray[Count] = child;
             //TODO: Owner.UpdateLayout();
-            size++;
+            Count++;
         }
 
         /// <summary>
@@ -82,30 +77,30 @@ namespace TCD.UI.Controls.Containers
         /// <param name="child">The <see cref="Control"/> to insert into the <see cref="ControlCollectionBase{TControl}"/>.</param>
         public virtual void Insert(int index, TControl child)
         {
-            if (index < 0 || index > size) throw new ArgumentOutOfRangeException(nameof(index));
+            if (index < 0 || index > Count) throw new ArgumentOutOfRangeException(nameof(index));
             if (child == null) throw new ArgumentNullException(nameof(child));
             if (child.IsInvalid) throw new InvalidHandleException();
             if (child.TopLevel) throw new ArgumentException("Cannot add a top-level control to a ControlCollectionBase.");
-            if (isReadOnly) throw new InvalidOperationException("Cannot remove items while the collection is read-only.");
+            if (IsReadOnly) throw new InvalidOperationException("Cannot remove items while the collection is read-only.");
             if (Contains(child)) throw new InvalidOperationException("Cannot add the same control more than once.");
 
             if (innerArray == null)
                 innerArray = new TControl[defaultCapacity];
-            else if (size >= innerArray.Length)
+            else if (Count >= innerArray.Length)
             {
                 TControl[] array = new TControl[innerArray.Length * growFactor];
                 Array.Copy(innerArray, array, index);
                 array[index] = child;
-                Array.Copy(innerArray, index, array, index + 1, size - index);
+                Array.Copy(innerArray, index, array, index + 1, Count - index);
                 innerArray = array;
             }
-            else if (index < size)
-                Array.Copy(innerArray, index, innerArray, index + 1, size - index);
+            else if (index < Count)
+                Array.Copy(innerArray, index, innerArray, index + 1, Count - index);
 
             child.Index = index;
             child.Parent = Owner;
-            innerArray[size] = child;
-            size++;
+            innerArray[Count] = child;
+            Count++;
         }
 
         /// <summary>
@@ -117,18 +112,18 @@ namespace TCD.UI.Controls.Containers
         {
             if (child == null) throw new ArgumentNullException(nameof(child));
             if (child.IsInvalid) throw new InvalidHandleException();
-            if (isReadOnly) throw new InvalidOperationException("Cannot remove items while the collection is read-only.");
+            if (IsReadOnly) throw new InvalidOperationException("Cannot remove items while the collection is read-only.");
             if (!Contains(child)) return false;
 
             int index = IndexOf(child);
             if (index >= 0)
             {
-                size--;
+                Count--;
                 child.Index = -1;
                 child.Parent = null;
-                if (index < size)
-                    Array.Copy(innerArray, index + 1, innerArray, index, size - 1);
-                innerArray[size] = default;
+                if (index < Count)
+                    Array.Copy(innerArray, index + 1, innerArray, index, Count - 1);
+                innerArray[Count] = default;
                 child.Dispose();
                 return true;
             }
@@ -161,7 +156,7 @@ namespace TCD.UI.Controls.Containers
             if (innerArray == null || child == null || child.IsInvalid)
                 return false;
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < Count; i++)
             {
                 if (ReferenceEquals(child, innerArray[i]))
                     return true;
@@ -179,7 +174,7 @@ namespace TCD.UI.Controls.Containers
         {
             if (innerArray == null) return;
             if ((array != null) && (array.Rank != 1)) throw new ArgumentException("array must be 1-dimensional.", nameof(array));
-            Array.Copy(innerArray, 0, array, index, size);
+            Array.Copy(innerArray, 0, array, index, Count);
         }
 
         /// <summary>
@@ -187,17 +182,12 @@ namespace TCD.UI.Controls.Containers
         /// </summary>
         /// <param name="value">The control to locate in the <see cref="ControlCollectionBase{TControl}"/>.</param>
         /// <returns>The index of item if found in the list; otherwise, -1.</returns>
-        public int IndexOf(TControl value)
-        {
-            if (innerArray == null)
-                return -1;
-            return Array.IndexOf(innerArray, value, 0, size);
-        }
+        public int IndexOf(TControl value) => innerArray == null ? -1 : Array.IndexOf(innerArray, value, 0, Count);
 
         internal void SetReadOnly(bool readOnly)
         {
-            if (isReadOnly != readOnly)
-                isReadOnly = readOnly;
+            if (IsReadOnly != readOnly)
+                IsReadOnly = readOnly;
         }
 
         /// <summary>
@@ -209,7 +199,7 @@ namespace TCD.UI.Controls.Containers
         {
             get
             {
-                if (index < 0 || index >= size) throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
                 return innerArray[index];
             }
         }

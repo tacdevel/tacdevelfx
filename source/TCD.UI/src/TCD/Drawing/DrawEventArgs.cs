@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   DrawEventArgs.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20181003
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             DrawEventArgs.cs
+ * Date:                 20181003
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
@@ -16,7 +14,7 @@ namespace TCD.Drawing
     /// Provides drawing data for an event.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public sealed class DrawEventArgs : EventData
+    public sealed class DrawEventArgs : NativeEventArgs
     {
 #pragma warning disable IDE0044 // Add readonly modifier
 #pragma warning disable IDE0032 // Use auto property

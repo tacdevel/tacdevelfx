@@ -1,17 +1,17 @@
-﻿/****************************************************************************
- * FileName:   Window.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20180921
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             Window.cs
+ * Date:                 20180921
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
+using System.IO;
 using TCD.Drawing;
 using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
+using TCD.UI.Controls;
 
 namespace TCD.UI
 {
@@ -57,12 +57,12 @@ namespace TCD.UI
         /// <summary>
         /// Occurs when the <see cref="Window"/> is closing.
         /// </summary>
-        public event Event<Window, CloseEventData> Closing;
+        public event NativeEventHandler<Window, CloseEventArgs> Closing;
 
         /// <summary>
         /// Occurs when the <see cref="Size"/> property value changes.
         /// </summary>
-        public event Event<Window> SizeChanged;
+        public event NativeEventHandler<Window> SizeChanged;
 
         /// <summary>
         /// Gets whether or not this <see cref="Window"/> has a menu.
@@ -206,11 +206,137 @@ namespace TCD.UI
             Dispose();
         }
 
+        #region Dialogs
+        /// <summary>
+        /// Displays a dialog allowing a user to select a file to save to.
+        /// </summary>
+        /// <param name="path">The file's path selected by the user to save to.</param>
+        /// <returns><see langword="true"/> if the file can be saved to, else <see langword="false"/>.</returns>
+        public bool ShowSaveFileDialog(out string path) => ShowSaveFileDialog(this, out path);
+
+        /// <summary>
+        /// Displays a dialog allowing a user to select a file to save to.
+        /// </summary>
+        /// <param name="writeStream">The file selected by the user as a writable stream.</param>
+        /// <returns><see langword="true"/> if the file can be saved to, else <see langword="false"/>.</returns>
+        public bool ShowSaveFileDialog(out Stream writeStream) => ShowSaveFileDialog(this, out writeStream);
+
+        /// <summary>
+        /// Displays a dialog allowing a user to select a file to save to.
+        /// </summary>
+        /// <param name="path">The file's path selected by the user to save to.</param>
+        /// <param name="w">The dialog's parent window.</param>
+        /// <returns><see langword="true"/> if the file can be saved to, else <see langword="false"/>.</returns>
+        public static bool ShowSaveFileDialog(Window w, out string path)
+        {
+            if (w == null) w = Application.MainWindow;
+            if (w.IsInvalid) throw new InvalidHandleException();
+
+            path = Libui.SaveFile(w.Handle);
+            return string.IsNullOrEmpty(path) ? false : true;
+        }
+
+        /// <summary>
+        /// Displays a dialog allowing a user to select a file to save to.
+        /// </summary>
+        /// <param name="writeStream">The file selected by the user as a writable stream.</param>
+        /// <param name="w">The dialog's parent window.</param>
+        /// <returns><see langword="true"/> if the file can be saved to, else <see langword="false"/>.</returns>
+        public static bool ShowSaveFileDialog(Window w, out Stream writeStream)
+        {
+            if (ShowSaveFileDialog(w, out string path))
+            {
+                writeStream = File.OpenWrite(path);
+                return true;
+            }
+            else
+            {
+                writeStream = null;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Displays a dialog allowing a user to select a file to open.
+        /// </summary>
+        /// <param name="path">The file's path selected by the user.</param>
+        /// <returns><see langword="true"/> if the file exists, else <see langword="false"/>.</returns>
+        public bool ShowOpenFileDialog(out string path) => ShowOpenFileDialog(this, out path);
+
+        /// <summary>
+        /// Displays a dialog allowing a user to select a file to open.
+        /// </summary>
+        /// <param name="readStream">The file selected by the user as a readable stream.</param>
+        /// <returns><see langword="true"/> if the file exists, else <see langword="false"/>.</returns>
+        public bool ShowOpenFileDialog(out Stream readStream) => ShowOpenFileDialog(this, out readStream);
+
+        /// <summary>
+        /// Displays a dialog allowing a user to select a file to open.
+        /// </summary>
+        /// <param name="path">The file's path selected by the user.</param>
+        /// <param name="w">The dialog's parent window.</param>
+        /// <returns><see langword="true"/> if the file exists, else <see langword="false"/>.</returns>
+        public static bool ShowOpenFileDialog(Window w, out string path)
+        {
+            if (w == null) w = Application.MainWindow;
+            if (w.IsInvalid) throw new InvalidHandleException();
+
+            path = Libui.OpenFile(w.Handle);
+            return string.IsNullOrEmpty(path) ? false : true;
+        }
+
+        /// <summary>
+        /// Displays a dialog allowing a user to select a file to open.
+        /// </summary>
+        /// <param name="readStream">The file selected by the user as a readable stream.</param>
+        /// <param name="w">The dialog's parent window.</param>
+        /// <returns><see langword="true"/> if the file exists, else <see langword="false"/>.</returns>
+        public static bool ShowOpenFileDialog(Window w, out Stream readStream)
+        {
+            if (ShowOpenFileDialog(w, out string path))
+            {
+                readStream = File.OpenRead(path);
+                return true;
+            }
+            else
+            {
+                readStream = null;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Displays a dialog showing a message, or optionally, an error.
+        /// </summary>
+        /// <param name="title">The title of the message dialog.</param>
+        /// <param name="description">The description of the message dialog.</param>
+        /// <param name="isError">Whether the message is displayed as an error.</param>
+        public void ShowMessageBox(string title, string description = null, bool isError = false) => ShowMessageBox(this, title, description, isError);
+
+        /// <summary>
+        /// Displays a dialog showing a message, or optionally, an error.
+        /// </summary>
+        /// <param name="w">The dialog's parent window.</param>
+        /// <param name="title">The title of the message dialog.</param>
+        /// <param name="description">The description of the message dialog.</param>
+        /// <param name="isError">Whether the message is displayed as an error.</param>
+        public static void ShowMessageBox(Window w, string title, string description = null, bool isError = false)
+        {
+            if (w == null) w = Application.MainWindow;
+            if (w.IsInvalid) throw new InvalidHandleException();
+
+            if (isError)
+                Libui.MsgBoxError(w.Handle, title, description);
+            else
+                Libui.MsgBox(w.Handle, title, description);
+        }
+        #endregion
+
         /// <summary>
         /// Raises the <see cref="Closing"/> event.
         /// </summary>
         /// <param name="cancel">A <see cref="bool"/> containing the event data.</param>
-        protected virtual void OnClosing(Window sender, CloseEventData e) => Closing?.Invoke(sender, e);
+        protected virtual void OnClosing(Window sender, CloseEventArgs e) => Closing?.Invoke(sender, e);
 
         /// <summary>
         /// Raises the <see cref="SizeChanged"/> event.
@@ -223,7 +349,7 @@ namespace TCD.UI
 
             Libui.WindowOnClosing(Handle, (window, data) =>
             {
-                CloseEventData e = new CloseEventData();
+                CloseEventArgs e = new CloseEventArgs();
                 OnClosing(this, e);
                 if (e.Close)
                 {

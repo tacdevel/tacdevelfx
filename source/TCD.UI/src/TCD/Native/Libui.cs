@@ -1,15 +1,14 @@
-/****************************************************************************
- * FileName:   Libui.cs
- * Date:       20180921
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+/***************************************************************************************************
+ * FileName:             Libui.cs
+ * Date:                 20180921
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
 using TCD.Drawing;
 using TCD.Drawing.Text;
-using TCD.InteropServices;
 using TCD.UI;
 using TCD.UI.Controls;
 
@@ -34,6 +33,20 @@ namespace TCD.Native
             Center,
             End
         }
+
+            internal enum AttributeType : long
+            {
+                Family,
+                Size,
+                Weight,
+                Italic,
+                Stretch,
+                Color,
+                Background,
+                Underline,
+                UnderlineColor,
+                Features
+            }
         #endregion Enums
 
         #region Structs
@@ -136,16 +149,6 @@ namespace TCD.Native
         #endregion Types
 
         #region Functions
-
-
-        #endregion Functions
-    }
-
-    internal static partial class Libui
-    {
-
-
-
         #region Application
         internal static string Init(ref StartupOptions options) => AssemblyRef.Libui.LoadFunction<Signatures.uiInit>()(ref options);
         internal static void UnInit() => AssemblyRef.Libui.LoadFunction<Signatures.uiUnInit>()();
@@ -161,13 +164,35 @@ namespace TCD.Native
         [UnmanagedFunctionPointer(Cdecl)] internal delegate bool TimerCallback(IntPtr data);
         [UnmanagedFunctionPointer(Cdecl)] internal delegate bool OnShouldQuitCallback(IntPtr data);
         #endregion Application
+        #region Control
+        internal static void ControlDestroy(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlDestroy>()(c);
+        internal static IntPtr ControlParent(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlParent>()(c);
+        internal static void ControlSetParent(IntPtr c, IntPtr parent) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlSetParent>()(c, parent);
+        internal static bool ControlTopLevel(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlToplevel>()(c);
+        internal static bool ControlVisible(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlVisible>()(c);
+        internal static void ControlShow(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlShow>()(c);
+        internal static void ControlHide(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlHide>()(c);
+        internal static bool ControlEnabled(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlEnabled>()(c);
+        internal static void ControlEnable(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlEnable>()(c);
+        internal static void ControlDisable(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlDisable>()(c);
+        #endregion Control
         #region Button
         internal static string ButtonText(IntPtr b) => AssemblyRef.Libui.LoadFunction<Signatures.uiButtonText>()(b);
         internal static void ButtonSetText(IntPtr b, string text) => AssemblyRef.Libui.LoadFunction<Signatures.uiButtonSetText>()(b, text);
         internal static void ButtonOnClicked(IntPtr b, ButtonOnClickedCallback f, IntPtr data) => AssemblyRef.Libui.LoadFunction<Signatures.uiButtonOnClicked>()(b, f, data);
         internal static IntPtr NewButton(string text) => AssemblyRef.Libui.LoadFunction<Signatures.uiNewButton>()(text);
         [UnmanagedFunctionPointer(Cdecl)] internal delegate void ButtonOnClickedCallback(IntPtr b, IntPtr data);
-        #endregion
+        #endregion Button
+
+
+        #endregion Functions
+    }
+
+    internal static partial class Libui
+    {
+
+
+
         #region CheckBox
         internal static string CheckboxText(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiCheckboxText>()(c);
         internal static void CheckboxSetText(IntPtr c, string text) => AssemblyRef.Libui.LoadFunction<Signatures.uiCheckboxSetText>()(c, text);
@@ -200,18 +225,6 @@ namespace TCD.Native
         internal static void DrawSave(IntPtr context) => AssemblyRef.Libui.LoadFunction<Signatures.uiDrawSave>()(context);
         internal static void DrawRestore(IntPtr context) => AssemblyRef.Libui.LoadFunction<Signatures.uiDrawRestore>()(context);
         #endregion Context
-        #region Control
-        internal static void ControlDestroy(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlDestroy>()(c);
-        internal static IntPtr ControlParent(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlParent>()(c);
-        internal static void ControlSetParent(IntPtr c, IntPtr parent) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlSetParent>()(c, parent);
-        internal static bool ControlTopLevel(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlToplevel>()(c);
-        internal static bool ControlVisible(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlVisible>()(c);
-        internal static void ControlShow(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlShow>()(c);
-        internal static void ControlHide(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlHide>()(c);
-        internal static bool ControlEnabled(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlEnabled>()(c);
-        internal static void ControlEnable(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlEnable>()(c);
-        internal static void ControlDisable(IntPtr c) => AssemblyRef.Libui.LoadFunction<Signatures.uiControlDisable>()(c);
-        #endregion Control
         #region DateTimePicker
         internal static void DateTimePickerTime(IntPtr d, out Time time) => AssemblyRef.Libui.LoadFunction<Signatures.uiDateTimePickerTime>()(d, out time);
         internal static void DateTimePickerSetTime(IntPtr d, Time time) => AssemblyRef.Libui.LoadFunction<Signatures.uiDateTimePickerSetTime>()(d, time);
@@ -412,7 +425,8 @@ namespace TCD.Native
         [UnmanagedFunctionPointer(Cdecl)] internal delegate bool WindowOnClosingCallback(IntPtr w, IntPtr data);
         #endregion Window
         
-        // Keep the delegates in this class in order with libui\ui.h
+        // Keep the delegates in this class in order with
+        // libui\ui.h so it's easier to see what is missing.
         private static class Signatures
         {
             [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiInit(ref StartupOptions options);
@@ -617,7 +631,7 @@ namespace TCD.Native
 
             //TODO: Functions for the following delegates.
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiFreeAttribute(IntPtr a);
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate uiAttributeType uiAttributeGetType(IntPtr a);
+            //// [UnmanagedFunctionPointer(Cdecl)] internal delegate uiAttributeType uiAttributeGetType(IntPtr a);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewFamilyAttribute(string family);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate string uiAttributeFamily(IntPtr a);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiNewSizeAttribute(double size);
@@ -661,7 +675,7 @@ namespace TCD.Native
             [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringByteIndexToGrapheme(IntPtr s, UIntPtr pos);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate UIntPtr uiAttributedStringGraphemeToByteIndex(IntPtr s, UIntPtr pos);
 
-            [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiDrawNewTextLayout(uiDrawTextLayoutParams param);
+            //TODO: Uncomment [UnmanagedFunctionPointer(Cdecl)] internal delegate IntPtr uiDrawNewTextLayout(uiDrawTextLayoutParams param);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawFreeTextLayout(IntPtr tl);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawText(IntPtr c, IntPtr tl, double x, double y);
             [UnmanagedFunctionPointer(Cdecl)] internal delegate void uiDrawTextLayoutExtents(IntPtr tl, out double width, out double height);

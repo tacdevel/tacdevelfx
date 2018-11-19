@@ -73,12 +73,7 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns><see langword="true"/> if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, <see langword="false"/>.</returns>
-        public override bool Equals(object obj)
-        {
-            if (!(obj is Color))
-                return false;
-            return Equals((Color)obj);
-        }
+        public override bool Equals(object obj) => !(obj is Color) ? false : Equals((Color)obj);
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.

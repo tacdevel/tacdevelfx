@@ -1,11 +1,9 @@
-﻿/****************************************************************************
- * FileName:   SafeTextAttributeHandle.cs
- * Assembly:   TCD.UI.dll
- * Package:    TCD.UI
- * Date:       20181029
- * License:    MIT License
- * LicenseUrl: https://github.com/tacdevel/TDCFx/blob/master/LICENSE.md
- ***************************************************************************/
+﻿/***************************************************************************************************
+ * FileName:             SafeTextAttributeHandle.cs
+ * Date:                 20181029
+ * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using TCD.InteropServices;
@@ -14,7 +12,7 @@ using TCD.Native;
 namespace TCD.SafeHandles
 {
     /// <summary>
-    /// Provides a managed wrapper for a path handle.
+    /// Provides a managed wrapper for a text attribute handle.
     /// </summary>
     public sealed class SafeTextAttributeHandle : SafeHandleZeroIsInvalid
     {
