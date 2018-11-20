@@ -107,8 +107,8 @@ dotnet build .\tcdfx.sln
 [Badges.BuildStatus.3]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Drawing.Primitives
 [Badges.BuildStatus.4]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.InteropServices
 [Badges.BuildStatus.5]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.UI
-[Badges.BuildStatus.6]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tools/TCD.Drawing.Common
-[Badges.BuildStatus.7]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tools/TCD.Drawing.Text
+[Badges.BuildStatus.6]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Drawing.Common
+[Badges.BuildStatus.7]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Drawing.Text
 [Badges.NuGet.1]: https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary
 [Badges.NuGet.2]: https://badgen.net/nuget/v/TCD.Disposable
 [Badges.NuGet.3]: https://badgen.net/nuget/v/TCD.Drawing.Primitives
