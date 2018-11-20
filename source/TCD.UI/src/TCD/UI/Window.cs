@@ -71,7 +71,7 @@ namespace TCD.UI
 
         /// <summary>
         /// Gets or sets the title of this <see cref="Window"/>.
-        /// </summary
+        /// </summary>
         public string Title
         {
             get
@@ -335,7 +335,7 @@ namespace TCD.UI
         /// <summary>
         /// Raises the <see cref="Closing"/> event.
         /// </summary>
-        /// <param name="cancel">A <see cref="bool"/> containing the event data.</param>
+        /// <param name="e">The object containing the event data.</param>
         protected virtual void OnClosing(Window sender, CloseEventArgs e) => Closing?.Invoke(sender, e);
 
         /// <summary>
@@ -343,6 +343,9 @@ namespace TCD.UI
         /// </summary>
         protected virtual void OnSizeChanged(Window sender) => SizeChanged?.Invoke(sender);
 
+        /// <summary>
+        /// Initializes this <see cref="Window"/> object's events.
+        /// </summary>
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

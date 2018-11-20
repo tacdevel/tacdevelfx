@@ -24,13 +24,15 @@ For examples, see the `examples\` directory.
 
 ## Packages
 
-| Package Name                         | Build Status                                                 | Package Versions                                      |
-| :----------------------------------- | :----------------------------------------------------------- | :---------------------------------------------------- |
+| Package Name                                     | Build Status                                                 | Package Versions                                      |
+| :----------------------------------------------- | :----------------------------------------------------------- | :---------------------------------------------------- |
 | TCD.Collections.MultiValueDictionary | [![Build Status][Badges.BuildStatus.1]][Links.BuildStatus.1] | ![NuGet][Badges.Nuget.1] ![NuGet][Badges.Nuget.Pre.1] |
 | TCD.Disposable                       | [![Build Status][Badges.BuildStatus.2]][Links.BuildStatus.2] | ![NuGet][Badges.Nuget.2] ![NuGet][Badges.Nuget.Pre.2] |
+| TCD.Drawing.Common                   | [![Build Status][Badges.BuildStatus.6]][Links.BuildStatus.6] | ![NuGet][Badges.Nuget.6] ![NuGet][Badges.Nuget.Pre.6] |
 | TCD.Drawing.Primitives               | [![Build Status][Badges.BuildStatus.3]][Links.BuildStatus.3] | ![NuGet][Badges.Nuget.3] ![NuGet][Badges.Nuget.Pre.3] |
+| TCD.Drawing.Text                     | [![Build Status][Badges.BuildStatus.7]][Links.BuildStatus.7] | ![NuGet][Badges.Nuget.7] ![NuGet][Badges.Nuget.Pre.7] |
 | TCD.InteropServices                  | [![Build Status][Badges.BuildStatus.4]][Links.BuildStatus.4] | ![NuGet][Badges.Nuget.4] ![NuGet][Badges.Nuget.Pre.4] |
-| TCD.UI (formerly [LibUISharp][Links.LibUISharp]) | [![Build Status][Badges.BuildStatus.5]][Links.BuildStatus.5] | ![NuGet][Badges.Nuget.5] ![NuGet][Badges.Nuget.Pre.5] |
+| TCD.UI                               | [![Build Status][Badges.BuildStatus.5]][Links.BuildStatus.5] | ![NuGet][Badges.Nuget.5] ![NuGet][Badges.Nuget.Pre.5] |
 
 ### Installing TCDFx Packages
 
@@ -105,19 +107,22 @@ dotnet build .\tcdfx.sln
 [Badges.BuildStatus.3]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.Drawing.Primitives
 [Badges.BuildStatus.4]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.InteropServices
 [Badges.BuildStatus.5]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/source/TCD.UI
-[Badges.BuildStatus.6]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tools/TCDFx.Tools.DocGen
+[Badges.BuildStatus.6]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tools/TCD.Drawing.Common
+[Badges.BuildStatus.7]: https://dev.azure.com/tacdevel/tcdfx/_apis/build/status/tools/TCD.Drawing.Text
 [Badges.NuGet.1]: https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary
 [Badges.NuGet.2]: https://badgen.net/nuget/v/TCD.Disposable
 [Badges.NuGet.3]: https://badgen.net/nuget/v/TCD.Drawing.Primitives
 [Badges.NuGet.4]: https://badgen.net/nuget/v/TCD.InteropServices
 [Badges.NuGet.5]: https://badgen.net/nuget/v/TCD.UI
-[Badges.NuGet.6]: https://badgen.net/nuget/v/TCDFx.Tools.DocGen
+[Badges.NuGet.6]: https://badgen.net/nuget/v/TCD.Drawing.Common
+[Badges.NuGet.7]: https://badgen.net/nuget/v/TCD.Drawing.Text
 [Badges.NuGet.Pre.1]: https://badgen.net/nuget/v/TCD.Collections.MultiValueDictionary/pre
 [Badges.NuGet.Pre.2]: https://badgen.net/nuget/v/TCD.Disposable/pre
 [Badges.NuGet.Pre.3]: https://badgen.net/nuget/v/TCD.Drawing.Primitives/pre
 [Badges.NuGet.Pre.4]: https://badgen.net/nuget/v/TCD.InteropServices/pre
 [Badges.NuGet.Pre.5]: https://badgen.net/nuget/v/TCD.UI/pre
-[Badges.NuGet.Pre.6]: https://badgen.net/nuget/v/TCDFx.Tools.DocGen/pre
+[Badges.NuGet.Pre.6]: https://badgen.net/nuget/v/TCD.Drawing.Common/pre
+[Badges.NuGet.Pre.7]: https://badgen.net/nuget/v/TCD.Drawing.Text/pre
 [Badges.License]: https://badgen.net/badge/license/MIT/blue
 [Badges.Contributors]: https://badgen.net/github/contributors/tacdevel/tcdfx
 [Badges.CSharpVersion]: https://badgen.net/badge/C%23/7.3/green
@@ -138,6 +143,7 @@ dotnet build .\tcdfx.sln
 [Links.BuildStatus.4]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=13
 [Links.BuildStatus.5]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=14
 [Links.BuildStatus.6]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=15
+[Links.BuildStatus.7]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=16
 [Links.License]: https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
 [Links.Contributors]: https://github.com/tacdevel/tcdfx/graphs/contributors
 [Links.Issues.Open]: https://github.com/tacdevel/tcdfx/issues?&q=is%3Aissue+is%3Aopen

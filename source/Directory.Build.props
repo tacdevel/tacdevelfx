@@ -57,7 +57,7 @@
 
   <!-- Common Source -->
   <ItemGroup>
-    <Compile Include="$(TCDFxSourceCommonPath)src\Assembly.cs" Link="src\Assembly.cs"/>
+    <Compile Include="$(TCDFxSourceCommonPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
   </ItemGroup>
   
   <!-- Shared Content -->

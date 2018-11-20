@@ -71,6 +71,9 @@ namespace TCD.UI.Controls
         /// </summary>
         protected virtual void OnValueChanged(SpinBox sender) => ValueChanged?.Invoke(sender);
 
+        /// <summary>
+        /// Initializes this <see cref="SpinBox"/> object's events.
+        /// </summary>
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

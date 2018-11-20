@@ -59,6 +59,9 @@ namespace TCD.UI.Controls
         /// </summary>
         protected virtual void OnClick(Button sender) => Click?.Invoke(sender);
 
+        /// <summary>
+        /// Initializes this <see cref="Button"/> object's events.
+        /// </summary>
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

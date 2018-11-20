@@ -71,6 +71,9 @@ namespace TCD.UI.Controls
             }
         }
 
+        /// <summary>
+        /// Initializes this <see cref="MenuItemBase"/> object's events.
+        /// </summary>
         protected override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

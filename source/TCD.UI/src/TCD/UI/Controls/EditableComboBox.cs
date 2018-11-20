@@ -76,6 +76,9 @@ namespace TCD.UI.Controls
         /// </summary>
         protected virtual void OnTextChanged(EditableComboBox sender) => TextChanged?.Invoke(sender);
 
+        /// <summary>
+        /// Initializes this <see cref="EditableComboBox"/> object's events.
+        /// </summary>
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

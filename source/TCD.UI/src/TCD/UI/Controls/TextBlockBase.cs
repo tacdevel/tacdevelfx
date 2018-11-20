@@ -89,7 +89,10 @@ namespace TCD.UI.Controls
         /// Called when the <see cref="TextChanged"/> event is raised.
         /// </summary>
         protected virtual void OnTextChanged(TextBlockBase sender) => TextChanged?.Invoke(sender);
-        
+
+        /// <summary>
+        /// Initializes this <see cref="TextBlockBase"/> object's events.
+        /// </summary>
         protected override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

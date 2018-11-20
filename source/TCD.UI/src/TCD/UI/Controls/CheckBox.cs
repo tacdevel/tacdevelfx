@@ -81,6 +81,9 @@ namespace TCD.UI.Controls
         /// </summary>
         protected virtual void OnToggled(CheckBox sender) => Toggled?.Invoke(sender);
 
+        /// <summary>
+        /// Initializes this <see cref="CheckBox"/> object's events.
+        /// </summary>
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

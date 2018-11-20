@@ -71,6 +71,9 @@ namespace TCD.UI.Controls
         /// </summary>
         protected virtual void OnValueChanged(Slider sender) => ValueChanged?.Invoke(sender);
 
+        /// <summary>
+        /// Initializes this <see cref="Slider"/> object's events.
+        /// </summary>
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

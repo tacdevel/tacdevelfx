@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>$(DefineConstants);TCD_DRAWING_COMMON</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(TCDFxSourceCommonPath)ref\ui.h" Link="ref\ui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(TCDFxSourcePath)TCD.Drawing.Primitives\TCD.Drawing.Primitives.csproj" />
+    <ProjectReference Include="$(TCDFxSourcePath)TCD.InteropServices\TCD.InteropServices.csproj" />
+    <ProjectReference Include="$(TCDFxSourcePath)TCD.UI\TCD.UI.csproj" />
+  </ItemGroup>
+</Project>

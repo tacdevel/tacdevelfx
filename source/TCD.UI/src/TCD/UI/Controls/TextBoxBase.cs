@@ -77,6 +77,9 @@ namespace TCD.UI.Controls
         /// </summary>
         protected virtual void OnTextChanged(TextBoxBase sender) => TextChanged?.Invoke(sender);
 
+        /// <summary>
+        /// Initializes this <see cref="TextBoxBase"/> object's events.
+        /// </summary>
         protected override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();

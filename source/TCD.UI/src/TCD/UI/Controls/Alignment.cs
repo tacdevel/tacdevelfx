@@ -8,7 +8,7 @@
 namespace TCD.UI.Controls
 {
     /// <summary>
-    /// Specifies how content is positioned in an <see cref="GridContainer"/>.
+    /// Specifies how content is positioned in an <see cref="Containers.GridContainer"/>.
     /// </summary>
     public enum Alignment : int
     {

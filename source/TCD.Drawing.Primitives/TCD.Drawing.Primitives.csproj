@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);TCD_DRAWING_PRIMITIVES</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>

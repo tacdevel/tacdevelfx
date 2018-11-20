@@ -12,13 +12,15 @@ namespace TCD.Native
 {
     internal static class Libdl
     {
-        [DllImport(AssemblyRef.Libdl)]
+        private const string AssemblyRef = "libdl";
+
+        [DllImport(AssemblyRef)]
         internal static extern IntPtr dlopen(string fileName, int flags);
 
-        [DllImport(AssemblyRef.Libdl)]
+        [DllImport(AssemblyRef)]
         internal static extern IntPtr dlsym(IntPtr handle, string name);
 
-        [DllImport(AssemblyRef.Libdl)]
+        [DllImport(AssemblyRef)]
         internal static extern int dlclose(IntPtr handle);
     }
 }

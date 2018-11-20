@@ -81,6 +81,9 @@ namespace TCD.UI.Controls
         /// </summary>
         protected virtual void OnSelectedIndexChanged(RadioButtonList sender) => SelectedIndexChanged?.Invoke(sender);
 
+        /// <summary>
+        /// Initializes this <see cref="RadioButtonList"/> object's events.
+        /// </summary>
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
