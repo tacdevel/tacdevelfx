@@ -29,7 +29,7 @@ namespace TCD.UI
 
         public override bool Equals(object obj) => (obj is StartupOptions) && Equals((StartupOptions)obj);
 
-        public override int GetHashCode() => this.GenerateHashCode();
+        public override int GetHashCode() => this.GenerateHashCode(size);
 
         public override string ToString() => size.ToString();
     }

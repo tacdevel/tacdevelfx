@@ -86,7 +86,7 @@ namespace TCD.Drawing
         /// Serves as the default hash function.
         /// </summary>
         /// <returns>A hash code for this <see cref="Color"/>.</returns>
-        public override int GetHashCode() => unchecked(this.GenerateHashCode());
+        public override int GetHashCode() => unchecked(this.GenerateHashCode(R, G, B, A));
 
         /// <summary>
         /// Returns a string that represents this <see cref="Color"/>.

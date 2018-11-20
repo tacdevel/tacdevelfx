@@ -87,7 +87,7 @@ namespace TCD.Drawing
         /// Returns the hash code for this instance.
         /// </summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-        public override int GetHashCode() => unchecked(this.GenerateHashCode());
+        public override int GetHashCode() => unchecked(this.GenerateHashCode(family, size, weight, style, stretch));
 
         /// <summary>
         /// Tests whether two specified <see cref="Font"/> structures are equivalent.

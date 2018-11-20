@@ -16,26 +16,34 @@ namespace TCD.InteropServices
     /// </summary>
     public abstract class NativeComponent : Disposable, IEquatable<NativeComponent>
     {
-        private static readonly Dictionary<NativeComponent, IntPtr> handleCache = new Dictionary<NativeComponent, IntPtr>();
+        private static List<NativeComponent> componentCache = new List<NativeComponent>();
+        private static List<IntPtr> handleCache = new List<IntPtr>();
+        private readonly int index;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeComponent"/> class with the specified handle.
         /// </summary>
         /// <param name="handle"></param>
-        protected NativeComponent(IntPtr handle) => Handle = handle;
+        protected NativeComponent(IntPtr handle)
+        {
+            index = componentCache.Count;
+            Handle = handle;
+        }
 
         /// <summary>
         /// Gets the handle for this <see cref="NativeComponent"/>.
         /// </summary>
         public IntPtr Handle
         {
-            get => handleCache[this];
+            get => handleCache[index];
             protected internal set
             {
-                if (handleCache.ContainsKey(this))
-                    throw new DuplicateHandleException();
+                if (index > 0)
+                    if (componentCache.Contains(this) || handleCache.Contains(value))
+                        throw new DuplicateHandleException();
 
-                handleCache.Add(this, value);
+                componentCache.Add(this);
+                handleCache.Add(value);
             }
         }
 
@@ -66,19 +74,19 @@ namespace TCD.InteropServices
         /// </summary>
         /// <param name="component">The component to compare with this <see cref="NativeComponent"/>.</param>
         /// <returns>true if obj and this <see cref="NativeComponent"/> represent the same value; otherwise, false.</returns>
-        public bool Equals(NativeComponent component) => handleCache[this] == handleCache[component];
+        public bool Equals(NativeComponent component) => index == component.index;
 
         /// <summary>
         /// Serves as the default hash function.
         /// </summary>
         /// <returns>A hash code for this <see cref="NativeComponent"/>.</returns>
-        public override int GetHashCode() => unchecked(this.GenerateHashCode());
+        public override int GetHashCode() => unchecked(this.GenerateHashCode(Handle));
 
         /// <summary>
         /// Returns a string that represents this <see cref="NativeComponent"/>.
         /// </summary>
         /// <returns>A string that represents this <see cref="NativeComponent"/></returns>
-        public override string ToString() => handleCache[this].ToInt64().ToString();
+        public override string ToString() => handleCache[index].ToInt64().ToString();
 
         /// <summary>
         /// Performs tasks associated with releasing unmanaged resources.
@@ -90,10 +98,11 @@ namespace TCD.InteropServices
         /// </summary>
         protected override void ReleaseManagedResources()
         {
-            if (!IsInvalid && handleCache.ContainsKey(this))
+            if (!IsInvalid && componentCache.Contains(this))
             {
-                handleCache[this] = IntPtr.Zero;
-                handleCache.Remove(this);
+                componentCache.RemoveAt(index);
+                handleCache[index] = IntPtr.Zero;
+                handleCache.RemoveAt(index);
             }
         }
     }
@@ -106,29 +115,37 @@ namespace TCD.InteropServices
     public abstract class NativeComponent<T> : Disposable, IEquatable<NativeComponent<T>>
         where T : SafeHandle
     {
-        private static readonly Dictionary<NativeComponent<T>, T> handleCache = new Dictionary<NativeComponent<T>, T>();
+        private static readonly List<NativeComponent<T>> componentCache = new List<NativeComponent<T>>();
+        private static readonly List<T> handleCache = new List<T>();
+        private readonly int index;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeComponent{T}"/> class with the specified handle.
         /// </summary>
         /// <param name="handle"></param>
-        protected NativeComponent(T handle) => Handle = handle;
+        protected NativeComponent(T handle)
+        {
+            index = componentCache.Count;
+            Handle = handle;
+        }
 
         /// <summary>
         /// Gets the handle for this <see cref="NativeComponent{T}"/>.
         /// </summary>
         public T Handle
         {
-            get => handleCache[this];
+            get => handleCache[index];
             protected internal set
             {
-                if (handleCache.ContainsValue(value) || handleCache.ContainsKey(this))
-                    throw new DuplicateHandleException();
+                if (index > 0)
+                    if (componentCache.Contains(this) || handleCache.Contains(value))
+                        throw new DuplicateHandleException();
 
                 if (value.IsInvalid || value.IsClosed)
                     throw new InvalidHandleException();
 
-                handleCache.Add(this, value);
+                componentCache.Add(this);
+                handleCache.Add(value);
             }
         }
 
@@ -159,19 +176,19 @@ namespace TCD.InteropServices
         /// </summary>
         /// <param name="component">The component to compare with this <see cref="NativeComponent{T}"/>.</param>
         /// <returns>true if obj and this <see cref="NativeComponent{T}"/> represent the same value; otherwise, false.</returns>
-        public bool Equals(NativeComponent<T> component) => handleCache[this] == handleCache[component];
+        public bool Equals(NativeComponent<T> component) => index == component.index;
 
         /// <summary>
         /// Serves as the default hash function.
         /// </summary>
         /// <returns>A hash code for this <see cref="NativeComponent{T}"/>.</returns>
-        public override int GetHashCode() => unchecked(this.GenerateHashCode());
+        public override int GetHashCode() => unchecked(this.GenerateHashCode(Handle));
 
         /// <summary>
         /// Returns a string that represents this <see cref="NativeComponent{T}"/>.
         /// </summary>
         /// <returns>A string that represents this <see cref="NativeComponent{T}"/></returns>
-        public override string ToString() => handleCache[this].DangerousGetHandle().ToString();
+        public override string ToString() => handleCache[index].DangerousGetHandle().ToInt64().ToString();
 
         /// <summary>
         /// Performs tasks associated with releasing unmanaged resources.
@@ -183,10 +200,11 @@ namespace TCD.InteropServices
         /// </summary>
         protected override void ReleaseManagedResources()
         {
-            if (!IsInvalid && handleCache.ContainsKey(this))
+            if (!IsInvalid && componentCache.Contains(this))
             {
-                handleCache[this].Dispose();
-                handleCache.Remove(this);
+                componentCache.RemoveAt(index);
+                handleCache[index].Dispose();
+                handleCache.RemoveAt(index);
             }
         }
     }

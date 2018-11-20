@@ -38,7 +38,15 @@ namespace TCD.InteropServices
         /// </summary>
         /// <typeparam name="T">The type of delegate to return.</typeparam>
         /// <returns>A delegate wrapping the native function.</returns>
+#if !DEBUG
         public T LoadFunction<T>() where T : Delegate => LoadFunction<T>(typeof(T).Name);
+#else
+        public T LoadFunction<T>() where T : Delegate
+        {
+            Console.WriteLine($"[DEBUG] Calling native function: '{typeof(T).Name}'");
+            return LoadFunction<T>(typeof(T).Name);
+        }
+#endif
 
         /// <summary>
         /// Loads a function whose signature matches the given delegate type's signature.

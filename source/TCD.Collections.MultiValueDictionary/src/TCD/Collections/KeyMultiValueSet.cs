@@ -75,7 +75,7 @@ namespace TCD.Collections
         /// Returns the hash code for this instance.
         /// </summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-        public override int GetHashCode() => this.GenerateHashCode("Key", "Value1", "Value2");
+        public override int GetHashCode() => this.GenerateHashCode(Key, Value1, Value2);
 
         /// <summary>
         /// Returns a string representation of the <see cref="KeyMultiValueSet{TKey, TValue1, TValue2}"/>, using the string representations of the key and values.
@@ -126,7 +126,7 @@ namespace TCD.Collections
             EqualityComparer<TValue2>.Default.Equals(Value2, kmvs.Value2) &&
             EqualityComparer<TValue3>.Default.Equals(Value3, kmvs.Value3);
 
-        public override int GetHashCode() => this.GenerateHashCode("Key", "Value1", "Value2", "Value3");
+        public override int GetHashCode() => this.GenerateHashCode(Key, Value1, Value2, Value3);
 
         public override string ToString() => $"[{Key}: {Value1}, {Value2}, {Value3}]";
 
@@ -165,7 +165,7 @@ namespace TCD.Collections
             EqualityComparer<TValue3>.Default.Equals(Value3, kmvs.Value3) &&
             EqualityComparer<TValue4>.Default.Equals(Value4, kmvs.Value4);
 
-        public override int GetHashCode() => this.GenerateHashCode("Key", "Value1", "Value2", "Value3", "Value4");
+        public override int GetHashCode() => this.GenerateHashCode(Key, Value1, Value2, Value3, Value4);
 
         public override string ToString() => $"[{Key}: {Value1}, {Value2}, {Value3}, {Value4}]";
 
@@ -207,7 +207,7 @@ namespace TCD.Collections
             EqualityComparer<TValue4>.Default.Equals(Value4, kmvs.Value4) &&
             EqualityComparer<TValue5>.Default.Equals(Value5, kmvs.Value5);
 
-        public override int GetHashCode() => this.GenerateHashCode("Key", "Value1", "Value2", "Value3", "Value4", "Value5");
+        public override int GetHashCode() => this.GenerateHashCode(Key, Value1, Value2, Value3, Value4, Value5);
 
         public override string ToString() => $"[{Key}: {Value1}, {Value2}, {Value3}, {Value4}, {Value5}]";
 
