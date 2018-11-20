@@ -9,6 +9,7 @@
 [![CodeFactor Status][Badges.CodeFactor]][Links.CodeFactor]
 [![Dependabot Status][Badges.Dependabot]][Links.Dependabot]
 [![Gitter Chat][Badges.Gitter]][Links.Gitter]
+[![Donate via PayPal][Badges.Donate]][Links.Donate]
 
 **Please Note**: This software is a work-in-progress with no stable releases yet, and is not to be
 considered complete nor stable. *ANYTHING* in this repo is subject to change without notice.
@@ -128,6 +129,7 @@ dotnet build .\tcdfx.sln
 [Badges.CodeFactor]: https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge
 [Badges.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx
 [Badges.Gitter]: https://badgen.net/badge/chat/on%20gitter/cyan
+[Badges.Donate]: https://badgen.net/badge/donate/via%20PayPal/yellow
 
 <!-- Links -->
 [Links.BuildStatus.1]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10
@@ -146,3 +148,4 @@ dotnet build .\tcdfx.sln
 [Links.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx
 [Links.Gitter]: https://gitter.im/tacdevel/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 [Links.LibUISharp]: https://github.com/tom-corwin/LibUISharp
+[Links.Donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SSGE666PUWNE4&item_name=TCDFx+Development&currency_code=USD&source=url
