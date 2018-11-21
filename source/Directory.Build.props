@@ -27,7 +27,7 @@
     <PackageProjectUrl>$(TCDFxRepoURL)</PackageProjectUrl>
     <PackageLicenseExpression>$(TCDFxLicenseType)</PackageLicenseExpression>
     <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <!-- TODO: <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance> -->
   </PropertyGroup>
 
   <!-- Source Paths -->
