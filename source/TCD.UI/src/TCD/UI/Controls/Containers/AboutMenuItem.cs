@@ -7,7 +7,7 @@
 
 using TCD.SafeHandles;
 
-namespace TCD.UI.Controls
+namespace TCD.UI.Controls.Containers
 {
     /// <summary>
     /// Represents a about menu child in a <see cref="Menu"/>.

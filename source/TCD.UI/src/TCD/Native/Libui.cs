@@ -23,11 +23,11 @@ namespace TCD.Native
             get
             {
                 if (CurrentPlatform == Platform.Windows && OSArchitecture == Architecture.X64)
-                    return new NativeAssembly(@"lib\win-x64\libui.dll");
+                    return new NativeAssembly(@"runtimes\win-x64\native\libui.dll");
                 else if (CurrentPlatform == Platform.MacOS && OSArchitecture == Architecture.X64)
-                    return new NativeAssembly(@"lib\osx-x64\libui.dylib", @"lib\osx-x64\libui.A.dylib");
+                    return new NativeAssembly(@"runtimes/osx-x64/native/libui.dylib", @"runtimes/osx-x64/native/libui.A.dylib");
                 else if ((CurrentPlatform == Platform.Linux || CurrentPlatform == Platform.FreeBSD) && OSArchitecture == Architecture.X64)
-                    return new NativeAssembly(@"lib\linux-x64\libui.so", @"lib\linux-x64\libui.so.0");
+                    return new NativeAssembly(@"runtimes/linux-x64/native/libui.so", @"runtimes/linux-x64/native/libui.so.0");
                 else throw new PlatformNotSupportedException();
             }
         }
@@ -48,8 +48,13 @@ namespace TCD.Native
             catch (Exception ex)
             {
                 fail = true;
-                Console.Write($" Failed: {ex.GetType().Name}");
+                Console.Write($" Failed.");
                 Console.WriteLine();
+                Console.WriteLine($"[DEBUG] Exception Type: {ex.GetType().Name}");
+                Console.WriteLine($"[DEBUG] Inner Exception Type: {ex.InnerException.GetType().Name}");
+                Console.WriteLine($"[DEBUG] Source: {ex.Source}");
+                Console.WriteLine($"[DEBUG] Message: {ex.Message}");
+                Console.WriteLine($"[DEBUG] Source: {ex.StackTrace}");
                 throw;
             }
             finally

@@ -5,6 +5,7 @@
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
+using System;
 using System.Collections.Generic;
 using TCD.InteropServices;
 using TCD.Native;
@@ -15,8 +16,9 @@ namespace TCD.UI.Controls
     public abstract class Control : NativeComponent<SafeControlHandle>
     {
         private readonly bool cacheable;
-        private static Dictionary<SafeControlHandle, Control> cache = new Dictionary<SafeControlHandle, Control>();
+        private static readonly Dictionary<SafeControlHandle, Control> cache = new Dictionary<SafeControlHandle, Control>();
         private bool enabled, visible = true;
+        private Control parent = null;
 
         internal Control(SafeControlHandle handle, bool cacheable = true) : base(handle)
         {
@@ -30,7 +32,16 @@ namespace TCD.UI.Controls
         /// <summary>
         /// Gets the parent <see cref="Control"/> of this <see cref="Control"/>.
         /// </summary>
-        public Control Parent { get; internal set; }
+        public Control Parent
+        {
+            get => parent;
+            internal set
+            {
+                if (TopLevel)
+                    throw new InvalidOperationException("A top-level control cannot have a parent.");
+                parent = value;
+            }
+        }
 
         /// <summary>
         /// Gets the index of this <see cref="Control"/>.
@@ -81,7 +92,7 @@ namespace TCD.UI.Controls
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                return Libui.ControlTopLevel(Handle);
+                return this is Window ? true : false;
             }
         }
 

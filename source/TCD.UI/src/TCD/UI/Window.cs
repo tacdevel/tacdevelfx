@@ -20,14 +20,13 @@ namespace TCD.UI
     /// </summary>
     public partial class Window : Control
     {
-        private Control child;
         private bool isMargined, fullscreen, borderless = false;
         private Size size;
         private string title;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Window"/> class, with the options of specifying
-        /// the window's width, height, title, and whether or not it has a <see cref="Menu"/>.
+        /// the window's width, height, title, and whether or not it has a <see cref="Controls.Containers.Menu"/>.
         /// </summary>
         /// <param name="title">The title at the top of the window.</param>
         /// <param name="width">The width of the window.</param>
@@ -47,7 +46,7 @@ namespace TCD.UI
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Window"/> class, with the options of specifying
-        /// the window's size, title, and whether or not it has a <see cref="Menu"/>.
+        /// the window's size, title, and whether or not it has a <see cref="Controls.Containers.Menu"/>.
         /// </summary>
         /// <param name="title">The title at the top of the window.</param>
         /// <param name="size">The size of the window.</param>
@@ -172,7 +171,6 @@ namespace TCD.UI
                     if (value == null) throw new ArgumentNullException(nameof(value));
                     if (IsInvalid) throw new InvalidHandleException();
                     Libui.WindowSetChild(Handle, value.Handle);
-                    child = value;
                 }
             }
         }
@@ -335,6 +333,7 @@ namespace TCD.UI
         /// <summary>
         /// Raises the <see cref="Closing"/> event.
         /// </summary>
+        /// <param name="sender">The source of the event.</param>
         /// <param name="e">The object containing the event data.</param>
         protected virtual void OnClosing(Window sender, CloseEventArgs e) => Closing?.Invoke(sender, e);
 
@@ -364,7 +363,7 @@ namespace TCD.UI
                 return e.Close;
             }, IntPtr.Zero);
 
-            Libui.WindowOnContentSizeChanged(Handle, (window, data) => { OnSizeChanged(this); }, IntPtr.Zero);
+            Libui.WindowOnContentSizeChanged(Handle, (window, data) => OnSizeChanged(this), IntPtr.Zero);
         }
     }
 }

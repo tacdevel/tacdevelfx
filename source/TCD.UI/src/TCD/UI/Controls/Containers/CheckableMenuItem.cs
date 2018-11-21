@@ -9,7 +9,7 @@ using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
 
-namespace TCD.UI.Controls
+namespace TCD.UI.Controls.Containers
 {
     /// <summary>
     /// Represents a checkable menu child in a <see cref="Menu"/>.

@@ -61,7 +61,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.DateTimePickerOnChanged(Handle, (d, data) => { OnDateTimeChanged(this); }, IntPtr.Zero);
+            Libui.DateTimePickerOnChanged(Handle, (d, data) => OnDateTimeChanged(this), IntPtr.Zero);
         }
     }
 }

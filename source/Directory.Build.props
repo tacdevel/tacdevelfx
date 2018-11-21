@@ -1,72 +1,52 @@
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\Directory.Build.props" />
-  <!-- Output Paths -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <BaseIntermediateOutputPath>$(TCDFxSourceBuildObjPath)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
-    <BaseOutputPath>$(TCDFxSourceBuildBinPath)$(MSBuildProjectName)\</BaseOutputPath>
-    <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
-    <DocumentationFile Condition="'$(Configuration)'=='Release'">$(TCDFxSourceBuildDocPath)$(MSBuildProjectName)\doc.xml</DocumentationFile>
-    <PackageOutputPath Condition="'$(Configuration)'=='Release'">$(TCDFxSourceBuildPkgPath)$(MSBuildProjectName)\</PackageOutputPath>
+    <TCDFxSourceProject>true</TCDFxSourceProject>
+  </PropertyGroup>
+  
+  <Import Project="..\Directory.Build.props"/>
+
+  <!-- Repository Information -->
+  <PropertyGroup>
+    <RepositoryType>$(TCDFxRepositoryType)</RepositoryType>
+    <RepositoryUrl>$(TCDFxRepositoryURL)</RepositoryUrl>
   </PropertyGroup>
 
-  <!-- MSBuild Properties -->
+  <!-- Assembly Information -->
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <LangVersion>7.3</LangVersion>
-    <OutputType>Library</OutputType>
-    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
     <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
-    <VersionPrefix>$(TCDFxVersionPrefix)</VersionPrefix>
-    <Authors>$(TCDFxAuthors)</Authors>
-    <Copyright>$(TCDFxCopyrights)</Copyright>
-    <Description />
-    <EnableDefaultItems>false</EnableDefaultItems>
-    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <DebugSymbols>true</DebugSymbols>
-    <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
 
-  <!-- MSBuild Properties (Debug)-->
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <Optimize>false</Optimize>
-    <DebugType>full</DebugType>
-    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
-  </PropertyGroup>
-
-  <!-- MSBuild Properties (Release) -->
+  <!-- Packaging Properties -->
   <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <Optimize>true</Optimize>
-    <DebugType>embedded</DebugType>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageTags></PackageTags>
     <PackageId>$(MSBuildProjectName)</PackageId>
+    <Authors>$(TCDFxAuthors)</Authors>
+    <Copyright>$(TCDFxCopyright)</Copyright>
+    <Description>$(PackageId) v$(Version)</Description>
+    <PackageTags></PackageTags>
     <PackageProjectUrl>$(TCDFxRepoURL)</PackageProjectUrl>
-    <PackageLicenseUrl>$(TCDFxLicenseURL)</PackageLicenseUrl>
+    <PackageLicenseExpression>$(TCDFxLicenseType)</PackageLicenseExpression>
     <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>$(TCDFxRepoURL)</RepositoryUrl>
+  </PropertyGroup>
+
+  <!-- Source Paths -->
+  <PropertyGroup>
+    <TCDFxSourceCommonPath>$(TCDFxSourcePath)Common\</TCDFxSourceCommonPath>
   </PropertyGroup>
 
   <!-- Common Source -->
   <ItemGroup>
     <Compile Include="$(TCDFxSourceCommonPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
   </ItemGroup>
-  
+
   <!-- Shared Content -->
   <ItemGroup>
-    <Content Include="..\..\LICENSE.md">
+    <Content Include="$(TCDFxLicenseFile)">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
-    <Content Include="..\..\THIRD_PARTY_NOTICES.md">
+    <Content Include="$(TCDFxThirdPartyLicenseFile)">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>

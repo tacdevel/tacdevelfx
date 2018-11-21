@@ -15,6 +15,9 @@ namespace TCD.UI.Controls
     /// </summary>
     public class TextBlock : TextBlockBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TextBlock"/> class.
+        /// </summary>
         public TextBlock() : base(new SafeControlHandle(Libui.NewMultilineEntry()), true) { }
     }
 }

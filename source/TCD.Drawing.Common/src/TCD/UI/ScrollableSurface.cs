@@ -19,15 +19,17 @@ namespace TCD.Drawing
         /// Initializes a new instance of the <see cref="ScrollableSurface"/> class with the specified <see cref="SurfaceHandler"/>, widht, and height.
         /// </summary>
         /// <param name="handler">The specified event handler.</param>
+        /// <param name="width">The width of the <see cref="ScrollableSurface"/>.</param>
+        /// <param name="height">The height of the <see cref="ScrollableSurface"/>.</param>
         public ScrollableSurface(SurfaceHandler handler, int width, int height) : base(handler, true, width, height) { }
 
         /// <summary>
         /// Scrolls the surface view to the specified location and size.
         /// </summary>
-        /// <param name="x">The x-coordinate.</param>
-        /// <param name="y">The y-coordinate.</param>
-        /// <param name="width">The width.</param>
-        /// <param name="height">The height.</param>
+        /// <param name="x">The x-coordinate of the view.</param>
+        /// <param name="y">The y-coordinate of the view.</param>
+        /// <param name="width">The width of the view.</param>
+        /// <param name="height">The height of the view.</param>
         public void ScrollTo(double x, double y, double width, double height)
         {
             if (IsInvalid) throw new InvalidHandleException();

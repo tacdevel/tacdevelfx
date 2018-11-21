@@ -1,0 +1,4 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Condition="'$(TCDFxSourceProject)'=='true'" Project="Directory.Build.Source.props"/>
+  <Import Condition="'$(TCDFxExamplesProject)'=='true'" Project="Directory.Build.Examples.props"/>
+</Project>

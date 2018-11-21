@@ -61,7 +61,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            LibuiEx.ColorButtonOnChanged(Handle, (button, data) => { OnColorChanged(this); }, IntPtr.Zero);
+            LibuiEx.ColorButtonOnChanged(Handle, (button, data) => OnColorChanged(this), IntPtr.Zero);
         }
     }
 }

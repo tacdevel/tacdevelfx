@@ -49,7 +49,10 @@ test-results/
 # Misc. Files
 ##############################
 ## Build Directories
-[Bb]uild/
+[Bb]uild/*
+!build/Directory.Build.props
+!build/Directory.Build.Examples.props
+!build/Directory.Build.Source.props
 [Bb]in/
 [Oo]bj/
 [Pp]kg/

@@ -96,7 +96,7 @@ namespace TCD.UI.Controls
         protected override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.MultilineEntryOnChanged(Handle, (entry, data) => { OnTextChanged(this); }, IntPtr.Zero);
+            Libui.MultilineEntryOnChanged(Handle, (entry, data) => OnTextChanged(this), IntPtr.Zero);
         }
     }
 }

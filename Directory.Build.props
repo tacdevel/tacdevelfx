@@ -1,13 +1,18 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Global Repository Information -->
   <PropertyGroup>
-    <TCDFxAuthors>Thomas Corwin, et al.</TCDFxAuthors>
-    <TCDFxCopyrights>Copyright 2018 (c) Thomas Corwin, et al. All Rights Reserved.</TCDFxCopyrights>
-    <TCDFxRepositoryURL>https://github.com/tacdevel/tcdfx</TCDFxRepositoryURL>
-    <TCDFxLicenseURL>$(TCDFxRepositoryURL)/blob/master/LICENSE.md</TCDFxLicenseURL>
+    <TCDFxSourceProject Condition="'$(TCDFxSourceProject)'==''">false</TCDFxSourceProject>
+    <TCDFxExampleProject Condition="'$(TCDFxExampleProject)'==''">false</TCDFxExampleProject>
   </PropertyGroup>
 
-  <!-- Global Version Information -->
+  <!-- Repository Paths -->
+  <PropertyGroup>
+    <TCDFxBasePath>$(MSBuildThisFileDirectory)</TCDFxBasePath>
+    <TCDFxBuildPath>$(TCDFxBasePath)build\</TCDFxBuildPath>
+    <TCDFxExamplesPath>$(TCDFxBasePath)examples\</TCDFxExamplesPath>
+    <TCDFxSourcePath>$(TCDFxBasePath)source\</TCDFxSourcePath>
+  </PropertyGroup>
+
+  <!-- Version Information -->
   <PropertyGroup>
     <TCDFxVersionMajor>0</TCDFxVersionMajor>
     <TCDFxVersionMinor>3</TCDFxVersionMinor>
@@ -15,22 +20,20 @@
     <TCDFxVersionPrefix>$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersionPrefix>
   </PropertyGroup>
 
-  <!-- Global Repository Paths -->
+  <!-- License Information -->
   <PropertyGroup>
-    <TCDFxBasePath>$(MSBuildThisFileDirectory)</TCDFxBasePath>
-    <TCDFxBuildPath>$(TCDFxBasePath)build\</TCDFxBuildPath>
-    
-    <TCDFxExamplesPath>$(TCDFxBasePath)examples\</TCDFxExamplesPath>
-    <TCDFxExamplesBuildPath>$(TCDFxBuildPath)examples\</TCDFxExamplesBuildPath>
-    <TCDFxExamplesBuildBinPath>$(TCDFxExamplesBuildPath)bin\</TCDFxExamplesBuildBinPath>
-    <TCDFxExamplesBuildObjPath>$(TCDFxExamplesBuildPath)obj\</TCDFxExamplesBuildObjPath>
-    
-    <TCDFxSourcePath>$(TCDFxBasePath)source\</TCDFxSourcePath>
-    <TCDFxSourceBuildPath>$(TCDFxBuildPath)source\</TCDFxSourceBuildPath>
-    <TCDFxSourceBuildBinPath>$(TCDFxSourceBuildPath)bin\</TCDFxSourceBuildBinPath>
-    <TCDFxSourceBuildDocPath>$(TCDFxSourceBuildPath)doc\</TCDFxSourceBuildDocPath>
-    <TCDFxSourceBuildObjPath>$(TCDFxSourceBuildPath)obj\</TCDFxSourceBuildObjPath>
-    <TCDFxSourceBuildPkgPath>$(TCDFxSourceBuildPath)pkg\</TCDFxSourceBuildPkgPath>
-    <TCDFxSourceCommonPath>$(TCDFxSourcePath)Common\</TCDFxSourceCommonPath>
+    <TCDFxAuthors>Thomas Corwin, et al.</TCDFxAuthors>
+    <TCDFxCopyright>Copyright 2018 (c) Thomas Corwin, et al. All Rights Reserved.</TCDFxCopyright>
+    <TCDFxLicenseType>MIT</TCDFxLicenseType>
+    <TCDFxLicenseFile>$(TCDFxBasePath)LICENSE.md</TCDFxLicenseFile>
+    <TCDFxThirdPartyLicenseFile>$(TCDFxBasePath)THIRD_PARTY_NOTICES.md</TCDFxThirdPartyLicenseFile>
   </PropertyGroup>
+
+  <!-- Repository Information -->
+  <PropertyGroup>
+    <TCDFxRepositoryURL>https://github.com/tacdevel/tcdfx</TCDFxRepositoryURL>
+    <TCDFxRepositoryType>git</TCDFxRepositoryType>
+  </PropertyGroup>
+
+  <Import Project="$(TCDFxBuildPath)Directory.Build.props"/>
 </Project>

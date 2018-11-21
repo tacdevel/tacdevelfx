@@ -65,7 +65,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.ButtonOnClicked(Handle, (button, data) => { OnClick(this); }, IntPtr.Zero);
+            Libui.ButtonOnClicked(Handle, (button, data) => OnClick(this), IntPtr.Zero);
         }
     }
 }

@@ -83,7 +83,7 @@ namespace TCD.UI.Controls
         protected override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.EntryOnChanged(Handle, (entry, data) => { OnTextChanged(this); }, IntPtr.Zero);
+            Libui.EntryOnChanged(Handle, (entry, data) => OnTextChanged(this), IntPtr.Zero);
         }
     }
 }

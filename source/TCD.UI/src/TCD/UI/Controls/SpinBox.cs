@@ -77,7 +77,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.SpinboxOnChanged(Handle, (slider, data) => { OnValueChanged(this); }, IntPtr.Zero);
+            Libui.SpinboxOnChanged(Handle, (slider, data) => OnValueChanged(this), IntPtr.Zero);
         }
     }
 }

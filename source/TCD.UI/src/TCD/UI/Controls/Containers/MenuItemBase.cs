@@ -10,7 +10,7 @@ using TCD.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
 
-namespace TCD.UI.Controls
+namespace TCD.UI.Controls.Containers
 {
     /// <summary>
     /// Represents a base implementation for a menu child contained in a <see cref="Menu"/>.
@@ -77,7 +77,7 @@ namespace TCD.UI.Controls
         protected override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.MenuItemOnClicked(Handle, (child, window, data) => { OnClicked(window); }, IntPtr.Zero);
+            Libui.MenuItemOnClicked(Handle, (child, window, data) => OnClicked(window), IntPtr.Zero);
         }
 
         /// <summary>

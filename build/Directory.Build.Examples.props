@@ -1,0 +1,16 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Build Paths -->
+  <PropertyGroup>
+    <TCDFxExamplesBuildPath>$(TCDFxBuildPath)examples\</TCDFxExamplesBuildPath>
+    <TCDFxExamplesBuildBinPath>$(TCDFxExamplesBuildPath)bin\</TCDFxExamplesBuildBinPath>
+    <TCDFxExamplesBuildObjPath>$(TCDFxExamplesBuildPath)obj\</TCDFxExamplesBuildObjPath>
+  </PropertyGroup>
+
+  <!-- MSBuild Output Properties -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(TCDFxExamplesBuildObjPath)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <BaseOutputPath>$(TCDFxExamplesBuildBinPath)$(MSBuildProjectName)\</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
+  </PropertyGroup>
+</Project>

@@ -87,7 +87,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.CheckboxOnToggled(Handle, (checkbox, data) => { OnToggled(this); }, IntPtr.Zero);
+            Libui.CheckboxOnToggled(Handle, (checkbox, data) => OnToggled(this), IntPtr.Zero);
         }
     }
 }

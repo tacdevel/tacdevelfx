@@ -20,8 +20,8 @@ namespace TCD.Drawing
     /// </summary>
     public abstract class SurfaceBase : Control
     {
-        private static Dictionary<SurfaceBase, LibuiEx.AreaHandler> handlerCache = new Dictionary<SurfaceBase, LibuiEx.AreaHandler>();
-        private static Dictionary<IntPtr, SurfaceBase> surfaceCache = new Dictionary<IntPtr, SurfaceBase>();
+        private static readonly Dictionary<SurfaceBase, LibuiEx.AreaHandler> handlerCache = new Dictionary<SurfaceBase, LibuiEx.AreaHandler>();
+        private static readonly Dictionary<IntPtr, SurfaceBase> surfaceCache = new Dictionary<IntPtr, SurfaceBase>();
 
         internal SurfaceBase(SurfaceHandler handler, bool scrollable, int width, int height, bool cacheable = true) : base(GetHandle(handler, scrollable, width, height, out LibuiEx.AreaHandler outHandler), cacheable)
         {

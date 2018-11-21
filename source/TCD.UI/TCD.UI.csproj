@@ -7,23 +7,23 @@
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(TCDFxSourceCommonPath)lib\win-x64\libui.dll" Link="lib\win-x64\libui.dll">
+    <Content Include="$(TCDFxSourceCommonPath)runtimes\win-x64\native\libui.dll" Link="runtimes\win-x64\native\libui.dll" PackagePath="runtimes\win-x64\native\libui.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="$(TCDFxSourceCommonPath)lib\linux-x64\libui.so" Link="lib\linux-x64\libui.so">
+    <Content Include="$(TCDFxSourceCommonPath)runtimes\linux-x64\native\libui.so" Link="runtimes\linux-x64\native\libui.so" PackagePath="runtimes\linux-x64\native\libui.so">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="$(TCDFxSourceCommonPath)lib\linux-x64\libui.so.0" Link="lib\linux-x64\libui.so.0">
+    <Content Include="$(TCDFxSourceCommonPath)runtimes\linux-x64\native\libui.so.0" Link="runtimes\linux-x64\native\libui.so.0" PackagePath="runtimes\linux-x64\native\libui.so.0">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="$(TCDFxSourceCommonPath)lib\osx-x64\libui.dylib" Link="lib\osx-x64\libui.dylib">
+    <Content Include="$(TCDFxSourceCommonPath)runtimes\osx-x64\native\libui.dylib" Link="runtimes\osx-x64\native\libui.dylib" PackagePath="runtimes\osx-x64\native\libui.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="$(TCDFxSourceCommonPath)lib\osx-x64\libui.A.dylib" Link="lib\osx-x64\libui.A.dylib">
+    <Content Include="$(TCDFxSourceCommonPath)runtimes\osx-x64\native\libui.A.dylib" Link="runtimes\osx-x64\native\libui.A.dylib" PackagePath="runtimes\osx-x64\native\libui.A.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>

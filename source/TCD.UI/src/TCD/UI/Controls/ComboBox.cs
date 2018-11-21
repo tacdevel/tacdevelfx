@@ -82,7 +82,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.ComboboxOnSelected(Handle, (c, data) => { OnItemSelected(this); }, IntPtr.Zero);
+            Libui.ComboboxOnSelected(Handle, (c, data) => OnItemSelected(this), IntPtr.Zero);
         }
     }
 }

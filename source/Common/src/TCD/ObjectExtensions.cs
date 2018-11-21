@@ -10,7 +10,7 @@ namespace TCD
     internal static class ObjectExtensions
     {
         // See: https://github.com/dotnet/corefx/blob/master/src/Common/src/System/Numerics/Hashing/HashHelpers.cs
-        public static int GenerateHashCode(this object self, params object[] objs)
+        internal static int GenerateHashCode(this object self, params object[] objs)
         {
             unchecked
             {

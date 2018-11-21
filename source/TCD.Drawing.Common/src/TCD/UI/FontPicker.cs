@@ -54,7 +54,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            LibuiEx.FontButtonOnChanged(Handle, (button, data) => { OnFontChanged(this); }, IntPtr.Zero);
+            LibuiEx.FontButtonOnChanged(Handle, (button, data) => OnFontChanged(this), IntPtr.Zero);
         }
 
         protected sealed override void ReleaseUnmanagedResources()

@@ -82,7 +82,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.EditableComboboxOnChanged(Handle, (box, data) => { OnTextChanged(this); }, IntPtr.Zero);
+            Libui.EditableComboboxOnChanged(Handle, (box, data) => OnTextChanged(this), IntPtr.Zero);
         }
     }
 }

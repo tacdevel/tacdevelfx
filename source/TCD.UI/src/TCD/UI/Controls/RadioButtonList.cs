@@ -87,7 +87,7 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.RadioButtonsOnSelected(Handle, (btn, data) => { OnSelectedIndexChanged(this); }, IntPtr.Zero);
+            Libui.RadioButtonsOnSelected(Handle, (btn, data) => OnSelectedIndexChanged(this), IntPtr.Zero);
         }
     }
 }

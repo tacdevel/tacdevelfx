@@ -17,7 +17,7 @@ namespace TCD.UI
     /// </summary>
     public sealed class Application : NativeComponent
     {
-        private static object sync = new object();
+        private static readonly object sync = new object();
         private static bool initialized = false;
         private static StartupOptions options = new StartupOptions();
         private static readonly Queue<Action> queue = new Queue<Action>();
@@ -64,7 +64,7 @@ namespace TCD.UI
         {
             if (window.IsInvalid) throw new InvalidHandleException();
             MainWindow = window;
-            return Run(() => { window.Show(); });
+            return Run(() => window.Show());
         }
 
         private int Run(Action action)
@@ -98,9 +98,8 @@ namespace TCD.UI
             }, new IntPtr(queue.Count));
         }
 
-        private void Steps() => Libui.MainSteps();
-
-        private bool Step(bool wait) => Libui.MainStep(wait);
+        //TODO: private void Steps() => Libui.MainSteps();
+        //TODO: private bool Step(bool wait) => Libui.MainStep(wait);
 
         /// <summary>
         /// Shuts down this <see cref="Application"/>.

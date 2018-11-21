@@ -257,7 +257,7 @@ namespace TCD.UI.Controls.Containers
 
         private sealed class ControlListEnumerator : IEnumerator<TControl>, ICloneable
         {
-            private ControlCollectionBase<TControl> list;
+            private readonly ControlCollectionBase<TControl> list;
             private TControl current;
             private int index;
             private bool disposed = false;

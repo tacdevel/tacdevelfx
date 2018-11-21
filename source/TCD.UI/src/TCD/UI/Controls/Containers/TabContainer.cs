@@ -26,15 +26,15 @@ namespace TCD.UI.Controls.Containers
         public class TabPageCollection : ControlCollectionBase<TabPage>
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="ControlList"/> class with the specified parent.
+            /// Initializes a new instance of the <see cref="TabPageCollection"/> class with the specified parent.
             /// </summary>
-            /// <param name="owner">The parent <see cref="StackContainer"/> of this <see cref="ControlList"/>.</param>
+            /// <param name="owner">The parent <see cref="TabContainer"/> of this <see cref="TabPageCollection"/>.</param>
             public TabPageCollection(TabContainer owner) : base(owner) { }
 
             /// <summary>
-            /// Adds a <see cref="TabPage"/> to the end of the <see cref="ControlList"/>.
+            /// Adds a <see cref="TabPage"/> to the end of the <see cref="TabPageCollection"/>.
             /// </summary>
-            /// <param name="child">The <see cref="TabPage"/> to be added to the end of the <see cref="ControlList"/>.</param>
+            /// <param name="child">The <see cref="TabPage"/> to be added to the end of the <see cref="TabPageCollection"/>.</param>
             public override void Add(TabPage child)
             {
                 base.Add(child);
@@ -43,10 +43,10 @@ namespace TCD.UI.Controls.Containers
             }
 
             /// <summary>
-            /// Adds a <see cref="TabPage"/> to the <see cref="ControlList"/> at the specified index.
+            /// Adds a <see cref="TabPage"/> to the <see cref="TabPageCollection"/> at the specified index.
             /// </summary>
             /// <param name="index">The zero-based index at which child should be inserted.</param>
-            /// <param name="child">The <see cref="TabPage"/> to insert into the <see cref="ControlList"/>.</param>
+            /// <param name="child">The <see cref="TabPage"/> to insert into the <see cref="TabPageCollection"/>.</param>
             public override void Insert(int index, TabPage child)
             {
                 base.Insert(index, child);
@@ -55,10 +55,10 @@ namespace TCD.UI.Controls.Containers
             }
 
             /// <summary>
-            /// Removes the first occurrence of a specific <see cref="TabPage"/> from the <see cref="ControlList"/>.
+            /// Removes the first occurrence of a specific <see cref="TabPage"/> from the <see cref="TabPageCollection"/>.
             /// </summary>
-            /// <param name="child">The <see cref="TabPage"/> to remove from the <see cref="ControlList"/>.</param>
-            /// <returns>true if child is successfully removed; otherwise, false. This method also returns false if child was not found in the <see cref="ControlList"/>.</returns>
+            /// <param name="child">The <see cref="TabPage"/> to remove from the <see cref="TabPageCollection"/>.</param>
+            /// <returns>true if child is successfully removed; otherwise, false. This method also returns false if child was not found in the <see cref="TabPageCollection"/>.</returns>
             public new bool Remove(TabPage child)
             {
                 if (base.Remove(child))
