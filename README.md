@@ -11,8 +11,9 @@
 [![Gitter Chat][Badges.Gitter]][Links.Gitter]
 [![Donate via PayPal][Badges.Donate]][Links.Donate]
 
-**Please Note**: This software is a work-in-progress with no stable releases yet, and is not to be
-considered complete nor stable.
+**NOTICE**: This software is a work-in-progress with a (relatively) stable release planned for the end of the year.
+
+**NOTICE**: This repo supercedes [LibUISharp](https://tonm-corwin/LibUISharp). This notice will be removed when https://github.com/andlabs/libui/pull/426 is merged.
 
 # TCDFx (TCD Framework)
 
@@ -24,8 +25,8 @@ For examples, see the `examples\` directory.
 
 ## Packages
 
-| Package Name                                     | Build Status                                                 | Package Versions                                      |
-| :----------------------------------------------- | :----------------------------------------------------------- | :---------------------------------------------------- |
+| Package Name                         | Build Status                                                 | Package Versions                                      |
+| :----------------------------------- | :----------------------------------------------------------- | :---------------------------------------------------- |
 | TCD.Collections.MultiValueDictionary | [![Build Status][Badges.BuildStatus.1]][Links.BuildStatus.1] | ![NuGet][Badges.Nuget.1] ![NuGet][Badges.Nuget.Pre.1] |
 | TCD.Disposable                       | [![Build Status][Badges.BuildStatus.2]][Links.BuildStatus.2] | ![NuGet][Badges.Nuget.2] ![NuGet][Badges.Nuget.Pre.2] |
 | TCD.Drawing.Common                   | [![Build Status][Badges.BuildStatus.6]][Links.BuildStatus.6] | ![NuGet][Badges.Nuget.6] ![NuGet][Badges.Nuget.Pre.6] |
