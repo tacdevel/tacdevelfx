@@ -24,7 +24,7 @@ namespace TCD.UI.Controls
         /// </summary>
         /// <param name="min">The minimum this <see cref="SpinBox"/> object's value can be.</param>
         /// <param name="max">The maximum this <see cref="SpinBox"/> object's value can be.</param>
-        public SpinBox(int min = 0, int max = 100) : base(new SafeControlHandle(Libui.NewSlider(min, max)))
+        public SpinBox(int min = 0, int max = 100) : base(new SafeControlHandle(Libui.NewSpinbox(min, max)))
         {
             MinimumValue = min;
             MaximumValue = max;
