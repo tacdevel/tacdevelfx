@@ -18,6 +18,6 @@ namespace TCD.UI.Controls.Containers
         /// <summary>
         /// Initializes a new instance of the <see cref="VerticalContainer"/> class.
         /// </summary>
-        public VerticalContainer() : base(new SafeControlHandle(Libui.NewHorizontalBox())) { }
+        public VerticalContainer() : base(new SafeControlHandle(Libui.NewVerticalBox())) { }
     }
 }
