@@ -6,6 +6,6 @@
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
+    <Compile Include="$(TCDFxCommonProjectPath)src\TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
   </ItemGroup>
 </Project>

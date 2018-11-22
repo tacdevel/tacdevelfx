@@ -22,6 +22,7 @@ namespace TCD.UI.Controls.Containers
         /// </summary>
         public virtual TControl Child
         {
+            get => child;
             set
             {
                 if (child == null)

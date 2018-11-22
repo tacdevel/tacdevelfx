@@ -1,0 +1,39 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Build Paths -->
+  <PropertyGroup>
+    <TCDFxProjectBuildDocPath>$(TCDFxProjectBuildPath)doc\</TCDFxProjectBuildDocPath>
+    <TCDFxProjectBuildPkgPath>$(TCDFxProjectBuildPath)pkg\</TCDFxProjectBuildPkgPath>
+  </PropertyGroup>
+  
+  <!-- MSBuild Properties (Release) -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(TCDFxProjectBuildDocPath)$(MSBuildProjectName)\doc.xml</DocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath >$(TCDFxProjectBuildPkgPath)$(MSBuildProjectName)\</PackageOutputPath>
+  </PropertyGroup>
+  
+  <!-- Packaging Properties -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <Authors>$(TCDFxAuthors)</Authors>
+    <Copyright>$(TCDFxCopyright)</Copyright>
+    <Description>$(PackageId) v$(Version)</Description>
+    <PackageTags></PackageTags>
+    <PackageProjectUrl>$(TCDFxRepoURL)</PackageProjectUrl>
+    <PackageLicenseExpression>$(TCDFxLicenseType)</PackageLicenseExpression>
+    <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <!-- Shared Content -->
+  <ItemGroup>
+    <Content Include="$(TCDFxLicenseFile)">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Include="$(TCDFxThirdPartyLicenseFile)">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+</Project>

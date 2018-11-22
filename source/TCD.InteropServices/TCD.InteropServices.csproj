@@ -7,13 +7,12 @@
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(TCDFxSourceCommonPath)src\TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
+    <Compile Include="$(TCDFxCommonProjectPath)src\TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(TCDFxSourcePath)TCD.Disposable\TCD.Disposable.csproj" />
+    <ProjectReference Include="$(TCDFxProjectGroupPath)TCD.Disposable\TCD.Disposable.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <!-- This is required by PlatformHelper.cs -->
     <!-- This targets netstandard1.6, so those deps are included. See https://github.com/dotnet/core-setup/pull/4586 -->
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
   </ItemGroup>

@@ -50,9 +50,8 @@ test-results/
 ##############################
 ## Build Directories
 [Bb]uild/*
-!build/Directory.Build.props
-!build/Directory.Build.Examples.props
-!build/Directory.Build.Source.props
+!build/TCDFx.Build.props
+!build/TCDFx.Build.Packable.props
 [Bb]in/
 [Oo]bj/
 [Pp]kg/

@@ -7,11 +7,11 @@
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(TCDFxSourceCommonPath)ref\ui.h" Link="ref\ui.h" />
+    <None Include="$(TCDFxCommonProjectPath)ref\ui.h" Link="ref\ui.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="$(TCDFxSourcePath)TCD.Drawing.Primitives\TCD.Drawing.Primitives.csproj" />
-    <ProjectReference Include="$(TCDFxSourcePath)TCD.InteropServices\TCD.InteropServices.csproj" />
-    <ProjectReference Include="$(TCDFxSourcePath)TCD.UI\TCD.UI.csproj" />
+    <ProjectReference Include="$(TCDFxProjectGroupPath)TCD.Drawing.Primitives\TCD.Drawing.Primitives.csproj" />
+    <ProjectReference Include="$(TCDFxProjectGroupPath)TCD.InteropServices\TCD.InteropServices.csproj" />
+    <ProjectReference Include="$(TCDFxProjectGroupPath)TCD.UI\TCD.UI.csproj" />
   </ItemGroup>
 </Project>

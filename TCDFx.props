@@ -1,15 +1,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TCDFxSourceProject Condition="'$(TCDFxSourceProject)'==''">false</TCDFxSourceProject>
-    <TCDFxExampleProject Condition="'$(TCDFxExampleProject)'==''">false</TCDFxExampleProject>
-  </PropertyGroup>
-
   <!-- Repository Paths -->
   <PropertyGroup>
     <TCDFxBasePath>$(MSBuildThisFileDirectory)</TCDFxBasePath>
-    <TCDFxBuildPath>$(TCDFxBasePath)build\</TCDFxBuildPath>
-    <TCDFxExamplesPath>$(TCDFxBasePath)examples\</TCDFxExamplesPath>
-    <TCDFxSourcePath>$(TCDFxBasePath)source\</TCDFxSourcePath>
+    <TCDFxProjectGroupPath>$(TCDFxBasePath)$(TCDFxProjectGroup)\</TCDFxProjectGroupPath>
+    <TCDFxProjectPath>$(TCDFxProjectGroupPath)$(MSBuildProjectName)\</TCDFxProjectPath>
+    <TCDFxCommonProjectPath>$(TCDFxProjectGroupPath)Common\</TCDFxCommonProjectPath>
   </PropertyGroup>
 
   <!-- Version Information -->
@@ -35,5 +30,5 @@
     <TCDFxRepositoryType>git</TCDFxRepositoryType>
   </PropertyGroup>
 
-  <Import Project="$(TCDFxBuildPath)Directory.Build.props"/>
+  <Import Project="$(TCDFxBasePath)build\TCDFx.Build.props"/>
 </Project>

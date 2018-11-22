@@ -64,7 +64,7 @@ namespace TCD.UI.Controls.Containers
             {
                 if (isMargined != value)
                 {
-                    if (Parent.Handle != null)
+                    if (Parent?.Handle != null)
                         Libui.TabSetMargined(Parent.Handle, Index, value);
                     isMargined = value;
                 }

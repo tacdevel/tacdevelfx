@@ -1,7 +1,15 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <TCDFxExampleProject>true</TCDFxExampleProject>
+    <TCDFxProjectGroup>examples</TCDFxProjectGroup>
+  </PropertyGroup>
+  
+  <!-- MSBuild Project Properties -->
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <OutputType>Exe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
-  <Import Project="..\Directory.Build.props"/>
+  <Import Project="..\TCDFx.props"/>
 </Project>

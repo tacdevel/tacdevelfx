@@ -16,7 +16,7 @@ namespace TCD.InteropServices
     /// </summary>
     public abstract class NativeComponent : Disposable, IEquatable<NativeComponent>
     {
-        private static readonly Dictionary<NativeComponent, IntPtr> cache = new Dictionary<NativeComponent, IntPtr>();
+        private static readonly List<NativeComponent> cache = new List<NativeComponent>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeComponent"/> class with the specified handle.
@@ -24,9 +24,9 @@ namespace TCD.InteropServices
         /// <param name="handle">The pre-existing handle for this <see cref="NativeComponent"/></param>
         protected NativeComponent(IntPtr handle)
         {
-            if (cache.ContainsKey(this)) throw new DuplicateComponentException();
+            if (cache.Contains(this)) throw new DuplicateComponentException();
             Handle = handle;
-            cache.Add(this, handle);
+            cache.Add(this);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace TCD.InteropServices
         /// </summary>
         protected override void ReleaseManagedResources()
         {
-            if (cache.ContainsKey(this))
+            if (cache.Contains(this))
                 cache.Remove(this);
             if (!IsInvalid)
                 Handle = IntPtr.Zero;
@@ -100,7 +100,7 @@ namespace TCD.InteropServices
     public abstract class NativeComponent<T> : Disposable, IEquatable<NativeComponent<T>>
         where T : SafeHandle
     {
-        private static readonly Dictionary<NativeComponent<T>, T> cache = new Dictionary<NativeComponent<T>, T>();
+        private static readonly List<NativeComponent<T>> cache = new List<NativeComponent<T>>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeComponent{T}"/> class with the specified handle.
@@ -108,9 +108,9 @@ namespace TCD.InteropServices
         /// <param name="handle">The pre-existing handle for this <see cref="NativeComponent{T}"/></param>
         protected NativeComponent(T handle)
         {
-            if (cache.ContainsKey(this)) throw new DuplicateComponentException();
+            if (cache.Contains(this)) throw new DuplicateComponentException();
             Handle = handle;
-            cache.Add(this, handle);
+            cache.Add(this);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace TCD.InteropServices
         /// </summary>
         protected override void ReleaseManagedResources()
         {
-            if (cache.ContainsKey(this))
+            if (cache.Contains(this))
                 cache.Remove(this);
             if (!IsInvalid)
                 Handle.Dispose();

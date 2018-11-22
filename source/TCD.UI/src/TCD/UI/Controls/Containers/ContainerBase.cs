@@ -11,6 +11,6 @@ namespace TCD.UI.Controls.Containers
 {
     public abstract class ContainerBase : Control
     {
-        internal ContainerBase(SafeControlHandle handle, bool cacheable) : base(handle, cacheable) { }
+        internal ContainerBase(SafeControlHandle handle, bool cacheable = true) : base(handle, cacheable) { }
     }
 }

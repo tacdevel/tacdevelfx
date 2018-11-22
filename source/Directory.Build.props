@@ -1,54 +1,21 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <TCDFxSourceProject>true</TCDFxSourceProject>
+    <TCDFxProjectGroup>source</TCDFxProjectGroup>
+    <TCDFxPackableProject>true</TCDFxPackableProject>
+  </PropertyGroup>
+
+  <!-- MSBuild Project Properties -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <OutputType>Library</OutputType>
+    <EnableDefaultItems>false</EnableDefaultItems>
   </PropertyGroup>
   
-  <Import Project="..\Directory.Build.props"/>
-
-  <!-- Repository Information -->
-  <PropertyGroup>
-    <RepositoryType>$(TCDFxRepositoryType)</RepositoryType>
-    <RepositoryUrl>$(TCDFxRepositoryURL)</RepositoryUrl>
-  </PropertyGroup>
-
-  <!-- Assembly Information -->
-  <PropertyGroup>
-    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
-    <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
-  </PropertyGroup>
-
-  <!-- Packaging Properties -->
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <PackageId>$(MSBuildProjectName)</PackageId>
-    <Authors>$(TCDFxAuthors)</Authors>
-    <Copyright>$(TCDFxCopyright)</Copyright>
-    <Description>$(PackageId) v$(Version)</Description>
-    <PackageTags></PackageTags>
-    <PackageProjectUrl>$(TCDFxRepoURL)</PackageProjectUrl>
-    <PackageLicenseExpression>$(TCDFxLicenseType)</PackageLicenseExpression>
-    <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
-    <!-- TODO: <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance> -->
-  </PropertyGroup>
-
-  <!-- Source Paths -->
-  <PropertyGroup>
-    <TCDFxSourceCommonPath>$(TCDFxSourcePath)Common\</TCDFxSourceCommonPath>
-  </PropertyGroup>
+  <Import Project="..\TCDFx.props"/>
 
   <!-- Common Source -->
   <ItemGroup>
-    <Compile Include="$(TCDFxSourceCommonPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
-  </ItemGroup>
-
-  <!-- Shared Content -->
-  <ItemGroup>
-    <Content Include="$(TCDFxLicenseFile)">
-      <CopyToOutputDirectory>true</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </Content>
-    <Content Include="$(TCDFxThirdPartyLicenseFile)">
-      <CopyToOutputDirectory>true</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </Content>
+    <Compile Include="$(TCDFxCommonProjectPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
   </ItemGroup>
 </Project>

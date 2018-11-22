@@ -1,0 +1,54 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TCDFxBuildPath>$(TCDFxBasePath)build\</TCDFxBuildPath>
+    <TCDFxProjectBuildPath>$(TCDFxBuildPath)$(TCDFxProjectGroup)\</TCDFxProjectBuildPath>
+    <TCDFxProjectBuildBinPath>$(TCDFxProjectBuildPath)bin\</TCDFxProjectBuildBinPath>
+    <TCDFxProjectBuildObjPath>$(TCDFxProjectBuildPath)obj\</TCDFxProjectBuildObjPath>
+  </PropertyGroup>
+
+  <!-- MSBuild Output Properties -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(TCDFxProjectBuildBinPath)$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <BaseOutputPath>$(TCDFxProjectBuildObjPath)$(MSBuildProjectName)\</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
+  </PropertyGroup>
+
+  <!-- Repository Information -->
+  <PropertyGroup>
+    <RepositoryType>$(TCDFxRepositoryType)</RepositoryType>
+    <RepositoryUrl>$(TCDFxRepositoryURL)</RepositoryUrl>
+  </PropertyGroup>
+
+  <!-- Assembly Information -->
+  <PropertyGroup>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
+  </PropertyGroup>
+
+  <!-- MSBuild Project Properties -->
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)'==''">Release</Configuration>
+    <VersionPrefix>$(TCDFxVersionPrefix)</VersionPrefix>
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <!-- MSBuild Properties (Debug)-->
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <!-- MSBuild Properties (Release) -->
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+
+  <Import Condition="'$(TCDFxPackableProject)'=='true'" Project="TCDFx.Build.Packable.props"/>
+</Project>

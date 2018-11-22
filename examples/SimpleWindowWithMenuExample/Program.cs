@@ -37,7 +37,7 @@ namespace SimpleWindowWithMenuExample
     public class MainWindow : Window
     {
         // You MUST specify the hasMenu parameter of the base Window class to have a visible menu at the top of the Window.
-        public MainWindow() : base("LibUISharp Control Gallery", new Size(640, 480), true) => InitializeComponent();
+        public MainWindow() : base("SimpleWindowWithMenuExample", new Size(640, 480), true) => InitializeComponent();
 
         protected sealed override void InitializeComponent() => IsMargined = true;
     }
