@@ -13,7 +13,7 @@
 
 **NOTICE**: This software is a work-in-progress with a (relatively) stable release planned for the end of the year.
 
-**NOTICE**: This repo supercedes [LibUISharp](https://tonm-corwin/LibUISharp). This notice will be removed when https://github.com/andlabs/libui/pull/426 is merged.
+**NOTICE**: This repo supercedes [LibUISharp](https://tom-corwin/LibUISharp). This notice will be removed when [andlabs/libui#426](https://github.com/andlabs/libui/pull/426) is merged.
 
 # TCDFx (TCD Framework)
 
