@@ -40,65 +40,64 @@ namespace ControlGalleryExample
         }
     }
 
-    /*public sealed class NumbersTab : TabPage
+    public sealed class NumbersTab : TabPage
     {
-        private StackContainer hPanel = new StackContainer(Orientation.Horizontal) { IsPadded = true };
-        private GroupBox groupBox = new GroupBox("Numbers") { IsMargined = true };
-        private StackContainer vPanel = new StackContainer(Orientation.Vertical) { IsPadded = true };
+        private static HorizontalContainer hContainer = new HorizontalContainer() { IsPadded = true };
+        private GroupContainer groupContainer = new GroupContainer("Numbers") { IsMargined = true };
+        private static VerticalContainer vContainer = new VerticalContainer() { IsPadded = true };
         private SpinBox spinBox = new SpinBox(0, 100);
         private Slider slider = new Slider(0, 100);
         private ProgressBar progressBar = new ProgressBar();
         private ProgressBar iProgressBar = new ProgressBar() { Value = -1 };
-        private GroupBox groupBox2 = new GroupBox("Lists") { IsMargined = true };
-        private StackContainer vPanel2 = new StackContainer(Orientation.Vertical) { IsPadded = true };
+        private GroupContainer groupContainer2 = new GroupContainer("Lists") { IsMargined = true };
+        private static VerticalContainer vContainer2 = new VerticalContainer() { IsPadded = true };
         private ComboBox comboBox = new ComboBox();
         private EditableComboBox editableComboBox = new EditableComboBox();
         private RadioButtonList radioButtonList = new RadioButtonList();
 
-        public NumbersTab() : base("Numbers and Lists") => InitializeComponent();
+        public NumbersTab() : base("Numbers and Lists", hContainer) => InitializeComponent();
 
         protected override void InitializeComponent()
         {
             IsMargined = true;
-            Child = hPanel;
 
-            hPanel.Items.Add(groupBox, true);
-            groupBox.Child = vPanel;
+            hContainer.Children.Add(groupContainer, true);
+            groupContainer.Child = vContainer;
 
-            spinBox.ValueChanged += (sender, args) =>
+            spinBox.ValueChanged += (sender) => 
             {
                 int value = spinBox.Value;
                 slider.Value = value;
                 progressBar.Value = value;
             };
 
-            slider.ValueChanged += (sender, args) =>
+            slider.ValueChanged += (sender) =>
             {
                 int value = slider.Value;
                 spinBox.Value = value;
                 progressBar.Value = value;
             };
 
-            vPanel.Items.Add(spinBox);
-            vPanel.Items.Add(slider);
-            vPanel.Items.Add(progressBar);
-            vPanel.Items.Add(iProgressBar);
+            vContainer.Children.Add(spinBox);
+            vContainer.Children.Add(slider);
+            vContainer.Children.Add(progressBar);
+            vContainer.Children.Add(iProgressBar);
 
-            hPanel.Items.Add(groupBox2, true);
+            hContainer.Children.Add(groupContainer2, true);
 
-            groupBox2.Child = vPanel2;
+            groupContainer2.Child = vContainer2;
 
             comboBox.Add("Combobox Item 1", "Combobox Item 2", "Combobox Item 3");
             editableComboBox.Add("Editable Item 1", "Editable Item 2", "Editable Item 3");
             radioButtonList.Add("Radio Button 1", "Radio Button 2", "Radio Button 3");
 
-            vPanel2.Items.Add(comboBox);
-            vPanel2.Items.Add(editableComboBox);
-            vPanel2.Items.Add(radioButtonList);
+            vContainer2.Children.Add(comboBox);
+            vContainer2.Children.Add(editableComboBox);
+            vContainer2.Children.Add(radioButtonList);
         }
-    }*/
+    }
 
-    /*public sealed class DataChoosersTab : TabPage
+    public sealed class DataChoosersTab : TabPage
     {
         private StackContainer hPanel = new StackContainer(Orientation.Horizontal) { IsPadded = true };
         private StackContainer vPanel = new StackContainer(Orientation.Vertical) { IsPadded = true };
@@ -170,5 +169,4 @@ namespace ControlGalleryExample
             vPanel2.Items.Add(hPanelMessages);
         }
     }
-    */
 }
