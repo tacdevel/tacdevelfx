@@ -9,7 +9,6 @@
 [![CodeFactor Status][Badges.CodeFactor]][Links.CodeFactor]
 [![Dependabot Status][Badges.Dependabot]][Links.Dependabot]
 [![Gitter Chat][Badges.Gitter]][Links.Gitter]
-[![Donate via PayPal][Badges.Donate]][Links.Donate]
 
 **NOTICE**: This software is a work-in-progress with a (relatively) stable release planned for the end of the year.
 
@@ -155,4 +154,3 @@ dotnet build .\tcdfx.sln
 [Links.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx
 [Links.Gitter]: https://gitter.im/tacdevel/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 [Links.LibUISharp]: https://github.com/tom-corwin/LibUISharp
-[Links.Donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SSGE666PUWNE4&item_name=TCDFx+Development&currency_code=USD&source=url
