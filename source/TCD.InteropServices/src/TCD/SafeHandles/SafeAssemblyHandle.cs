@@ -19,7 +19,7 @@ namespace TCD.SafeHandles
         /// <summary>
         /// Initializes a new instance of the <see cref="SafeAssemblyHandle"/> class.
         /// </summary>
-        /// <param name="existingHandle"> An <see cref="IntPtr"/> object that represents the pre-existing handle to use.</param>
+        /// <param name="existingHandle"> An <see cref="IntPtr"/> object that represents the preexisting handle to use.</param>
         /// <param name="ownsHandle"><see langword="true"/> to reliably release the handle during the finalization phase; <see langword="false"/> to prevent reliable release (not recommended).</param>
         public SafeAssemblyHandle(IntPtr existingHandle, bool ownsHandle = true) : base(ownsHandle) => SetHandle(existingHandle);
 

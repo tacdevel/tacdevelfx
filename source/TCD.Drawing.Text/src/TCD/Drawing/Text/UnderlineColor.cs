@@ -29,8 +29,8 @@ namespace TCD.Drawing.Text
 
 
         /// <summary>
-        /// Auxillary color.
+        /// Auxiliary color.
         /// </summary>
-        Auxillary = 3
+        Auxiliary = 3
     }
 }

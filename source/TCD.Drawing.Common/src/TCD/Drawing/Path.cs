@@ -46,7 +46,7 @@ namespace TCD.Drawing
         /// <param name="xCenter">The x-coordinate of the center <see cref="Point"/>.</param>
         /// <param name="yCenter">The y-coordinate of the center <see cref="Point"/>.</param>
         /// <param name="radius">The radius of the arc.</param>
-        /// <param name="startAngle">The starting angle fpr the arc.</param>
+        /// <param name="startAngle">The starting angle for the arc.</param>
         /// <param name="sweep">The sweep angle.</param>
         /// <param name="negative">Whether the sweep angle should go clockwise (<see langword="false"/>), or counterclockwise (<see langword="true"/>).</param>
         public void NewFigureWithArc(double xCenter, double yCenter, double radius, double startAngle, double sweep, bool negative = false) => LibuiEx.DrawPathNewFigureWithArc(Handle, xCenter, yCenter, radius, startAngle, sweep, negative);
@@ -56,20 +56,20 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="center">The center point of the arc.</param>
         /// <param name="radius">The radius of the arc.</param>
-        /// <param name="startAngle">The starting angle fpr the arc.</param>
+        /// <param name="startAngle">The starting angle for the arc.</param>
         /// <param name="sweep">The sweep angle.</param>
         /// <param name="negative">Whether the sweep angle should go clockwise (<see langword="false"/>), or counterclockwise (<see langword="true"/>).</param>
         public void NewFigureWithArc(PointD center, double radius, double startAngle, double sweep, bool negative) => NewFigureWithArc(center.X, center.Y, radius, startAngle, sweep, negative);
 
         /// <summary>
-        /// Connects the last point in the subpath to the specified location with a straight line.
+        /// Connects the last point in the sub-path to the specified location with a straight line.
         /// </summary>
         /// <param name="x">The x-coordinate of the location.</param>
-        /// <param name="y">The y-corrdinate of the location</param>
+        /// <param name="y">The y-coordinate of the location</param>
         public void LineTo(double x, double y) => LibuiEx.DrawPathLineTo(Handle, x, y);
 
         /// <summary>
-        /// Connects the last point in the subpath to the specified location with a straight line.
+        /// Connects the last point in the sub-path to the specified location with a straight line.
         /// </summary>
         /// <param name="point">The location coordinates.</param>
         public void LineTo(PointD point) => LineTo(point.X, point.Y);
@@ -80,7 +80,7 @@ namespace TCD.Drawing
         /// <param name="xCenter">The x-coordinate of the center <see cref="Point"/>.</param>
         /// <param name="yCenter">The y-coordinate of the center <see cref="Point"/>.</param>
         /// <param name="radius">The radius of the arc.</param>
-        /// <param name="startAngle">The starting angle fpr the arc.</param>
+        /// <param name="startAngle">The starting angle for the arc.</param>
         /// <param name="sweep">The sweep angle.</param>
         /// <param name="negative">Whether the sweep angle should go clockwise (<see langword="false"/>), or counterclockwise (<see langword="true"/>).</param>
         public void ArcTo(double xCenter, double yCenter, double radius, double startAngle, double sweep, bool negative) => LibuiEx.DrawPathArcTo(Handle, xCenter, yCenter, radius, startAngle, sweep, negative);
@@ -90,7 +90,7 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="center">The center point of the arc.</param>
         /// <param name="radius">The radius of the arc.</param>
-        /// <param name="startAngle">The starting angle fpr the arc.</param>
+        /// <param name="startAngle">The starting angle for the arc.</param>
         /// <param name="sweep">The sweep angle.</param>
         /// <param name="negative">Whether the sweep angle should go clockwise (<see langword="false"/>), or counterclockwise (<see langword="true"/>).</param>
         public void ArcTo(PointD center, double radius, double startAngle, double sweep, bool negative) => ArcTo(center.X, center.Y, radius, startAngle, sweep, negative);
@@ -115,7 +115,7 @@ namespace TCD.Drawing
         public void BezierTo(PointD c1, PointD c2, PointD end) => BezierTo(c1.X, c1.Y, c2.X, c2.Y, end.X, end.Y);
 
         /// <summary>
-        /// Causes the point of the pen to move back to the start of the current subpath, trying to fraw a straight line from the current point to the start.
+        /// Causes the point of the pen to move back to the start of the current sub-path, trying to draw a straight line from the current point to the start.
         /// </summary>
         public void CloseFigure() => LibuiEx.DrawPathCloseFigure(Handle);
 

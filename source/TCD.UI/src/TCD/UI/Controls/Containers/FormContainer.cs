@@ -25,7 +25,7 @@ namespace TCD.UI.Controls.Containers
         public FormContainer() : base(new SafeControlHandle(Libui.NewForm())) { }
 
         /// <summary>
-        /// Gets or sets a value indiating whether this <see cref="FormContainer"/> has interior padding or not.
+        /// Gets or sets a value indicating whether this <see cref="FormContainer"/> has interior padding or not.
         /// </summary>
         public bool IsPadded
         {

@@ -13,7 +13,7 @@ using TCD.SafeHandles;
 namespace TCD.UI.Controls
 {
     /// <summary>
-    /// Implements the basic functonality required by a date-time picker.
+    /// Implements the basic functionality required by a date-time picker.
     /// </summary>
     public abstract class DateTimePickerBase : Control
     {

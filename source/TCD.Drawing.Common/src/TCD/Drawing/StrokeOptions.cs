@@ -61,7 +61,7 @@ namespace TCD.Drawing
         }
 
         /// <summary>
-        /// Gets or sets the thinkness of the stroke.
+        /// Gets or sets the thickness of the stroke.
         /// </summary>
         public double Thickness
         {

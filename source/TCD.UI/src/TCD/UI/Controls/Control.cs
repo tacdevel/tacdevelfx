@@ -141,7 +141,7 @@ namespace TCD.UI.Controls
         }
 
         /// <summary>
-        /// Performs pre-rendering operations.
+        /// Performs prerendering operations.
         /// </summary>
         protected internal virtual void DelayRender() { }
 

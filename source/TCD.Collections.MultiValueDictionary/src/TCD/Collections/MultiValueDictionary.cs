@@ -148,7 +148,7 @@ namespace TCD.Collections
         public bool Remove(TKey key) => Inner.Remove(key);
 
         /// <summary>
-        /// Gets the values asociated with the specified key.
+        /// Gets the values associated with the specified key.
         /// </summary>
         /// <param name="key">The key of the value to get.</param>
         /// <param name="value1">When this method returns, contains the first value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value1"/> parameter. This parameter is passed uninitialized.</param>
@@ -704,7 +704,7 @@ namespace TCD.Collections
         public bool Remove(TKey key) => Inner.Remove(key);
 
         /// <summary>
-        /// Gets the values asociated with the specified key.
+        /// Gets the values associated with the specified key.
         /// </summary>
         /// <param name="key">The key of the value to get.</param>
         /// <param name="value1">When this method returns, contains the first value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value1"/> parameter. This parameter is passed uninitialized.</param>

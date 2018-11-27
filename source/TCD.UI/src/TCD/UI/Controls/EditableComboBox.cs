@@ -20,7 +20,7 @@ namespace TCD.UI.Controls
         private string text = null;
 
         /// <summary>
-        /// Initalizes a new instance of the <see cref="ComboBox"/> class.
+        /// Initializes a new instance of the <see cref="ComboBox"/> class.
         /// </summary>
         public EditableComboBox() : base(new SafeControlHandle(Libui.NewEditableCombobox())) => InitializeEvents();
 

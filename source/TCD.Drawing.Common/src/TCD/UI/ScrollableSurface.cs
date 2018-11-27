@@ -16,7 +16,7 @@ namespace TCD.Drawing
     public class ScrollableSurface : SurfaceBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScrollableSurface"/> class with the specified <see cref="SurfaceHandler"/>, widht, and height.
+        /// Initializes a new instance of the <see cref="ScrollableSurface"/> class with the specified <see cref="SurfaceHandler"/>, width, and height.
         /// </summary>
         /// <param name="handler">The specified event handler.</param>
         /// <param name="width">The width of the <see cref="ScrollableSurface"/>.</param>

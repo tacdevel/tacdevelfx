@@ -27,7 +27,7 @@ namespace TCD.UI.Controls.Containers
 
 
         /// <summary>
-        /// Gets or sets a value indiating whether this <see cref="GridContainer"/> has interior padding or not.
+        /// Gets or sets a value indicating whether this <see cref="GridContainer"/> has interior padding or not.
         /// </summary>
         public bool IsPadded
         {

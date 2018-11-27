@@ -18,7 +18,7 @@ namespace TCD.Drawing
     public struct Point : IEquatable<Point>
     {
         /// <summary>
-        /// Represents an unitialized <see cref="Point"/>.
+        /// Represents an uninitialized <see cref="Point"/>.
         /// </summary>
         public static readonly Point Empty = new Point();
 

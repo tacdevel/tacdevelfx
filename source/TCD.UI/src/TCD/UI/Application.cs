@@ -13,7 +13,7 @@ using TCD.Native;
 namespace TCD.UI
 {
     /// <summary>
-    /// Encapulates an application with a graphical user interface (GUI).
+    /// Encapsulates an application with a graphical user interface (GUI).
     /// </summary>
     public sealed class Application : NativeComponent
     {

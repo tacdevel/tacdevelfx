@@ -137,7 +137,7 @@ namespace TCD.Drawing
         /// <summary>
         /// Gets a value indicating whether this matrix can be inverted.
         /// </summary>
-        /// <returns><see langword="true"/> if the matrix is invertable; else <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the matrix is invertible; else <see langword="false"/>.</returns>
         public bool Invertible() => LibuiEx.DrawMatrixInvertible(this);
 
         /// <summary>

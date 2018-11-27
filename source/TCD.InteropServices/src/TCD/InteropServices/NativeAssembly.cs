@@ -59,7 +59,7 @@ namespace TCD.InteropServices
         /// Loads a function pointer with the given name.
         /// </summary>
         /// <param name="name">The name of the native function.</param>
-        /// <returns>A fuction pointer for the given name, or <see cref="IntPtr.Zero"/> if no function with the specified name was found.</returns>
+        /// <returns>A function pointer for the given name, or <see cref="IntPtr.Zero"/> if no function with the specified name was found.</returns>
         public IntPtr LoadFunction(string name)
         {
             if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));

@@ -125,7 +125,7 @@ namespace TCD.Drawing
         F11 = 22,
 
         /// <summary>
-        /// The twelveth function key.
+        /// The twelfth function key.
         /// </summary>
         F12 = 23,
 

@@ -33,7 +33,7 @@ namespace TCD.Drawing
         Bottom = 3,
 
         /// <summary>
-        /// Specifies the top-left left corner of a <see cref="TCD.UI.Window"/>.
+        /// Specifies the top-left corner of a <see cref="TCD.UI.Window"/>.
         /// </summary>
         TopLeft = 4,
 

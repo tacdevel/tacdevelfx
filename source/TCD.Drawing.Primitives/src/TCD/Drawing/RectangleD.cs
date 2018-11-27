@@ -50,7 +50,7 @@ namespace TCD.Drawing
         public bool IsEmpty => this == Empty;
 
         /// <summary>
-        /// Gets or sets the corrdinates of the upper-left corner of this <see cref="RectangleD"/>.
+        /// Gets or sets the coordinates of the upper-left corner of this <see cref="RectangleD"/>.
         /// </summary>
         public PointD Location
         {
@@ -122,8 +122,8 @@ namespace TCD.Drawing
         /// <summary>
         /// Determines if the specified point is contained within this <see cref="RectangleD"/>.
         /// </summary>
-        /// <param name="x">The x-corrdinate of the <see cref="PointD"/> to test.</param>
-        /// <param name="y">The y-corrdinate of the <see cref="PointD"/> to test.</param>
+        /// <param name="x">The x-coordinate of the <see cref="PointD"/> to test.</param>
+        /// <param name="y">The y-coordinate of the <see cref="PointD"/> to test.</param>
         /// <returns><see langword="true"/> if the specified <see cref="RectangleD"/> is contained within this <see cref="RectangleD"/> structure; otherwise <see langword="false"/>.</returns>
         public bool Contains(double x, double y) => X <= x && x < X + Width && Y <= y && y < Y + Height;
 
@@ -178,7 +178,7 @@ namespace TCD.Drawing
         }
 
         /// <summary>
-        /// Creates a <see cref="RectangleD"/> that represents the intersection between this <see cref="RectangleD"/> and rect.
+        /// Creates a <see cref="RectangleD"/> that represents the intersection between this <see cref="RectangleD"/> and <paramref name="rect"/>.
         /// </summary>
         /// <param name="rect">A <see cref="RectangleD"/>.</param>
         public RectangleD Intersect(RectangleD rect) => Intersect(rect, this);

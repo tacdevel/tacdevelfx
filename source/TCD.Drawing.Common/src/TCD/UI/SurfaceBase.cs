@@ -16,7 +16,7 @@ using TCD.UI.Controls;
 namespace TCD.Drawing
 {
     /// <summary>
-    /// Implements the basic functonality required by a drawable surface.
+    /// Implements the basic functionality required by a drawable surface.
     /// </summary>
     public abstract class SurfaceBase : Control
     {

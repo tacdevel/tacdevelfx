@@ -96,7 +96,7 @@ namespace TCD.Collections
         /// </summary>
         /// <param name="left">The <see cref="KeyMultiValueSet{TKey, TValue1, TValue2}"/> that is to the left of the inequality operator.</param>
         /// <param name="right">The <see cref="KeyMultiValueSet{TKey, TValue1, TValue2}"/> that is to the right of the inequality operator.</param>
-        /// <returns><see langword="true"/> if the two <see cref="KeyMultiValueSet{TKey, TValue1, TValue2}"/> structures are inequal; otherwise, <see langword="false"/>.</returns>
+        /// <returns><see langword="true"/> if the two <see cref="KeyMultiValueSet{TKey, TValue1, TValue2}"/> structures are unequal; otherwise, <see langword="false"/>.</returns>
         public static bool operator !=(KeyMultiValueSet<TKey, TValue1, TValue2> left, KeyMultiValueSet<TKey, TValue1, TValue2> right) => !(left == right);
     }
 

@@ -10,7 +10,7 @@ using System;
 namespace TCD
 {
     /// <summary>
-    /// Provides a base implemetation for the <see cref="IDisposable"/> interface.
+    /// Provides a base implementation for the <see cref="IDisposable"/> interface.
     /// </summary>
     public abstract class Disposable : IDisposable
     {
@@ -36,12 +36,12 @@ namespace TCD
         }
 
         /// <summary>
-        /// When overriden in a derived class, performs tasks associated with releasing unmanaged resources.
+        /// When overridden in a derived class, performs tasks associated with releasing unmanaged resources.
         /// </summary>
         protected abstract void ReleaseUnmanagedResources();
 
         /// <summary>
-        /// When overriden in a derived class, performs tasks associated with releasing managed resources.
+        /// When overridden in a derived class, performs tasks associated with releasing managed resources.
         /// </summary>
         protected abstract void ReleaseManagedResources();
 
@@ -66,7 +66,7 @@ namespace TCD
         /// <returns><c>true</c> if properly disposed; otherwise, <c>false</c>.</returns>
         public bool SafeDispose(Action<Exception> exceptionHandler = null)
         {
-            if (this == null) return true; // Not intialized, so, already disposed.
+            if (this == null) return true; // Not initialized, so, already disposed.
 
             try
             {

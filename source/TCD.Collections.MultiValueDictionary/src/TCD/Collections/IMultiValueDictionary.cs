@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace TCD.Collections
 {
     /// <summary>
-    /// Represents a nongeneric collection of key/multi-value sets
+    /// Represents a non-generic collection of key/multi-value sets
     /// </summary>
     public interface IMultiValueDictionary : ICollection
     {

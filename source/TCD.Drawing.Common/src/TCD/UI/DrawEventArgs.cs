@@ -21,7 +21,6 @@ namespace TCD.Drawing
         private IntPtr contextPtr;
         private double surfaceWidth, surfaceHeight; //! Only defined for non-scrolling areas.
         private double clipX, clipY, clipWidth, clipHeight;
-
         private Context context;
 #pragma warning restore IDE0032 // Use auto property
 #pragma warning restore IDE0044 // Add readonly modifier
@@ -50,7 +49,7 @@ namespace TCD.Drawing
         public Context Context => context;
 
         /// <summary>
-        /// Gets the clip to be redawn.
+        /// Gets the clip to be redrawn.
         /// </summary>
         public RectangleD Clip => new RectangleD(clipX, clipY, clipWidth, clipHeight);
 

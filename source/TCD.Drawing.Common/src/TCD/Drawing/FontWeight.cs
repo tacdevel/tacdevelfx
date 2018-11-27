@@ -8,7 +8,7 @@
 namespace TCD.Drawing
 {
     /// <summary>
-    /// Specifies the desity of a font, in terms of the lightness or heaviness of the strokes.
+    /// Specifies the density of a font, in terms of the lightness or heaviness of the strokes.
     /// </summary>
     public enum FontWeight : long
     {

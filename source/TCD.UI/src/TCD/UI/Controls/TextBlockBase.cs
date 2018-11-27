@@ -13,7 +13,7 @@ using TCD.SafeHandles;
 namespace TCD.UI.Controls
 {
     /// <summary>
-    /// Implements the basic functonality required by a control that can be used to display or edit multiple lines of text.
+    /// Implements the basic functionality required by a control that can be used to display or edit multiple lines of text.
     /// </summary>
     public abstract class TextBlockBase : Control
     {

@@ -27,7 +27,7 @@ namespace TCD.UI.Controls.Containers
         protected sealed override void InitializeEvents() { }
 
         /// <summary>
-        /// This mehod does not do anything, and will throw a <see cref="NotSupportedException"/>.
+        /// This method does not do anything, and will throw a <see cref="NotSupportedException"/>.
         /// </summary>
         /// <param name="data">An <see cref="IntPtr"/> that contains the event data.</param>
         protected sealed override void OnClicked(IntPtr data) => throw new NotSupportedException();

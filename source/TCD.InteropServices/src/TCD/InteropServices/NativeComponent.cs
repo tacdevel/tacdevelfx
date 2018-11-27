@@ -21,7 +21,7 @@ namespace TCD.InteropServices
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeComponent"/> class with the specified handle.
         /// </summary>
-        /// <param name="handle">The pre-existing handle for this <see cref="NativeComponent"/></param>
+        /// <param name="handle">The preexisting handle for this <see cref="NativeComponent"/></param>
         protected NativeComponent(IntPtr handle)
         {
             if (cache.Contains(this)) throw new DuplicateComponentException();
@@ -105,7 +105,7 @@ namespace TCD.InteropServices
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeComponent{T}"/> class with the specified handle.
         /// </summary>
-        /// <param name="handle">The pre-existing handle for this <see cref="NativeComponent{T}"/></param>
+        /// <param name="handle">The preexisting handle for this <see cref="NativeComponent{T}"/></param>
         protected NativeComponent(T handle)
         {
             if (cache.Contains(this)) throw new DuplicateComponentException();

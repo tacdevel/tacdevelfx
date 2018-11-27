@@ -42,7 +42,7 @@ namespace TCD.Drawing
         }
 
         /// <summary>
-        /// Gets the key that was presseed as a string.
+        /// Gets the key that was pressed as a string.
         /// </summary>
         public char Key => key;
 

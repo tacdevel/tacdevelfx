@@ -72,7 +72,7 @@ namespace TCD.UI.Controls.Containers
         }
 
         /// <summary>
-        /// Performs pre-rendering operations.
+        /// Performs prerendering operations.
         /// </summary>
         protected internal override void DelayRender()
         {

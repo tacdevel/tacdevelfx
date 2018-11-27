@@ -20,7 +20,7 @@ namespace TCD.UI.Controls
         private int index = 0;
 
         /// <summary>
-        /// Initalizes a new instance of the <see cref="ComboBox"/> class.
+        /// Initializes a new instance of the <see cref="ComboBox"/> class.
         /// </summary>
         public ComboBox() : base(new SafeControlHandle(Libui.NewCombobox())) => InitializeEvents();
 

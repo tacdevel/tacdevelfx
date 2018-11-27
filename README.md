@@ -12,13 +12,13 @@
 
 **NOTICE**: This software is a work-in-progress with a (relatively) stable release planned for the end of the year.
 
-**NOTICE**: This repo supercedes [LibUISharp](https://tom-corwin/LibUISharp). This notice will be removed when [andlabs/libui#426](https://github.com/andlabs/libui/pull/426) is merged.
+**NOTICE**: This repository supersedes [LibUISharp](https://tom-corwin/LibUISharp), with it's source in the `TCD.Drawing.*` and `TCD.UI` packages. This notice will be removed when [andlabs/libui#426](https://github.com/andlabs/libui/pull/426) is merged.
 
 # TCDFx (TCD Framework)
 
 TCDFx (also known as the TCD Framework) is a collection of libraries targeting .NET Standard and
 tools targeting .NET Core, providing APIs for UI application development, alternative P/Invoke
-types, and other helpeul APIs to make development easier.
+types, and other helpful APIs to make development easier.
 
 For examples, see the `examples\` directory.
 
@@ -134,7 +134,6 @@ dotnet build .\tcdfx.sln
 [Badges.CodeFactor]: https://www.codefactor.io/repository/github/tacdevel/tcdfx/badge
 [Badges.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx
 [Badges.Gitter]: https://badgen.net/badge/chat/on%20gitter/cyan
-[Badges.Donate]: https://badgen.net/badge/donate/via%20PayPal/yellow
 
 <!-- Links -->
 [Links.BuildStatus.1]: https://dev.azure.com/tacdevel/tcdfx/_build/latest?definitionId=10
