@@ -12,7 +12,7 @@
 
 **NOTICE**: This software is a work-in-progress with a (relatively) stable release planned for the end of the year.
 
-**NOTICE**: This repository supersedes [LibUISharp](https://tom-corwin/LibUISharp), with it's source in the `TCD.Drawing.*` and `TCD.UI` packages. This notice will be removed when [andlabs/libui#426](https://github.com/andlabs/libui/pull/426) is merged.
+**NOTICE**: This repository supersedes [LibUISharp](https://github.com/tom-corwin/LibUISharp), with it's source in the `TCD.Drawing.*` and `TCD.UI` packages. This notice will be removed when [andlabs/libui#426](https://github.com/andlabs/libui/pull/426) is merged.
 
 # TCDFx (TCD Framework)
 
