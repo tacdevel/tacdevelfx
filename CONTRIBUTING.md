@@ -27,9 +27,13 @@ Submitting a pull request is easy. Just follow the steps below:
 
 ### Coding Styles
 
-This section is a work-in-progress. You may be asked to do some more code styling until this is finished.
+Basic guidelines are listed below:
 
-* 4 spaces per tab.
+* Spaces, not tabs
+* 4 spaces per tab
+* No trailing whitespace (including a new line at the end of a file)
+
+For the most part, everything should be formatted as per the informational warnings via Visual Studio or Visual Studio Code, since we use an `.editorconfig` file.
 
 ## Issue Reporting
 
