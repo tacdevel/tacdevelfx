@@ -1,0 +1,25 @@
+# These are the people responsible for various parts of TCDFx.
+
+# If you want to be responsible for code reviews in specific sections of
+# the TCDFx code base, add yourself here.
+
+# Maintainer
+*                                            @tom-corwin
+
+# Build System / CI
+azure-pipelines.yml                          
+build/                                       
+*.props                                      
+
+# Packages
+source/                                      
+source/TCD.Collections.MultiValueDictionary/ 
+source/TCD.Disposable/                       
+source/TCD.Drawing.Common/                   
+source/TCD.Drawing.Primitives/               
+source/TCD.Drawing.Text/                     
+source/TCD.InteropServices/                  
+source/TCD.UI/                               
+
+# Examples
+examples/                                    

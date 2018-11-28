@@ -16,11 +16,18 @@
 
 # TCDFx (TCD Framework)
 
-TCDFx (also known as the TCD Framework) is a collection of libraries targeting .NET Standard and
-tools targeting .NET Core, providing APIs for UI application development, alternative P/Invoke
-types, and other helpful APIs to make development easier.
+TCDFx (also known as the TCD Framework) is a collection of libraries targeting .NET Standard, providing APIs for UI application development, alternative P/Invoke types, and other helpful APIs to make development easier.
 
 For examples, see the `examples\` directory.
+
+## Contributing
+
+Contributing is as easy as filing an issue, fixing a bug, or suggesting a new feature.
+
+For more information about contributing to this project, see the [CONTRIBUTORS.md][Links.Contributing] file.
+
+For all a list of all contributors with some stats about their contributions, see the
+[Contributors][Links.Contributors] page.
 
 ## Packages
 
@@ -65,13 +72,6 @@ Add the following `<PackageReference />` to your `.csproj`:
 ```
 <PackageReference Include="{PackageName}" Version="{PackageVersion}" />
 ```
-
-## Contributing
-
-Contributing is as easy as filing an issue, fixing a bug, or suggesting a new feature.
-
-For all a list of all contributors with some stats about their contributions, see the
-[Contributors][Links.Contributors] page.
 
 ## Building From Source
 
@@ -153,3 +153,4 @@ dotnet build .\tcdfx.sln
 [Links.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tacdevel/tcdfx
 [Links.Gitter]: https://gitter.im/tacdevel/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 [Links.LibUISharp]: https://github.com/tom-corwin/LibUISharp
+[Links.Contributing]: https://github.com/tacdevel/tcdfx/blob/master/CONTRIBUTING.md
