@@ -17,9 +17,9 @@ namespace TCD.UI
     /// </summary>
     public sealed class Application : NativeComponent
     {
-        private static readonly object sync = new object();
         private static bool initialized = false;
         private static StartupOptions options = new StartupOptions();
+        private static readonly object sync = new object();
         private static readonly Queue<Action> queue = new Queue<Action>();
 
         /// <summary>
@@ -92,14 +92,10 @@ namespace TCD.UI
             {
                 lock (sync)
                 {
-                    Action a = queue.Dequeue();
-                    a.Invoke();
+                    queue.Dequeue().Invoke();
                 }
             }, new IntPtr(queue.Count));
         }
-
-        //TODO: private void Steps() => Libui.MainSteps();
-        //TODO: private bool Step(bool wait) => Libui.MainStep(wait);
 
         /// <summary>
         /// Shuts down this <see cref="Application"/>.
