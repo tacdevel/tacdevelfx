@@ -15,17 +15,14 @@ namespace TCD
             unchecked
             {
                 int hash = 27;
-
                 foreach (object obj in objs)
                 {
                     if (obj != null)
                     {
-                        int objHash = obj.GetHashCode();
-                        uint rol5 = ((uint)hash << 5) | ((uint)objHash >> 27);
-                        hash = ((int)rol5 + hash) ^ objHash;
+                        uint rol5 = ((uint)hash << 5) | ((uint)hash >> 27);
+                        hash = ((int)rol5 + hash) ^ obj.GetHashCode();;
                     }
                 }
-
                 return hash;
             }
         }
