@@ -14,26 +14,15 @@ namespace TCD
     /// </summary>
     public abstract class Disposable : IDisposable
     {
-        private bool disposed = false;
-
         /// <summary>
-        /// Occurs when the object is disposed.
+        /// Occurs when this object is about to be disposed.
         /// </summary>
-        public event EventHandler Disposed;
+        public event EventHandler Disposing;
 
         /// <summary>
         /// Gets a value indicating whether this <see cref="Disposable"/> has been disposed.
         /// </summary>
-        public bool IsDisposed
-        {
-            get => disposed;
-            private set
-            {
-                disposed = value;
-                if (value == true)
-                    OnDisposed();
-            }
-        }
+        public bool IsDisposed { get; private set; } = false;
 
         /// <summary>
         /// When overridden in a derived class, performs tasks associated with releasing unmanaged resources.
@@ -48,7 +37,7 @@ namespace TCD
         /// <summary>
         /// Raises the <see cref="Disposed"/> event.
         /// </summary>
-        public virtual void OnDisposed() => Disposed?.Invoke(this, EventArgs.Empty);
+        public virtual void OnDisposing() => Disposing?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -60,7 +49,7 @@ namespace TCD
         }
 
         /// <summary>
-        /// Safely disposes of this <see cref="Disposable"/>, performing the specified action in the event of an exception.
+        /// Safely disposes of this <see cref="Disposable"/> instance, performing the specified action in the event of an exception.
         /// </summary>
         /// <param name="exceptionHandler">The action to be performed on an exception.</param>
         /// <returns><c>true</c> if properly disposed; otherwise, <c>false</c>.</returns>
@@ -88,6 +77,7 @@ namespace TCD
         {
             if (!IsDisposed)
             {
+                OnDisposing();
                 if (disposing)
                     ReleaseManagedResources();
                 ReleaseUnmanagedResources();
