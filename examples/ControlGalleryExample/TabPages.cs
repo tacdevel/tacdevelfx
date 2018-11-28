@@ -1,3 +1,4 @@
+using TCD.UI;
 using TCD.UI.Controls;
 using TCD.UI.Controls.Containers;
 
@@ -99,74 +100,73 @@ namespace ControlGalleryExample
 
     public sealed class DataChoosersTab : TabPage
     {
-        private StackContainer hPanel = new StackContainer(Orientation.Horizontal) { IsPadded = true };
-        private StackContainer vPanel = new StackContainer(Orientation.Vertical) { IsPadded = true };
+        private static HorizontalContainer hContainer = new HorizontalContainer() { IsPadded = true };
+        private VerticalContainer vContainer = new VerticalContainer() { IsPadded = true };
         private DatePicker datePicker = new DatePicker();
         private TimePicker timePicker = new TimePicker();
         private DateTimePicker dateTimePicker = new DateTimePicker();
         private FontPicker fontPicker = new FontPicker();
         private ColorPicker colorPicker = new ColorPicker();
-        private Separator hSeparator = new Separator(Orientation.Horizontal);
+        private HorizontalSeparator hSeparator = new HorizontalSeparator();
 
-        private StackContainer vPanel2 = new StackContainer(Orientation.Vertical) { IsPadded = true };
+        private VerticalContainer vContainer2 = new VerticalContainer() { IsPadded = true };
         private GridContainer gridFile = new GridContainer() { IsPadded = true };
         private Button buttonOpenFile = new Button("Open File");
         private TextBox textboxOpenFile = new TextBox() { IsReadOnly = true };
         private Button buttonSaveFile = new Button("Save File");
         private TextBox textboxSaveFile = new TextBox() { IsReadOnly = true };
 
-        private StackContainer hPanelMessages = new StackContainer(Orientation.Horizontal) { IsPadded = true };
+        private HorizontalContainer hPanelMessages = new HorizontalContainer() { IsPadded = true };
         private Button buttonMessage = new Button("Message Box");
         private Button buttonMessageErr = new Button("Message Box (Error)");
 
-        public DataChoosersTab() : base("Data Choosers") => InitializeComponent();
+        public DataChoosersTab() : base("Data Choosers", hContainer) => InitializeComponent();
 
         protected override void InitializeComponent()
         {
             IsMargined = true;
-            Child = hPanel;
 
-            hPanel.Items.Add(vPanel);
+            hContainer.Children.Add(vContainer);
 
-            vPanel.Items.Add(datePicker);
-            vPanel.Items.Add(timePicker);
-            vPanel.Items.Add(dateTimePicker);
-            vPanel.Items.Add(fontPicker);
-            vPanel.Items.Add(colorPicker);
+            vContainer.Children.Add(datePicker);
+            vContainer.Children.Add(timePicker);
+            vContainer.Children.Add(dateTimePicker);
+            vContainer.Children.Add(fontPicker);
+            vContainer.Children.Add(colorPicker);
 
-            hPanel.Items.Add(hSeparator);
-            hPanel.Items.Add(vPanel2);
+            hContainer.Children.Add(hSeparator);
+            hContainer.Children.Add(vContainer2);
 
-            vPanel2.Items.Add(gridFile);
+            vContainer2.Children.Add(gridFile);
 
-            buttonOpenFile.Click += (sender, args) =>
+            buttonOpenFile.Click += (sender) =>
             {
-                if (Window.ShowOpenFileDialog(out string path, null))
+                if (Window.ShowOpenFileDialog(null, out string path))
                     textboxOpenFile.Text = path;
                 else
                     textboxOpenFile.Text = "(null)";
             };
 
-            buttonSaveFile.Click += (sender, args) =>
+            buttonSaveFile.Click += (sender) =>
             {
-                if (Window.ShowSaveFileDialog(out string path, null))
+                if (Window.ShowSaveFileDialog(null, out string path))
                     textboxSaveFile.Text = path;
                 else
                     textboxSaveFile.Text = "(null)";
             };
 
-            buttonMessage.Click += (sender, args) => { Window.ShowMessageBox(null, "This is a normal message box.", "More detailed information can be shown here."); };
-            buttonMessageErr.Click += (sender, args) => { Window.ShowMessageBox(null, "This message box describes an error.", "More detailed information can be shown here.", true); };
+            buttonMessage.Click += (sender) => { Window.ShowMessageBox(null, "This is a normal message box.", "More detailed information can be shown here."); };
+            buttonMessageErr.Click += (sender) => { Window.ShowMessageBox(null, "This message box describes an error.", "More detailed information can be shown here.", true); };
 
-            gridFile.Items.Add(buttonOpenFile, 0, 0, 1, 1, 0, 0, Alignment.Fill);
-            gridFile.Items.Add(textboxOpenFile, 1, 0, 1, 1, 1, 0, Alignment.Fill);
-            gridFile.Items.Add(buttonSaveFile, 0, 1, 1, 1, 0, 0, Alignment.Fill);
-            gridFile.Items.Add(textboxSaveFile, 1, 1, 1, 1, 1, 0, Alignment.Fill);
+            gridFile.Children.Add(buttonOpenFile, 0, 0, 1, 1, 0, 0, Alignment.Fill);
+            gridFile.Children.Add(textboxOpenFile, 1, 0, 1, 1, 1, 0, Alignment.Fill);
+            gridFile.Children.Add(buttonSaveFile, 0, 1, 1, 1, 0, 0, Alignment.Fill);
+            gridFile.Children.Add(textboxSaveFile, 1, 1, 1, 1, 1, 0, Alignment.Fill);
 
-            hPanelMessages.Items.Add(buttonMessage);
-            hPanelMessages.Items.Add(buttonMessageErr);
+            hPanelMessages.Children.Add(buttonMessage);
+            hPanelMessages.Children.Add(buttonMessageErr);
 
-            vPanel2.Items.Add(hPanelMessages);
+            vContainer2.Children.Add(hPanelMessages);
         }
     }
 }
