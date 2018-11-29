@@ -1,4 +1,4 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             CheckBox.cs
  * Date:                 20180925
  * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
@@ -30,7 +30,7 @@ namespace TCD.UI.Controls
             InitializeEvents();
         }
 
-        //TODO: Maybe add separate Checked and Unchecked events.
+        //TODO: Possibly separate into Checked and Unchecked events
         /// <summary>
         /// Occurs when the <see cref="Checked"/> property is changed.
         /// </summary>

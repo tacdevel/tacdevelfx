@@ -1,4 +1,4 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             MultiValueDictionary.cs
  * Date:                 20181029
  * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
@@ -12,7 +12,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
-//TODO: TryAdd()
+//TODO: Add a TryAdd() method to the MultiValueDictionary classes.
 namespace TCD.Collections
 {
     /// <summary>
@@ -1128,11 +1128,362 @@ namespace TCD.Collections
         }
     }
 
-    /* TODO: Finish these classes.
-
+    /// <summary>
+    /// A wrapper class for a <see cref="Dictionary{TKey, TValue}"/>, representing a collection of keys with four values.
+    /// </summary>
+    /// <typeparam name="TKey">The type of the keys in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</typeparam>
+    /// <typeparam name="TValue1">The type of the first values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</typeparam>
+    /// <typeparam name="TValue2">The type of the second values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</typeparam>
+    /// <typeparam name="TValue3">The type of the third values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</typeparam>
+    /// <typeparam name="TValue4">The type of the fourth values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</typeparam>
     public class MultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4> :
         IMultiValueDictionary, IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4>, ISerializable, IDeserializationCallback
     {
+        private KeyCollection keys;
+        private ValueCollection values;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> class that is empty, has the default initial capacity, and uses the default equality comparer for the key type.
+        /// </summary>
+        public MultiValueDictionary() : this(0, null) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> class that contains elements copied from the specified <see cref="IMultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>  and uses the default equality comparer for the key type.
+        /// </summary>
+        /// <param name="dictionary">The <see cref="IMultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> whose elements are copied to the new <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</param>
+        public MultiValueDictionary(IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4> dictionary) : this(dictionary, null) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> class that is empty, has the default initial capacity, and uses the specified <see cref="EqualityComparer{T}"/>.
+        /// </summary>
+        /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
+        public MultiValueDictionary(IEqualityComparer<TKey> comparer) : this(0, comparer) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> class that is empty, has the specified initial capacity, and uses the default equality comparer for the key type.
+        /// </summary>
+        /// <param name="capacity">The initial number of elements that the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> can contain.</param>
+        public MultiValueDictionary(int capacity) : this(capacity, null) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> class that contains elements copied from the specified <see cref="IMultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>  and uses the specified <see cref="EqualityComparer{T}"/>.
+        /// </summary>
+        /// <param name="dictionary">The <see cref="IMultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> whose elements are copied to the new <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</param>
+        /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
+        public MultiValueDictionary(IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4> dictionary, IEqualityComparer<TKey> comparer) : this((dictionary != null) ? dictionary.Count : 0, comparer)
+        {
+            if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+
+            foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> kmvs in dictionary)
+                Add(kmvs.Key, kmvs.Value1, kmvs.Value2, kmvs.Value3, kmvs.Value4);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> class that is empty, has the specified initial capacity, and uses the specified <see cref="EqualityComparer{T}"/>.
+        /// </summary>
+        /// <param name="capacity">The initial number of elements that the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> can contain.</param>
+        /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
+        public MultiValueDictionary(int capacity, IEqualityComparer<TKey> comparer) => Inner = new Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>(capacity, comparer);
+
+        /// <summary>
+        /// Gets a collection containing the keys in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
+        /// </summary>
+        public KeyCollection Keys
+        {
+            get
+            {
+                if (keys == null)
+                    keys = new KeyCollection(this);
+                return keys;
+            }
+        }
+
+        /// <summary>
+        /// Gets a collection containing the values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
+        /// </summary>
+        public ValueCollection Values
+        {
+            get
+            {
+                if (values == null)
+                    values = new ValueCollection(this);
+                return values;
+            }
+        }
+
+        /// <summary>
+        /// Gets the <see cref="EqualityComparer{T}"/> that is used to determine equality of keys for the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
+        /// </summary>
+        public IEqualityComparer<TKey> Comparer => Inner.Comparer;
+
+        /// <summary>
+        /// Gets the number of key/multi-value sets contained in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
+        /// </summary>
+        public int Count => Inner.Count;
+
+        internal Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>> Inner { get; }
+
+        /// <summary>
+        /// Adds the specified key and value to the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
+        /// </summary>
+        /// <param name="key">The key of the element to add.</param>
+        /// <param name="value1">The first value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value2">The second value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value3">The third value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value4">The fourth value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        public void Add(TKey key, TValue1 value1, TValue2 value2, TValue3 value3, TValue4 value4) => Inner.Add(key, new MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>(value1, value2, value3, value4));
+
+        /// <summary>
+        /// Removes all keys and values from the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
+        /// </summary>
+        public void Clear() => Inner.Clear();
+
+        /// <summary>
+        /// Determines whether the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> contains the specified key.
+        /// </summary>
+        /// <param name="key">The key to locate in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</param>
+        /// <returns><c>true</c> if the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> contains an element with the specified key; otherwise, <c>false</c>.</returns>
+        public bool ContainsKey(TKey key) => Inner.ContainsKey(key);
+
+        /// <summary>
+        /// Implements the <see cref="ISerializable"/> interface and returns the data needed to serialize the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> instance.
+        /// </summary>
+        /// <param name="info">A <see cref="SerializationInfo"/> object that contains the information required to serialize the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> instance.</param>
+        /// <param name="context">A <see cref="StreamingContext"/> structure that contains the source and destination of the serialized stream associated with the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> instance.</param>
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context) => Inner.GetObjectData(info, context);
+
+        /// <summary>
+        /// Implements the <see cref="ISerializable"/> interface and raises the deserialization event when the deserialization is complete.
+        /// </summary>
+        /// <param name="sender">the source of the deserialization event.</param>
+        public virtual void OnDeserialization(object sender) => Inner.OnDeserialization(sender);
+
+        /// <summary>
+        /// Removes the values with the specified key from the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
+        /// </summary>
+        /// <param name="key">the key of the element to remove.</param>
+        /// <returns><c>true</c> if the element is successfully found and removed; otherwise, <c>false</c>. This method returns <c>false</c> if <paramref name="key"/> is not found in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</returns>
+        public bool Remove(TKey key) => Inner.Remove(key);
+
+        /// <summary>
+        /// Gets the values associated with the specified key.
+        /// </summary>
+        /// <param name="key">The key of the value to get.</param>
+        /// <param name="value1">When this method returns, contains the first value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value1"/> parameter. This parameter is passed uninitialized.</param>
+        /// <param name="value2">When this method returns, contains the second value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value2"/> parameter. This parameter is passed uninitialized.</param>
+        /// <param name="value3">When this method returns, contains the third value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value3"/> parameter. This parameter is passed uninitialized.</param>
+        /// <param name="value4">When this method returns, contains the fourth value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value4"/> parameter. This parameter is passed uninitialized.</param>
+        /// <returns><c>true</c> if the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/> contains an element with the specified key; otherwise, <c>false</c>.</returns>
+        public bool TryGetValues(TKey key, out TValue1 value1, out TValue2 value2, out TValue3 value3, out TValue4 value4)
+        {
+            if (Inner.TryGetValue(key, out MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> moc))
+            {
+                value1 = moc.Value1;
+                value2 = moc.Value2;
+                value3 = moc.Value3;
+                value4 = moc.Value4;
+                return true;
+            }
+            value1 = default;
+            value2 = default;
+            value3 = default;
+            value4 = default;
+            return false;
+        }
+
+        private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>[] array, int index)
+        {
+            if (array == null) throw new ArgumentNullException("array");
+            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+
+            foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> kmvs in this)
+                array[index++] = kmvs;
+        }
+
+        private bool VerifyKey(object key)
+        {
+            if (key == null) throw new ArgumentNullException(nameof(key));
+            return key is TKey;
+        }
+
+        private bool VerifyValues(object value1, object value2, object value3, object value4)
+        {
+            if (value1 == null && (value1 as Type).IsValueType) throw new ArgumentNullException(nameof(value1));
+            if (value2 == null && (value2 as Type).IsValueType) throw new ArgumentNullException(nameof(value2));
+            if (value3 == null && (value3 as Type).IsValueType) throw new ArgumentNullException(nameof(value3));
+            if (value4 == null && (value4 as Type).IsValueType) throw new ArgumentNullException(nameof(value4));
+            return value1 is TValue1 && value2 is TValue2 && value3 is TValue3 && value4 is TValue4;
+        }
+
+        /// <summary>
+        /// Gets or sets the values associated with the specified key.
+        /// </summary>
+        /// <param name="key">The key of the value to get or set.</param>
+        /// <returns>The value associated with the specified key. If the specified key is not found, a get operation throws a <see cref="KeyNotFoundException"/>, and a set operation creates a new element with the specified key.</returns>
+        public MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> this[TKey key]
+        {
+            get => Inner[key];
+            set => Inner[key] = value;
+        }
+
+        #region IMultiValueDictionary Implementation
+        ICollection IMultiValueDictionary.Keys
+        {
+            get
+            {
+                if (keys == null)
+                    keys = new KeyCollection(this);
+                return keys;
+            }
+        }
+
+        ICollection IMultiValueDictionary.Values
+        {
+            get
+            {
+                if (values == null)
+                    values = new ValueCollection(this);
+                return values;
+            }
+        }
+        bool IMultiValueDictionary.IsFixedSize => ((IMultiValueDictionary)Inner).IsFixedSize;
+
+        bool IMultiValueDictionary.IsReadOnly => ((IMultiValueDictionary)Inner).IsReadOnly;
+
+        bool IMultiValueDictionary.ContainsKey(object key) => VerifyKey(key) && ContainsKey((TKey)key);
+
+        void IMultiValueDictionary.Remove(object key)
+        {
+            if (VerifyKey(key))
+                Remove((TKey)key);
+        }
+
+        bool ICollection.IsSynchronized => ((ICollection)Inner).IsSynchronized;
+
+        object ICollection.SyncRoot => ((ICollection)Inner).SyncRoot;
+
+        void ICollection.CopyTo(Array array, int index)
+        {
+            if (array == null) throw new ArgumentNullException("array");
+            if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
+            if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
+            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+
+            if (array is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>[] setArray)
+                CopyTo(setArray, index);
+            else if (array is DictionaryEntry[])
+            {
+                DictionaryEntry[] entryArray = array as DictionaryEntry[];
+                foreach (TKey key in Keys)
+                    entryArray[index++] = new DictionaryEntry(key, this[key]);
+            }
+            else
+            {
+                if (!(array is object[] objArray)) throw new ArgumentException("Invalid array type");
+                try
+                {
+                    foreach (TKey key in Keys)
+                    {
+                        MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> container = this[key];
+                        objArray[index++] = new KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>(key, container.Value1, container.Value2, container.Value3, container.Value4);
+                    }
+                }
+                catch (ArrayTypeMismatchException)
+                {
+                    throw new ArgumentException("Invalid array type");
+                }
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => Inner.GetEnumerator();
+        #endregion IMultiValueDictionary Implementation
+
+        #region IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4> Implementation
+        ICollection<TKey> IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4>.Keys
+        {
+            get
+            {
+                if (keys == null)
+                    keys = new KeyCollection(this);
+                return keys;
+            }
+        }
+
+        ICollection<MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>> IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4>.Values
+        {
+            get
+            {
+                if (values == null)
+                    values = new ValueCollection(this);
+                return values;
+            }
+        }
+
+        void IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4>.Add(object key, object value1, object value2, object value3, object value4)
+        {
+            if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+            if (!VerifyValues(value1, value2, value3, value4)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, and value4 must be of type {typeof(TValue4).Name}.");
+            Add((TKey)key, (TValue1)value1, (TValue2)value2, (TValue3)value3, (TValue4)value4);
+        }
+
+        MultiObjectContainer<object, object, object, object> IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4>.this[object key]
+        {
+            get
+            {
+                if (VerifyKey(key))
+                {
+                    TKey goodKey = (TKey)key;
+                    if (Inner.ContainsKey(goodKey))
+                    {
+                        MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> container = Inner[goodKey];
+                        return new MultiObjectContainer<object, object, object, object>(container.Value1, container.Value2, container.Value3, container.Value4);
+                    }
+                }
+                return null;
+            }
+            set
+            {
+                if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+                if (!VerifyValues(value.Value1, value.Value2, value.Value3, value.Value4)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, and value4 must be of type {typeof(TValue4).Name}.");
+                this[(TKey)key] = new MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>((TValue1)value.Value1, (TValue2)value.Value2, (TValue3)value.Value3, (TValue4)value.Value4);
+            }
+        }
+
+        bool ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>.IsReadOnly => ((ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>)Inner).IsReadOnly;
+
+        void ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>.Add(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> kmvs) => Add(kmvs.Key, kmvs.Value1, kmvs.Value2, kmvs.Value3, kmvs.Value4);
+
+        bool ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>.Contains(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> item)
+        {
+            if (ContainsKey(item.Key))
+            {
+                MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> container = this[item.Key];
+                return EqualityComparer<TValue1>.Default.Equals(container.Value1, item.Value1) && EqualityComparer<TValue2>.Default.Equals(container.Value2, item.Value2) && EqualityComparer<TValue3>.Default.Equals(container.Value3, item.Value3) && EqualityComparer<TValue4>.Default.Equals(container.Value4, item.Value4);
+            }
+            return false;
+        }
+
+        void ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>.CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>[] array, int arrayIndex) => CopyTo(array, arrayIndex);
+
+        bool ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>.Remove(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> KeyMultiValueSet)
+        {
+            if (ContainsKey(KeyMultiValueSet.Key))
+            {
+                MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> container = this[KeyMultiValueSet.Key];
+                if (EqualityComparer<TValue1>.Default.Equals(container.Value1) && EqualityComparer<TValue2>.Default.Equals(container.Value2) && EqualityComparer<TValue3>.Default.Equals(container.Value3) && EqualityComparer<TValue4>.Default.Equals(container.Value4))
+                {
+                    Remove(KeyMultiValueSet.Key);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        IEnumerator<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>> IEnumerable<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>.GetEnumerator() => ((IEnumerable<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>)Inner).GetEnumerator();
+        #endregion IMultiValueDictionary<TKey, TValue1, TValue2, TValue3> Implementation
+
         /// <summary>
         /// Enumerates the elements of a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
         /// </summary>
@@ -1343,9 +1694,368 @@ namespace TCD.Collections
         }
     }
 
+    /// <summary>
+    /// A wrapper class for a <see cref="Dictionary{TKey, TValue}"/>, representing a collection of keys with four values.
+    /// </summary>
+    /// <typeparam name="TKey">The type of the keys in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
+    /// <typeparam name="TValue1">The type of the first values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
+    /// <typeparam name="TValue2">The type of the second values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
+    /// <typeparam name="TValue3">The type of the third values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
+    /// <typeparam name="TValue4">The type of the fourth values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
+    /// <typeparam name="TValue5">The type of the fifth values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
     public class MultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> :
         IMultiValueDictionary, IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>, ISerializable, IDeserializationCallback
     {
+        private KeyCollection keys;
+        private ValueCollection values;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> class that is empty, has the default initial capacity, and uses the default equality comparer for the key type.
+        /// </summary>
+        public MultiValueDictionary() : this(0, null) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> class that contains elements copied from the specified <see cref="IMultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>  and uses the default equality comparer for the key type.
+        /// </summary>
+        /// <param name="dictionary">The <see cref="IMultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> whose elements are copied to the new <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</param>
+        public MultiValueDictionary(IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> dictionary) : this(dictionary, null) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> class that is empty, has the default initial capacity, and uses the specified <see cref="EqualityComparer{T}"/>.
+        /// </summary>
+        /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
+        public MultiValueDictionary(IEqualityComparer<TKey> comparer) : this(0, comparer) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> class that is empty, has the specified initial capacity, and uses the default equality comparer for the key type.
+        /// </summary>
+        /// <param name="capacity">The initial number of elements that the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> can contain.</param>
+        public MultiValueDictionary(int capacity) : this(capacity, null) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> class that contains elements copied from the specified <see cref="IMultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>  and uses the specified <see cref="EqualityComparer{T}"/>.
+        /// </summary>
+        /// <param name="dictionary">The <see cref="IMultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> whose elements are copied to the new <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</param>
+        /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
+        public MultiValueDictionary(IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> dictionary, IEqualityComparer<TKey> comparer) : this((dictionary != null) ? dictionary.Count : 0, comparer)
+        {
+            if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+
+            foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> kmvs in dictionary)
+                Add(kmvs.Key, kmvs.Value1, kmvs.Value2, kmvs.Value3, kmvs.Value4, kmvs.Value5);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> class that is empty, has the specified initial capacity, and uses the specified <see cref="EqualityComparer{T}"/>.
+        /// </summary>
+        /// <param name="capacity">The initial number of elements that the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> can contain.</param>
+        /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
+        public MultiValueDictionary(int capacity, IEqualityComparer<TKey> comparer) => Inner = new Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>(capacity, comparer);
+
+        /// <summary>
+        /// Gets a collection containing the keys in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
+        /// </summary>
+        public KeyCollection Keys
+        {
+            get
+            {
+                if (keys == null)
+                    keys = new KeyCollection(this);
+                return keys;
+            }
+        }
+
+        /// <summary>
+        /// Gets a collection containing the values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
+        /// </summary>
+        public ValueCollection Values
+        {
+            get
+            {
+                if (values == null)
+                    values = new ValueCollection(this);
+                return values;
+            }
+        }
+
+        /// <summary>
+        /// Gets the <see cref="EqualityComparer{T}"/> that is used to determine equality of keys for the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
+        /// </summary>
+        public IEqualityComparer<TKey> Comparer => Inner.Comparer;
+
+        /// <summary>
+        /// Gets the number of key/multi-value sets contained in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
+        /// </summary>
+        public int Count => Inner.Count;
+
+        internal Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>> Inner { get; }
+
+        /// <summary>
+        /// Adds the specified key and value to the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
+        /// </summary>
+        /// <param name="key">The key of the element to add.</param>
+        /// <param name="value1">The first value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value2">The second value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value3">The third value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value4">The fourth value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value5">The fifth value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        public void Add(TKey key, TValue1 value1, TValue2 value2, TValue3 value3, TValue4 value4, TValue5 value5) => Inner.Add(key, new MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>(value1, value2, value3, value4, value5));
+
+        /// <summary>
+        /// Removes all keys and values from the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
+        /// </summary>
+        public void Clear() => Inner.Clear();
+
+        /// <summary>
+        /// Determines whether the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> contains the specified key.
+        /// </summary>
+        /// <param name="key">The key to locate in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</param>
+        /// <returns><c>true</c> if the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> contains an element with the specified key; otherwise, <c>false</c>.</returns>
+        public bool ContainsKey(TKey key) => Inner.ContainsKey(key);
+
+        /// <summary>
+        /// Implements the <see cref="ISerializable"/> interface and returns the data needed to serialize the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> instance.
+        /// </summary>
+        /// <param name="info">A <see cref="SerializationInfo"/> object that contains the information required to serialize the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> instance.</param>
+        /// <param name="context">A <see cref="StreamingContext"/> structure that contains the source and destination of the serialized stream associated with the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> instance.</param>
+        public virtual void GetObjectData(SerializationInfo info, StreamingContext context) => Inner.GetObjectData(info, context);
+
+        /// <summary>
+        /// Implements the <see cref="ISerializable"/> interface and raises the deserialization event when the deserialization is complete.
+        /// </summary>
+        /// <param name="sender">the source of the deserialization event.</param>
+        public virtual void OnDeserialization(object sender) => Inner.OnDeserialization(sender);
+
+        /// <summary>
+        /// Removes the values with the specified key from the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
+        /// </summary>
+        /// <param name="key">the key of the element to remove.</param>
+        /// <returns><c>true</c> if the element is successfully found and removed; otherwise, <c>false</c>. This method returns <c>false</c> if <paramref name="key"/> is not found in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</returns>
+        public bool Remove(TKey key) => Inner.Remove(key);
+
+        /// <summary>
+        /// Gets the values associated with the specified key.
+        /// </summary>
+        /// <param name="key">The key of the value to get.</param>
+        /// <param name="value1">When this method returns, contains the first value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value1"/> parameter. This parameter is passed uninitialized.</param>
+        /// <param name="value2">When this method returns, contains the second value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value2"/> parameter. This parameter is passed uninitialized.</param>
+        /// <param name="value3">When this method returns, contains the third value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value3"/> parameter. This parameter is passed uninitialized.</param>
+        /// <param name="value4">When this method returns, contains the fourth value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value4"/> parameter. This parameter is passed uninitialized.</param>
+        /// <param name="value5">When this method returns, contains the fifth value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value5"/> parameter. This parameter is passed uninitialized.</param>
+        /// <returns><c>true</c> if the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/> contains an element with the specified key; otherwise, <c>false</c>.</returns>
+        public bool TryGetValues(TKey key, out TValue1 value1, out TValue2 value2, out TValue3 value3, out TValue4 value4, out TValue5 value5)
+        {
+            if (Inner.TryGetValue(key, out MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> moc))
+            {
+                value1 = moc.Value1;
+                value2 = moc.Value2;
+                value3 = moc.Value3;
+                value4 = moc.Value4;
+                value5 = moc.Value5;
+                return true;
+            }
+            value1 = default;
+            value2 = default;
+            value3 = default;
+            value4 = default;
+            value5 = default;
+            return false;
+        }
+
+        private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>[] array, int index)
+        {
+            if (array == null) throw new ArgumentNullException("array");
+            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+
+            foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> kmvs in this)
+                array[index++] = kmvs;
+        }
+
+        private bool VerifyKey(object key)
+        {
+            if (key == null) throw new ArgumentNullException(nameof(key));
+            return key is TKey;
+        }
+
+        private bool VerifyValues(object value1, object value2, object value3, object value4, object value5)
+        {
+            if (value1 == null && (value1 as Type).IsValueType) throw new ArgumentNullException(nameof(value1));
+            if (value2 == null && (value2 as Type).IsValueType) throw new ArgumentNullException(nameof(value2));
+            if (value3 == null && (value3 as Type).IsValueType) throw new ArgumentNullException(nameof(value3));
+            if (value4 == null && (value4 as Type).IsValueType) throw new ArgumentNullException(nameof(value4));
+            if (value5 == null && (value5 as Type).IsValueType) throw new ArgumentNullException(nameof(value5));
+            return value1 is TValue1 && value2 is TValue2 && value3 is TValue3 && value4 is TValue4 && value5 is TValue5;
+        }
+
+        /// <summary>
+        /// Gets or sets the values associated with the specified key.
+        /// </summary>
+        /// <param name="key">The key of the value to get or set.</param>
+        /// <returns>The value associated with the specified key. If the specified key is not found, a get operation throws a <see cref="KeyNotFoundException"/>, and a set operation creates a new element with the specified key.</returns>
+        public MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> this[TKey key]
+        {
+            get => Inner[key];
+            set => Inner[key] = value;
+        }
+
+        #region IMultiValueDictionary Implementation
+        ICollection IMultiValueDictionary.Keys
+        {
+            get
+            {
+                if (keys == null)
+                    keys = new KeyCollection(this);
+                return keys;
+            }
+        }
+
+        ICollection IMultiValueDictionary.Values
+        {
+            get
+            {
+                if (values == null)
+                    values = new ValueCollection(this);
+                return values;
+            }
+        }
+        bool IMultiValueDictionary.IsFixedSize => ((IMultiValueDictionary)Inner).IsFixedSize;
+
+        bool IMultiValueDictionary.IsReadOnly => ((IMultiValueDictionary)Inner).IsReadOnly;
+
+        bool IMultiValueDictionary.ContainsKey(object key) => VerifyKey(key) && ContainsKey((TKey)key);
+
+        void IMultiValueDictionary.Remove(object key)
+        {
+            if (VerifyKey(key))
+                Remove((TKey)key);
+        }
+
+        bool ICollection.IsSynchronized => ((ICollection)Inner).IsSynchronized;
+
+        object ICollection.SyncRoot => ((ICollection)Inner).SyncRoot;
+
+        void ICollection.CopyTo(Array array, int index)
+        {
+            if (array == null) throw new ArgumentNullException("array");
+            if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
+            if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
+            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+
+            if (array is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>[] setArray)
+                CopyTo(setArray, index);
+            else if (array is DictionaryEntry[])
+            {
+                DictionaryEntry[] entryArray = array as DictionaryEntry[];
+                foreach (TKey key in Keys)
+                    entryArray[index++] = new DictionaryEntry(key, this[key]);
+            }
+            else
+            {
+                if (!(array is object[] objArray)) throw new ArgumentException("Invalid array type");
+                try
+                {
+                    foreach (TKey key in Keys)
+                    {
+                        MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> container = this[key];
+                        objArray[index++] = new KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>(key, container.Value1, container.Value2, container.Value3, container.Value4, container.Value5);
+                    }
+                }
+                catch (ArrayTypeMismatchException)
+                {
+                    throw new ArgumentException("Invalid array type");
+                }
+            }
+        }
+    
+        IEnumerator IEnumerable.GetEnumerator() => Inner.GetEnumerator();
+        #endregion IMultiValueDictionary Implementation
+
+        #region IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> Implementation
+        ICollection<TKey> IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>.Keys
+        {
+            get
+            {
+                if (keys == null)
+                    keys = new KeyCollection(this);
+                return keys;
+            }
+        }
+
+        ICollection<MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>> IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>.Values
+        {
+            get
+            {
+                if (values == null)
+                    values = new ValueCollection(this);
+                return values;
+            }
+        }
+
+        void IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>.Add(object key, object value1, object value2, object value3, object value4, object value5)
+        {
+            if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+            if (!VerifyValues(value1, value2, value3, value4, value5)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, value4 must be of type {typeof(TValue4).Name}, and value5 must be of type {typeof(TValue5).Name}.");
+            Add((TKey)key, (TValue1)value1, (TValue2)value2, (TValue3)value3, (TValue4)value4, (TValue5)value5);
+        }
+
+        MultiObjectContainer<object, object, object, object, object> IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>.this[object key]
+        {
+            get
+            {
+                if (VerifyKey(key))
+                {
+                    TKey goodKey = (TKey)key;
+                    if (Inner.ContainsKey(goodKey))
+                    {
+                        MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> container = Inner[goodKey];
+                        return new MultiObjectContainer<object, object, object, object, object>(container.Value1, container.Value2, container.Value3, container.Value4, container.Value5);
+                    }
+                }
+                return null;
+            }
+            set
+            {
+                if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+                if (!VerifyValues(value.Value1, value.Value2, value.Value3, value.Value4, value.Value5)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, value4 must be of type {typeof(TValue4).Name}, and value5 must be of type {typeof(TValue5).Name}.");
+                this[(TKey)key] = new MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>((TValue1)value.Value1, (TValue2)value.Value2, (TValue3)value.Value3, (TValue4)value.Value4, (TValue5)value.Value5);
+            }
+        }
+
+        bool ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>.IsReadOnly => ((ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>)Inner).IsReadOnly;
+
+        void ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>.Add(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> kmvs) => Add(kmvs.Key, kmvs.Value1, kmvs.Value2, kmvs.Value3, kmvs.Value4, kmvs.Value5);
+
+        bool ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>.Contains(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> item)
+        {
+            if (ContainsKey(item.Key))
+            {
+                MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> container = this[item.Key];
+                return EqualityComparer<TValue1>.Default.Equals(container.Value1, item.Value1) && EqualityComparer<TValue2>.Default.Equals(container.Value2, item.Value2) && EqualityComparer<TValue3>.Default.Equals(container.Value3, item.Value3) && EqualityComparer<TValue4>.Default.Equals(container.Value4, item.Value4) && EqualityComparer<TValue5>.Default.Equals(container.Value5, item.Value5);
+            }
+            return false;
+        }
+
+        void ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>.CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>[] array, int arrayIndex) => CopyTo(array, arrayIndex);
+
+        bool ICollection<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>.Remove(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> KeyMultiValueSet)
+        {
+            if (ContainsKey(KeyMultiValueSet.Key))
+            {
+                MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> container = this[KeyMultiValueSet.Key];
+                if (EqualityComparer<TValue1>.Default.Equals(container.Value1) && EqualityComparer<TValue2>.Default.Equals(container.Value2) && EqualityComparer<TValue3>.Default.Equals(container.Value3) && EqualityComparer<TValue4>.Default.Equals(container.Value4) && EqualityComparer<TValue5>.Default.Equals(container.Value5))
+                {
+                    Remove(KeyMultiValueSet.Key);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        IEnumerator<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>> IEnumerable<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>.GetEnumerator() => ((IEnumerable<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>)Inner).GetEnumerator();
+        #endregion IMultiValueDictionary<TKey, TValue1, TValue2, TValue3> Implementation
+
         /// <summary>
         /// Enumerates the elements of a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
         /// </summary>
@@ -1555,5 +2265,4 @@ namespace TCD.Collections
             }
         }
     }
-    */
 }

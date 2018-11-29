@@ -1,7 +1,7 @@
 /***************************************************************************************************
  * FileName:             Libui.cs
  * Date:                 20181120
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright Â© 2017-2018 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -142,11 +142,8 @@ namespace TCD.Native
         internal static void UnInit() => LoadFunction<Signatures.uiUnInit>()();
         internal static void FreeInitError(string error) => LoadFunction<Signatures.uiFreeInitError>()(error);
         internal static void Main() => LoadFunction<Signatures.uiMain>()();
-        internal static void MainSteps() => LoadFunction<Signatures.uiMainSteps>()();
-        internal static bool MainStep(bool wait) => LoadFunction<Signatures.uiMainStep>()(wait);
         internal static void Quit() => LoadFunction<Signatures.uiQuit>()();
         internal static void QueueMain(QueueMainCallback f, IntPtr data) => LoadFunction<Signatures.uiQueueMain>()(f, data);
-        internal static void Timer(int milliseconds, TimerCallback f, IntPtr data) => LoadFunction<Signatures.uiTimer>()(milliseconds, f, data);
         internal static void OnShouldQuit(OnShouldQuitCallback f, IntPtr data) => LoadFunction<Signatures.uiOnShouldQuit>()(f, data);
         [UnmanagedFunctionPointer(Convention)] internal delegate void QueueMainCallback(IntPtr data);
         [UnmanagedFunctionPointer(Convention)] internal delegate bool TimerCallback(IntPtr data);
@@ -156,7 +153,6 @@ namespace TCD.Native
         internal static void ControlDestroy(IntPtr c) => LoadFunction<Signatures.uiControlDestroy>()(c);
         internal static IntPtr ControlParent(IntPtr c) => LoadFunction<Signatures.uiControlParent>()(c);
         internal static void ControlSetParent(IntPtr c, IntPtr parent) => LoadFunction<Signatures.uiControlSetParent>()(c, parent);
-        internal static bool ControlTopLevel(IntPtr c) => LoadFunction<Signatures.uiControlToplevel>()(c);
         internal static bool ControlVisible(IntPtr c) => LoadFunction<Signatures.uiControlVisible>()(c);
         internal static void ControlShow(IntPtr c) => LoadFunction<Signatures.uiControlShow>()(c);
         internal static void ControlHide(IntPtr c) => LoadFunction<Signatures.uiControlHide>()(c);
@@ -348,11 +344,11 @@ namespace TCD.Native
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiUnInit();
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiFreeInitError(string err);
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiMain();
-            [UnmanagedFunctionPointer(Convention)] internal delegate void uiMainSteps();
-            [UnmanagedFunctionPointer(Convention)] internal delegate bool uiMainStep(bool wait);
+            //// [UnmanagedFunctionPointer(Convention)] internal delegate void uiMainSteps();
+            //// [UnmanagedFunctionPointer(Convention)] internal delegate bool uiMainStep(bool wait);
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiQuit();
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiQueueMain(QueueMainCallback f, IntPtr data);
-            [UnmanagedFunctionPointer(Convention)] internal delegate void uiTimer(int milliseconds, TimerCallback f, IntPtr data);
+            //// [UnmanagedFunctionPointer(Convention)] internal delegate void uiTimer(int milliseconds, TimerCallback f, IntPtr data);
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiOnShouldQuit(OnShouldQuitCallback f, IntPtr data);
 
             //// [UnmanagedFunctionPointer(Convention)] internal delegate void uiFreeText(string text);
@@ -361,7 +357,7 @@ namespace TCD.Native
             //// [UnmanagedFunctionPointer(Convention)] internal delegate UIntPtr uiControlHandle(uiControl c);
             [UnmanagedFunctionPointer(Convention)] internal delegate IntPtr uiControlParent(IntPtr c);
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiControlSetParent(IntPtr c, IntPtr parent);
-            [UnmanagedFunctionPointer(Convention)] internal delegate bool uiControlToplevel(IntPtr c);
+            //// [UnmanagedFunctionPointer(Convention)] internal delegate bool uiControlToplevel(IntPtr c);
             [UnmanagedFunctionPointer(Convention)] internal delegate bool uiControlVisible(IntPtr c);
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiControlShow(IntPtr c);
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiControlHide(IntPtr c);
@@ -518,11 +514,7 @@ namespace TCD.Native
             [UnmanagedFunctionPointer(Convention)] internal delegate void uiGridSetPadded(IntPtr g, bool padded);
             [UnmanagedFunctionPointer(Convention)] internal delegate IntPtr uiNewGrid();
 
-            //TODO:  internal delegate IntPtr uiNewImage(double width, double height);
-            //TODO:  internal delegate void uiFreeImage(IntPtr i);
-            //TODO:  internal delegate void uiImageAppend(IntPtr i, IntPtr pixels, int pixelWidth, int pixelHeight, int byteStride);
-
-            //TODO: uiTable
+            //TODO: uiImage and uiTable
         }
     }
 }
