@@ -29,7 +29,7 @@ For all a list of all contributors with some stats about their contributions, se
 
 ## Packages
 
-| Package Name                         | CI Build Status/Packages                                  -----------------------------   | Stable Packages          |
+| Package Name                         | CI Build Status/Packages                                                                  | Stable Packages          |
 | :----------------------------------- | :---------------------------------------------------------------------------------------- | :----------------------- |
 | TCD.Collections.MultiValueDictionary | [![Build Status][Badges.BuildStatus.1]][Links.BuildStatus.1] ![NuGet][Badges.Nuget.Pre.1] | ![NuGet][Badges.Nuget.1] |
 | TCD.Disposable                       | [![Build Status][Badges.BuildStatus.2]][Links.BuildStatus.2] ![NuGet][Badges.Nuget.Pre.2] | ![NuGet][Badges.Nuget.2] |
