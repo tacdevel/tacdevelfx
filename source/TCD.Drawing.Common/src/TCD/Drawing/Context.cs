@@ -1,4 +1,4 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             Context.cs
  * Date:                 20181003
  * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
@@ -61,9 +61,9 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="matrix"></param>
         public void Transform(Matrix matrix) => LibuiEx.DrawTransform(Surface.Handle, matrix);
-
-        //TODO: Add this back in when finished with Drawing.TextLayout.
-        /* /// <summary>
+        
+        /* TODO: Move these to TCD.Drawing.Text
+        /// <summary>
         /// Draws a <see cref="TextLayout"/> at the given location in this <see cref="Context"/>.
         /// </summary>
         /// <param name="layout">The text to draw.</param>
@@ -76,6 +76,7 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="layout">The text to draw.</param>
         /// <param name="location">The location at which to draw the text.</param>
-        public void DrawText(TextLayout layout, PointD location) => DrawText(layout, location.X, location.Y); */
+        public void DrawText(TextLayout layout, PointD location) => DrawText(layout, location.X, location.Y);
+        */
     }
 }

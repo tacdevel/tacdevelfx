@@ -33,7 +33,7 @@ Basic guidelines are listed below:
 * 4 spaces per tab
 * No trailing whitespace (including a new line at the end of a file)
 
-For the most part, everything should be formatted as per the informational warnings via Visual Studio or Visual Studio Code, since we use an `.editorconfig` file.
+For the most part, everything should be formatted as per the suggestions in the error list in either Visual Studio or Visual Studio Code, since we use an `.editorconfig` file.
 
 ## Issue Reporting
 

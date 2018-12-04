@@ -18,11 +18,11 @@
     <PackageId>$(MSBuildProjectName)</PackageId>
     <Authors>$(TCDFxAuthors)</Authors>
     <Copyright>$(TCDFxCopyright)</Copyright>
-    <Description>$(PackageId) v$(Version)</Description>
-    <PackageTags></PackageTags>
+    <Description>$(PackageId)</Description>
     <PackageProjectUrl>$(TCDFxRepoURL)</PackageProjectUrl>
     <PackageLicenseExpression>$(TCDFxLicenseType)</PackageLicenseExpression>
-    <PackageReleaseNotes>Version $(Version)</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageReleaseNotes>https://github.com/tacdevel/tcdfx/blob/master/RELEASE_NOTES.md</PackageReleaseNotes>
   </PropertyGroup>
 
   <!-- Shared Content -->
