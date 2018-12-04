@@ -10,7 +10,7 @@
   <!-- Version Information -->
   <PropertyGroup>
     <TCDFxVersionMajor>0</TCDFxVersionMajor>
-    <TCDFxVersionMinor>3</TCDFxVersionMinor>
+    <TCDFxVersionMinor>4</TCDFxVersionMinor>
     <TCDFxVersionPatch>0</TCDFxVersionPatch>
     <TCDFxVersionPrefix>$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersionPrefix>
   </PropertyGroup>
