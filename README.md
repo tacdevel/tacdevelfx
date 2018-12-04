@@ -29,15 +29,15 @@ For all a list of all contributors with some stats about their contributions, se
 
 ## Packages
 
-| Package Name                         | Build Status                                                 | Package Versions                                      |
-| :----------------------------------- | :----------------------------------------------------------- | :---------------------------------------------------- |
-| TCD.Collections.MultiValueDictionary | [![Build Status][Badges.BuildStatus.1]][Links.BuildStatus.1] | ![NuGet][Badges.Nuget.1] ![NuGet][Badges.Nuget.Pre.1] |
-| TCD.Disposable                       | [![Build Status][Badges.BuildStatus.2]][Links.BuildStatus.2] | ![NuGet][Badges.Nuget.2] ![NuGet][Badges.Nuget.Pre.2] |
-| TCD.Drawing.Common                   | [![Build Status][Badges.BuildStatus.6]][Links.BuildStatus.6] | ![NuGet][Badges.Nuget.6] ![NuGet][Badges.Nuget.Pre.6] |
-| TCD.Drawing.Primitives               | [![Build Status][Badges.BuildStatus.3]][Links.BuildStatus.3] | ![NuGet][Badges.Nuget.3] ![NuGet][Badges.Nuget.Pre.3] |
-| TCD.Drawing.Text                     | [![Build Status][Badges.BuildStatus.7]][Links.BuildStatus.7] | ![NuGet][Badges.Nuget.7] ![NuGet][Badges.Nuget.Pre.7] |
-| TCD.InteropServices                  | [![Build Status][Badges.BuildStatus.4]][Links.BuildStatus.4] | ![NuGet][Badges.Nuget.4] ![NuGet][Badges.Nuget.Pre.4] |
-| TCD.UI                               | [![Build Status][Badges.BuildStatus.5]][Links.BuildStatus.5] | ![NuGet][Badges.Nuget.5] ![NuGet][Badges.Nuget.Pre.5] |
+| Package Name                         | CI Build Status/Packages                                  -----------------------------   | Stable Packages          |
+| :----------------------------------- | :---------------------------------------------------------------------------------------- | :----------------------- |
+| TCD.Collections.MultiValueDictionary | [![Build Status][Badges.BuildStatus.1]][Links.BuildStatus.1] ![NuGet][Badges.Nuget.Pre.1] | ![NuGet][Badges.Nuget.1] |
+| TCD.Disposable                       | [![Build Status][Badges.BuildStatus.2]][Links.BuildStatus.2] ![NuGet][Badges.Nuget.Pre.2] | ![NuGet][Badges.Nuget.2] |
+| TCD.Drawing.Common                   | [![Build Status][Badges.BuildStatus.6]][Links.BuildStatus.6] ![NuGet][Badges.Nuget.Pre.6] | ![NuGet][Badges.Nuget.6] |
+| TCD.Drawing.Primitives               | [![Build Status][Badges.BuildStatus.3]][Links.BuildStatus.3] ![NuGet][Badges.Nuget.Pre.3] | ![NuGet][Badges.Nuget.3] |
+| TCD.Drawing.Text                     | [![Build Status][Badges.BuildStatus.7]][Links.BuildStatus.7] ![NuGet][Badges.Nuget.Pre.7] | ![NuGet][Badges.Nuget.7] |
+| TCD.InteropServices                  | [![Build Status][Badges.BuildStatus.4]][Links.BuildStatus.4] ![NuGet][Badges.Nuget.Pre.4] | ![NuGet][Badges.Nuget.4] |
+| TCD.UI                               | [![Build Status][Badges.BuildStatus.5]][Links.BuildStatus.5] ![NuGet][Badges.Nuget.Pre.5] | ![NuGet][Badges.Nuget.5] |
 
 ### Installing TCDFx Packages
 
