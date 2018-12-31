@@ -10,8 +10,6 @@
 [![Dependabot Status][Badges.Dependabot]][Links.Dependabot]
 [![Gitter Chat][Badges.Gitter]][Links.Gitter]
 
-**NOTICE**: This repository supersedes [LibUISharp](https://github.com/tom-corwin/LibUISharp), with it's source in the `TCD.Drawing.*` and `TCD.UI` packages. This notice will be removed when [andlabs/libui#426](https://github.com/andlabs/libui/pull/426) is merged.
-
 # TCDFx (TCD Framework)
 
 TCDFx (also known as the TCD Framework) is a collection of libraries targeting .NET Standard, providing APIs for UI application development, alternative P/Invoke types, and other helpful APIs to make development easier.
