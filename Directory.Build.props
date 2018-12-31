@@ -1,0 +1,78 @@
+<!--================================================================================================
+* FileName:             Directory.Build.props
+* Date:                 20181214
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Condition="Exists('.ws/ws.props')" Project=".ws/ws.props" />
+
+  <PropertyGroup>
+    <RootNamespace>$(WSProjectName)</RootNamespace>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <DefineConstants>TRACE</DefineConstants>
+    <EnableDefaultItems>false</EnableDefaultItems>
+
+    <BaseOutputPath>$(WSBuildBaseOutputPath)</BaseOutputPath>
+    <OutputPath>$(WSBuildOutputPath)</OutputPath>
+    <BaseIntermediateOutputPath>$(WSBuildBaseIntermediateOutputPath)</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(WSBuildIntermediateOutputPath)</IntermediateOutputPath>
+
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+
+    <RepositoryUrl>$(WSRepositoryURL)</RepositoryUrl>
+    <RepositoryType>$(WSRepositoryType)</RepositoryType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>$(WSProjectName)</AssemblyName>
+    <AssemblyTitle>$(WSProjectName)</AssemblyTitle>
+    <VersionPrefix>$(WSVersionPrefix)</VersionPrefix>
+    <VersionSuffix>$(WSVersionSuffix)</VersionSuffix>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="'$(Configuration)' == 'Debug'">
+      <PropertyGroup>
+        <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+        <Optimize>false</Optimize>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(Configuration)' == 'Release'">
+      <PropertyGroup>
+        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+        <Optimize>true</Optimize>
+        <DebugType>pdbonly</DebugType>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(WSProjectIsPackable)' == 'true'">
+        <PackageProjectUrl>$(WSRepositoryURL)</PackageProjectUrl>
+        <Authors>$(WSAuthors)</Authors>
+        <Copyright>$(WSCopyright)</Copyright>
+        <PackageLicenseExpression>$(WSLicenseType)</PackageLicenseExpression>
+        <PackageReleaseNotes>$(WSReleaseNotesURL)</PackageReleaseNotes>
+        <PackageId>$(WSProjectName)</PackageId>
+        <Description>$(WSProjectDescription)</Description>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(WSBuildDocumentationFile)</DocumentationFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>$(WSBuildPackageOutputPath)</PackageOutputPath>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+  <ItemGroup>
+    <Compile Condition="Exists('$(WSProjectGroupCommonPath)src\Assembly.Common.cs')" Include="$(WSProjectGroupCommonPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Condition="$(WSIncludeLicenseFile) AND Exists('$(WSLicenseFile)')" Include="$(WSLicenseFile)">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Condition="$(WSIncludeThirdPartyNoticesFile) AND Exists('$(WSThirdPartyNoticesFile)')" Include="$(WSThirdPartyNoticesFile)">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+</Project>

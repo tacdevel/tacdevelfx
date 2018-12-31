@@ -1,7 +1,7 @@
 ﻿/***************************************************************************************************
  * FileName:             Matrix.cs
  * Date:                 20181002
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -86,14 +86,14 @@ namespace TCD.Drawing
         /// <summary>
         /// Sets this <see cref="Matrix"/> structure's identity. After calling this, applying the matrix has no visual sequence. This must be called before any transformations are performed on this <see cref="Matrix"/>.
         /// </summary>
-        public void SetIdentity() => LibuiEx.DrawMatrixSetIdentity(this);
+        public void SetIdentity() => Libui.Call<Libui.uiDrawMatrixSetIdentity(this);
 
         /// <summary>
         /// Moves paths by the specified amount.
         /// </summary>
         /// <param name="x">The amount to move the path horizontally.</param>
         /// <param name="y">The amount to move the path vertically.</param>
-        public void Translate(double x, double y) => LibuiEx.DrawMatrixTranslate(this, x, y);
+        public void Translate(double x, double y) => Libui.Call<Libui.uiDrawMatrixTranslate(this, x, y);
 
         /// <summary>
         /// Scales paths by the specified factors, with a specified scale center.
@@ -102,7 +102,7 @@ namespace TCD.Drawing
         /// <param name="yCenter">The y-coordinate of the scale center.</param>
         /// <param name="x">The x-coordinate of the scale factor.</param>
         /// <param name="y">The y-coordinate of the scale factor.</param>
-        public void Scale(double xCenter, double yCenter, double x, double y) => LibuiEx.DrawMatrixScale(this, xCenter, yCenter, x, y);
+        public void Scale(double xCenter, double yCenter, double x, double y) => Libui.Call<Libui.uiDrawMatrixScale(this, xCenter, yCenter, x, y);
 
         /// <summary>
         /// Rotates paths by the specified radians around the specified points.
@@ -110,7 +110,7 @@ namespace TCD.Drawing
         /// <param name="x">The x-coordinate of the point.</param>
         /// <param name="y">The y-coordinate of the point.</param>
         /// <param name="amount">The amount to rotate the paths.</param>
-        public void Rotate(double x, double y, double amount) => LibuiEx.DrawMatrixRotate(this, x, y, amount);
+        public void Rotate(double x, double y, double amount) => Libui.Call<Libui.uiDrawMatrixRotate(this, x, y, amount);
 
         /// <summary>
         /// Skews a path by a specified amount in radians around the specified point.
@@ -119,7 +119,7 @@ namespace TCD.Drawing
         /// <param name="y">The y-coordinate of the point.</param>
         /// <param name="xamount">The amount to skew the paths horizontally.</param>
         /// <param name="yamount">The amount to skew the paths vertically.</param>
-        public void Skew(double x, double y, double xamount, double yamount) => LibuiEx.DrawMatrixSkew(this, x, y, xamount, yamount);
+        public void Skew(double x, double y, double xamount, double yamount) => Libui.Call<Libui.uiDrawMatrixSkew(this, x, y, xamount, yamount);
 
         /// <summary>
         /// Sets this matrix to the product of itself and the specified matrix.
@@ -132,18 +132,18 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="dest">The specified destination matrix.</param>
         /// <param name="src">The specified source matrix.</param>
-        public static void Multiply([Out]  Matrix dest, [In]  Matrix src) => LibuiEx.DrawMatrixMultiply(dest, src);
+        public static void Multiply([Out]  Matrix dest, [In]  Matrix src) => Libui.Call<Libui.uiDrawMatrixMultiply(dest, src);
 
         /// <summary>
         /// Gets a value indicating whether this matrix can be inverted.
         /// </summary>
         /// <returns><see langword="true"/> if the matrix is invertible; else <see langword="false"/>.</returns>
-        public bool Invertible() => LibuiEx.DrawMatrixInvertible(this);
+        public bool Invertible() => Libui.Call<Libui.uiDrawMatrixInvertible(this);
 
         /// <summary>
         /// Inverts this matrix.
         /// </summary>
-        public void Invert() => LibuiEx.DrawMatrixInvert(this);
+        public void Invert() => Libui.Call<Libui.uiDrawMatrixInvert(this);
 
         /// <summary>
         /// Gets the transformed point.
@@ -151,7 +151,7 @@ namespace TCD.Drawing
         /// <returns>The transformed point.</returns>
         public PointD TransformToPoint()
         {
-            LibuiEx.DrawMatrixTransformPoint(this, out double x, out double y);
+            Libui.Call<Libui.uiDrawMatrixTransformPoint(this, out double x, out double y);
             return new PointD(x, y);
         }
 
@@ -161,7 +161,7 @@ namespace TCD.Drawing
         /// <returns>The transformed size.</returns>
         public SizeD TransformToSize()
         {
-            LibuiEx.DrawMatrixTransformSize(this, out double width, out double height);
+            Libui.Call<Libui.uiDrawMatrixTransformSize(this, out double width, out double height);
             return new SizeD(width, height);
         }
 

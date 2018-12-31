@@ -1,7 +1,7 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             FontPicker.cs
  * Date:                 20181001
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -9,9 +9,9 @@ using System;
 using TCD.Drawing;
 using TCD.InteropServices;
 using TCD.Native;
-using TCD.SafeHandles;
+using TCD.UI.SafeHandles;
 
-namespace TCD.UI.Controls
+namespace TCD.UI
 {
     /// <summary>
     /// A button that allows a user to select a font.
@@ -23,7 +23,7 @@ namespace TCD.UI.Controls
         /// <summary>
         /// Initializes a new instance of the <see cref="FontPicker"/> class.
         /// </summary>
-        public FontPicker() : base(new SafeControlHandle(LibuiEx.NewFontButton())) => InitializeEvents();
+        public FontPicker() : base(new SafeControlHandle(Libui.Call<Libui.uiNewFontButton>()())) => InitializeEvents();
 
         /// <summary>
         /// Occurs when the <see cref="Font"/> property is changed.
@@ -38,7 +38,7 @@ namespace TCD.UI.Controls
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                LibuiEx.FontButtonFont(Handle, out font);
+                Libui.Call<Libui.uiFontButtonFont>()(Handle, out font);
                 return font;
             }
         }
@@ -54,14 +54,14 @@ namespace TCD.UI.Controls
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            LibuiEx.FontButtonOnChanged(Handle, (button, data) => OnFontChanged(this), IntPtr.Zero);
+            Libui.Call<Libui.uiFontButtonOnChanged>()(Handle, (button, data) => OnFontChanged(this), IntPtr.Zero);
         }
 
         protected sealed override void ReleaseUnmanagedResources()
         {
             if (font != null)
             {
-                LibuiEx.FreeFontButtonFont(font);
+                Libui.Call<Libui.uiFreeFontButtonFont>()(font);
                 font = null;
             }
             base.ReleaseUnmanagedResources();

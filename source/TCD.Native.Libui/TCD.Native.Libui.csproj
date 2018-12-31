@@ -1,0 +1,52 @@
+<!--================================================================================================
+* FileName:             TCD.Native.Libui.csproj
+* Date:                 20181214
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>$(DefineConstants);TCD_NATIVE_LIBUI</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="$(WSProjectGroupPath)TCD.InteropServices\TCD.InteropServices.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="$(WSProjectGroupCommonSourcePath)TCD\PlatformHelper.cs" Link="src\TCD\PlatformHelper.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="$(WSProjectGroupCommonLibrariesPath)win-x64\native\libui.dll" Link="runtimes\win-x64\native\libui.dll" PackagePath="runtimes\win-x64\native\libui.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="$(WSProjectGroupCommonLibrariesPath)linux-x64\native\libui.so" Link="runtimes\linux-x64\native\libui.so" PackagePath="runtimes\linux-x64\native\libui.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="$(WSProjectGroupCommonLibrariesPath)linux-x64\native\libui.so.0" Link="runtimes\linux-x64\native\libui.so.0" PackagePath="runtimes\linux-x64\native\libui.so.0">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="$(WSProjectGroupCommonLibrariesPath)osx-x64\native\libui.dylib" Link="runtimes\osx-x64\native\libui.dylib" PackagePath="runtimes\osx-x64\native\libui.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="$(WSProjectGroupCommonLibrariesPath)osx-x64\native\libui.A.dylib" Link="runtimes\osx-x64\native\libui.A.dylib" PackagePath="runtimes\osx-x64\native\libui.A.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="$(WSProjectGroupCommonHeadersPath)ui.h" Link="headers\ui.h" />
+  </ItemGroup>
+</Project>

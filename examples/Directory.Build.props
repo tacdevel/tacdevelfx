@@ -1,15 +1,16 @@
+<!--================================================================================================
+* FileName:             examples.props
+* Date:                 20181214
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TCDFxProjectGroup>examples</TCDFxProjectGroup>
-  </PropertyGroup>
-  
-  <!-- MSBuild Project Properties -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <OutputType>Exe</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-
-  <Import Project="..\TCDFx.props"/>
 </Project>

@@ -1,7 +1,7 @@
 /***************************************************************************************************
  * FileName:             Context.cs
  * Date:                 20181003
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -31,36 +31,36 @@ namespace TCD.Drawing
         /// <param name="path">The path to draw.</param>
         /// <param name="brush">The brush to use to draw the path.</param>
         /// <param name="stroke">The type of line to use.</param>
-        public void Stroke(Path path, Brush brush, StrokeOptions stroke) => LibuiEx.DrawStroke(Surface.Handle, path.Handle, ref brush, ref stroke);
+        public void Stroke(Path path, Brush brush, StrokeOptions stroke) => Libui.Call<Libui.uiDrawStroke(Surface.Handle, path.Handle, ref brush, ref stroke);
 
         /// <summary>
         /// Draws a <see cref="Path"/> filled with color in this <see cref="Context"/>.
         /// </summary>
         /// <param name="path">The path to draw.</param>
         /// <param name="brush">The brush to use to draw the path.</param>
-        public void Fill(Path path, Brush brush) => LibuiEx.DrawFill(Surface.Handle, path.Handle, ref brush);
+        public void Fill(Path path, Brush brush) => Libui.Call<Libui.uiDrawFill(Surface.Handle, path.Handle, ref brush);
 
         /// <summary>
         /// Clips a <see cref="Path"/> from this <see cref="Context"/>.
         /// </summary>
         /// <param name="path">The path to clip.</param>
-        public void Clip(Path path) => LibuiEx.DrawClip(Surface.Handle, path.Handle);
+        public void Clip(Path path) => Libui.Call<Libui.uiDrawClip(Surface.Handle, path.Handle);
 
         /// <summary>
         /// Saves the transformations currently applied to this <see cref="Context"/>.
         /// </summary>
-        public void Save() => LibuiEx.DrawSave(Surface.Handle);
+        public void Save() => Libui.Call<Libui.uiDrawSave(Surface.Handle);
 
         /// <summary>
         /// Restores the previously saved transformations to this <see cref="Context"/>.
         /// </summary>
-        public void Restore() => LibuiEx.DrawRestore(Surface.Handle);
+        public void Restore() => Libui.Call<Libui.uiDrawRestore(Surface.Handle);
 
         /// <summary>
         /// Applies a transform <see cref="Matrix"/> to this <see cref="Context"/>.
         /// </summary>
         /// <param name="matrix"></param>
-        public void Transform(Matrix matrix) => LibuiEx.DrawTransform(Surface.Handle, matrix);
+        public void Transform(Matrix matrix) => Libui.Call<Libui.uiDrawTransform(Surface.Handle, matrix);
         
         /* TODO: Move these to TCD.Drawing.Text
         /// <summary>
@@ -69,7 +69,7 @@ namespace TCD.Drawing
         /// <param name="layout">The text to draw.</param>
         /// <param name="x">The x-coordinate at which to draw the text.</param>
         /// <param name="y">The y-coordinate at which to draw the text.</param>
-        public void DrawText(TextLayout layout, double x, double y) => LibuiEx.DrawText(Surface.Handle, layout, x, y);
+        public void DrawText(TextLayout layout, double x, double y) => Libui.Call<Libui.uiDrawText(Surface.Handle, layout, x, y);
 
         /// <summary>
         /// Draws a <see cref="TextLayout"/> at the given location in this <see cref="Context"/>.

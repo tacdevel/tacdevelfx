@@ -1,12 +1,13 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             Application.cs
  * Date:                 20180921
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using TCD.InteropServices;
 using TCD.Native;
 
@@ -18,7 +19,7 @@ namespace TCD.UI
     public sealed class Application : NativeComponent
     {
         private static bool initialized = false;
-        private static StartupOptions options = new StartupOptions();
+        private static Libui.uiInitOptions options = new Libui.uiInitOptions() { Size = UIntPtr.Zero };
         private static readonly object sync = new object();
         private static readonly Queue<Action> queue = new Queue<Action>();
 
@@ -30,7 +31,7 @@ namespace TCD.UI
             lock (sync)
             {
                 if (initialized)
-                    throw new InvalidOperationException("You cannot have more than one instance of Application at once.");
+                    throw new ApplicationInitializationException("You cannot have more than one instance of Application at once.");
                 Current = this;
                 InitializeComponent();
                 InitializeEvents();
@@ -41,7 +42,7 @@ namespace TCD.UI
         /// <summary>
         /// Occurs just before an application shuts down.
         /// </summary>
-        public event NativeEventHandler<Application, CloseEventArgs> Closing;
+        public event EventHandler<CloseEventArgs> Closing;
 
         /// <summary>
         /// Gets the current instance of the <see cref="Application"/>.
@@ -72,7 +73,7 @@ namespace TCD.UI
             try
             {
                 QueueMain(action);
-                Libui.Main();
+                Libui.Call<Libui.uiMain>()();
             }
             catch (Exception)
             {
@@ -88,7 +89,7 @@ namespace TCD.UI
         public static void QueueMain(Action action)
         {
             queue.Enqueue(action);
-            Libui.QueueMain(data =>
+            Libui.Call<Libui.uiQueueMain>()(data =>
             {
                 lock (sync)
                 {
@@ -100,19 +101,19 @@ namespace TCD.UI
         /// <summary>
         /// Shuts down this <see cref="Application"/>.
         /// </summary>
-        public void Shutdown() => Libui.Quit();
+        public void Shutdown() => Libui.Call<Libui.uiQuit>()();
 
         /// <summary>
         /// Initializes this <see cref="Application"/>.
         /// </summary>
         protected override void InitializeComponent()
         {
-            string error = Libui.Init(ref options);
+            string error = Libui.Call<Libui.uiInit>()(ref options);
 
             if (!string.IsNullOrEmpty(error))
             {
                 Console.WriteLine(error);
-                Libui.FreeInitError(error);
+                Libui.Call<Libui.uiFreeInitError>()(error);
                 throw new ApplicationInitializationException(error);
             }
         }
@@ -120,7 +121,7 @@ namespace TCD.UI
         /// <summary>
         /// Initializes this <see cref="Application"/> object's events.
         /// </summary>
-        protected override void InitializeEvents() => Libui.OnShouldQuit(data =>
+        protected override void InitializeEvents() => Libui.Call<Libui.uiOnShouldQuit>()(data =>
         {
             CloseEventArgs e = new CloseEventArgs();
             Closing.Invoke(this, e);
@@ -133,8 +134,41 @@ namespace TCD.UI
         protected override void ReleaseUnmanagedResources()
         {
             if (!IsInvalid)
-                Libui.UnInit();
+                Libui.Call<Libui.uiUnInit>()();
             base.ReleaseUnmanagedResources();
         }
+    }
+
+    /// <summary>
+    /// The exception that is thrown when an <see cref="Application"/> class fails to initialize.
+    /// </summary>
+    [Serializable]
+    public sealed class ApplicationInitializationException : SystemException
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationInitializationException"/> class.
+        /// </summary>
+        public ApplicationInitializationException() : this("") { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationInitializationException"/> class with the specified error message.
+        /// </summary>
+        /// <param name="message">The error message that specifies the reason for the exception.</param>
+        public ApplicationInitializationException(string message) : base(message) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationInitializationException"/> class with the specified error message
+        /// and <see langword="abstract"/> reference to the inner exception that is the cause of this exception.
+        /// </summary>
+        /// <param name="message">The error message that specifies the reason for the exception.</param>
+        /// <param name="inner">The exception that is the cause of the current exception.</param>
+        public ApplicationInitializationException(string message, Exception inner) : base(message, inner) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApplicationInitializationException"/> class with serialized data.
+        /// </summary>
+        /// <param name="info">The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+        /// <param name="context">The <see cref="StreamingContext"/> that contains contextual information about the source or destination.</param>
+        internal ApplicationInitializationException(SerializationInfo info, StreamingContext context) : base(info, context) { }
     }
 }

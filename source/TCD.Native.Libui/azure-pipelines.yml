@@ -1,0 +1,50 @@
+variables:
+  build.buildNumber: $(Date:yyyyMMdd)$(Rev:.rr)
+  build.configuration: Release
+  build.projectName: TCD.Native.Libui
+
+name: $(build.buildNumber)
+
+resources:
+  - repo: self
+
+trigger:
+  - master
+
+jobs:
+- job: macOS
+  pool:
+    vmImage: 'macOS-10.13'
+
+  steps:
+  - script: |
+      dotnet restore  --disable-parallel --force
+      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
+
+    workingDirectory: source/$(build.projectName)
+    displayName: Build
+
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-16.04'
+
+  steps:
+  - script: |
+      dotnet restore --disable-parallel --force
+      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
+
+    workingDirectory: source/$(build.projectName)
+    displayName: Build
+
+- job: Windows
+  pool:
+    vmImage: 'VS2017-Win2016'
+
+  steps:
+  - script: |
+      dotnet restore --disable-parallel --force
+      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
+      dotnet nuget push ..\..\build\source\pkg\$(build.projectName)\ -k $(build.nuget.apiKey) -s $(build.nuget.pushUrl) --no-service-endpoint
+
+    workingDirectory: source\$(build.projectName)
+    displayName: Build and Push Package

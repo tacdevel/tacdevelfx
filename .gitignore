@@ -50,7 +50,6 @@ test-results/
 ##############################
 ## Build Directories
 [Bb]uild/*
-!build/*.props
 [Bb]in/
 [Oo]bj/
 [Pp]kg/

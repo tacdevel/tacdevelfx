@@ -1,7 +1,7 @@
 /***************************************************************************************************
  * FileName:             LibuiEx.cs
  * Date:                 20181120
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright Â© 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -106,7 +106,7 @@ namespace TCD.Native
             [UnmanagedFunctionPointer(Libui.Convention)] internal delegate UIntPtr uiAttributedStringByteIndexToGrapheme(IntPtr s, UIntPtr pos);
             [UnmanagedFunctionPointer(Libui.Convention)] internal delegate UIntPtr uiAttributedStringGraphemeToByteIndex(IntPtr s, UIntPtr pos);
 
-            //TODO: Uncomment [UnmanagedFunctionPointer(Libui.Convention)] internal delegate IntPtr uiDrawNewTextLayout(uiDrawTextLayoutParams param);
+            // [UnmanagedFunctionPointer(Libui.Convention)] internal delegate IntPtr uiDrawNewTextLayout(uiDrawTextLayoutParams param);
             [UnmanagedFunctionPointer(Libui.Convention)] internal delegate void uiDrawFreeTextLayout(IntPtr tl);
             [UnmanagedFunctionPointer(Libui.Convention)] internal delegate void uiDrawText(IntPtr c, IntPtr tl, double x, double y);
             [UnmanagedFunctionPointer(Libui.Convention)] internal delegate void uiDrawTextLayoutExtents(IntPtr tl, out double width, out double height);

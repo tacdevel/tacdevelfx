@@ -1,7 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<!--================================================================================================
+* FileName:             TCD.Disposable.csproj
+* Date:                 20181214
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);TCD_DISPOSABLE</DefineConstants>
   </PropertyGroup>
+  
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>

@@ -1,7 +1,7 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             Window.cs
  * Date:                 20180921
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -10,8 +10,7 @@ using System.IO;
 using TCD.Drawing;
 using TCD.InteropServices;
 using TCD.Native;
-using TCD.SafeHandles;
-using TCD.UI.Controls;
+using TCD.UI.SafeHandles;
 
 namespace TCD.UI
 {
@@ -32,15 +31,12 @@ namespace TCD.UI
         /// <param name="width">The width of the window.</param>
         /// <param name="height">The height of the window.</param>
         /// <param name="hasMenu">Whether or not the window will have a menu.</param>
-        public Window(string title = "", int width = 600, int height = 400, bool hasMenu = false) : base(new SafeControlHandle(Libui.NewWindow(title, width, height, hasMenu)))
+        public Window(string title = "", int width = 600, int height = 400, bool hasMenu = false) : base(new SafeControlHandle(Libui.Call<Libui.uiNewWindow>()(title, width, height, hasMenu)))
         {
             this.title = title;
             Console.Title = title;
             size = new Size(width, height);
             HasMenu = hasMenu;
-            IsMargined = isMargined;
-            Fullscreen = fullscreen;
-            Borderless = borderless;
             InitializeEvents();
         }
 
@@ -56,12 +52,12 @@ namespace TCD.UI
         /// <summary>
         /// Occurs when the <see cref="Window"/> is closing.
         /// </summary>
-        public event NativeEventHandler<Window, CloseEventArgs> Closing;
+        public event EventHandler<CloseEventArgs> Closing;
 
         /// <summary>
         /// Occurs when the <see cref="Size"/> property value changes.
         /// </summary>
-        public event NativeEventHandler<Window> SizeChanged;
+        public event EventHandler SizeChanged;
 
         /// <summary>
         /// Gets whether or not this <see cref="Window"/> has a menu.
@@ -76,14 +72,14 @@ namespace TCD.UI
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                title = Libui.WindowTitle(Handle);
+                title = Libui.Call<Libui.uiWindowTitle>()(Handle);
                 return title;
             }
             set
             {
                 if (title == value) return;
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.WindowSetTitle(Handle, value);
+                Libui.Call<Libui.uiWindowSetTitle>()(Handle, value);
                 title = value;
             }
         }
@@ -91,12 +87,12 @@ namespace TCD.UI
         /// <summary>
         /// Gets or sets the content size of this <see cref="Window"/>.
         /// </summary>
-        public Size Size
+        public Size ContentSize
         {
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.WindowContentSize(Handle, out int w, out int h);
+                Libui.Call<Libui.uiWindowContentSize>()(Handle, out int w, out int h);
                 size = new Size(w, h);
                 return size;
             }
@@ -104,7 +100,7 @@ namespace TCD.UI
             {
                 if (size == value) return;
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.WindowSetContentSize(Handle, value.Width, value.Height);
+                Libui.Call<Libui.uiWindowSetContentSize>()(Handle, value.Width, value.Height);
                 size = value;
             }
         }
@@ -112,12 +108,12 @@ namespace TCD.UI
         /// <summary>
         /// Gets the content width of this <see cref="Window"/>.
         /// </summary>
-        public int Width => Size.Width;
+        public int ContentWidth => ContentSize.Width;
 
         /// <summary>
         /// Gets the content height of this <see cref="Window"/>.
         /// </summary>
-        public int Height => Size.Height;
+        public int ContentHeight => ContentSize.Height;
 
         /// <summary>
         /// Gets or sets whether or not this <see cref="Window"/> fills the entire screen.
@@ -127,15 +123,15 @@ namespace TCD.UI
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                fullscreen = Libui.WindowFullscreen(Handle);
+                fullscreen = Libui.Call<Libui.uiWindowFullscreen>()(Handle);
                 return fullscreen;
             }
             set
             {
                 if (fullscreen == value) return;
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.WindowSetFullscreen(Handle, value);
                 fullscreen = value;
+                Libui.Call<Libui.uiWindowSetFullscreen>()(Handle, fullscreen);
             }
         }
 
@@ -147,15 +143,15 @@ namespace TCD.UI
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                borderless = Libui.WindowBorderless(Handle);
+                borderless = Libui.Call<Libui.uiWindowBorderless>()(Handle);
                 return borderless;
             }
             set
             {
                 if (borderless == value) return;
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.WindowSetBorderless(Handle, value);
                 borderless = value;
+                Libui.Call<Libui.uiWindowSetBorderless>()(Handle, borderless);
             }
         }
 
@@ -170,7 +166,7 @@ namespace TCD.UI
                 {
                     if (value == null) throw new ArgumentNullException(nameof(value));
                     if (IsInvalid) throw new InvalidHandleException();
-                    Libui.WindowSetChild(Handle, value.Handle);
+                    Libui.Call<Libui.uiWindowSetChild>()(Handle, value.Handle);
                 }
             }
         }
@@ -183,15 +179,15 @@ namespace TCD.UI
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                isMargined = Libui.WindowMargined(Handle);
+                isMargined = Libui.Call<Libui.uiWindowMargined>()(Handle);
                 return isMargined;
             }
             set
             {
                 if (isMargined == value) return;
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.WindowSetMargined(Handle, value);
                 isMargined = value;
+                Libui.Call<Libui.uiWindowSetMargined>()(Handle, isMargined);
             }
         }
 
@@ -202,6 +198,42 @@ namespace TCD.UI
         {
             Hide();
             Dispose();
+        }
+
+        /// <summary>
+        /// Raises the <see cref="Closing"/> event.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The object containing the event data.</param>
+        protected virtual void OnClosing(Window sender, CloseEventArgs e) => Closing?.Invoke(sender, e);
+
+        /// <summary>
+        /// Raises the <see cref="SizeChanged"/> event.
+        /// </summary>
+        protected virtual void OnSizeChanged(Window sender, EventArgs e) => SizeChanged?.Invoke(sender, e);
+
+        /// <summary>
+        /// Initializes this <see cref="Window"/> object's events.
+        /// </summary>
+        protected sealed override void InitializeEvents()
+        {
+            if (IsInvalid) throw new InvalidHandleException();
+
+            Libui.Call<Libui.uiWindowOnClosing>()(Handle, (window, data) =>
+            {
+                CloseEventArgs e = new CloseEventArgs();
+                OnClosing(this, e);
+                if (e.Close)
+                {
+                    if (this != Application.MainWindow)
+                        Close();
+                    else
+                        Application.Current.Shutdown();
+                }
+                return e.Close;
+            }, IntPtr.Zero);
+
+            Libui.Call<Libui.uiWindowOnContentSizeChanged>()(Handle, (window, data) => OnSizeChanged(this, EventArgs.Empty), IntPtr.Zero);
         }
 
         #region Dialogs
@@ -230,7 +262,7 @@ namespace TCD.UI
             if (w == null) w = Application.MainWindow;
             if (w.IsInvalid) throw new InvalidHandleException();
 
-            path = Libui.SaveFile(w.Handle);
+            path = Libui.Call<Libui.uiSaveFile>()(w.Handle);
             return string.IsNullOrEmpty(path) ? false : true;
         }
 
@@ -279,7 +311,7 @@ namespace TCD.UI
             if (w == null) w = Application.MainWindow;
             if (w.IsInvalid) throw new InvalidHandleException();
 
-            path = Libui.OpenFile(w.Handle);
+            path = Libui.Call<Libui.uiOpenFile>()(w.Handle);
             return string.IsNullOrEmpty(path) ? false : true;
         }
 
@@ -324,46 +356,10 @@ namespace TCD.UI
             if (w.IsInvalid) throw new InvalidHandleException();
 
             if (isError)
-                Libui.MsgBoxError(w.Handle, title, description);
+                Libui.Call<Libui.uiMsgBoxError>()(w.Handle, title, description);
             else
-                Libui.MsgBox(w.Handle, title, description);
+                Libui.Call<Libui.uiMsgBox>()(w.Handle, title, description);
         }
         #endregion
-
-        /// <summary>
-        /// Raises the <see cref="Closing"/> event.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The object containing the event data.</param>
-        protected virtual void OnClosing(Window sender, CloseEventArgs e) => Closing?.Invoke(sender, e);
-
-        /// <summary>
-        /// Raises the <see cref="SizeChanged"/> event.
-        /// </summary>
-        protected virtual void OnSizeChanged(Window sender) => SizeChanged?.Invoke(sender);
-
-        /// <summary>
-        /// Initializes this <see cref="Window"/> object's events.
-        /// </summary>
-        protected sealed override void InitializeEvents()
-        {
-            if (IsInvalid) throw new InvalidHandleException();
-
-            Libui.WindowOnClosing(Handle, (window, data) =>
-            {
-                CloseEventArgs e = new CloseEventArgs();
-                OnClosing(this, e);
-                if (e.Close)
-                {
-                    if (this != Application.MainWindow)
-                        Close();
-                    else
-                        Application.Current.Shutdown();
-                }
-                return e.Close;
-            }, IntPtr.Zero);
-
-            Libui.WindowOnContentSizeChanged(Handle, (window, data) => OnSizeChanged(this), IntPtr.Zero);
-        }
     }
 }

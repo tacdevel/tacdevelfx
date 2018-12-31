@@ -8,14 +8,14 @@
 *                                            @tom-corwin
 
 # Packages
-source/                                      
-source/TCD.Collections.MultiValueDictionary/ 
-source/TCD.Disposable/                       
-source/TCD.Drawing.Common/                   
-source/TCD.Drawing.Primitives/               
-source/TCD.Drawing.Text/                     
-source/TCD.InteropServices/                  
-source/TCD.UI/                               
+source/                                      @tom-corwin
+source/TCD.Collections.MultiValueDictionary/ @tom-corwin
+source/TCD.Disposable/                       @tom-corwin
+source/TCD.Drawing.Common/                   @tom-corwin
+source/TCD.Drawing.Primitives/               @tom-corwin
+source/TCD.Drawing.Text/                     @tom-corwin
+source/TCD.InteropServices/                  @tom-corwin
+source/TCD.UI/                               @tom-corwin
 
 # Examples
-examples/                                    
+examples/                                    @tom-corwin

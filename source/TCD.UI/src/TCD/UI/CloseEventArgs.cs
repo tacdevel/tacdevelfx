@@ -1,16 +1,18 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             CloseEventArgs.cs
  * Date:                 20180921
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
+
+using System;
 
 namespace TCD.UI
 {
     /// <summary>
     /// Provides data for a closing event.
     /// </summary>
-    public class CloseEventArgs : NativeEventArgs
+    public class CloseEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CloseEventArgs"/> with the specified event data.

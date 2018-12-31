@@ -1,21 +1,16 @@
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <TCDFxProjectGroup>source</TCDFxProjectGroup>
-    <TCDFxPackableProject>true</TCDFxPackableProject>
-  </PropertyGroup>
+<!--================================================================================================
+* FileName:             Directory.Build.props
+* Date:                 20181214
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
 
-  <!-- MSBuild Project Properties -->
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <OutputType>Library</OutputType>
-    <EnableDefaultItems>false</EnableDefaultItems>
   </PropertyGroup>
-  
-  <Import Project="..\TCDFx.props"/>
-
-  <!-- Common Source -->
-  <ItemGroup>
-    <Compile Include="$(TCDFxCommonProjectPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
-  </ItemGroup>
 </Project>

@@ -1,0 +1,24 @@
+<!--================================================================================================
+* FileName:             ws.config.props
+* Date:                 20181227
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <WSAuthors>Thomas Corwin, et al.</WSAuthors>
+    <WSCopyright>Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.</WSCopyright>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <WSRepositoryURL>https://github.com/tacdevel/tcdfx</WSRepositoryURL>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <WSVersionMajor>0</WSVersionMajor>
+    <WSVersionMinor>4</WSVersionMinor>
+    <WSVersionPatch>0</WSVersionPatch>
+    <WSVersionSuffix></WSVersionSuffix> <!-- Must be empty for CI -->
+  </PropertyGroup>
+</Project>

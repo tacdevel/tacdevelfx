@@ -1,7 +1,7 @@
 /***************************************************************************************************
  * FileName:             Disposable.cs
  * Date:                 20180913
- * Copyright:            Copyright © 2017-2018 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -24,8 +24,8 @@ namespace TCD
         /// </summary>
         public bool IsDisposed { get; private set; } = false;
 
-        /// <summary>
-        /// When overridden in a derived class, performs tasks associated with releasing unmanaged resources.
+       /// <summary>
+       /// When overridden in a derived class, performs tasks associated with releasing unmanaged resources.
         /// </summary>
         protected abstract void ReleaseUnmanagedResources();
 
@@ -35,14 +35,14 @@ namespace TCD
         protected abstract void ReleaseManagedResources();
 
         /// <summary>
-        /// Raises the <see cref="Disposed"/> event.
+        /// Raises the <see cref="Disposing"/> event.
         /// </summary>
         public virtual void OnDisposing() => Disposing?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        public void Dispose()
+       public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
@@ -84,5 +84,5 @@ namespace TCD
                 IsDisposed = true;
             }
         }
-    }
+   }
 }
