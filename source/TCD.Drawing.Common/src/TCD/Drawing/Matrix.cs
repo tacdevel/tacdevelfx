@@ -1,4 +1,4 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             Matrix.cs
  * Date:                 20181002
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
@@ -18,24 +18,20 @@ namespace TCD.Drawing
     [StructLayout(LayoutKind.Sequential)]
     public sealed class Matrix : IEquatable<Matrix>
     {
-#pragma warning disable IDE0032 // Use auto property
-#pragma warning disable IDE0044 // Add readonly modifier
-        private double m11 = 1;
-        private double m12 = 0;
-        private double m21 = 0;
-        private double m22 = 1;
-        private double m31 = 0;
-        private double m32 = 0;
-#pragma warning restore IDE0044 // Add readonly modifier
-#pragma warning restore IDE0032 // Use auto property
+        internal Libui.uiDrawMatrix uiDrawMatrix;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Matrix"/> class.
+        /// </summary>
+        public Matrix() => uiDrawMatrix = new Libui.uiDrawMatrix();
 
         /// <summary>
         /// Represents a specific value in this <see cref="Matrix"/>.
         /// </summary>
         public double M11
         {
-            get => m11;
-            set => m11 = value;
+            get => uiDrawMatrix.M11;
+            set => uiDrawMatrix.M11 = value;
         }
 
         /// <summary>
@@ -43,8 +39,8 @@ namespace TCD.Drawing
         /// </summary>
         public double M12
         {
-            get => m12;
-            set => m12 = value;
+            get => uiDrawMatrix.M12;
+            set => uiDrawMatrix.M12 = value;
         }
 
         /// <summary>
@@ -52,8 +48,8 @@ namespace TCD.Drawing
         /// </summary>
         public double M21
         {
-            get => m21;
-            set => m21 = value;
+            get => uiDrawMatrix.M21;
+            set => uiDrawMatrix.M21 = value;
         }
 
         /// <summary>
@@ -61,8 +57,8 @@ namespace TCD.Drawing
         /// </summary>
         public double M22
         {
-            get => m22;
-            set => m22 = value;
+            get => uiDrawMatrix.M22;
+            set => uiDrawMatrix.M22 = value;
         }
 
         /// <summary>
@@ -70,8 +66,8 @@ namespace TCD.Drawing
         /// </summary>
         public double M31
         {
-            get => m31;
-            set => m31 = value;
+            get => uiDrawMatrix.M31;
+            set => uiDrawMatrix.M31 = value;
         }
 
         /// <summary>
@@ -79,21 +75,21 @@ namespace TCD.Drawing
         /// </summary>
         public double M32
         {
-            get => m32;
-            set => m32 = value;
+            get => uiDrawMatrix.M32;
+            set => uiDrawMatrix.M32 = value;
         }
 
         /// <summary>
         /// Sets this <see cref="Matrix"/> structure's identity. After calling this, applying the matrix has no visual sequence. This must be called before any transformations are performed on this <see cref="Matrix"/>.
         /// </summary>
-        public void SetIdentity() => Libui.Call<Libui.uiDrawMatrixSetIdentity(this);
+        public void SetIdentity() => Libui.Call<Libui.uiDrawMatrixSetIdentity>()(uiDrawMatrix);
 
         /// <summary>
         /// Moves paths by the specified amount.
         /// </summary>
         /// <param name="x">The amount to move the path horizontally.</param>
         /// <param name="y">The amount to move the path vertically.</param>
-        public void Translate(double x, double y) => Libui.Call<Libui.uiDrawMatrixTranslate(this, x, y);
+        public void Translate(double x, double y) => Libui.Call<Libui.uiDrawMatrixTranslate>()(uiDrawMatrix, x, y);
 
         /// <summary>
         /// Scales paths by the specified factors, with a specified scale center.
@@ -102,7 +98,7 @@ namespace TCD.Drawing
         /// <param name="yCenter">The y-coordinate of the scale center.</param>
         /// <param name="x">The x-coordinate of the scale factor.</param>
         /// <param name="y">The y-coordinate of the scale factor.</param>
-        public void Scale(double xCenter, double yCenter, double x, double y) => Libui.Call<Libui.uiDrawMatrixScale(this, xCenter, yCenter, x, y);
+        public void Scale(double xCenter, double yCenter, double x, double y) => Libui.Call<Libui.uiDrawMatrixScale>()(uiDrawMatrix, xCenter, yCenter, x, y);
 
         /// <summary>
         /// Rotates paths by the specified radians around the specified points.
@@ -110,7 +106,7 @@ namespace TCD.Drawing
         /// <param name="x">The x-coordinate of the point.</param>
         /// <param name="y">The y-coordinate of the point.</param>
         /// <param name="amount">The amount to rotate the paths.</param>
-        public void Rotate(double x, double y, double amount) => Libui.Call<Libui.uiDrawMatrixRotate(this, x, y, amount);
+        public void Rotate(double x, double y, double amount) => Libui.Call<Libui.uiDrawMatrixRotate>()(uiDrawMatrix, x, y, amount);
 
         /// <summary>
         /// Skews a path by a specified amount in radians around the specified point.
@@ -119,7 +115,7 @@ namespace TCD.Drawing
         /// <param name="y">The y-coordinate of the point.</param>
         /// <param name="xamount">The amount to skew the paths horizontally.</param>
         /// <param name="yamount">The amount to skew the paths vertically.</param>
-        public void Skew(double x, double y, double xamount, double yamount) => Libui.Call<Libui.uiDrawMatrixSkew(this, x, y, xamount, yamount);
+        public void Skew(double x, double y, double xamount, double yamount) => Libui.Call<Libui.uiDrawMatrixSkew>()(uiDrawMatrix, x, y, xamount, yamount);
 
         /// <summary>
         /// Sets this matrix to the product of itself and the specified matrix.
@@ -132,18 +128,18 @@ namespace TCD.Drawing
         /// </summary>
         /// <param name="dest">The specified destination matrix.</param>
         /// <param name="src">The specified source matrix.</param>
-        public static void Multiply([Out]  Matrix dest, [In]  Matrix src) => Libui.Call<Libui.uiDrawMatrixMultiply(dest, src);
+        public static void Multiply([Out]  Matrix dest, [In]  Matrix src) => Libui.Call<Libui.uiDrawMatrixMultiply>()(dest.uiDrawMatrix, src.uiDrawMatrix);
 
         /// <summary>
         /// Gets a value indicating whether this matrix can be inverted.
         /// </summary>
         /// <returns><see langword="true"/> if the matrix is invertible; else <see langword="false"/>.</returns>
-        public bool Invertible() => Libui.Call<Libui.uiDrawMatrixInvertible(this);
+        public bool Invertible() => Libui.Call<Libui.uiDrawMatrixInvertible>()(uiDrawMatrix);
 
         /// <summary>
         /// Inverts this matrix.
         /// </summary>
-        public void Invert() => Libui.Call<Libui.uiDrawMatrixInvert(this);
+        public void Invert() => Libui.Call<Libui.uiDrawMatrixInvert>()(uiDrawMatrix);
 
         /// <summary>
         /// Gets the transformed point.
@@ -151,7 +147,7 @@ namespace TCD.Drawing
         /// <returns>The transformed point.</returns>
         public PointD TransformToPoint()
         {
-            Libui.Call<Libui.uiDrawMatrixTransformPoint(this, out double x, out double y);
+            Libui.Call<Libui.uiDrawMatrixTransformPoint>()(uiDrawMatrix, out double x, out double y);
             return new PointD(x, y);
         }
 
@@ -161,7 +157,7 @@ namespace TCD.Drawing
         /// <returns>The transformed size.</returns>
         public SizeD TransformToSize()
         {
-            Libui.Call<Libui.uiDrawMatrixTransformSize(this, out double width, out double height);
+            Libui.Call<Libui.uiDrawMatrixTransformSize>()(uiDrawMatrix, out double width, out double height);
             return new SizeD(width, height);
         }
 
@@ -183,7 +179,7 @@ namespace TCD.Drawing
         /// Returns the hash code for this instance.
         /// </summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-        public override int GetHashCode() => unchecked(this.GenerateHashCode(m11, m12, m21, m22, m31, m32));
+        public override int GetHashCode() => unchecked(this.GenerateHashCode(M11, M12, M21, M22, M31, M32));
 
         /// <summary>
         /// Tests whether two specified <see cref="Matrix"/> structures are equivalent.
@@ -191,7 +187,7 @@ namespace TCD.Drawing
         /// <param name="left">The <see cref="Matrix"/> that is to the left of the equality operator.</param>
         /// <param name="right">The <see cref="Matrix"/> that is to the right of the equality operator.</param>
         /// <returns><see langword="true"/> if the two <see cref="Matrix"/> structures are equal; otherwise, <see langword="false"/>.</returns>
-        public static bool operator ==(Matrix left, Matrix right) => left.m11 == right.m11 && left.m12 == right.m12 && left.m21 == right.m21 && left.m22 == right.m22 && left.m31 == right.m31 && left.m32 == right.m32;
+        public static bool operator ==(Matrix left, Matrix right) => left.M11 == right.M11 && left.M12 == right.M12 && left.M21 == right.M21 && left.M22 == right.M22 && left.M31 == right.M31 && left.M32 == right.M32;
 
         /// <summary>
         /// Tests whether two specified <see cref="Matrix"/> structures are different.

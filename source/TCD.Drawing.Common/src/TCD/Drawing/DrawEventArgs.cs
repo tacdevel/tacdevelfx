@@ -30,15 +30,17 @@ namespace TCD.Drawing
             Context = context;
             uiAreaDrawParams = new Libui.uiAreaDrawParams()
             {
-                context = Context.Surface.Handle,
-                surfaceWidth = surfaceSize.Width,
-                surfaceHeight = surfaceSize.Height,
-                clipX = clip.X,
-                clipY = clip.Y,
-                clipWidth = clip.Width,
-                clipHeight = clip.Height
+                Context = Context.Surface.Handle,
+                AreaWidth = surfaceSize.Width,
+                AreaHeight = surfaceSize.Height,
+                ClipX = clip.X,
+                ClipY = clip.Y,
+                ClipWidth = clip.Width,
+                ClipHeight = clip.Height
             };
         }
+
+        internal DrawEventArgs(Libui.uiAreaDrawParams param) => uiAreaDrawParams = param;
 
         /// <summary>
         /// Gets the drawing context.
@@ -48,11 +50,11 @@ namespace TCD.Drawing
         /// <summary>
         /// Gets the clip to be redrawn.
         /// </summary>
-        public RectangleD Clip => new RectangleD(uiAreaDrawParams.clipX, uiAreaDrawParams.clipY, uiAreaDrawParams.clipWidth, uiAreaDrawParams.clipHeight);
+        public RectangleD Clip => new RectangleD(uiAreaDrawParams.ClipX, uiAreaDrawParams.ClipY, uiAreaDrawParams.ClipWidth, uiAreaDrawParams.ClipHeight);
 
         /// <summary>
         /// Gets the surface's current size.
         /// </summary>
-        public SizeD SurfaceSize => new SizeD(uiAreaDrawParams.surfaceWidth, uiAreaDrawParams.surfaceHeight);
+        public SizeD SurfaceSize => new SizeD(uiAreaDrawParams.AreaWidth, uiAreaDrawParams.AreaHeight);
     }
 }

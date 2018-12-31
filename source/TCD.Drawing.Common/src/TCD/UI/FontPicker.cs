@@ -18,7 +18,7 @@ namespace TCD.UI
     /// </summary>
     public class FontPicker : Control
     {
-        private Font font;
+        private Libui.uiFontDescriptor uiFontDescriptor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FontPicker"/> class.
@@ -28,7 +28,7 @@ namespace TCD.UI
         /// <summary>
         /// Occurs when the <see cref="Font"/> property is changed.
         /// </summary>
-        public event NativeEventHandler<FontPicker> FontChanged;
+        public event EventHandler FontChanged;
 
         /// <summary>
         /// Gets the currently selected font.
@@ -38,15 +38,15 @@ namespace TCD.UI
             get
             {
                 if (IsInvalid) throw new InvalidHandleException();
-                Libui.Call<Libui.uiFontButtonFont>()(Handle, out font);
-                return font;
+                Libui.Call<Libui.uiFontButtonFont>()(Handle, out uiFontDescriptor);
+                return new Font(uiFontDescriptor);
             }
         }
 
         /// <summary>
         /// Raises the <see cref="FontChanged"/> event.
         /// </summary>
-        protected virtual void OnFontChanged(FontPicker sender) => FontChanged?.Invoke(sender);
+        protected virtual void OnFontChanged(FontPicker sender, EventArgs e) => FontChanged?.Invoke(sender, e);
 
         /// <summary>
         /// Initializes this <see cref="FontPicker"/> object's events.
@@ -54,15 +54,15 @@ namespace TCD.UI
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.Call<Libui.uiFontButtonOnChanged>()(Handle, (button, data) => OnFontChanged(this), IntPtr.Zero);
+            Libui.Call<Libui.uiFontButtonOnChanged>()(Handle, (button, data) => OnFontChanged(this, EventArgs.Empty), IntPtr.Zero);
         }
 
         protected sealed override void ReleaseUnmanagedResources()
         {
-            if (font != null)
+            if (Font != null)
             {
-                Libui.Call<Libui.uiFreeFontButtonFont>()(font);
-                font = null;
+                Libui.Call<Libui.uiFreeFontButtonFont>()(uiFontDescriptor);
+                uiFontDescriptor = new Libui.uiFontDescriptor();
             }
             base.ReleaseUnmanagedResources();
         }

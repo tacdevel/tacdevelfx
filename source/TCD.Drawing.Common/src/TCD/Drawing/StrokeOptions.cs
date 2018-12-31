@@ -1,4 +1,4 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             StrokeOptions.cs
  * Date:                 20181002
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using TCD.Native;
 
 namespace TCD.Drawing
 {
@@ -19,17 +20,7 @@ namespace TCD.Drawing
     [StructLayout(LayoutKind.Sequential)]
     public sealed class StrokeOptions
     {
-#pragma warning disable IDE0044 // Add readonly modifier
-#pragma warning disable IDE0032 // Use auto property
-        private LineCap cap;
-        private LineJoin join;
-        private double thickness, miterLimit;
-        private IntPtr dashesPtr;
-        private UIntPtr numDashes;
-        private double dashPhase;
-#pragma warning restore IDE0044 // Add readonly modifier
-#pragma warning restore IDE0032 // Use auto property
-
+        internal Libui.uiDrawStrokeParams uiDrawStrokeParams;
         private List<double> dashes;
 
         /// <summary>
@@ -40,15 +31,22 @@ namespace TCD.Drawing
         /// <summary>
         /// Initializes a new instance of the <see cref="StrokeOptions"/> class.
         /// </summary>
-        public StrokeOptions() => MiterLimit = DefaultMiterLimit;
+        public StrokeOptions(LineCap cap, LineJoin join, double thickness, IList<double> dashes, double dashPhase, double miterLimit = DefaultMiterLimit) => uiDrawStrokeParams = new Libui.uiDrawStrokeParams()
+        {
+            Cap = (Libui.uiDrawLineCap)cap,
+            Join = (Libui.uiDrawLineJoin)join,
+            Thickness = thickness,
+            DashPhase = dashPhase,
+            MiterLimit = DefaultMiterLimit
+        };
 
         /// <summary>
         /// Gets or sets the style of cap at line ends.
         /// </summary>
         public LineCap Cap
         {
-            get => cap;
-            set => cap = value;
+            get => (LineCap)uiDrawStrokeParams.Cap;
+            set => uiDrawStrokeParams.Cap = (Libui.uiDrawLineCap)value;
         }
 
         /// <summary>
@@ -56,8 +54,8 @@ namespace TCD.Drawing
         /// </summary>
         public LineJoin Join
         {
-            get => join;
-            set => join = value;
+            get => (LineJoin)uiDrawStrokeParams.Join;
+            set => uiDrawStrokeParams.Join = (Libui.uiDrawLineJoin)value;
         }
 
         /// <summary>
@@ -65,8 +63,8 @@ namespace TCD.Drawing
         /// </summary>
         public double Thickness
         {
-            get => thickness;
-            set => thickness = value;
+            get => uiDrawStrokeParams.Thickness;
+            set => uiDrawStrokeParams.Thickness = value;
         }
 
         /// <summary>
@@ -74,8 +72,8 @@ namespace TCD.Drawing
         /// </summary>
         public double MiterLimit
         {
-            get => miterLimit;
-            set => miterLimit = value;
+            get => uiDrawStrokeParams.MiterLimit;
+            set => uiDrawStrokeParams.MiterLimit = value;
         }
 
         /// <summary>
@@ -89,8 +87,8 @@ namespace TCD.Drawing
                 if (value != null && value.Count != 0)
                 {
                     int length = value.Count;
-                    dashesPtr = Marshal.UnsafeAddrOfPinnedArrayElement(value.ToArray(), 0);
-                    numDashes = (UIntPtr)length;
+                    uiDrawStrokeParams.Dashes = Marshal.UnsafeAddrOfPinnedArrayElement(value.ToArray(), 0);
+                    uiDrawStrokeParams.NumDashes = (UIntPtr)length;
                     dashes = value;
                 }
             }
@@ -101,8 +99,8 @@ namespace TCD.Drawing
         /// </summary>
         public double DashPhase
         {
-            get => dashPhase;
-            set => dashPhase = value;
+            get => uiDrawStrokeParams.DashPhase;
+            set => uiDrawStrokeParams.DashPhase = value;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             Font.cs
  * Date:                 20180930
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
@@ -7,6 +7,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using TCD.Native;
 
 namespace TCD.Drawing
 {
@@ -17,15 +18,7 @@ namespace TCD.Drawing
     [StructLayout(LayoutKind.Sequential)]
     public class Font : IEquatable<Font>
     {
-#pragma warning disable IDE0032 // Use auto property
-#pragma warning disable IDE0044 // Add readonly modifier
-        private string family;
-        private double size;
-        private FontWeight weight;
-        private FontStyle style;
-        private FontStretch stretch;
-#pragma warning restore IDE0044 // Add readonly modifier
-#pragma warning restore IDE0032 // Use auto property
+        internal Libui.uiFontDescriptor uiFontDescriptor;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Font"/> structure
@@ -35,39 +28,41 @@ namespace TCD.Drawing
         /// <param name="weight">The font weight.</param>
         /// <param name="style">The style of the font.</param>
         /// <param name="stretch">The width of the font.</param>
-        public Font(string family, double size, FontWeight weight = FontWeight.Normal, FontStyle style = FontStyle.Normal, FontStretch stretch = FontStretch.Normal)
+        public Font(string family, double size, FontWeight weight = FontWeight.Normal, FontStyle style = FontStyle.Normal, FontStretch stretch = FontStretch.Normal) => uiFontDescriptor = new Libui.uiFontDescriptor()
         {
-            Family = family;
-            Size = size;
-            Weight = weight;
-            Style = style;
-            Stretch = stretch;
-        }
+            Family = family,
+            Size = size,
+            Weight = (Libui.uiTextWeight)weight,
+            Italic = (Libui.uiTextItalic)style,
+            Stretch = (Libui.uiTextStretch)stretch
+        };
+
+        internal Font(Libui.uiFontDescriptor desc) => uiFontDescriptor = desc;
 
         /// <summary>
         /// Gets the font family of this <see cref="Font"/>.
         /// </summary>
-        public string Family { get; }
+        public string Family => uiFontDescriptor.Family;
 
         /// <summary>
         /// Gets the size of this <see cref="Font"/>.
         /// </summary>
-        public double Size { get; }
+        public double Size => uiFontDescriptor.Size;
 
         /// <summary>
         /// Gets the weight of this <see cref="Font"/>.
         /// </summary>
-        public FontWeight Weight { get; }
+        public FontWeight Weight => (FontWeight)uiFontDescriptor.Weight;
 
         /// <summary>
         /// Gets the style of this <see cref="Font"/>.
         /// </summary>
-        public FontStyle Style { get; }
+        public FontStyle Style => (FontStyle)uiFontDescriptor.Italic;
 
         /// <summary>
         /// Gets the stretch (width) of this <see cref="Font"/>.
         /// </summary>
-        public FontStretch Stretch { get; }
+        public FontStretch Stretch => (FontStretch)uiFontDescriptor.Stretch;
 
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
@@ -87,7 +82,7 @@ namespace TCD.Drawing
         /// Returns the hash code for this instance.
         /// </summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
-        public override int GetHashCode() => unchecked(this.GenerateHashCode(family, size, weight, style, stretch));
+        public override int GetHashCode() => unchecked(this.GenerateHashCode(Family, Size, Weight, Style, Stretch));
 
         /// <summary>
         /// Tests whether two specified <see cref="Font"/> structures are equivalent.

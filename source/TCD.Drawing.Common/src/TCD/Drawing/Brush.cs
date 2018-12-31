@@ -41,32 +41,32 @@ namespace TCD.Drawing
         // radial: start X
         protected internal double X0
         {
-            get => uiDrawBrush.x0;
-            set => uiDrawBrush.x0 = value;
+            get => uiDrawBrush.X0;
+            set => uiDrawBrush.X0 = value;
         }
 
         // linear: start Y
         // radial: start Y
         protected internal double Y0
         {
-            get => uiDrawBrush.y0;
-            set => uiDrawBrush.y0 = value;
+            get => uiDrawBrush.Y0;
+            set => uiDrawBrush.Y0 = value;
         }
 
         // linear: end X
         // radial: outer circle center X
         protected internal double X1
         {
-            get => uiDrawBrush.x1;
-            set => uiDrawBrush.x1 = value;
+            get => uiDrawBrush.X1;
+            set => uiDrawBrush.X1 = value;
         }
 
         // linear: end Y
         // radial: outer circle center Y
         protected internal double Y1
         {
-            get => uiDrawBrush.y1;
-            set => uiDrawBrush.y1 = value;
+            get => uiDrawBrush.Y1;
+            set => uiDrawBrush.Y1 = value;
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace TCD.Drawing
             {
                 if (value != null && value.Count != 0)
                 {
-                    uiDrawBrush.numStops = (UIntPtr)value.Count;
-                    uiDrawBrush.stops = Marshal.UnsafeAddrOfPinnedArrayElement(value.ToArray(), 0);
+                    uiDrawBrush.NumStops = (UIntPtr)value.Count;
+                    uiDrawBrush.Stops = Marshal.UnsafeAddrOfPinnedArrayElement(value.ToArray(), 0);
                 }
             }
         }
@@ -100,30 +100,30 @@ namespace TCD.Drawing
         /// <param name="color">The specified color.</param>
         public GradientStop(double pos, Color color) => uiDrawBrushGradientStop = new Libui.uiDrawBrushGradientStop()
         {
-            pos = pos,
-            r = color.R,
-            g = color.G,
-            b = color.B,
-            a = color.A
+            Pos = pos,
+            R = color.R,
+            G = color.G,
+            B = color.B,
+            A = color.A
         };
 
         /// <summary>
         /// For most <see cref="GradientBrush"/> objects, this defines where the color stop will start or end. (0 = start, 1 = end). For <see cref="RadialGradientBrush"/> objects, 0 is the center at the start point and 1 is the circle with the outer radius and the end center.
         /// </summary>
-        public double Position { get => uiDrawBrushGradientStop.pos; set => uiDrawBrushGradientStop.pos = value; }
+        public double Position { get => uiDrawBrushGradientStop.Pos; set => uiDrawBrushGradientStop.Pos = value; }
 
         /// <summary>
         /// the color of the color stop.
         /// </summary>
         public Color Color
         {
-            get => new Color(uiDrawBrushGradientStop.r, uiDrawBrushGradientStop.g, uiDrawBrushGradientStop.b, uiDrawBrushGradientStop.a);
+            get => new Color(uiDrawBrushGradientStop.R, uiDrawBrushGradientStop.G, uiDrawBrushGradientStop.B, uiDrawBrushGradientStop.A);
             set
             {
-                uiDrawBrushGradientStop.r = value.R;
-                uiDrawBrushGradientStop.g = value.G;
-                uiDrawBrushGradientStop.b = value.B;
-                uiDrawBrushGradientStop.a = value.A;
+                uiDrawBrushGradientStop.R = value.R;
+                uiDrawBrushGradientStop.G = value.G;
+                uiDrawBrushGradientStop.B = value.B;
+                uiDrawBrushGradientStop.A = value.A;
             }
         }
     }
@@ -140,7 +140,7 @@ namespace TCD.Drawing
         /// <summary>
         /// Initializes a new instance of the <see cref="LinearGradientBrush"/> class.
         /// </summary>
-        public LinearGradientBrush() : base() => uiDrawBrush.type = Libui.uiDrawBrushType.uiDrawBrushTypeLinearGradient;
+        public LinearGradientBrush() : base() => uiDrawBrush.Type = Libui.uiDrawBrushType.uiDrawBrushTypeLinearGradient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LinearGradientBrush"/> class with the specified start and end points.
@@ -207,7 +207,7 @@ namespace TCD.Drawing
         /// <summary>
         /// Initializes a new instance of the <see cref="RadialGradientBrush"/> class.
         /// </summary>
-        public RadialGradientBrush() : base() => uiDrawBrush.type = Libui.uiDrawBrushType.uiDrawBrushTypeRadialGradient;
+        public RadialGradientBrush() : base() => uiDrawBrush.Type = Libui.uiDrawBrushType.uiDrawBrushTypeRadialGradient;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RadialGradientBrush"/> class with the specified origin, center, and outer radius.
@@ -269,8 +269,8 @@ namespace TCD.Drawing
         /// </summary>
         public double OuterRadius
         {
-            get => uiDrawBrush.outerRadius;
-            set => uiDrawBrush.outerRadius = value;
+            get => uiDrawBrush.OuterRadius;
+            set => uiDrawBrush.OuterRadius = value;
         }
     }
 
@@ -285,7 +285,7 @@ namespace TCD.Drawing
         /// <summary>
         /// Initializes a new instance of the <see cref="SolidBrush"/> class.
         /// </summary>
-        public SolidBrush() : base() => uiDrawBrush.type = Libui.uiDrawBrushType.uiDrawBrushTypeSolid;
+        public SolidBrush() : base() => uiDrawBrush.Type = Libui.uiDrawBrushType.uiDrawBrushTypeSolid;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SolidBrush"/> class of the specified color.
@@ -300,17 +300,17 @@ namespace TCD.Drawing
         {
             get
             {
-                color = new Color(uiDrawBrush.r, uiDrawBrush.g, uiDrawBrush.b, uiDrawBrush.a);
+                color = new Color(uiDrawBrush.R, uiDrawBrush.G, uiDrawBrush.B, uiDrawBrush.A);
                 return color;
             }
             set
             {
                 if (color != value)
                 {
-                    uiDrawBrush.r = value.R;
-                    uiDrawBrush.g = value.G;
-                    uiDrawBrush.b = value.B;
-                    uiDrawBrush.a = value.A;
+                    uiDrawBrush.R = value.R;
+                    uiDrawBrush.G = value.G;
+                    uiDrawBrush.B = value.B;
+                    uiDrawBrush.A = value.A;
                     color = value;
                 }
             }

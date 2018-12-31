@@ -93,33 +93,33 @@ namespace TCD.Native
         [UnmanagedFunctionPointer(Convention)] public delegate void uiUnInit();
         [UnmanagedFunctionPointer(Convention)] public delegate void uiFreeInitError(string err);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiMain();
-        //[UnmanagedFunctionPointer(Convention)] public delegate void uiMainSteps();
-        //[UnmanagedFunctionPointer(Convention)] public delegate bool uiMainStep(bool wait);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiMainSteps();
+        [UnmanagedFunctionPointer(Convention)] public delegate bool uiMainStep(bool wait);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiQuit();
         [UnmanagedFunctionPointer(Convention)] public delegate void uiQueueMain([MarshalAs(UnmanagedType.FunctionPtr)] uiQueueMainCallback f, IntPtr data);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiQueueMainCallback(IntPtr data);
-        //[UnmanagedFunctionPointer(Convention)] public delegate void uiTimer(int milliseconds, [MarshalAs(UnmanagedType.FunctionPtr)] uiTimerCallback f, IntPtr data);
-        //[UnmanagedFunctionPointer(Convention)] public delegate bool uiTimerCallback(IntPtr data);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiTimer(int milliseconds, [MarshalAs(UnmanagedType.FunctionPtr)] uiTimerCallback f, IntPtr data);
+        [UnmanagedFunctionPointer(Convention)] public delegate bool uiTimerCallback(IntPtr data);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiOnShouldQuit([MarshalAs(UnmanagedType.FunctionPtr)] uiOnShouldQuitCallback f, IntPtr data);
         [UnmanagedFunctionPointer(Convention)] public delegate bool uiOnShouldQuitCallback(IntPtr data);
-        //[UnmanagedFunctionPointer(Convention)] public delegate void uiFreeText(string err);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiFreeText(string err);
 
         [UnmanagedFunctionPointer(Convention)] public delegate void uiControlDestroy(IntPtr c);
-        //[UnmanagedFunctionPointer(Convention)] public delegate UIntPtr uiControlHandle(IntPtr c);
-        //[UnmanagedFunctionPointer(Convention)] public delegate IntPtr uiControlParent(IntPtr c);
-        //[UnmanagedFunctionPointer(Convention)] public delegate void uiControlSetParent(IntPtr c, IntPtr parent);
-        //[UnmanagedFunctionPointer(Convention)] public delegate bool uiControlToplevel(IntPtr c);
+        [UnmanagedFunctionPointer(Convention)] public delegate UIntPtr uiControlHandle(IntPtr c);
+        [UnmanagedFunctionPointer(Convention)] public delegate IntPtr uiControlParent(IntPtr c);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiControlSetParent(IntPtr c, IntPtr parent);
+        [UnmanagedFunctionPointer(Convention)] public delegate bool uiControlToplevel(IntPtr c);
         [UnmanagedFunctionPointer(Convention)] public delegate bool uiControlVisible(IntPtr c);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiControlShow(IntPtr c);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiControlHide(IntPtr c);
         [UnmanagedFunctionPointer(Convention)] public delegate bool uiControlEnabled(IntPtr c);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiControlEnable(IntPtr c);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiControlDisable(IntPtr c);
-        //[UnmanagedFunctionPointer(Convention)] public delegate void uiAllocControl(UIntPtr n, uint OSsig, uint typesig, string typenamestr);
-        //[UnmanagedFunctionPointer(Convention)] public delegate void uiFreeControl(IntPtr c);
-        //[UnmanagedFunctionPointer(Convention)] public delegate void uiControlVerifySetParent(IntPtr c, IntPtr parent);
-        //[UnmanagedFunctionPointer(Convention)] public delegate bool uiControlEnabledToUser(IntPtr c);
-        //[UnmanagedFunctionPointer(Convention)] public delegate void uiUserBugCannotSetParentOnTopLevel(string type);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiAllocControl(UIntPtr n, uint OSsig, uint typesig, string typenamestr);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiFreeControl(IntPtr c);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiControlVerifySetParent(IntPtr c, IntPtr parent);
+        [UnmanagedFunctionPointer(Convention)] public delegate bool uiControlEnabledToUser(IntPtr c);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiUserBugCannotSetParentOnTopLevel(string type);
 
         [UnmanagedFunctionPointer(Convention)] public delegate string uiWindowTitle(IntPtr w);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiWindowSetTitle(IntPtr w, string title);
@@ -316,9 +316,9 @@ namespace TCD.Native
         }
         [UnmanagedFunctionPointer(Convention)] public delegate void uiAreaHandlerDraw(uiAreaHandler ah, IntPtr a, uiAreaDrawParams @params);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiAreaHandlerMouseEvent(uiAreaHandler ah, IntPtr a, uiAreaMouseEvent @params);
-        [UnmanagedFunctionPointer(Convention)] public delegate void uiAreaHandlerMouseCrossed(uiAreaHandler ah, IntPtr a, int left);
+        [UnmanagedFunctionPointer(Convention)] public delegate void uiAreaHandlerMouseCrossed(uiAreaHandler ah, IntPtr a, bool left);
         [UnmanagedFunctionPointer(Convention)] public delegate void uiAreaHandlerDragBroken(uiAreaHandler ah, IntPtr a);
-        [UnmanagedFunctionPointer(Convention)] public delegate int uiAreaHandlerKeyEvent(uiAreaHandler ah, IntPtr a, uiAreaKeyEvent @params);
+        [UnmanagedFunctionPointer(Convention)] public delegate bool uiAreaHandlerKeyEvent(uiAreaHandler ah, IntPtr a, uiAreaKeyEvent @params);
 
         public enum uiWindowResizeEdge : uint
         {
@@ -343,13 +343,13 @@ namespace TCD.Native
         [StructLayout(Layout)]
         public struct uiAreaDrawParams
         {
-            public IntPtr context;
-            public double surfaceWidth; //! Only defined for non-scrolling areas.
-            public double surfaceHeight; //! Only defined for non-scrolling areas.
-            public double clipX;
-            public double clipY;
-            public double clipWidth;
-            public double clipHeight;
+            public IntPtr Context;
+            public double AreaWidth; //! Only defined for non-scrolling areas.
+            public double AreaHeight; //! Only defined for non-scrolling areas.
+            public double ClipX;
+            public double ClipY;
+            public double ClipWidth;
+            public double ClipHeight;
         }
 
         public enum uiDrawBrushType : uint
@@ -385,22 +385,25 @@ namespace TCD.Native
         [StructLayout(Layout)]
         public struct uiDrawMatrix
         {
-            public double m11;
-            public double m12;
-            public double m21;
-            public double m22;
-            public double m31;
-            public double m32;
+            public double M11;
+            public double M12;
+            public double M21;
+            public double M22;
+            public double M31;
+            public double M32;
         }
 
         [StructLayout(Layout)]
         public struct uiDrawBrush
         {
             [MarshalAs(UnmanagedType.I4)]
-            public uiDrawBrushType type;
+            public uiDrawBrushType Type;
 
             // Solid Brushes
-            public double r, g, b, a;
+            public double R;
+            public double G;
+            public double B;
+            public double A;
 
             // Gradient Brushes
             // X0          - Linear: StartX, Radial: StartX
@@ -408,19 +411,23 @@ namespace TCD.Native
             // X1          - Linear: EndX,   Radial: CenterX (of outer circle)
             // Y1          - Linear: EndY,   Radial: CenterY (of outer circle)
             // outerRadius - Linear: Unused, Radial: Used
-            public double x0, y0, x1, y1, outerRadius;
-            public IntPtr stops;
-            public UIntPtr numStops;
+            public double X0;
+            public double Y0;
+            public double X1;
+            public double Y1;
+            public double OuterRadius;
+            public IntPtr Stops;
+            public UIntPtr NumStops;
         }
 
         [StructLayout(Layout)]
         public struct uiDrawBrushGradientStop
         {
-            public double pos;
-            public double r;
-            public double g;
-            public double b;
-            public double a;
+            public double Pos;
+            public double R;
+            public double G;
+            public double B;
+            public double A;
         }
 
         [StructLayout(Layout)]

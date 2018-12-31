@@ -9,6 +9,8 @@
   <PropertyGroup>
     <WSAuthors>Thomas Corwin, et al.</WSAuthors>
     <WSCopyright>Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.</WSCopyright>
+    <WSIncludeLicenseFile>true</WSIncludeLicenseFile>
+    <WSIncludeThirdPartyNoticesFile>true</WSIncludeThirdPartyNoticesFile>
   </PropertyGroup>
   
   <PropertyGroup>

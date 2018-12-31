@@ -50,13 +50,13 @@ namespace TCD.UI
             if (IsInvalid) throw new InvalidHandleException();
             Libui.Call<Libui.uiAreaQueueRedrawAll>()(Handle);
         }
-        
+
         public void BeginUserWindowMove()
         {
             if (IsInvalid) throw new InvalidHandleException();
             Libui.Call<Libui.uiAreaBeginUserWindowMove>()(Handle);
         }
-        
+
         public void BeginUserWindowResize(WindowEdge edge)
         {
             if (IsInvalid) throw new InvalidHandleException();
@@ -67,11 +67,26 @@ namespace TCD.UI
         {
             outHandler = new Libui.uiAreaHandler
             {
-                Draw = (nativeHandler, surface, args) => handler.Draw(surfaceCache[surface], ref args),
-                MouseEvent = (nativeHandler, surface, args) => handler.MouseEvent(surfaceCache[surface], ref args),
-                MouseCrossed = (nativeHandler, surface, left) => handler.MouseCrossed(surfaceCache[surface], left),
+                Draw = (nativeHandler, surface, args) =>
+                {
+                    DrawEventArgs e = new DrawEventArgs(args);
+                    handler.Draw(surfaceCache[surface], ref e);
+                },
+                MouseEvent = (nativeHandler, surface, args) =>
+                {
+                    MouseEventArgs e = new MouseEventArgs(args);
+                    handler.MouseEvent(surfaceCache[surface], ref e);
+                },
+                MouseCrossed = (nativeHandler, surface, left) =>
+                {
+                    handler.MouseCrossed(surfaceCache[surface], left);
+                },
                 DragBroken = (nativeHandler, surface) => handler.DragBroken(surfaceCache[surface]),
-                KeyEvent = (nativeHandler, surface, args) => handler.KeyEvent(surfaceCache[surface], ref args)
+                KeyEvent = (nativeHandler, surface, args) =>
+                {
+                    KeyEventArgs e = new KeyEventArgs(args);
+                    return handler.KeyEvent(surfaceCache[surface], ref e);
+                }
             };
 
             return !scrollable

@@ -28,7 +28,7 @@ namespace TCD.UI
         /// <summary>
         /// Occurs when the <see cref="Color"/> property is changed.
         /// </summary>
-        public event NativeEventHandler<ColorPicker> ColorChanged;
+        public event EventHandler ColorChanged;
 
         /// <summary>
         /// Gets or sets the color selected by the user.
@@ -53,7 +53,7 @@ namespace TCD.UI
         /// <summary>
         /// Raises the <see cref="ColorChanged"/> event.
         /// </summary>
-        protected virtual void OnColorChanged(ColorPicker sender) => ColorChanged?.Invoke(sender);
+        protected virtual void OnColorChanged(ColorPicker sender, EventArgs e) => ColorChanged?.Invoke(sender, e);
 
         /// <summary>
         /// Initializes this <see cref="ColorPicker"/> object's events.
@@ -61,7 +61,7 @@ namespace TCD.UI
         protected sealed override void InitializeEvents()
         {
             if (IsInvalid) throw new InvalidHandleException();
-            Libui.Call<Libui.uiColorButtonOnChanged>()(Handle, (button, data) => OnColorChanged(this), IntPtr.Zero);
+            Libui.Call<Libui.uiColorButtonOnChanged>()(Handle, (button, data) => OnColorChanged(this, EventArgs.Empty), IntPtr.Zero);
         }
     }
 }

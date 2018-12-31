@@ -1,4 +1,4 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             TextAttribute.cs
  * Date:                 20181119
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
@@ -6,7 +6,7 @@
  **************************************************************************************************/
 
 using TCD.InteropServices;
-using TCD.SafeHandles;
+using TCD.Drawing.Text.SafeHandles;
 using TCD.Native;
 
 namespace TCD.Drawing.Text
@@ -19,6 +19,6 @@ namespace TCD.Drawing.Text
     {
         internal TextAttribute(SafeTextAttributeHandle handle) :base(handle) { }
 
-        internal LibuiEx.AttributeType Type => LibuiEx.AttributeGetType(Handle);
+        internal Libui.uiAttributeType Type => Libui.Call<Libui.uiAttributeGetType>()(Handle);
     }
 }

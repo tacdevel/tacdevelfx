@@ -21,8 +21,4 @@
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="$(WSProjectGroupCommonSourcePath)TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
-  </ItemGroup>
 </Project>

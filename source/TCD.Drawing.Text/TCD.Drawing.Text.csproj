@@ -21,6 +21,7 @@
   <ItemGroup>
     <Compile Include="src\**\*.cs" />
     <Compile Remove="src\TCD\Drawing\Text\AttributedText.cs" />
+    <Compile Remove="src\TCD\Drawing\Text\ContextExtensions.cs" />
     <Compile Remove="src\TCD\Drawing\Text\FontFeatures.cs" />
     <Compile Remove="src\TCD\Drawing\Text\FontFeaturesAttribute.cs" />
     <Compile Remove="src\TCD\Drawing\Text\TextLayout.cs" />
