@@ -65,12 +65,15 @@
     <Compile Condition="Exists('$(WSProjectGroupCommonPath)src\Assembly.Common.cs')" Include="$(WSProjectGroupCommonPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Condition="$(WSIncludeLicenseFile) AND Exists('$(WSLicenseFile)')" Include="$(WSLicenseFile)">
+  <ItemGroup Condition="'$(WSIncludeLicenseFile)' == 'true'">
+    <Content Condition="Exists('$(WSLicenseFile)')" Include="$(WSLicenseFile)">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
-    <Content Condition="$(WSIncludeThirdPartyNoticesFile) AND Exists('$(WSThirdPartyNoticesFile)')" Include="$(WSThirdPartyNoticesFile)">
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(WSIncludeThirdPartyNoticesFile)' == 'true'">
+    <Content Condition="Exists('$(WSThirdPartyNoticesFile)')" Include="$(WSThirdPartyNoticesFile)">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
