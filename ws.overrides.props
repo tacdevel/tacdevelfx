@@ -1,20 +1,13 @@
 <!--================================================================================================
-* FileName:             ws.config.props
+* FileName:             ws.overrides.props
 * Date:                 20181227
 * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
 * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
 =================================================================================================-->
 
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
   <PropertyGroup>
-    <WSAuthors>Thomas Corwin, et al.</WSAuthors>
-    <WSCopyright>Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.</WSCopyright>
-    <WSIncludeLicenseFile>true</WSIncludeLicenseFile>
-    <WSIncludeThirdPartyNoticesFile>true</WSIncludeThirdPartyNoticesFile>
-  </PropertyGroup>
-  
-  <PropertyGroup>
-    <WSRepositoryURL>https://github.com/tacdevel/tcdfx</WSRepositoryURL>
+    <WSRepositoryName>tcdfx</WSRepositoryName>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -61,10 +61,6 @@
     </When>
   </Choose>
 
-  <ItemGroup>
-    <Compile Condition="Exists('$(WSProjectGroupCommonPath)src\Assembly.Common.cs')" Include="$(WSProjectGroupCommonPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
-  </ItemGroup>
-
   <ItemGroup Condition="'$(WSIncludeLicenseFile)' == 'true'">
     <Content Condition="Exists('$(WSLicenseFile)')" Include="$(WSLicenseFile)">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
@@ -77,5 +73,16 @@
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(WSIncludeReleaseNotesFile)' == 'true'">
+    <Content Condition="Exists('$(WSReleaseNotesFile)')" Include="$(WSReleaseNotesFile)">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Condition="Exists('$(WSProjectGroupCommonPath)src\Assembly.Common.cs')" Include="$(WSProjectGroupCommonPath)src\Assembly.Common.cs" Link="src\Assembly.Common.cs"/>
   </ItemGroup>
 </Project>
