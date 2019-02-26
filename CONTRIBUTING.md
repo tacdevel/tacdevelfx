@@ -1,18 +1,18 @@
 # Contributing to TCDFx
 
-We love to see the community taking a part in the development and evolution of the TCD Framework. This document's goal is to make contributing to this project as simple and transparent as possible, whether it's:
+It's great to see the community taking a part in the development and evolution of the TCD Framework. This document's goal is to make contributing to this project as simple and transparent as possible, whether it's:
 
 - Reporting a bug or other issue.
 - Discussing the current state of the code.
 - Submitting a bug fix.
 - Proposing a new feature.
-- Becoming a maintainer or a [tacdevel](https://github.com/tacdevel) member.
+- Becoming a maintainer.
 
 We use [GitHub](https://github.com)'s services to host our code, track issues and releases, and accept code changes via pull requests.
 
 ## Pull Requests
 
-Once TCDFx v1.0.0 is released, we will use [GitHub Flow](https://guides.github.com/introduction/flow/index.html). This means that all code changes will happen via pull requests.
+Once TCDFx v1.0.0 is released, the project will use [GitHub Flow](https://guides.github.com/introduction/flow/index.html). This means that all code changes will happen via pull requests.
 
 <!-- As of the release of TCDFx v1.0.0, we use [GitHub Flow](https://guides.github.com/introduction/flow/index.html). This means that all code changes happen through pull requests. -->
 
@@ -23,7 +23,7 @@ Submitting a pull request is easy. Just follow the steps below:
 3. If you have changed/added any public APIs, update the corresponding documentation.
 4. Ensure to run all tests (if any) and make sure they pass.
 5. Make sure your documentation follows our [coding styles](#coding-styles)
-6. [Submit your pull request](https://github.com/tacdevel/tcdfx/pull/new)!
+6. [Submit your pull request](https://github.com/tom-corwin/tcdfx/pull/new)!
 
 ### Coding Styles
 
@@ -39,7 +39,7 @@ For the most part, everything should be formatted as per the suggestions in the 
 
 Reporting an issue is even easier than submitting a pull request. Just follow the steps below to write and report an issue/bug:
 
-1. [Write a descriptive issue and submit](https://github.com/tacdevel/tcdfx/issue/new)!
+1. [Write a descriptive issue and submit](https://github.com/tom-corwin/tcdfx/issue/new)!
     - Provide a summary of the issue you would like to report.
     - Explain what should have happened.
     - Explain what actually happens.
@@ -48,4 +48,4 @@ Reporting an issue is even easier than submitting a pull request. Just follow th
 
 ## Contribution Licensing
 
-When you submit a pull request or issue, your submissions are understood to be under the same [license](https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md) that covers the project. Feel free to contact a project maintainer if that is a concern.
+When you submit a pull request or issue, your submissions are understood to be under the same [license](https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md) that covers the project. Feel free to contact a project maintainer if that is a concern.

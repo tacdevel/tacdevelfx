@@ -1,13 +1,14 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             SafeAssemblyHandle.cs
  * Date:                 20180918
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
 using TCD.InteropServices;
 using TCD.Native;
+using static TCD.Platform;
 
 namespace TCD.SafeHandles
 {
@@ -34,16 +35,17 @@ namespace TCD.SafeHandles
             {
                 if (handle == IntPtr.Zero) throw new InvalidHandleException();
 
-                switch (PlatformHelper.CurrentPlatform)
+                switch (CurrentPlatform.Platform)
                 {
-                    case PlatformHelper.Platform.Windows:
+                    case PlatformType.Windows:
                         Kernel32.FreeLibrary(handle);
                         break;
-                    case PlatformHelper.Platform.Linux:
-                    case PlatformHelper.Platform.MacOS:
-                    case PlatformHelper.Platform.FreeBSD:
+                    case PlatformType.Linux:
+                    case PlatformType.MacOS:
+                    case PlatformType.FreeBSD:
                         Libdl.dlclose(handle);
                         break;
+                    case PlatformType.Unknown:
                     default:
                         break;
                 }

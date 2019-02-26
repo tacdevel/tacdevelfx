@@ -4,7 +4,7 @@ The TCD Framework uses third-party code and/or other resources that may be distr
 different licensing terms. This file contains a list of third-party notices.
 
 If you notice that we accidentally failed to list a required notice, please bring it to our
-attention by either posting an issue, or contacting [tom-corwin](mailto:tacorwin@tacdevel.org).
+attention by either posting an issue, or contacting [tom-corwin](https://github.com/tom-corwin).
 
 ***The attached notices are provided for informational use only, and have been formatted.***
 <hr/>

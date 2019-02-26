@@ -10,22 +10,10 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DefineConstants>$(DefineConstants);TCD_INTEROPSERVICES</DefineConstants>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.Disposable\TCD.Disposable.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <!-- This targets netstandard1.6, so those deps are included. See https://github.com/dotnet/core-setup/pull/4586 -->
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="src\**\*.cs" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="$(WSProjectGroupCommonSourcePath)TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
-    <Compile Include="$(WSProjectGroupCommonSourcePath)TCD\PlatformHelper.cs" Link="src\TCD\PlatformHelper.cs" />
+    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Disposable\TCD.Disposable.csproj" />
+    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Numerics.Hashing\TCD.Numerics.Hashing.csproj" />
+    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Platform\TCD.Platform.csproj" />
   </ItemGroup>
 </Project>

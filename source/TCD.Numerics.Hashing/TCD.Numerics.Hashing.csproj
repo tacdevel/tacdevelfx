@@ -1,19 +1,12 @@
 <!--================================================================================================
-* FileName:             ws.overrides.props
-* Date:                 20181227
+* FileName:             TCD.Numerics.Hashing.csproj
+* Date:                 20181214
 * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
 * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
 =================================================================================================-->
 
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <WSRepositoryName>tcdfx</WSRepositoryName>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <WSVersionMajor>0</WSVersionMajor>
-    <WSVersionMinor>4</WSVersionMinor>
-    <WSVersionPatch>0</WSVersionPatch>
-    <WSVersionSuffix></WSVersionSuffix> <!-- Must be empty for CI -->
+    <DefineConstants>$(DefineConstants);TCD_NUMERICS_HASHING</DefineConstants>
   </PropertyGroup>
 </Project>

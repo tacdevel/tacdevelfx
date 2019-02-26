@@ -9,8 +9,4 @@
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);TCD_DISPOSABLE</DefineConstants>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <Compile Include="src\**\*.cs" />
-  </ItemGroup>
 </Project>

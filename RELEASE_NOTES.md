@@ -38,15 +38,39 @@ This file contains release notes for all versions of the TCD Framework, and is o
 
 ---
 
+## v0.4.1 - [MONTH] [DAY], [YEAR]
+
+TCD Framework v0.4.1 is available for download and testing.
+
+### New Features
+
+- **[NEW_FEATURE_SUMMARY]**
+  [OPTIONAL_NEW_FEATURE_DESCRIPTION]
+
+### Deprecated/Obsolete Features
+
+- **[OBSOLETE_FEATURE]**
+  [OBSOLETE_FEATURE_DESCRIPTION]
+
+### Bug Fixes
+
+- **[BUG_FIX_SUMMARY]**
+
+### Improvements/Enhancements
+
+- **[IMPROVEMENT_SUMMARY]**
+
+---
+
 ## v0.4.0 - December 28, 2018
 
 TCD Framework vNext is available for download and testing as NuGet prerelease packages.
-For a full list of what's changed since the last release, see [here](https://github.com/tacdevel/tcdfx/compare/v0.3.0...v0.4.0).
+For a full list of what's changed since the last release, see [here](https://github.com/tom-corwin/tcdfx/compare/v0.3.0...v0.4.0).
 
 ### New Packages
 
 - **TCD.Native.Libui**
-  The *TCD.Native.Libui* package contains full, unsafe, internal bindings for [andlabs/libui](https://github.com/andlabs/libui). There are no public members in this package, and should not be added directly.
+  The *TCD.Native.Libui* package contains full, internal bindings for [andlabs/libui](https://github.com/andlabs/libui). There are no public members in this package, and should not be added directly.
 
 ### Deprecated/Obsolete Features
 
@@ -55,12 +79,12 @@ For a full list of what's changed since the last release, see [here](https://git
 
 ### Improvements/Enhancements
 
+- Moved the repository from https://github.com/tom-corwin/tcdfx to https://github.com/tom-corwin/tcdfx
 - Moved and updated the bindings for `libui` from *TCD.UI*, *TCD.Drawing.Common*, and *TCD.Drawing.Text* to *TCD.Native.Libui*.
 - Updated *TCD.UI*, *TCD.Drawing.Common*, and *TCD.Drawing.Text* to use the new *TCD.Native.Libui* package.
 - Renamed `TCD.UI.Window.Size` to `TCD.UI.Window.ContentSize`.
 - Renamed `TCD.UI.Window.Width` to `TCD.UI.Window.ContentWidth`.
 - Renamed `TCD.UI.Window.Height` to `TCD.UI.Window.ContentHeight`.
-- Using a new build setup. See (ws.props)[https://github.com/tacdevel/ws.props].
 - Updated copyright for 2019.
 - Moved all types from `TCD.UI.Controls` and `TCD.UI.Controls.Containers` to `TCD.UI`.
 

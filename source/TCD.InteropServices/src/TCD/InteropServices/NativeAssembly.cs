@@ -2,7 +2,7 @@
  * FileName:             NativeAssembly.cs
  * Date:                 20180919
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
@@ -10,6 +10,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
+using static TCD.Platform;
 
 namespace TCD
 {
@@ -53,7 +54,7 @@ namespace TCD
                 IntPtr funcPtr = LoadFunction(name);
                 if (funcPtr == IntPtr.Zero)
                     throw new InvalidOperationException($"No function was found with the name {name}.");
-
+                T t = ;
                 return Marshal.GetDelegateForFunctionPointer<T>(funcPtr);
             }
 
@@ -66,14 +67,15 @@ namespace TCD
             {
                 if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
 
-                switch (PlatformHelper.CurrentPlatform)
+                switch (CurrentPlatform.Platform)
                 {
-                    case PlatformHelper.Platform.Windows:
+                    case PlatformType.Windows:
                         return Kernel32.GetProcAddress(Handle, name);
-                    case PlatformHelper.Platform.Linux:
-                    case PlatformHelper.Platform.MacOS:
-                    case PlatformHelper.Platform.FreeBSD:
+                    case PlatformType.Linux:
+                    case PlatformType.MacOS:
+                    case PlatformType.FreeBSD:
                         return Libdl.dlsym(Handle, name);
+                    case PlatformType.Unknown:
                     default:
                         return IntPtr.Zero;
                 }
@@ -88,16 +90,17 @@ namespace TCD
                 {
                     if (Path.IsPathRooted(name))
                     {
-                        switch (PlatformHelper.CurrentPlatform)
+                        switch (CurrentPlatform.Platform)
                         {
-                            case PlatformHelper.Platform.Windows:
+                            case PlatformType.Windows:
                                 value = Kernel32.LoadLibrary(name);
                                 break;
-                            case PlatformHelper.Platform.Linux:
-                            case PlatformHelper.Platform.MacOS:
-                            case PlatformHelper.Platform.FreeBSD:
+                            case PlatformType.Linux:
+                            case PlatformType.MacOS:
+                            case PlatformType.FreeBSD:
                                 value = Libdl.dlopen(name, 0x002);
                                 break;
+                            case PlatformType.Unknown:
                             default:
                                 break;
                         }
@@ -109,16 +112,17 @@ namespace TCD
                             if (!Path.IsPathRooted(loadTarget) || File.Exists(loadTarget))
                             {
                                 IntPtr v = IntPtr.Zero;
-                                switch (PlatformHelper.CurrentPlatform)
+                                switch (CurrentPlatform.Platform)
                                 {
-                                    case PlatformHelper.Platform.Windows:
+                                    case PlatformType.Windows:
                                         v = Kernel32.LoadLibrary(loadTarget);
                                         break;
-                                    case PlatformHelper.Platform.Linux:
-                                    case PlatformHelper.Platform.MacOS:
-                                    case PlatformHelper.Platform.FreeBSD:
+                                    case PlatformType.Linux:
+                                    case PlatformType.MacOS:
+                                    case PlatformType.FreeBSD:
                                         v = Libdl.dlopen(loadTarget, 0x002);
                                         break;
+                                    case PlatformType.Unknown:
                                     default:
                                         break;
                                 }
@@ -158,13 +162,19 @@ namespace TCD
             private const string AssemblyRef = "libdl";
 
             [DllImport(AssemblyRef)]
+#pragma warning disable IDE1006 // Naming rule violation
             internal static extern IntPtr dlopen(string fileName, int flags);
+#pragma warning enable IDE1006 // Naming rule violation
 
             [DllImport(AssemblyRef)]
+#pragma warning disable IDE1006 // Naming rule violation
             internal static extern IntPtr dlsym(IntPtr handle, string name);
+#pragma warning enable IDE1006 // Naming rule violation
 
             [DllImport(AssemblyRef)]
+#pragma warning disable IDE1006 // Naming rule violation
             internal static extern int dlclose(IntPtr handle);
+#pragma warning enable IDE1006 // Naming rule violation
         }
     }
 }

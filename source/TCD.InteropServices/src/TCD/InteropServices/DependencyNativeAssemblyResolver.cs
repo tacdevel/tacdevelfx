@@ -1,14 +1,15 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             DependencyNativeAssemblyResolver.cs
  * Date:                 20180919
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Extensions.DependencyModel;
+using static TCD.Platform;
 
 namespace TCD.InteropServices
 {
@@ -33,7 +34,7 @@ namespace TCD.InteropServices
                 return false;
             }
 
-            string currentRID = PlatformHelper.PlatformRID;
+            string currentRID = CurrentPlatform.RuntimeID;
             List<string> allRIDs = new List<string> { currentRID };
             if (!AddFallbacks(allRIDs, currentRID, defaultContext.RuntimeGraph))
             {
@@ -103,7 +104,7 @@ namespace TCD.InteropServices
         //TODO: Handle alternative package directories, if they are configured.
         private string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
 
-        private string GetUserDirectory() => PlatformHelper.CurrentPlatform == PlatformHelper.Platform.Windows
+        private string GetUserDirectory() => CurrentPlatform.Platform == PlatformType.Windows
                 ? Environment.GetEnvironmentVariable("USERPROFILE")
                 : Environment.GetEnvironmentVariable("HOME");
     }

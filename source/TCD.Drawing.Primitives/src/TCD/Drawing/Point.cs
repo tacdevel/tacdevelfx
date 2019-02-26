@@ -1,13 +1,14 @@
-﻿/*******************************************************************************
+/*******************************************************************************
  * FileName:   Point.cs
  * Date:       20180913
  * License:    MIT License
  * Copyrights: 2018 (c) Thomas Corwin, et al. All Rights Reserved.
- * LicenseUrl: https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * LicenseUrl: https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  ******************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
+using TCD.Numerics.Hashing;
 
 namespace TCD.Drawing
 {
@@ -77,8 +78,8 @@ namespace TCD.Drawing
         /// <param name="dy">The amount to offset the y-coordinate.</param>
         public void Offset(int dx, int dy)
         {
-            X = X + dx;
-            Y = Y + dy;
+            X += dx;
+            Y += dy;
         }
 
         /// <summary>

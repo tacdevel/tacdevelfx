@@ -2,7 +2,7 @@
  * FileName:             Application.cs
  * Date:                 20180921
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
@@ -109,8 +109,7 @@ namespace TCD.UI
         protected override void InitializeComponent()
         {
             string error = Libui.Call<Libui.uiInit>()(ref options);
-
-            if (!string.IsNullOrEmpty(error))
+            if (!string.IsNullOrWhiteSpace(error))
             {
                 Console.WriteLine(error);
                 Libui.Call<Libui.uiFreeInitError>()(error);

@@ -9,15 +9,9 @@
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);TCD_UI</DefineConstants>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.Disposable\TCD.Disposable.csproj" />
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.Drawing.Primitives\TCD.Drawing.Primitives.csproj" />
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.InteropServices\TCD.InteropServices.csproj" />
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.Native.Libui\TCD.Native.Libui.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="src\**\*.cs" />
+    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Drawing.Primitives\TCD.Drawing.Primitives.csproj" />
+    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Native.Libui\TCD.Native.Libui.csproj" />
   </ItemGroup>
 </Project>

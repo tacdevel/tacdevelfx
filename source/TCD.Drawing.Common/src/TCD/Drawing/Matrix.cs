@@ -2,12 +2,13 @@
  * FileName:             Matrix.cs
  * Date:                 20181002
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
 using TCD.Native;
+using TCD.Numerics.Hashing;
 
 namespace TCD.Drawing
 {

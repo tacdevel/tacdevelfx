@@ -2,13 +2,13 @@
  * FileName:             Libui.cs
  * Date:                 20181205
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
 using TCD.InteropServices;
-using static TCD.PlatformHelper;
+using static TCD.Platform;
 
 namespace TCD.Native
 {
@@ -20,29 +20,29 @@ namespace TCD.Native
         private const LayoutKind Layout = LayoutKind.Sequential;
 #pragma warning restore IDE0051 // Remove unused private members
 
-        private static NativeAssembly AssemblyRef
+        static Libui()
         {
-            get
-            {
-                if (CurrentPlatform == Platform.Windows && OSArchitecture == Architecture.X64)
-                    return new NativeAssembly(@"runtimes\win-x64\native\libui.dll");
-                else if (CurrentPlatform == Platform.MacOS && OSArchitecture == Architecture.X64)
-                    return new NativeAssembly(@"runtimes/osx-x64/native/libui.dylib", @"runtimes/osx-x64/native/libui.A.dylib");
-                else if ((CurrentPlatform == Platform.Linux || CurrentPlatform == Platform.FreeBSD) && OSArchitecture == Architecture.X64)
-                    return new NativeAssembly(@"runtimes/linux-x64/native/libui.so", @"runtimes/linux-x64/native/libui.so.0");
-                else throw new PlatformNotSupportedException();
-            }
+            if (CurrentPlatform.Platform == PlatformType.Windows && CurrentPlatform.Architecture == PlatformArch.X64)
+                AssemblyRef = new NativeAssembly(@"runtimes\win-x64\native\libui.dll");
+            else if (CurrentPlatform.Platform == PlatformType.MacOS && CurrentPlatform.Architecture == PlatformArch.X64)
+                AssemblyRef = new NativeAssembly(@"runtimes/osx-x64/native/libui.dylib", @"runtimes/osx-x64/native/libui.A.dylib");
+            else if ((CurrentPlatform.Platform == PlatformType.Linux || CurrentPlatform.Platform == PlatformType.FreeBSD) && CurrentPlatform.Architecture == PlatformArch.X64)
+                AssemblyRef = new NativeAssembly(@"runtimes/linux-x64/native/libui.so", @"runtimes/linux-x64/native/libui.so.0");
+            else throw new PlatformNotSupportedException();
+
+            Console.WriteLine($"{AssemblyRef}");
         }
+
+        private static NativeAssembly AssemblyRef { get; }
 
         public static T Call<T>() where T : Delegate
 #if DEBUG
         {
             bool fail = false;
 
-            Console.Write($"[DEBUG] Loading native function '{typeof(T).Name}' from assembly '{nameof(Libui)}'...");
-
             try
             {
+                Console.Write($"[DEBUG] Loading native function '{typeof(T).Name}' from assembly '{nameof(Libui)}'...");
                 return AssemblyRef.LoadFunction<T>(typeof(T).Name);
             }
             catch (Exception ex)
@@ -773,7 +773,7 @@ namespace TCD.Native
             {
                 set => numColumns = Marshal.GetFunctionPointerForDelegate(value);
             }
-            
+
             public uiTableModelHandlerColumnType ColumnType
             {
                 set => columnType = Marshal.GetFunctionPointerForDelegate(value);

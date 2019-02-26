@@ -9,12 +9,8 @@
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);TCD_DRAWING_PRIMITIVES</DefineConstants>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <Compile Include="src\**\*.cs" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="$(WSProjectGroupCommonSourcePath)TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
+    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Numerics.Hashing\TCD.Numerics.Hashing.csproj" />
   </ItemGroup>
 </Project>

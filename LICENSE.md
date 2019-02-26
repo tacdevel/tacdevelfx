@@ -24,5 +24,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 ## Third-Party Notices
 
 For third-party license terms and copyrights, please refer to the
-[THIRD_PARTY_NOTICES.md](https://github.com/tacdevel/tcdfx/blob/master/THIRD_PARTY_NOTICES.md)
+[THIRD_PARTY_NOTICES.md](https://github.com/tom-corwin/tcdfx/blob/master/THIRD_PARTY_NOTICES.md)
 file.

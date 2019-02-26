@@ -2,7 +2,7 @@
  * FileName:             StrokeOptions.cs
  * Date:                 20181002
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
@@ -31,14 +31,19 @@ namespace TCD.Drawing
         /// <summary>
         /// Initializes a new instance of the <see cref="StrokeOptions"/> class.
         /// </summary>
-        public StrokeOptions(LineCap cap, LineJoin join, double thickness, IList<double> dashes, double dashPhase, double miterLimit = DefaultMiterLimit) => uiDrawStrokeParams = new Libui.uiDrawStrokeParams()
+        /// 
+        public StrokeOptions(LineCap cap, LineJoin join, double thickness, IList<double> dashes, double dashPhase, double miterLimit = DefaultMiterLimit)
         {
-            Cap = (Libui.uiDrawLineCap)cap,
-            Join = (Libui.uiDrawLineJoin)join,
-            Thickness = thickness,
-            DashPhase = dashPhase,
-            MiterLimit = DefaultMiterLimit
-        };
+            uiDrawStrokeParams = new Libui.uiDrawStrokeParams();
+
+            Cap = cap;
+            Join = join;
+            Thickness = thickness;
+            DashPhase = dashPhase;
+            Dashes = (List<double>)dashes;
+            MiterLimit = miterLimit;
+        }
+
 
         /// <summary>
         /// Gets or sets the style of cap at line ends.

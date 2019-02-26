@@ -9,17 +9,8 @@
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);TCD_DRAWING_TEXT</DefineConstants>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.Drawing.Common\TCD.Drawing.Common.csproj" />
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.Drawing.Primitives\TCD.Drawing.Primitives.csproj" />
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.InteropServices\TCD.InteropServices.csproj" />
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.Native.Libui\TCD.Native.Libui.csproj" />
-    <ProjectReference Include="$(WSProjectGroupPath)TCD.UI\TCD.UI.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Include="src\**\*.cs" />
     <Compile Remove="src\TCD\Drawing\Text\AttributedText.cs" />
     <Compile Remove="src\TCD\Drawing\Text\ContextExtensions.cs" />
     <Compile Remove="src\TCD\Drawing\Text\FontFeatures.cs" />
@@ -36,8 +27,8 @@
     <Compile Remove="src\TCD\Drawing\Text\UnderlineStyleAttribute.cs" />
     <Compile Remove="src\TCD\Drawing\Text\UnderlineColorAttribute.cs" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <Compile Include="$(WSProjectGroupCommonSourcePath)TCD\ObjectExtensions.cs" Link="src\TCD\ObjectExtensions.cs" />
+    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Drawing.Common\TCD.Drawing.Common.csproj" />
   </ItemGroup>
 </Project>

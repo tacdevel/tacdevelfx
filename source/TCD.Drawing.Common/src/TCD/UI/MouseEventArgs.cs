@@ -2,7 +2,7 @@
  * FileName:             MouseEventArgs.cs
  * Date:                 20181003
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
@@ -17,21 +17,18 @@ namespace TCD.UI
     {
         internal Libui.uiAreaMouseEvent uiAreaMouseEvent;
 
-        public MouseEventArgs(double x, double y, double surfaceWidth, double surfaceHeight, bool up, bool down, int count, ModifierKey modifiers, long held)
+        public MouseEventArgs(double x, double y, double surfaceWidth, double surfaceHeight, bool up, bool down, int count, ModifierKey modifiers, long held) => uiAreaMouseEvent = new Libui.uiAreaMouseEvent()
         {
-            uiAreaMouseEvent = new Libui.uiAreaMouseEvent()
-            {
-                X = x,
-                Y = y,
-                AreaWidth = surfaceWidth,
-                AreaHeight = surfaceHeight,
-                Up = up,
-                Down = down,
-                Count = count,
-                Modifiers = (Libui.uiModifiers)modifiers,
-                Held1To64 = (ulong)held
-            };
-        }
+            X = x,
+            Y = y,
+            AreaWidth = surfaceWidth,
+            AreaHeight = surfaceHeight,
+            Up = up,
+            Down = down,
+            Count = count,
+            Modifiers = (Libui.uiModifiers)modifiers,
+            Held1To64 = (ulong)held
+        };
 
         internal MouseEventArgs(Libui.uiAreaMouseEvent @event) => uiAreaMouseEvent = @event;
 

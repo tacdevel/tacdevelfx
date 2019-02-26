@@ -2,7 +2,7 @@
  * FileName:             Surface.cs
  * Date:                 20181008
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
@@ -77,10 +77,7 @@ namespace TCD.UI
                     MouseEventArgs e = new MouseEventArgs(args);
                     handler.MouseEvent(surfaceCache[surface], ref e);
                 },
-                MouseCrossed = (nativeHandler, surface, left) =>
-                {
-                    handler.MouseCrossed(surfaceCache[surface], left);
-                },
+                MouseCrossed = (nativeHandler, surface, left) => handler.MouseCrossed(surfaceCache[surface], left),
                 DragBroken = (nativeHandler, surface) => handler.DragBroken(surfaceCache[surface]),
                 KeyEvent = (nativeHandler, surface, args) =>
                 {

@@ -1,0 +1,18 @@
+<!--================================================================================================
+* FileName:             TCD.Platform.csproj
+* Date:                 20181214
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>$(DefineConstants);TCD_PLATFORM</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <!-- TODO: This targets netstandard1.6, so those deps are included. https://github.com/dotnet/core-setup/pull/4586 -->
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+  </ItemGroup>
+</Project>

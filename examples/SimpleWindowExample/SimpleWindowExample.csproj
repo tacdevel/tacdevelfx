@@ -1,4 +1,4 @@
-﻿<!--================================================================================================
+<!--================================================================================================
 * FileName:             SimpleWindowExample.csproj
 * Date:                 20181229
 * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
@@ -7,10 +7,6 @@
 
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Include="src\**\*.cs" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\..\source\TCD.UI\TCD.UI.csproj" />
+    <ProjectReference Include="$(TCDFxFolder)source\TCD.UI\TCD.UI.csproj" />
   </ItemGroup>
 </Project>
