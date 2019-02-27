@@ -149,7 +149,7 @@ dotnet build .\tcdfx.sln
 [Badges.NuGet.Pre.12]: https://buildstats.info/nuget/TCD.Drawing.Text?includePreReleases=true
 [Badges.License]: https://badgen.net/badge/license/MIT/blue
 [Badges.Contributors]: https://badgen.net/github/contributors/tom-corwin/tcdfx
-[Badges.CSharpVersion]: https://badgen.net/badge/C%23/8.0/green
+[Badges.CSharpVersion]: https://badgen.net/badge/C%23/7.3/green
 [Badges.TargetFrameworks]: https://badgen.net/badge/targets/netstandard2.0/purple
 [Badges.Issues.Open]: https://badgen.net/github/open-issues/tom-corwin/tcdfx/
 [Badges.Issues.Closed]: https://badgen.net/github/closed-issues/tom-corwin/tcdfx/
