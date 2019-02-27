@@ -39,12 +39,12 @@ jobs:
 - job: Windows
   pool:
     vmImage: 'VS2017-Win2016'
-
+    
   steps:
   - script: |
       dotnet restore --disable-parallel --force
       dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
-      dotnet nuget push ..\..\build\source\$(build.projectName)\pkg\ -k $(build.nuget.apiKey) -s $(build.nuget.pushUrl) --no-service-endpoint
+      dotnet nuget push ..\..\build\source\$(build.projectName)\pkg\ -k $(NuGet.PushKey) -s $(NuGet.PushUrl) --no-service-endpoint
 
     workingDirectory: source\$(build.projectName)
     displayName: Build and Push Package

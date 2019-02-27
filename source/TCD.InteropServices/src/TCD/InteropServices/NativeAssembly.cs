@@ -54,7 +54,6 @@ namespace TCD
                 IntPtr funcPtr = LoadFunction(name);
                 if (funcPtr == IntPtr.Zero)
                     throw new InvalidOperationException($"No function was found with the name {name}.");
-                T t = ;
                 return Marshal.GetDelegateForFunctionPointer<T>(funcPtr);
             }
 

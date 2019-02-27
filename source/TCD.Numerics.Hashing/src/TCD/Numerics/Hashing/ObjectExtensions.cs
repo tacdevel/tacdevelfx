@@ -7,9 +7,18 @@
 
 namespace TCD.Numerics.Hashing
 {
-    public static class ObjectExtensions
+    /// <summary>
+    /// Contains extension methods to hash object values.
+    /// </summary>
+    public static class HashingExtensions
     {
         // See: https://github.com/dotnet/corefx/blob/master/src/Common/src/System/Numerics/Hashing/HashHelpers.cs
+        /// <summary>
+        /// Generates a hash code based on the <paramref name="properties"/> given values.
+        /// </summary>
+        /// <param name="self">The current object.</param>
+        /// <param name="properties">The object's properties to hash.</param>
+        /// <returns>A generated hash code.</returns>
         public static int GenerateHashCode(this object self, params object[] properties)
         {
             unchecked
@@ -20,7 +29,7 @@ namespace TCD.Numerics.Hashing
                     if (prop != null)
                     {
                         uint rol5 = ((uint)hash << 5) | ((uint)hash >> 27);
-                        hash = ((int)rol5 + hash) ^ prop.GetHashCode();;
+                        hash = ((int)rol5 + hash) ^ prop.GetHashCode();
                     }
                 }
                 return hash;

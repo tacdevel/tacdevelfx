@@ -11,13 +11,12 @@ using TCD.Native;
 
 namespace TCD.Drawing.Text
 {
-    /// //TODO: Caching
     /// <summary>
     /// Stores information about an attribute in an <see cref="AttributedText"/> object.
     /// </summary>
     public abstract class TextAttribute : NativeComponent<SafeTextAttributeHandle>
     {
-        internal TextAttribute(SafeTextAttributeHandle handle) :base(handle) { }
+        internal TextAttribute(SafeTextAttributeHandle handle) : base(handle) { }
 
         internal Libui.uiAttributeType Type => Libui.Call<Libui.uiAttributeGetType>()(Handle);
     }

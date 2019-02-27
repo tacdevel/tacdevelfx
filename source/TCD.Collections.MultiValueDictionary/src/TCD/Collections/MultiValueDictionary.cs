@@ -169,7 +169,7 @@ namespace TCD.Collections
 
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2>[] array, int index)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new ArgumentNullException(nameof(array));
             if ((index < 0) || (index > array.Length))  throw new ArgumentOutOfRangeException("index must be non-negative");
             if ((array.Length - index) < Count)  throw new ArgumentException("Array plus offset too small");
 
@@ -239,7 +239,7 @@ namespace TCD.Collections
 
         void ICollection.CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
             if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
             if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
@@ -728,7 +728,7 @@ namespace TCD.Collections
 
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3>[] array, int index)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new ArgumentNullException(nameof(array));
             if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
             if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
 
@@ -799,7 +799,7 @@ namespace TCD.Collections
 
         void ICollection.CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
             if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
             if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
@@ -1293,7 +1293,7 @@ namespace TCD.Collections
 
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>[] array, int index)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new ArgumentNullException(nameof(array));
             if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
             if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
 
@@ -1365,7 +1365,7 @@ namespace TCD.Collections
 
         void ICollection.CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
             if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
             if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
@@ -1864,7 +1864,7 @@ namespace TCD.Collections
 
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>[] array, int index)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new ArgumentNullException(nameof(array));
             if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
             if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
 
@@ -1937,7 +1937,7 @@ namespace TCD.Collections
 
         void ICollection.CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException("array");
+            if (array == null) throw new ArgumentNullException(nameof(array));
             if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
             if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
             if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");

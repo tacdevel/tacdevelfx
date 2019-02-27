@@ -13,6 +13,9 @@ using System.Text.RegularExpressions;
 namespace TCD
 {
     // Based on: https://github.com/dotnet/core-setup/blob/master/src/managed/Microsoft.DotNet.PlatformAbstractions/RuntimeEnvironment.cs
+    /// <summary>
+    /// Contains the <see cref="CurrentPlatform"/> property, allowing for determining the current running platform.
+    /// </summary>
     public static class Platform
     {
         private static readonly PlatformArch pArch;
@@ -125,6 +128,9 @@ namespace TCD
             #endif
         }
 
+        /// <summary>
+        /// Gets information about the current platform.
+        /// </summary>
         public static PlatformInfo CurrentPlatform => new PlatformInfo(pArch, pType, pOS, pVersion, pRID ?? pRIDEnv);
 
         private static (PlatformOS OS, Version Version) GetWindowsInfo()
@@ -284,190 +290,5 @@ namespace TCD
                     return "unknown";
             }
         }
-    }
-
-    /// <summary>
-    /// Contains information about a platform.
-    /// </summary>
-    public sealed class PlatformInfo
-    {
-        private PlatformInfo() { }
-
-        internal PlatformInfo(PlatformArch arch, PlatformType platform, PlatformOS os, Version version, string rid)
-        {
-            Architecture = arch;
-            Platform = platform;
-            OperatingSystem = os;
-            Version = version;
-            RuntimeID = rid;
-        }
-
-        /// <summary>
-        /// The processor architecture.
-        /// </summary>
-        public PlatformArch Architecture { get; }
-
-        /// <summary>
-        /// The operating system platform.
-        /// </summary>
-        public PlatformType Platform { get; }
-
-        /// <summary>
-        /// The operating system type.
-        /// </summary>
-        public PlatformOS OperatingSystem { get; }
-
-        /// <summary>
-        /// The operating system version.
-        /// </summary>
-        public Version Version { get; }
-
-        /// <summary>
-        /// The .NET Runtime Identifier (RID) for the platform.
-        /// </summary>
-        public string RuntimeID { get; }
-    }
-
-    /// <summary>
-    /// Indicates the architecture of the processor.
-    /// </summary>
-    public enum PlatformArch
-    {
-        /// <summary>
-        /// An unknown processor architecture.
-        /// </summary>
-        Unknown = -1,
-
-        /// <summary>
-        /// An Intel-based 32-bit processor architecture.
-        /// </summary>
-        X86 = 0,   // x86
-
-        /// <summary>
-        /// An Intel-based 64-bit processor architecture.
-        /// </summary>
-        X64 = 1,   // x64
-
-        /// <summary>
-        /// A 32-bit ARM processor architecture.
-        /// </summary>
-        ARM32 = 2, // arm
-
-        /// <summary>
-        /// A 64-bit ARM processor architecture.
-        /// </summary>
-        ARM64 = 3  // arm64
-    }
-
-    /// <summary>
-    /// Indicates the type of platform.
-    /// </summary>
-    public enum PlatformType
-    {
-        /// <summary>
-        /// An unknown platform.
-        /// </summary>
-        Unknown = -1,
-
-        /// <summary>
-        /// A Microsoft Windows platform.
-        /// </summary>
-        Windows, // win
-
-        /// <summary>
-        /// An Apple OSX/macOS platform.
-        /// </summary>
-        MacOS,   // osx
-
-        /// <summary>
-        /// A Linux platform.
-        /// </summary>
-        Linux,   // linux
-
-        /// <summary>
-        /// A FreeBSD platform.
-        /// </summary>
-        FreeBSD, // freebsd
-    }
-
-    /// <summary>
-    /// Indicates the operating system type.
-    /// </summary>
-    public enum PlatformOS
-    {
-        /// <summary>
-        /// An unknown operating system.
-        /// </summary>
-        Unknown = -1,
-
-        /// <summary>
-        /// A Microsoft Windows operating system.
-        /// </summary>
-        Windows,     // win
-
-        /// <summary>
-        /// An Apple OSX/macOS operating system.
-        /// </summary>
-        MacOS,       // osx
-
-        /// <summary>
-        /// A Linux operating system.
-        /// </summary>
-        Linux,       // linux
-
-        /// <summary>
-        /// A FreeBSD operating system.
-        /// </summary>
-        FreeBSD,     // freebsd
-
-        /// <summary>
-        /// A Debian operating system.
-        /// </summary>
-        Debian,      // debian
-
-        /// <summary>
-        /// An Ubuntu operating system.
-        /// </summary>
-        Ubuntu,      // ubuntu
-
-        /// <summary>
-        /// A Linux Mint operating system.
-        /// </summary>
-        LinuxMint,   // linuxmint
-
-        /// <summary>
-        /// A Fedora operating system.
-        /// </summary>
-        Fedora,      // fedora
-
-        /// <summary>
-        /// A Red Hat Enterprise Linux operating system.
-        /// </summary>
-        RHEL,        // rhel
-
-        /// <summary>
-        /// An Oracle Linux operating system.
-        /// </summary>
-        OL,          // ol
-
-        /// <summary>
-        /// An openSUSE operating system.
-        /// </summary>
-        OpenSUSE,    // opensuse
-
-        /// <summary>
-        /// A SUSE Linux Entrprise Server operating system.
-        /// </summary>
-        SLES,        // sles
-
-        /// <summary>
-        /// A CentOS operating system.
-        /// </summary>
-        CentOS,      // centos
-
-        /// <summary>
-        /// An Alpine operating system.
-        /// </summary>
-        Alpine       // alpine
     }
 }
