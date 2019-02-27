@@ -19,7 +19,7 @@ jobs:
   steps:
   - script: |
       dotnet restore --disable-parallel --force
-      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
+      dotnet build -c $(build.configuration) --no-restore -p:TCDFxVersionSuffix=$(build.buildNumber)
 
     workingDirectory: source/$(build.projectName)
     displayName: Build
@@ -31,7 +31,7 @@ jobs:
   steps:
   - script: |
       dotnet restore --disable-parallel --force
-      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
+      dotnet build -c $(build.configuration) --no-restore -p:TCDFxVersionSuffix=$(build.buildNumber)
 
     workingDirectory: source/$(build.projectName)
     displayName: Build
@@ -43,7 +43,7 @@ jobs:
   steps:
   - script: |
       dotnet restore --disable-parallel --force
-      dotnet build -c $(build.configuration) --no-restore --version-suffix $(build.buildNumber)
+      dotnet build -c $(build.configuration) --no-restore -p:TCDFxVersionSuffix=$(build.buildNumber)
       dotnet nuget push ..\..\build\$(build.projectName)\pkg\ -k $(NuGet.PushKey) -s $(NuGet.PushUrl) --no-service-endpoint
 
     workingDirectory: source\$(build.projectName)

@@ -31,7 +31,7 @@
     <TCDFxLicenseType Condition="'$(TCDFxLicenseType)' == ''">MIT</TCDFxLicenseType>
 
     <!-- The version prefix. (i.e. 1.0.0) -->
-    <TCDFxVersionPrefix Condition="'$(TCDFxVersionPrefix)' == ''">0.5.0</TCDFxVersionPrefix>
+    <TCDFxVersionPrefix Condition="'$(TCDFxVersionPrefix)' == ''">0.6.0</TCDFxVersionPrefix>
 
     <!-- The version suffix. (i.e. alpha-2) -->
     <!-- NOTE: This property should only be set using the command line in a CI build. -->
