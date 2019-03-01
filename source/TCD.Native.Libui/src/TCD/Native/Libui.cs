@@ -29,8 +29,6 @@ namespace TCD.Native
             else if ((CurrentPlatform.Platform == PlatformType.Linux || CurrentPlatform.Platform == PlatformType.FreeBSD) && CurrentPlatform.Architecture == PlatformArch.X64)
                 AssemblyRef = new NativeAssembly(@"runtimes/linux-x64/native/libui.so", @"runtimes/linux-x64/native/libui.so.0");
             else throw new PlatformNotSupportedException();
-
-            Console.WriteLine($"{AssemblyRef}");
         }
 
         private static NativeAssembly AssemblyRef { get; }
