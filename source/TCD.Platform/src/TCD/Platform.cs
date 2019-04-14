@@ -35,7 +35,7 @@ namespace TCD
                     pOS = PlatformOS.Windows;
 #pragma warning disable IDE0045 // 'if' statement can be simplified
                 else if (osStr == "osx")
-#pragma warning enable IDE0045 // 'if' statement can be simplified
+#pragma warning restore IDE0045 // 'if' statement can be simplified
                     pOS = PlatformOS.MacOS;
                 else
                     pOS = Enum.TryParse(osStr, true, out PlatformOS os) ? os : PlatformOS.Unknown;
@@ -81,7 +81,7 @@ namespace TCD
 
 #pragma warning disable IDE0045 // 'if' statement can be simplified
                 if (ridParts[1] == "arm")
-#pragma warning enable IDE0045 // 'if' statement can be simplified
+#pragma warning restore IDE0045 // 'if' statement can be simplified
                     pArch = PlatformArch.ARM32;
                 else
                     pArch = Enum.TryParse(ridParts[1], true, out PlatformArch arch) ? arch : PlatformArch.Unknown;

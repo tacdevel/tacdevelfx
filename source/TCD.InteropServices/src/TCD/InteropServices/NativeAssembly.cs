@@ -162,17 +162,17 @@ namespace TCD
             [DllImport(AssemblyRef)]
 #pragma warning disable IDE1006 // Naming rule violation
             internal static extern IntPtr dlopen(string fileName, int flags);
-#pragma warning enable IDE1006 // Naming rule violation
+#pragma warning restore IDE1006 // Naming rule violation
 
             [DllImport(AssemblyRef)]
 #pragma warning disable IDE1006 // Naming rule violation
             internal static extern IntPtr dlsym(IntPtr handle, string name);
-#pragma warning enable IDE1006 // Naming rule violation
+#pragma warning restore IDE1006 // Naming rule violation
 
             [DllImport(AssemblyRef)]
 #pragma warning disable IDE1006 // Naming rule violation
             internal static extern int dlclose(IntPtr handle);
-#pragma warning enable IDE1006 // Naming rule violation
+#pragma warning restore IDE1006 // Naming rule violation
         }
     }
 }
