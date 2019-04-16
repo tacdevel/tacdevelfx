@@ -79,20 +79,20 @@ Add the following `<PackageReference />` to your `.csproj`:
 
 ## Building From Source
 
-TCDFx is built with .NET Core 2.1, so you can build the packages with either Visual Studio, Visual
+TCDFx is built with .NET Core 3.0 Preview, so you can build the packages with either Visual Studio, Visual
 Studio Code, or just by running a couple simple commands. Use the steps below to get started!
 
 ### Prerequisites
 
 | Operating System | Prerequisites                                                                                                                                             |
 | :--------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Windows 7/8.1/10 | .NET Core 2.2 SDK<br/><br/>**Optional:**<br/>Visual Studio 2017 (v15.9.x)<br/>Visual Studio 2019 (v16.0.x)<br/>Visual Studio Code (With the C# extension) |
-| Mac OS X         | .NET Core 2.2 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                                                   |
-| Linux            | .NET Core 2.2 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                                                   |
+| Windows 7/8.1/10 | .NET Core 3.0 Preview SDK<br/><br/>**Optional:**<br/>Visual Studio 2019 Preview<br/>Visual Studio Code (With the C# extension) |
+| Mac OS X         | .NET Core 3.0 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                                                   |
+| Linux            | .NET Core 3.0 SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                                                   |
 
 ### Build Using Visual Studio (Windows)
 
-*Ensure you have the latest version of Visual Studio 2017/2019 installed with the .NET Core
+*Ensure you have the latest version of Visual Studio 2019 installed with the .NET Core
 workload.*
 
 1. Open the `tcdfx.sln` file.
@@ -149,8 +149,8 @@ dotnet build .\tcdfx.sln
 [Badges.NuGet.Pre.12]: https://badgen.net/nuget/v/TCD.Drawing.Text/pre?color=green&label=prerelease
 [Badges.License]: https://badgen.net/badge/license/MIT/blue
 [Badges.Contributors]: https://badgen.net/github/contributors/tom-corwin/tcdfx
-[Badges.CSharpVersion]: https://badgen.net/badge/C%23/7.3/green
-[Badges.TargetFrameworks]: https://badgen.net/badge/targets/netstandard2.0/purple
+[Badges.CSharpVersion]: https://badgen.net/badge/C%23/8.0/green
+[Badges.TargetFrameworks]: https://badgen.net/badge/targets/netstandard2.1/purple
 [Badges.Issues.Open]: https://badgen.net/github/open-issues/tom-corwin/tcdfx/
 [Badges.Issues.Closed]: https://badgen.net/github/closed-issues/tom-corwin/tcdfx/
 [Badges.Issues.HelpWanted]: https://badgen.net/github/label-issues/tom-corwin/tcdfx/help%20wanted/open
