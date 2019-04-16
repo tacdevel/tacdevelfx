@@ -31,7 +31,7 @@ namespace TCD.Native
 
         private static NativeAssembly AssemblyRef { get; }
 
-        public static T Call<T>() where T : Delegate => Marshal.GetDelegateForFunctionPointer<T>(AssemblyRef.LoadFunctionPointer(typeof(T).Name));
+        public static T Call<T>() where T : Delegate => AssemblyRef.LoadFunction<T>();
         #endregion
 
         // Keep the members below in order with ui.h so it's easier to see what's missing.

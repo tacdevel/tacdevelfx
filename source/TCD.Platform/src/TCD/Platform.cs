@@ -117,9 +117,6 @@ namespace TCD
                 Version = osInfo.Version;
                 RuntimeID = $"{GetRIDOS()}{GetRIDVersion()}{GetRIDArch()}";
             }
-            #if DEBUG
-            Console.WriteLine($"[DEBUG] Platform detected: {RuntimeID}");
-            #endif
         }
 
         /// <summary>
