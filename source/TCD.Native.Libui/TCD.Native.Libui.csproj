@@ -1,4 +1,4 @@
-<!--================================================================================================
+﻿<!--================================================================================================
 * FileName:             TCD.Native.Libui.csproj
 * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
 * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
@@ -11,35 +11,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="$(TCDFxProjGroupNativeFolder)runtimes\win-x64\native\libui.dll" Link="runtimes\win-x64\native\libui.dll" PackagePath="runtimes\win-x64\native\libui.dll">
+    <Content Include="$(TCDFxProjFolder)runtimes\win-x64\native\libui.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
-      <Visible>false</Visible>
     </Content>
-    <Content Include="$(TCDFxProjGroupNativeFolder)runtimes\linux-x64\native\libui.so" Link="runtimes\linux-x64\native\libui.so" PackagePath="runtimes\linux-x64\native\libui.so">
+    <Content Include="$(TCDFxProjFolder)runtimes\linux-x64\native\libui.so">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
-      <Visible>false</Visible>
     </Content>
-    <Content Include="$(TCDFxProjGroupNativeFolder)runtimes\linux-x64\native\libui.so.0" Link="runtimes\linux-x64\native\libui.so.0" PackagePath="runtimes\linux-x64\native\libui.so.0">
+    <Content Include="$(TCDFxProjFolder)runtimes\linux-x64\native\libui.so.0">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
-      <Visible>false</Visible>
     </Content>
-    <Content Include="$(TCDFxProjGroupNativeFolder)runtimes\osx-x64\native\libui.dylib" Link="runtimes\osx-x64\native\libui.dylib" PackagePath="runtimes\osx-x64\native\libui.dylib">
+    <Content Include="$(TCDFxProjFolder)runtimes\osx-x64\native\libui.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
-      <Visible>false</Visible>
     </Content>
-    <Content Include="$(TCDFxProjGroupNativeFolder)runtimes\osx-x64\native\libui.A.dylib" Link="runtimes\osx-x64\native\libui.A.dylib" PackagePath="runtimes\osx-x64\native\libui.A.dylib">
+    <Content Include="$(TCDFxProjFolder)runtimes\osx-x64\native\libui.A.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
-      <Visible>false</Visible>
     </Content>
   </ItemGroup>
   
   <ItemGroup>
-    <None Include="$(TCDFxProjGroupNativeFolder)\headers\ui.h" Link="headers\ui.h" />
+    <None Include="$(TCDFxProjFolder)headers\ui.h" />
   </ItemGroup>
   
   <ItemGroup>

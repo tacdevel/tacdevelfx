@@ -92,10 +92,6 @@
     <!-- NOTE: This property should not be modified or overriden. -->
     <TCDFxProjGroupFolder Condition="'$(TCDFxProjGroupFolder)' == ''">$(TCDFxFolder)$(TCDFxProjGroup)\</TCDFxProjGroupFolder>
 
-    <!-- The project group's shared native folder. -->
-    <!-- NOTE: This property should not be modified or overriden. -->
-    <TCDFxProjGroupNativeFolder Condition="'$(TCDFxProjGroupNativeFolder)' == ''">$(TCDFxProjGroupFolder)Native\</TCDFxProjGroupNativeFolder>
-
     <!-- The project's folder. -->
     <!-- NOTE: This property should not be modified or overriden. -->
     <TCDFxProjFolder Condition="'$(TCDFxProjFolder)' == ''">$(TCDFxProjGroupFolder)$(TCDFxProjName)\</TCDFxProjFolder>
