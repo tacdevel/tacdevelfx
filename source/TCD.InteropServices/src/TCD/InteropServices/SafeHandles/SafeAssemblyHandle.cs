@@ -34,7 +34,7 @@ namespace TCD.SafeHandles
             {
                 if (handle == IntPtr.Zero) throw new InvalidHandleException();
 
-                switch (CurrentPlatform.Platform)
+                switch (Platform.PlatformType)
                 {
                     case PlatformType.Windows:
                         Kernel32.FreeLibrary(handle);

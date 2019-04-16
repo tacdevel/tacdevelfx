@@ -33,7 +33,7 @@ namespace TCD.InteropServices
                 return false;
             }
 
-            string currentRID = CurrentPlatform.RuntimeID;
+            string currentRID = Platform.RuntimeID;
             List<string> allRIDs = new List<string> { currentRID };
             if (!AddFallbacks(allRIDs, currentRID, defaultContext.RuntimeGraph))
             {
@@ -103,7 +103,7 @@ namespace TCD.InteropServices
         //TODO: Handle alternative package directories, if they are configured.
         private string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
 
-        private string GetUserDirectory() => CurrentPlatform.Platform == PlatformType.Windows
+        private string GetUserDirectory() => Platform.PlatformType == PlatformType.Windows
                 ? Environment.GetEnvironmentVariable("USERPROFILE")
                 : Environment.GetEnvironmentVariable("HOME");
     }

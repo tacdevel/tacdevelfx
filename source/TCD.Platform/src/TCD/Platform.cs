@@ -1,6 +1,6 @@
 /***************************************************************************************************
  * FileName:             PlatformHelper.cs
-  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -13,15 +13,10 @@ namespace TCD
 {
     // Based on: https://github.com/dotnet/core-setup/blob/master/src/managed/Microsoft.DotNet.PlatformAbstractions/RuntimeEnvironment.cs
     /// <summary>
-    /// Contains the <see cref="CurrentPlatform"/> property, allowing for determining the current running platform.
+    /// Contains information about the current running platform.
     /// </summary>
     public static class Platform
     {
-        private static readonly PlatformArch pArch;
-        private static readonly PlatformType pType;
-        private static readonly PlatformOS pOS;
-        private static readonly Version pVersion;
-        private static readonly string pRID;
         private static readonly string pRIDEnv = Environment.GetEnvironmentVariable("DOTNET_RUNTIME_ID");
 
         static Platform()
@@ -32,24 +27,24 @@ namespace TCD
 
                 string osStr = Regex.Replace(ridParts[0], "[^0-9.]", "");
                 if (osStr == "win")
-                    pOS = PlatformOS.Windows;
+                    OperatingSystem = PlatformOS.Windows;
 #pragma warning disable IDE0045 // 'if' statement can be simplified
                 else if (osStr == "osx")
 #pragma warning restore IDE0045 // 'if' statement can be simplified
-                    pOS = PlatformOS.MacOS;
+                    OperatingSystem = PlatformOS.MacOS;
                 else
-                    pOS = Enum.TryParse(osStr, true, out PlatformOS os) ? os : PlatformOS.Unknown;
+                    OperatingSystem = Enum.TryParse(osStr, true, out PlatformOS os) ? os : PlatformOS.Unknown;
 
-                switch (pOS)
+                switch (OperatingSystem)
                 {
                     case PlatformOS.Windows:
-                        pType = PlatformType.Windows;
+                        PlatformType = PlatformType.Windows;
                         break;
                     case PlatformOS.MacOS:
-                        pType = PlatformType.MacOS;
+                        PlatformType = PlatformType.MacOS;
                         break;
                     case PlatformOS.FreeBSD:
-                        pType = PlatformType.FreeBSD;
+                        PlatformType = PlatformType.FreeBSD;
                         break;
                     case PlatformOS.Linux:
                     case PlatformOS.Debian:
@@ -62,44 +57,44 @@ namespace TCD
                     case PlatformOS.SLES:
                     case PlatformOS.CentOS:
                     case PlatformOS.Alpine:
-                        pType = PlatformType.Linux;
+                        PlatformType = PlatformType.Linux;
                         break;
                     case PlatformOS.Unknown:
                     default:
-                        pType = PlatformType.Unknown;
+                        PlatformType = PlatformType.Unknown;
                         break;
                 }
 
                 string versionStr = Regex.Replace(ridParts[0], "[^a-zA-Z]", "");
                 if (!versionStr.Contains("."))
-                    pVersion = new Version(int.Parse(versionStr), 0);
+                    Version = new Version(int.Parse(versionStr), 0);
                 else
                 {
                     string[] splitVersion = versionStr.Split('.');
-                    pVersion = new Version(int.Parse(splitVersion[0]), int.Parse(splitVersion[1]));
+                    Version = new Version(int.Parse(splitVersion[0]), int.Parse(splitVersion[1]));
                 }
 
 #pragma warning disable IDE0045 // 'if' statement can be simplified
                 if (ridParts[1] == "arm")
 #pragma warning restore IDE0045 // 'if' statement can be simplified
-                    pArch = PlatformArch.ARM32;
+                    Architecture = PlatformArch.ARM32;
                 else
-                    pArch = Enum.TryParse(ridParts[1], true, out PlatformArch arch) ? arch : PlatformArch.Unknown;
+                    Architecture = Enum.TryParse(ridParts[1], true, out PlatformArch arch) ? arch : PlatformArch.Unknown;
 
-                pRID = null;
+                RuntimeID = pRIDEnv;
             }
             else
             {
-                pArch = (PlatformArch)RuntimeInformation.ProcessArchitecture;
+                Architecture = (PlatformArch)RuntimeInformation.ProcessArchitecture;
 
-                pType = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? PlatformType.Windows
+                PlatformType = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? PlatformType.Windows
                 : RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? PlatformType.Linux
                 : RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? PlatformType.MacOS
                 : RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")) ? PlatformType.FreeBSD
                 : PlatformType.Unknown;
 
                 (PlatformOS OS, Version Version) osInfo;
-                switch (pType)
+                switch (PlatformType)
                 {
                     case PlatformType.Windows:
                         osInfo = GetWindowsInfo();
@@ -118,19 +113,39 @@ namespace TCD
                         break;
                 }
 
-                pOS = osInfo.OS;
-                pVersion = osInfo.Version;
-                pRID = $"{GetRIDOS()}{GetRIDVersion()}{GetRIDArch()}";
+                OperatingSystem = osInfo.OS;
+                Version = osInfo.Version;
+                RuntimeID = $"{GetRIDOS()}{GetRIDVersion()}{GetRIDArch()}";
             }
             #if DEBUG
-            Console.WriteLine($"[DEBUG] Platform detected: {pOS} {pVersion} {pArch}");
+            Console.WriteLine($"[DEBUG] Platform detected: {RuntimeID}");
             #endif
         }
 
         /// <summary>
-        /// Gets information about the current platform.
+        /// The processor architecture.
         /// </summary>
-        public static PlatformInfo CurrentPlatform => new PlatformInfo(pArch, pType, pOS, pVersion, pRID ?? pRIDEnv);
+        public static PlatformArch Architecture { get; }
+
+        /// <summary>
+        /// The operating system platform.
+        /// </summary>
+        public static PlatformType PlatformType { get; }
+
+        /// <summary>
+        /// The operating system type.
+        /// </summary>
+        public static PlatformOS OperatingSystem { get; }
+
+        /// <summary>
+        /// The operating system version.
+        /// </summary>
+        public static Version Version { get; }
+
+        /// <summary>
+        /// The .NET Runtime Identifier (RID) for the platform.
+        /// </summary>
+        public static string RuntimeID { get; }
 
         private static (PlatformOS OS, Version Version) GetWindowsInfo()
         {
@@ -228,35 +243,35 @@ namespace TCD
             return (PlatformOS.FreeBSD, new Version(0, 0));
         }
 
-        private static string GetRIDArch() => pArch == PlatformArch.ARM32 ? "-arm" : $"-{pArch}";
+        private static string GetRIDArch() => Architecture == PlatformArch.ARM32 ? "-arm" : $"-{Architecture}";
 
         private static string GetRIDVersion()
         {
-            if (pVersion.Major == 0 && pVersion.Minor == 0)
+            if (Version.Major == 0 && Version.Minor == 0)
                 return string.Empty;
 
-            switch (pType)
+            switch (PlatformType)
             {
                 // Windows RIDs do not separate OS name and version by "."
                 case PlatformType.Windows:
-                    if (pVersion.Major == 6)
+                    if (Version.Major == 6)
                     {
-                        if (pVersion.Minor == 1)
+                        if (Version.Minor == 1)
                             return "7";
-                        else if (pVersion.Minor == 2)
+                        else if (Version.Minor == 2)
                             return "8";
-                        else if (pVersion.Minor == 3)
+                        else if (Version.Minor == 3)
                             return "81";
                     }
-                    else if (pVersion.Major >= 10)
-                        return pVersion.Major.ToString();
+                    else if (Version.Major >= 10)
+                        return Version.Major.ToString();
                     return string.Empty;
                 case PlatformType.MacOS:
                 case PlatformType.Linux:
                 case PlatformType.FreeBSD:
-                    if (pVersion.Minor > 0)
-                        return $".{pVersion.Major}";
-                    return $".{pVersion.Major}.{pVersion.Minor}";
+                    if (Version.Minor > 0)
+                        return $".{Version.Major}";
+                    return $".{Version.Major}.{Version.Minor}";
                 case PlatformType.Unknown:
                 default:
                     return string.Empty;
@@ -265,7 +280,7 @@ namespace TCD
 
         private static string GetRIDOS()
         {
-            switch (pOS)
+            switch (OperatingSystem)
             {
                 case PlatformOS.Windows:
                     return "win";
@@ -283,7 +298,7 @@ namespace TCD
                 case PlatformOS.SLES:
                 case PlatformOS.CentOS:
                 case PlatformOS.Alpine:
-                    return pOS.ToString().ToLowerInvariant();
+                    return OperatingSystem.ToString().ToLowerInvariant();
                 case PlatformOS.Unknown:
                 default:
                     return "unknown";

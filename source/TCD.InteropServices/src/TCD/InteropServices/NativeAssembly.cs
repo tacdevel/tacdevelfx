@@ -9,170 +9,99 @@ using System.IO;
 using System.Runtime.InteropServices;
 using TCD.Native;
 using TCD.SafeHandles;
-using static TCD.Platform;
 
 namespace TCD
 {
     namespace InteropServices
     {
-        /// <summary>
-        /// Represents a native shared assembly that function pointers may be loaded from.
-        /// </summary>
         public class NativeAssembly : NativeComponent<SafeAssemblyHandle>
         {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="NativeAssembly"/> class
-            /// with the default <see cref="NativeAssemblyResolver"/>.
-            /// </summary>
-            /// <param name="names">An ordered list of assembly names to attempt to load.</param>
             public NativeAssembly(params string[] names) : this(NativeAssemblyResolver.Default, names) { }
+            public NativeAssembly(NativeAssemblyResolver resolver, params string[] names) : base(new SafeAssemblyHandle(LoadAssembly(resolver, names))) { }
 
-            /// <summary>
-            /// Initializes a new instance of the <see cref="NativeAssembly"/> class
-            /// with the specified <see cref="NativeAssemblyResolver"/>.
-            /// </summary>
-            /// <param name="names">An ordered list of assembly names to attempt to load.</param>
-            /// <param name="resolver">The resolver used to identify possible load targets for the assembly.</param>
-            public NativeAssembly(NativeAssemblyResolver resolver, params string[] names) : base(new SafeAssemblyHandle(GetHandle(resolver, names))) { }
+            public T LoadFunction<T>() => LoadFunction<T>(typeof(T).Name);
 
-            /// <summary>
-            /// Loads a function whose signature and name match the given delegate type's signature and name.
-            /// </summary>
-            /// <typeparam name="T">The type of delegate to return.</typeparam>
-            /// <returns>A delegate wrapping the native function.</returns>
-            public T LoadFunction<T>() where T : Delegate => LoadFunction<T>(typeof(T).Name);
-
-            /// <summary>
-            /// Loads a function whose signature matches the given delegate type's signature.
-            /// </summary>
-            /// <typeparam name="T">The type of delegate to return.</typeparam>
-            /// <param name="name">The name of the native function.</param>
-            /// <returns>A delegate wrapping the native function.</returns>
-            public T LoadFunction<T>(string name) where T : Delegate
+            public T LoadFunction<T>(string name)
             {
-                IntPtr funcPtr = LoadFunction(name);
-                if (funcPtr == IntPtr.Zero)
+                IntPtr functionPtr = LoadFunctionPointer(name);
+                if (functionPtr == IntPtr.Zero)
                     throw new InvalidOperationException($"No function was found with the name {name}.");
-                return Marshal.GetDelegateForFunctionPointer<T>(funcPtr);
+                return Marshal.GetDelegateForFunctionPointer<T>(functionPtr);
             }
 
-            /// <summary>
-            /// Loads a function pointer with the given name.
-            /// </summary>
-            /// <param name="name">The name of the native function.</param>
-            /// <returns>A function pointer for the given name, or <see cref="IntPtr.Zero"/> if no function with the specified name was found.</returns>
-            public IntPtr LoadFunction(string name)
+            public IntPtr LoadFunctionPointer(string name)
             {
-                if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
+                IntPtr ret;
+                if (string.IsNullOrWhiteSpace(name))
+                    throw new ArgumentNullException(nameof(name), "The function pointer's name nust not be null, empty, or whitespace.");
+                ret = LoadFunctionPointer(Handle, name);
 
-                switch (CurrentPlatform.Platform)
+                if (ret == IntPtr.Zero)
+                    throw new EntryPointNotFoundException($"Could not find or load the function pointer from name: [ {name} ]");
+                return ret;
+            }
+
+            private static IntPtr LoadFunctionPointer(IntPtr handle, string name)
+            {
+                switch (Platform.PlatformType)
                 {
                     case PlatformType.Windows:
-                        return Kernel32.GetProcAddress(Handle, name);
-                    case PlatformType.Linux:
+                        return Kernel32.GetProcAddress(handle, name);
                     case PlatformType.MacOS:
+                    case PlatformType.Linux:
                     case PlatformType.FreeBSD:
-                        return Libdl.dlsym(Handle, name);
+                        return Libdl.dlsym(handle, name);
                     case PlatformType.Unknown:
                     default:
                         return IntPtr.Zero;
                 }
             }
 
-            private static IntPtr GetHandle(NativeAssemblyResolver resolver, params string[] names)
+            private static IntPtr LoadAssembly(NativeAssemblyResolver resolver, params string[] names)
             {
-                if (names == null || names.Length == 0) throw new ArgumentNullException(nameof(names));
+                if (names == null || names.Length == 0)
+                    throw new ArgumentException("Parameter must not be null or empty.", nameof(names));
 
-                IntPtr value = IntPtr.Zero;
+                IntPtr ret = IntPtr.Zero;
                 foreach (string name in names)
                 {
                     if (Path.IsPathRooted(name))
-                    {
-                        switch (CurrentPlatform.Platform)
-                        {
-                            case PlatformType.Windows:
-                                value = Kernel32.LoadLibrary(name);
-                                break;
-                            case PlatformType.Linux:
-                            case PlatformType.MacOS:
-                            case PlatformType.FreeBSD:
-                                value = Libdl.dlopen(name, 0x002);
-                                break;
-                            case PlatformType.Unknown:
-                            default:
-                                break;
-                        }
-                    }
+                        ret = LoadAssembly(name);
                     else
                     {
                         foreach (string loadTarget in resolver.EnumerateLoadTargets(name))
                         {
                             if (!Path.IsPathRooted(loadTarget) || File.Exists(loadTarget))
                             {
-                                IntPtr v = IntPtr.Zero;
-                                switch (CurrentPlatform.Platform)
-                                {
-                                    case PlatformType.Windows:
-                                        v = Kernel32.LoadLibrary(loadTarget);
-                                        break;
-                                    case PlatformType.Linux:
-                                    case PlatformType.MacOS:
-                                    case PlatformType.FreeBSD:
-                                        v = Libdl.dlopen(loadTarget, 0x002);
-                                        break;
-                                    case PlatformType.Unknown:
-                                    default:
-                                        break;
-                                }
-                                if (v != IntPtr.Zero)
-                                    value = v;
+                                IntPtr ret2 = LoadAssembly(loadTarget);
+                                if (ret2 != IntPtr.Zero)
+                                    ret = ret2;
                             }
                         }
                     }
-                    if (value != IntPtr.Zero)
+                    if (ret != IntPtr.Zero)
                         break;
                 }
-
-                if (value == IntPtr.Zero) throw new FileNotFoundException($"Could not load a library with the specified name(s): [ {string.Join(", ", names)} ]");
-                return value;
+                if (ret == IntPtr.Zero)
+                    throw new FileNotFoundException($"Could not find or load the native library from any name: [ {string.Join(", ", names)} ]");
+                return ret;
             }
-        }
-    }
 
-    namespace Native
-    {
-        internal static class Kernel32
-        {
-            private const string AssemblyRef = "kernel32";
-
-            [DllImport(AssemblyRef)]
-            internal static extern IntPtr LoadLibrary(string fileName);
-
-            [DllImport(AssemblyRef)]
-            internal static extern IntPtr GetProcAddress(IntPtr module, string procName);
-
-            [DllImport(AssemblyRef)]
-            internal static extern int FreeLibrary(IntPtr module);
-        }
-
-        internal static class Libdl
-        {
-            private const string AssemblyRef = "libdl";
-
-            [DllImport(AssemblyRef)]
-#pragma warning disable IDE1006 // Naming rule violation
-            internal static extern IntPtr dlopen(string fileName, int flags);
-#pragma warning restore IDE1006 // Naming rule violation
-
-            [DllImport(AssemblyRef)]
-#pragma warning disable IDE1006 // Naming rule violation
-            internal static extern IntPtr dlsym(IntPtr handle, string name);
-#pragma warning restore IDE1006 // Naming rule violation
-
-            [DllImport(AssemblyRef)]
-#pragma warning disable IDE1006 // Naming rule violation
-            internal static extern int dlclose(IntPtr handle);
-#pragma warning restore IDE1006 // Naming rule violation
+            private static IntPtr LoadAssembly(string name)
+            {
+                switch (Platform.PlatformType)
+                {
+                    case PlatformType.Windows:
+                        return Kernel32.LoadLibrary(name);
+                    case PlatformType.MacOS:
+                    case PlatformType.Linux:
+                    case PlatformType.FreeBSD:
+                        return Libdl.dlopen(name, Libdl.RTLD_NOW);
+                    case PlatformType.Unknown:
+                    default:
+                        return IntPtr.Zero;
+                }
+            }
         }
     }
 }

@@ -5,6 +5,7 @@
  **************************************************************************************************/
 
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using TCD.InteropServices;
 using static TCD.Platform;
@@ -15,57 +16,22 @@ namespace TCD.Native
     {
         #region Helpers
         private const CallingConvention Convention = CallingConvention.Cdecl;
-#pragma warning disable IDE0051 // Remove unused private members
         private const LayoutKind Layout = LayoutKind.Sequential;
-#pragma warning restore IDE0051 // Remove unused private members
 
         static Libui()
         {
-            if (CurrentPlatform.Platform == PlatformType.Windows && CurrentPlatform.Architecture == PlatformArch.X64)
+            if (Platform.PlatformType == PlatformType.Windows && Platform.Architecture == PlatformArch.X64)
                 AssemblyRef = new NativeAssembly(@"runtimes\win-x64\native\libui.dll");
-            else if (CurrentPlatform.Platform == PlatformType.MacOS && CurrentPlatform.Architecture == PlatformArch.X64)
+            else if (Platform.PlatformType == PlatformType.MacOS && Platform.Architecture == PlatformArch.X64)
                 AssemblyRef = new NativeAssembly(@"runtimes/osx-x64/native/libui.dylib", @"runtimes/osx-x64/native/libui.A.dylib");
-            else if ((CurrentPlatform.Platform == PlatformType.Linux || CurrentPlatform.Platform == PlatformType.FreeBSD) && CurrentPlatform.Architecture == PlatformArch.X64)
+            else if ((Platform.PlatformType == PlatformType.Linux || Platform.PlatformType == PlatformType.FreeBSD) && Platform.Architecture == PlatformArch.X64)
                 AssemblyRef = new NativeAssembly(@"runtimes/linux-x64/native/libui.so", @"runtimes/linux-x64/native/libui.so.0");
             else throw new PlatformNotSupportedException();
         }
 
         private static NativeAssembly AssemblyRef { get; }
 
-        public static T Call<T>() where T : Delegate
-#if DEBUG
-        {
-            bool fail = false;
-
-            try
-            {
-                Console.Write($"[DEBUG] Loading native function '{typeof(T).Name}' from assembly '{nameof(Libui)}'...");
-                return AssemblyRef.LoadFunction<T>(typeof(T).Name);
-            }
-            catch (Exception ex)
-            {
-                fail = true;
-                Console.Write($" Exception Caught.");
-                Console.WriteLine();
-                Console.WriteLine($"[DEBUG] Exception Type: {ex.GetType().Name}");
-                Console.WriteLine($"[DEBUG] Inner Exception Type: {ex.InnerException.GetType().Name}");
-                Console.WriteLine($"[DEBUG] Source: {ex.Source}");
-                Console.WriteLine($"[DEBUG] Message: {ex.Message}");
-                Console.WriteLine($"[DEBUG] StackTrace: {ex.StackTrace}");
-                throw;
-            }
-            finally
-            {
-                if (!fail)
-                {
-                    Console.Write(" Done.");
-                    Console.WriteLine();
-                }
-            }
-        }
-#else
-        => AssemblyRef.LoadFunction<T>(typeof(T).Name);
-#endif
+        public static T Call<T>() where T : Delegate => Marshal.GetDelegateForFunctionPointer<T>(AssemblyRef.LoadFunctionPointer(typeof(T).Name));
         #endregion
 
         // Keep the members below in order with ui.h so it's easier to see what's missing.
