@@ -14,13 +14,39 @@ namespace TCD
 {
     namespace InteropServices
     {
+        /// <summary>
+        /// Represents a shared, native library.
+        /// </summary>
         public class NativeAssembly : NativeComponent<SafeAssemblyHandle>
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="NativeAssembly"/> class
+            /// with the default <see cref="NativeAssemblyResolver"/>.
+            /// </summary>
+            /// <param name="names">An ordered list of assembly names to attempt to load.</param>
             public NativeAssembly(params string[] names) : this(NativeAssemblyResolver.Default, names) { }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="NativeAssembly"/> class
+            /// with the specified <see cref="NativeAssemblyResolver"/>.
+            /// </summary>
+            /// <param name="names">An ordered list of assembly names to attempt to load.</param>
+            /// <param name="resolver">The resolver used to identify possible load targets for the assembly.</param>
             public NativeAssembly(NativeAssemblyResolver resolver, params string[] names) : base(new SafeAssemblyHandle(LoadAssembly(resolver, names))) { }
 
+            /// <summary>
+            /// Loads a function whose signature and name match the given delegate type's signature and name.
+            /// </summary>
+            /// <typeparam name="T">The type of delegate to return.</typeparam>
+            /// <returns>A delegate wrapping the native function.</returns>
             public T LoadFunction<T>() => LoadFunction<T>(typeof(T).Name);
 
+            /// <summary>
+            /// Loads a function whose signature matches the given delegate type's signature.
+            /// </summary>
+            /// <typeparam name="T">The type of delegate to return.</typeparam>
+            /// <param name="name">The name of the native function.</param>
+            /// <returns>A delegate wrapping the native function.</returns>
             public T LoadFunction<T>(string name)
             {
                 IntPtr functionPtr = LoadFunctionPointer(name);
@@ -29,6 +55,11 @@ namespace TCD
                 return Marshal.GetDelegateForFunctionPointer<T>(functionPtr);
             }
 
+            /// <summary>
+            /// Loads a function pointer with the given name.
+            /// </summary>
+            /// <param name="name">The name of the native function.</param>
+            /// <returns>A function pointer for the given name, or <see cref="IntPtr.Zero"/> if no function with the specified name was fou
             public IntPtr LoadFunctionPointer(string name)
             {
                 IntPtr ret;
