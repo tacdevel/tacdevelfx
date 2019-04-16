@@ -1,6 +1,6 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             NativeAssemblyResolver.cs
-  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -29,5 +29,10 @@ namespace TCD.InteropServices
         /// Gets a resolver that enumerates load targets from a dependency.
         /// </summary>
         public static NativeAssemblyResolver Dependency => new DependencyNativeAssemblyResolver();
+
+        /// <summary>
+        /// Gets a resolver that loads an embedded assembly from the calling assembly.
+        /// </summary>
+        public static NativeAssemblyResolver Embedded => new EmbeddedNativeAssemblyResolver();
     }
 }
