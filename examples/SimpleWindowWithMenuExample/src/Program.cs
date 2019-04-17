@@ -1,5 +1,6 @@
 using TCD.UI;
 using TCD.Drawing;
+using System;
 
 namespace SimpleWindowWithMenuExample
 {
@@ -8,6 +9,7 @@ namespace SimpleWindowWithMenuExample
         // This MUST be static, or dotnet itself will crash.
         private static Menu menu;
 
+        [STAThread]
         public static void Main()
         {
             // Initialize application.
