@@ -5,9 +5,11 @@
  **************************************************************************************************/
 
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace TCD.Native
 {
+    [SuppressUnmanagedCodeSecurity]
     internal static class Ntdll
     {
         private const string AssemblyRef = "ntdll";

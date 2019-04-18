@@ -6,10 +6,11 @@
 
 using System;
 using System.Runtime.InteropServices;
-
+using System.Security;
 
 namespace TCD.Native
 {
+    [SuppressUnmanagedCodeSecurity]
     internal static class Libdl
     {
         private const string AssemblyRef = "libdl";

@@ -7,11 +7,13 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security;
 using TCD.InteropServices;
 using static TCD.Platform;
 
 namespace TCD.Native
 {
+    [SuppressUnmanagedCodeSecurity]
     internal static partial class Libui
     {
         #region Helpers

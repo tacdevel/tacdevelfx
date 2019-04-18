@@ -7,6 +7,7 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Security;
 using TCD.Native;
 using TCD.SafeHandles;
 
@@ -17,6 +18,7 @@ namespace TCD
         /// <summary>
         /// Represents a shared, native library.
         /// </summary>
+        [SuppressUnmanagedCodeSecurity]
         public class NativeAssembly : NativeComponent<SafeAssemblyHandle>
         {
             /// <summary>

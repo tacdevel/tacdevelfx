@@ -5,6 +5,7 @@
  **************************************************************************************************/
 
 using System;
+using System.Security;
 using TCD.InteropServices;
 using TCD.Native;
 using static TCD.Platform;
@@ -14,6 +15,7 @@ namespace TCD.SafeHandles
     /// <summary>
     /// Represents a wrapper class for a native assembly handle.
     /// </summary>
+    [SuppressUnmanagedCodeSecurity]
     public sealed class SafeAssemblyHandle : SafeHandleZeroIsInvalid
     {
         /// <summary>

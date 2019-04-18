@@ -6,10 +6,11 @@
 
 using System;
 using System.Runtime.InteropServices;
-
+using System.Security;
 
 namespace TCD.Native
 {
+    [SuppressUnmanagedCodeSecurity]
     internal static class Kernel32
     {
         private const string AssemblyRef = "kernel32";
