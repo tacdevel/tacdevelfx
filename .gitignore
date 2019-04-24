@@ -46,10 +46,10 @@ test-results/
 .idea/
 *.sln.iml
 
-# Misc. Files
+# Build-Specific Files
 ##############################
 ## Build Directories
-[Bb]uild/*
+[Bb]uild/
 [Bb]in/
 [Oo]bj/
 [Pp]kg/

@@ -61,8 +61,9 @@
     <!-- NOTE: This property should not be modified or overriden. -->
     <TCDFxProjGroup Condition="$(TCDFxProjName.EndsWith('Example')) AND '$(TCDFxProjGroup)' == ''">examples</TCDFxProjGroup>
     <TCDFxProjGroup Condition="$(TCDFxProjName.EndsWith('Tool')) AND '$(TCDFxProjGroup)' == ''">tools</TCDFxProjGroup>
-    <TCDFxProjGroup Condition="$(TCDFxProjName.EndsWith('Test')) AND '$(TCDFxProjGroup)' == ''">tests</TCDFxProjGroup>
-    <TCDFxProjGroup Condition="'$(TCDFxProjGroup)' == ''">source</TCDFxProjGroup>
+    <TCDFxProjGroup Condition="$(TCDFxProjName.EndsWith('.Tests')) AND '$(TCDFxProjGroup)' == ''">tests</TCDFxProjGroup>
+    <TCDFxProjGroup Condition="$(TCDFxProjName.EndsWith('Tests')) AND '$(TCDFxProjGroup)' == ''">tests</TCDFxProjGroup>
+    <TCDFxProjGroup Condition="'$(TCDFxProjGroup)' == ''">sources</TCDFxProjGroup>
 
     <!-- A boolean determining whther to include the repository's license file with the project. -->
     <TCDFxProjIncludeLicenseFile Condition="'$(TCDFxProjIncludeLicenseFile)' == ''">true</TCDFxProjIncludeLicenseFile>
@@ -75,7 +76,7 @@
 
     <!-- A boolean determining whther the project is packable. -->
     <!-- NOTE: This property should not be modified or overriden. -->
-    <TCDFxProjIsPackable Condition="'$(TCDFxProjGroup)' == 'source'">true</TCDFxProjIsPackable>
+    <TCDFxProjIsPackable Condition="'$(TCDFxProjGroup)' == 'sources'">true</TCDFxProjIsPackable>
     <TCDFxProjIsPackable Condition="'$(TCDFxProjGroup)' == 'tools'">true</TCDFxProjIsPackable>
     <TCDFxProjIsPackable Condition="'$(TCDFxProjGroup)' == 'tests'">false</TCDFxProjIsPackable>
     <TCDFxProjIsPackable Condition="'$(TCDFxProjGroup)' == 'examples'">false</TCDFxProjIsPackable>
