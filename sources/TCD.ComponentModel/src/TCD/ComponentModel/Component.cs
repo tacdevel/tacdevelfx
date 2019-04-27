@@ -53,7 +53,7 @@ namespace TCD.ComponentModel
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
                 if (IsNameImmutable)
-                    throw new ArgumentException("Name property is immutable for this instance", "value");
+                    throw new ArgumentException("Name property is immutable for this instance", nameof(value));
                 if (name == value) return;
                 name = value;
                 OnPropertyChanged("Name");

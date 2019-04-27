@@ -13,10 +13,7 @@ namespace TCD
     /// </summary>
     public abstract class Disposable : IDisposableEx
     {
-        ~Disposable()
-        {
-            Dispose(false);
-        }
+        ~Disposable() => Dispose(false);
 
         /// <inheritdoc />
         public event EventHandler Disposing;
