@@ -6,6 +6,9 @@
 
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);TCD_DISPOSABLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);TCD_COMPONENTMODEL</DefineConstants>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Disposable/TCD.Disposable.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 /***************************************************************************************************
  * FileName:             Disposable.cs
- * Copyright:             Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
@@ -9,79 +9,103 @@ using System;
 namespace TCD
 {
     /// <summary>
-    /// Provides a base implementation for the <see cref="IDisposable"/> interface.
+    /// Provides the base implementation for the <see cref="IDisposableEx"/> interface.
     /// </summary>
-    public abstract class Disposable : IDisposable
+    public abstract class Disposable : IDisposableEx
     {
-        /// <summary>
-        /// Occurs when this object is about to be disposed.
-        /// </summary>
-        public event EventHandler Disposing;
-
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="Disposable"/> has been disposed.
-        /// </summary>
-        public bool IsDisposed { get; private set; } = false;
-
-       /// <summary>
-       /// When overridden in a derived class, performs tasks associated with releasing unmanaged resources.
-        /// </summary>
-        protected abstract void ReleaseUnmanagedResources();
-
-        /// <summary>
-        /// When overridden in a derived class, performs tasks associated with releasing managed resources.
-        /// </summary>
-        protected abstract void ReleaseManagedResources();
-
-        /// <summary>
-        /// Raises the <see cref="Disposing"/> event.
-        /// </summary>
-        public virtual void OnDisposing() => Disposing?.Invoke(this, EventArgs.Empty);
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-       public void Dispose()
+        ~Disposable()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            Dispose(false);
         }
 
+        /// <inheritdoc />
+        public event EventHandler Disposing;
+
+        /// <inheritdoc />
+        public event EventHandler Disposed;
+
+        /// <inheritdoc />
+        public bool IsDisposing { get; private set; } = false;
+
+        /// <inheritdoc />
+        public bool IsDisposed { get; private set; } = false;
+
         /// <summary>
-        /// Safely disposes of this <see cref="Disposable"/> instance, performing the specified action in the event of an exception.
+        /// Performs  tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
-        /// <param name="exceptionHandler">The action to be performed on an exception.</param>
-        /// <returns><c>true</c> if properly disposed; otherwise, <c>false</c>.</returns>
+        public void Dispose()
+        {
+            IsDisposing = true;
+            OnDisposing();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+            IsDisposing = false;
+            IsDisposed = true;
+            OnDisposed();
+        }
+
+        /// <inheritdoc />
         public bool SafeDispose(Action<Exception> exceptionHandler = null)
         {
             if (this == null) return true; // Not initialized, so, already disposed.
 
+            IsDisposing = true;
+            OnDisposing();
             try
             {
-                Dispose();
+                Dispose(true);
+                GC.SuppressFinalize(this);
+                IsDisposing = false;
+                IsDisposed = true;
+                OnDisposed();
                 return true;
             }
             catch (ObjectDisposedException)
             {
+                IsDisposing = false;
                 return true; // Already disposed.
             }
             catch (Exception ex)
             {
                 exceptionHandler?.Invoke(ex);
+                IsDisposing = false;
                 return false;
             }
         }
+
+        /// <summary>
+        /// Raises the <see cref="Disposing"/> event.
+        /// </summary>
+        protected virtual void OnDisposing() => Disposing?.Invoke(this, EventArgs.Empty);
+
+        /// <summary>
+        /// Raises the <see cref="Disposed"/> event.
+        /// </summary>
+        protected virtual void OnDisposed() => Disposed?.Invoke(this, EventArgs.Empty);
+
+        /// <summary>
+        /// When overridden in a derived class, performs tasks associated with freeing, releasing, or resetting managed resources.
+        /// </summary>
+        protected virtual void ReleaseManagedResources() { }
+
+        /// <summary>
+        /// When overridden in a derived class, performs tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        protected virtual void ReleaseUnmanagedResources() { }
 
         private void Dispose(bool disposing)
         {
             if (!IsDisposed)
             {
                 OnDisposing();
+                IsDisposing = true;
                 if (disposing)
                     ReleaseManagedResources();
                 ReleaseUnmanagedResources();
+                IsDisposing = false;
                 IsDisposed = true;
+                OnDisposed();
             }
         }
-   }
+    }
 }

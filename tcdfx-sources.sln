@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sources", "sources", "{5441
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCD.Collections.MultiValueDictionary", "sources\TCD.Collections.MultiValueDictionary\TCD.Collections.MultiValueDictionary.csproj", "{54414344-6576-656C-6F70-53524353933A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCD.ComponentModel", "sources\TCD.ComponentModel\TCD.ComponentModel.csproj", "{54414344-6576-656C-6F70-53524353785D}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCD.Disposable", "sources\TCD.Disposable\TCD.Disposable.csproj", "{54414344-6576-656C-6F70-535243537CB9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCD.Drawing.Common", "sources\TCD.Drawing.Common\TCD.Drawing.Common.csproj", "{54414344-6576-656C-6F70-535243532AB7}"
@@ -29,11 +31,15 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution	
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{54414344-6576-656C-6F70-53524353933A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54414344-6576-656C-6F70-53524353933A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54414344-6576-656C-6F70-53524353933A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54414344-6576-656C-6F70-53524353933A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54414344-6576-656C-6F70-53524353785D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54414344-6576-656C-6F70-53524353785D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54414344-6576-656C-6F70-53524353785D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54414344-6576-656C-6F70-53524353785D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{54414344-6576-656C-6F70-535243537CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54414344-6576-656C-6F70-535243537CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54414344-6576-656C-6F70-535243537CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -76,6 +82,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{54414344-6576-656C-6F70-53524353933A} = {54414344-6576-656C-6F70-464C44520002}
+		{54414344-6576-656C-6F70-53524353785D} = {54414344-6576-656C-6F70-464C44520002}
 		{54414344-6576-656C-6F70-535243537CB9} = {54414344-6576-656C-6F70-464C44520002}
 		{54414344-6576-656C-6F70-535243532AB7} = {54414344-6576-656C-6F70-464C44520002}
 		{54414344-6576-656C-6F70-535243534EFB} = {54414344-6576-656C-6F70-464C44520002}
