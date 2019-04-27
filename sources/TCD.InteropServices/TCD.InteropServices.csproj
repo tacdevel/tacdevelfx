@@ -14,5 +14,6 @@
     <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Disposable\TCD.Disposable.csproj" />
     <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Numerics.Hashing\TCD.Numerics.Hashing.csproj" />
     <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Platform\TCD.Platform.csproj" />
+    <ProjectReference Include="..\TCD.ComponentModel\TCD.ComponentModel.csproj" />
   </ItemGroup>
 </Project>

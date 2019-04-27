@@ -1,4 +1,4 @@
-﻿/***************************************************************************************************
+/***************************************************************************************************
  * FileName:             SafeHandleZeroIsInvalid.cs
  * Copyright:             Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 namespace TCD.InteropServices
 {
     /// <summary>
-    /// Provides a base class for safe handle implementations in which the value of 0 indicates an invalid handle.
+    /// Provides a base class for safe handle implementations in which the value of <see cref="IntPtr.Zero"/> indicates an invalid handle.
     /// </summary>
     public abstract class SafeHandleZeroIsInvalid : SafeHandle
     {

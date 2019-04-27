@@ -1,176 +1,159 @@
 /***************************************************************************************************
  * FileName:             NativeComponent.cs
- * Copyright:             Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using TCD.ComponentModel;
 using TCD.Numerics.Hashing;
 
 namespace TCD.InteropServices
 {
     /// <summary>
-    /// The base implementation for an object that has a native handle represented as an <see cref="IntPtr"/> object.
+    /// Provides the base implementation of the <see cref="INativeComponent{T}"/> interface.
     /// </summary>
-    public abstract class NativeComponent : Disposable, IEquatable<NativeComponent>
+    /// <typeparam name="T">The type of handle.</typeparam>
+    public abstract class NativeComponent<T> : Component, INativeComponent<T>, IEquatable<NativeComponent<T>>
     {
-        private static readonly List<NativeComponent> cache = new List<NativeComponent>();
+        private T handle = default;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NativeComponent"/> class with the specified handle.
+        /// Initializes a new instance if the <see cref="NativeComponent{T}"/> class.
         /// </summary>
-        /// <param name="handle">The preexisting handle for this <see cref="NativeComponent"/></param>
-        protected NativeComponent(IntPtr handle)
+        protected internal NativeComponent() : base() { }
+
+        /// <summary>
+        /// Initializes a new instance if the <see cref="NativeComponent{T}"/> class with an immutable name.
+        /// </summary>
+        /// <param name="name">The name of the new <see cref="NativeComponent{T}"/>.</param>
+        protected NativeComponent(string name) : base(name) { }
+
+        /// <inheritdoc />
+        public T Handle
         {
-            if (cache.Contains(this)) throw new DuplicateComponentException();
-            Handle = handle;
-            cache.Add(this);
+            get => handle;
+            protected internal set
+            {
+                if (value == null) throw new ArgumentNullException(nameof(value));
+                if (handle.Equals(value)) return;
+                handle = value;
+                OnPropertyChanged("Handle");
+            }
         }
 
-        /// <summary>
-        /// Gets the handle for this <see cref="NativeComponent"/>.
-        /// </summary>
-        public IntPtr Handle { get; private set; }
+        /// <inheritdoc />
+        public abstract override bool IsInvalid { get; }
 
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="NativeComponent"/> is invalid.
-        /// </summary>
-        public abstract bool IsInvalid { get; }
+        /// <inheritdoc />
+        public bool Equals(NativeComponent<T> component) => Handle.Equals(component.Handle);
 
-        /// <summary>
-        /// Initializes this <see cref="NativeComponent"/>.
-        /// </summary>
-        protected virtual void InitializeComponent() { }
+        /// <inheritdoc />
+        public override bool Equals(object obj) => !(obj is NativeComponent<T>) ? false : Equals((NativeComponent<T>)obj);
 
-        /// <summary>
-        /// Initializes this <see cref="NativeComponent"/> object's events.
-        /// </summary>
-        protected virtual void InitializeEvents() { }
-
-        /// <summary>
-        /// Indicates whether this <see cref="NativeComponent"/> and a specified object are equal.
-        /// </summary>
-        /// <param name="obj">The object to compare with this <see cref="NativeComponent"/>.</param>
-        /// <returns>true if obj and this <see cref="NativeComponent"/> are the same type and represent the same value; otherwise, false.</returns>
-        public override bool Equals(object obj) => !(obj is NativeComponent) ? false : Equals((NativeComponent)obj);
-
-        /// <summary>
-        /// Indicates whether this and another <see cref="NativeComponent"/> object are equal.
-        /// </summary>
-        /// <param name="component">The component to compare with this <see cref="NativeComponent"/>.</param>
-        /// <returns>true if obj and this <see cref="NativeComponent"/> represent the same value; otherwise, false.</returns>
-        public bool Equals(NativeComponent component) => Handle == component.Handle;
-
-        /// <summary>
-        /// Serves as the default hash function.
-        /// </summary>
-        /// <returns>A hash code for this <see cref="NativeComponent"/>.</returns>
+        /// <inheritdoc />
         public override int GetHashCode() => unchecked(this.GenerateHashCode(Handle));
 
-        /// <summary>
-        /// Returns a string that represents this <see cref="NativeComponent"/>.
-        /// </summary>
-        /// <returns>A string that represents this <see cref="NativeComponent"/></returns>
-        public override string ToString() => Handle.ToInt64().ToString();
-
-        /// <summary>
-        /// Performs tasks associated with releasing unmanaged resources.
-        /// </summary>
-        protected override void ReleaseUnmanagedResources() { }
-
-        /// <summary>
-        /// Performs tasks associated with releasing managed resources.
-        /// </summary>
-        protected override void ReleaseManagedResources()
-        {
-            if (cache.Contains(this))
-                cache.Remove(this);
-            if (!IsInvalid)
-                Handle = IntPtr.Zero;
-        }
+        /// <inheritdoc />
+        public override string ToString() => Handle.ToString();
     }
 
     /// <summary>
-    /// The base implementation for an object that has a native handle represented as the
-    /// specified type of <see cref="SafeHandle"/>.
+    /// Provides the base implementation of a native component with an <see cref="IntPtr"/> as a handle.
     /// </summary>
-    /// <typeparam name="T">The type of <see cref="SafeHandle"/>.</typeparam>
-    public abstract class NativeComponent<T> : Disposable, IEquatable<NativeComponent<T>>
-        where T : SafeHandle
+    public abstract class IntNativeComponent : NativeComponent<IntPtr>, INativeComponent<IntPtr>, IEquatable<IntNativeComponent>
     {
-        private static readonly List<NativeComponent<T>> cache = new List<NativeComponent<T>>();
+        /// <summary>
+        /// Initializes a new instance if the <see cref="IntNativeComponent"/> class with the specified handle.
+        /// </summary>
+        protected internal IntNativeComponent() : base() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NativeComponent{T}"/> class with the specified handle.
+        /// Initializes a new instance if the <see cref="IntNativeComponent"/> class with the specified handle and immutable name.
         /// </summary>
-        /// <param name="handle">The preexisting handle for this <see cref="NativeComponent{T}"/></param>
-        protected NativeComponent(T handle)
-        {
-            if (cache.Contains(this)) throw new DuplicateComponentException();
-            Handle = handle;
-            cache.Add(this);
-        }
+        /// <param name="name">The name of the new <see cref="IntNativeComponent"/>.</param>
+        protected IntNativeComponent(string name) : base(name) { }
 
-        /// <summary>
-        /// Gets the handle for this <see cref="NativeComponent{T}"/>.
-        /// </summary>
-        public T Handle { get; private set; }
+        /// <inheritdoc />
+        public bool Equals(IntNativeComponent component) => Handle == component.Handle;
 
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="NativeComponent{T}"/> is invalid.
-        /// </summary>
-        public bool IsInvalid => Handle.IsInvalid || Handle.IsClosed;
+        /// <inheritdoc />
+        public override bool Equals(object obj) => !(obj is IntNativeComponent) ? false : Equals((IntNativeComponent)obj);
 
-        /// <summary>
-        /// Initializes this <see cref="NativeComponent{T}"/>.
-        /// </summary>
-        protected virtual void InitializeComponent() { }
-
-        /// <summary>
-        /// Initializes this <see cref="NativeComponent{T}"/> object's events.
-        /// </summary>
-        protected virtual void InitializeEvents() { }
-
-        /// <summary>
-        /// Indicates whether this <see cref="NativeComponent{T}"/> and a specified object are equal.
-        /// </summary>
-        /// <param name="obj">The object to compare with this <see cref="NativeComponent{T}"/>.</param>
-        /// <returns>true if obj and this <see cref="NativeComponent{T}"/> are the same type and represent the same value; otherwise, false.</returns>
-        public override bool Equals(object obj) => !(obj is NativeComponent<T>) ? false : Equals((NativeComponent<T>)obj);
-
-        /// <summary>
-        /// Indicates whether this and another <see cref="NativeComponent{T}"/> object are equal.
-        /// </summary>
-        /// <param name="component">The component to compare with this <see cref="NativeComponent{T}"/>.</param>
-        /// <returns>true if obj and this <see cref="NativeComponent{T}"/> represent the same value; otherwise, false.</returns>
-        public bool Equals(NativeComponent<T> component) => Handle == component.Handle;
-
-        /// <summary>
-        /// Serves as the default hash function.
-        /// </summary>
-        /// <returns>A hash code for this <see cref="NativeComponent{T}"/>.</returns>
+        /// <inheritdoc />
         public override int GetHashCode() => unchecked(this.GenerateHashCode(Handle));
 
+        /// <inheritdoc />
+        public override string ToString() => Handle.ToInt64().ToString();
+    }
+
+    /// <summary>
+    /// Provides the base implementation of a native component with an <see cref="UIntPtr"/> as a handle.
+    /// </summary>
+    [CLSCompliant(false)]
+    public abstract class UIntNativeComponent : NativeComponent<UIntPtr>, INativeComponent<UIntPtr>, IEquatable<UIntNativeComponent>
+    {
         /// <summary>
-        /// Returns a string that represents this <see cref="NativeComponent{T}"/>.
+        /// Initializes a new instance if the <see cref="UIntNativeComponent"/> class with the specified handle.
         /// </summary>
-        /// <returns>A string that represents this <see cref="NativeComponent{T}"/></returns>
+        protected internal UIntNativeComponent() : base() { }
+
+        /// <summary>
+        /// Initializes a new instance if the <see cref="UIntNativeComponent"/> class with the specified handle and immutable name.
+        /// </summary>
+        /// <param name="name">The name of the new <see cref="UIntNativeComponent"/>.</param>
+        protected UIntNativeComponent(string name) : base(name) { }
+
+        /// <inheritdoc />
+        public bool Equals(UIntNativeComponent component) => Handle == component.Handle;
+
+        /// <inheritdoc />
+        public override bool Equals(object obj) => !(obj is UIntNativeComponent) ? false : Equals((UIntNativeComponent)obj);
+
+        /// <inheritdoc />
+        public override int GetHashCode() => unchecked(this.GenerateHashCode(Handle));
+
+        /// <inheritdoc />
+        public override string ToString() => Handle.ToUInt64().ToString();
+    }
+
+    /// <summary>
+    /// Provides the base implementation of a native component with a <see cref="SafeHandle"/> of the specified type as a handle.
+    /// </summary>
+    /// <typeparam name="T">They type of <see cref="SafeHandle"/>.</typeparam>
+    public abstract class SafeNativeComponent<T> : NativeComponent<T>, INativeComponent<T>, IEquatable<SafeNativeComponent<T>>
+        where T : SafeHandle
+    {
+        /// <summary>
+        /// Initializes a new instance if the <see cref="SafeNativeComponent{T}"/> class with the specified handle.
+        /// </summary>
+        protected internal SafeNativeComponent() : base() { }
+
+        /// <summary>
+        /// Initializes a new instance if the <see cref="SafeNativeComponent{T}"/> class with the specified handle and immutable name.
+        /// </summary>
+        /// <param name="name">The name of the new <see cref="SafeNativeComponent{T}"/>.</param>
+        protected SafeNativeComponent(string name) : base(name) { }
+
+        /// <inheritdoc />
+        public override bool IsInvalid => Handle.IsClosed || Handle.IsInvalid;
+
+        /// <inheritdoc />
+        public bool Equals(SafeNativeComponent<T> component) => Handle == component.Handle;
+
+        /// <inheritdoc />
+        public override bool Equals(object obj) => !(obj is SafeNativeComponent<T>) ? false : Equals((SafeNativeComponent<T>)obj);
+
+        /// <inheritdoc />
+        public override int GetHashCode() => unchecked(this.GenerateHashCode(Handle));
+
+        /// <inheritdoc />
         public override string ToString() => Handle.DangerousGetHandle().ToInt64().ToString();
 
-        /// <summary>
-        /// Performs tasks associated with releasing unmanaged resources.
-        /// </summary>
-        protected override void ReleaseUnmanagedResources() { }
-
-        /// <summary>
-        /// Performs tasks associated with releasing managed resources.
-        /// </summary>
+        /// <inheritdoc />
         protected override void ReleaseManagedResources()
         {
-            if (cache.Contains(this))
-                cache.Remove(this);
             if (!IsInvalid)
                 Handle.Dispose();
         }
