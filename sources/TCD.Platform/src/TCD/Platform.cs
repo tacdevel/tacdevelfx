@@ -116,6 +116,7 @@ namespace TCD
                 OperatingSystem = osInfo.OS;
                 Version = osInfo.Version;
                 RuntimeID = $"{GetRIDOS()}{GetRIDVersion()}{GetRIDArch()}";
+                GenericRuntimeID = $"{GetRIDOS()}{GetRIDArch()}";
             }
         }
 
@@ -143,6 +144,11 @@ namespace TCD
         /// The .NET Runtime Identifier (RID) for the platform.
         /// </summary>
         public static string RuntimeID { get; }
+
+        /// <summary>
+        /// The generic .NET Runtime Identifier (RID) for the platform.
+        /// </summary>
+        public static string GenericRuntimeID { get; }
 
         private static (PlatformOS OS, Version Version) GetWindowsInfo()
         {
