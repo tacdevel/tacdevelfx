@@ -1,10 +1,8 @@
-/*******************************************************************************
- * FileName:   Color.cs
- * Date:       20180913
- * License:    MIT License
- * Copyrights: 2018 (c) Thomas Corwin, et al. All Rights Reserved.
- * LicenseUrl: https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
- ******************************************************************************/
+/***************************************************************************************************
+ * FileName:             Color.cs
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
@@ -69,30 +67,16 @@ namespace TCD.Drawing
         /// </summary>
         public bool IsEmpty => this == Empty;
 
-        /// <summary>
-        /// Indicates whether this instance and a specified object are equal.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current instance.</param>
-        /// <returns><see langword="true"/> if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, <see langword="false"/>.</returns>
-        public override bool Equals(object obj) => !(obj is Color) ? false : Equals((Color)obj);
-
-        /// <summary>
-        /// Indicates whether this instance and a specified object are equal.
-        /// </summary>
-        /// <param name="color">The <see cref="Color"/> to compare with the current instance.</param>
-        /// <returns><see langword="true"/> if <paramref name="color"/> and this instance are the same type and represent the same value; otherwise, <see langword="false"/>.</returns>
+        /// <inheritdoc />
         public bool Equals(Color color) => R == color.R && G == color.G && B == color.B && A == color.A;
 
-        /// <summary>
-        /// Serves as the default hash function.
-        /// </summary>
-        /// <returns>A hash code for this <see cref="Color"/>.</returns>
+        /// <inheritdoc />
+        public override bool Equals(object obj) => !(obj is Color) ? false : Equals((Color)obj);
+
+        /// <inheritdoc />
         public override int GetHashCode() => unchecked(this.GenerateHashCode(R, G, B, A));
 
-        /// <summary>
-        /// Returns a string that represents this <see cref="Color"/>.
-        /// </summary>
-        /// <returns>A string that represents this <see cref="Color"/>.</returns>
+        /// <inheritdoc />
         public override string ToString() => $"[R: {R}, G: {G}, B: {B}, A: {A}]";
 
         /// <summary>

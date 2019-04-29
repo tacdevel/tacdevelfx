@@ -1,10 +1,8 @@
-/*******************************************************************************
- * FileName:   Point.cs
- * Date:       20180913
- * License:    MIT License
- * Copyrights: 2018 (c) Thomas Corwin, et al. All Rights Reserved.
- * LicenseUrl: https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
- ******************************************************************************/
+/***************************************************************************************************
+ * FileName:             Point.cs
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
@@ -109,30 +107,16 @@ namespace TCD.Drawing
         /// <returns>The <see cref="Point"/> this converts to.</returns>
         public static Point Truncate(PointD val) => new Point((int)Math.Truncate(val.X), (int)Math.Truncate(val.Y));
 
-        /// <summary>
-        /// Indicates whether this instance and a specified object are equal.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current instance.</param>
-        /// <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
-        public override bool Equals(object obj) => !(obj is Point) ? false : Equals((Point)obj);
-
-        /// <summary>
-        /// Indicates whether this instance and a specified object are equal.
-        /// </summary>
-        /// <param name="point">The point to compare with the current instance.</param>
-        /// <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
+        /// <inheritdoc />
         public bool Equals(Point point) => X == point.X && Y == point.Y;
 
-        /// <summary>
-        /// Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        /// <inheritdoc />
+        public override bool Equals(object obj) => !(obj is Point) ? false : Equals((Point)obj);
+
+        /// <inheritdoc />
         public override int GetHashCode() => unchecked(this.GenerateHashCode(X, Y));
 
-        /// <summary>
-        /// Returns a string that represents this <see cref="Point"/>.
-        /// </summary>
-        /// <returns>A string that represents this <see cref="PointD"/>.</returns>
+        /// <inheritdoc />
         public override string ToString() => $"[X: {X}, Y: {Y}]";
 
         /// <summary>

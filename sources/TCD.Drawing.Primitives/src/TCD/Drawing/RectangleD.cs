@@ -1,10 +1,8 @@
-/*******************************************************************************
- * FileName:   RectangleD.cs
- * Date:       20180913
- * License:    MIT License
- * Copyrights: 2018 (c) Thomas Corwin, et al. All Rights Reserved.
- * LicenseUrl: https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
- ******************************************************************************/
+/***************************************************************************************************
+ * FileName:             RectangleD.cs
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+ **************************************************************************************************/
 
 using System;
 using System.Runtime.InteropServices;
@@ -255,30 +253,16 @@ namespace TCD.Drawing
         /// <returns>A new <see cref="RectangleD"/>.</returns>
         public static RectangleD FromLTRB(double left, double top, double right, double bottom) => new RectangleD(left, top, unchecked(right - left), unchecked(bottom - top));
 
-        /// <summary>
-        /// Indicates whether this instance and a specified object are equal.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current instance.</param>
-        /// <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
-        public override bool Equals(object obj) => !(obj is RectangleD) ? false : Equals((RectangleD)obj);
-
-        /// <summary>
-        /// Indicates whether this instance and a specified object are equal.
-        /// </summary>
-        /// <param name="rect">The rectangle to compare with the current instance.</param>
-        /// <returns>true if obj and this instance are the same type and represent the same value; otherwise, false.</returns>
+        /// <inheritdoc />
         public bool Equals(RectangleD rect) => X == rect.X && Y == rect.Y && Width == rect.Width && Height == rect.Height;
 
-        /// <summary>
-        /// Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        /// <inheritdoc />
+        public override bool Equals(object obj) => !(obj is RectangleD) ? false : Equals((RectangleD)obj);
+
+        /// <inheritdoc />
         public override int GetHashCode() => unchecked(this.GenerateHashCode(X, Y, Width, Height));
 
-        /// <summary>
-        /// Returns a string that represents this <see cref="RectangleD"/>.
-        /// </summary>
-        /// <returns>A string that represents this <see cref="RectangleD"/>.</returns>
+        /// <inheritdoc />
         public override string ToString() => $"[X: {X}, Y: {Y}, Width: {Width}, Height: {Height}]";
 
         /// <summary>
