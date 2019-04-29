@@ -1,20 +1,29 @@
 /***************************************************************************************************
- * FileName:             DependencyNativeAssemblyResolver.cs
- * Copyright:             Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * FileName:             DependencyNativeAssembly.cs
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
+using Microsoft.Extensions.DependencyModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Microsoft.Extensions.DependencyModel;
-using static TCD.Platform;
 
 namespace TCD.InteropServices
 {
-    internal sealed class DependencyNativeAssemblyResolver : NativeAssemblyResolver
+    /// <summary>
+    /// Represents a native (shared) assembly that is located in a dependency.
+    /// </summary>
+    public sealed class DependencyNativeAssembly : NativeAssemblyBase
     {
-        public override IEnumerable<string> EnumerateLoadTargets(string name)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DependencyNativeAssembly"/> class.
+        /// </summary>
+        /// <param name="names">An ordered list of assembly names to attempt to load.</param>
+        public DependencyNativeAssembly(params string[] names) : base(names) { }
+
+        /// <inheritdoc />
+        protected override IEnumerable<string> EnumerateLoadTargets(string name)
         {
             if (TryLocateNativeAssetFromDeps(name, out string appLocalNativePath, out string depsResolvedPath))
             {
@@ -100,11 +109,11 @@ namespace TCD.InteropServices
             return false;
         }
 
-        //TODO: Handle alternative package directories, if they are configured.
         private string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
 
         private string GetUserDirectory() => Platform.PlatformType == PlatformType.Windows
                 ? Environment.GetEnvironmentVariable("USERPROFILE")
                 : Environment.GetEnvironmentVariable("HOME");
+
     }
 }

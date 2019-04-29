@@ -43,7 +43,7 @@ namespace TCD.ComponentModel
         /// Gets a value determining if <see cref="Name"/> is immutable.
         /// </summary>
         /// <value><c>true</c> if <see cref="Name"/> is immutable; otherwise, <c>false</c>.</value>
-        public bool IsNameImmutable { get; }
+        public bool IsNameImmutable { get; internal set; }
 
         /// <inheritdoc />
         public string Name

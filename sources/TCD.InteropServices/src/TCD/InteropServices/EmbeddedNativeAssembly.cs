@@ -1,5 +1,5 @@
 /***************************************************************************************************
- * FileName:             EmbeddedNativeAssemblyResolver.cs
+ * FileName:             EmbeddedNativeAssembly.cs
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
@@ -10,9 +10,19 @@ using System.Reflection;
 
 namespace TCD.InteropServices
 {
-    internal sealed class EmbeddedNativeAssemblyResolver : NativeAssemblyResolver
+    /// <summary>
+    /// Represents a native (shared) assembly that is embedded in the calling managed assembly.
+    /// </summary>
+    public sealed class EmbeddedNativeAssembly : NativeAssemblyBase
     {
-        public override IEnumerable<string> EnumerateLoadTargets(string name)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmbeddedNativeAssembly"/> class.
+        /// </summary>
+        /// <param name="names">An ordered list of assembly names to attempt to load.</param>
+        public EmbeddedNativeAssembly(params string[] names) : base(names) { }
+
+        /// <inheritdoc />
+        protected override IEnumerable<string> EnumerateLoadTargets(string name)
         {
             yield return ExtractEmbeddedAssembly(name);
         }
@@ -43,11 +53,12 @@ namespace TCD.InteropServices
                 int len;
                 while ((len = asmStream.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    using (Stream output = File.Create(outputAsm))
-                        output.Write(buffer, 0, len);
+                    using Stream output = File.Create(outputAsm);
+                    output.Write(buffer, 0, len);
                 }
             }
             return outputAsm;
         }
+
     }
 }

@@ -8,7 +8,6 @@ using System;
 using System.Security;
 using TCD.InteropServices;
 using TCD.Native;
-using static TCD.Platform;
 
 namespace TCD.SafeHandles
 {
@@ -22,13 +21,13 @@ namespace TCD.SafeHandles
         /// Initializes a new instance of the <see cref="SafeAssemblyHandle"/> class.
         /// </summary>
         /// <param name="existingHandle"> An <see cref="IntPtr"/> object that represents the preexisting handle to use.</param>
-        /// <param name="ownsHandle"><see langword="true"/> to reliably release the handle during the finalization phase; <see langword="false"/> to prevent reliable release (not recommended).</param>
+        /// <param name="ownsHandle"><see cref="true"/> to reliably release the handle during the finalization phase; <see cref="false"/> to prevent reliable release (not recommended).</param>
         public SafeAssemblyHandle(IntPtr existingHandle, bool ownsHandle = true) : base(ownsHandle) => SetHandle(existingHandle);
 
         /// <summary>
         /// When overridden in a derived class, executes the code required to free the handle.
         /// </summary>
-        /// <returns><see langword="true"/> if the handle is released successfully; otherwise, in the event of a catastrophic failure, <see langword="false"/>.</returns>
+        /// <returns><see cref="true"/> if the handle is released successfully; otherwise, in the event of a catastrophic failure, <see cref="false"/>.</returns>
         protected override bool ReleaseHandle()
         {
             bool released;
