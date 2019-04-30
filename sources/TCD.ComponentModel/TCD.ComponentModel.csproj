@@ -9,6 +9,6 @@
     <DefineConstants>$(DefineConstants);TCD_COMPONENTMODEL</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="$(TCDFxProjGroupFolder)TCD.Disposable/TCD.Disposable.csproj" />
+    <ProjectReference Include="..\TCD.Collections.MultiValueDictionary\TCD.Collections.MultiValueDictionary.csproj" />
   </ItemGroup>
 </Project>
