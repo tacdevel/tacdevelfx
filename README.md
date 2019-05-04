@@ -12,11 +12,19 @@
 
 # TCDFx (TCD Framework)
 
+**NOTE**: This README is under construction.
+
 TCDFx (also known as the TCD Framework) is a collection of libraries targeting .NET Standard,
 providing APIs for UI application development, alternative P/Invoke types, and other helpful APIs to
 make development easier.
 
 For examples, see the `examples\` directory.
+
+## Project Status
+
+This project is alpha software, and shouldn't be used for anything other than testing. The API is subject to change at any point (i.e. expect breaking changes) up to the first beta release of v1.0.0.
+
+CI via Azure Pipelines and deployment via NuGet packages have also been disabled/removed until the the first beta release of v1.0.0.
 
 ## Contributing
 
@@ -28,6 +36,7 @@ For more information about contributing to this project, see the
 For all a list of all contributors with some stats about their contributions, see the
 [Contributors][Links.Contributors] page.
 
+<!--
 ## Packages
 
 | Package Name                         | CI Build Status                                                                                            | Packages                                                          |
@@ -76,6 +85,7 @@ Add the following `<PackageReference />` to your `.csproj`:
 ```
 <PackageReference Include="{PackageName}" Version="{PackageVersion}" />
 ```
+-->
 
 ## Building From Source
 
@@ -107,6 +117,7 @@ dotnet build .\tcdfx.sln
 ```
 
 <!-- Images/Badges -->
+<!--
 [Badges.Build.3]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/source/TCD.Numerics.Hashing
 [Badges.Build.4]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/source/TCD.Platform
 [Badges.Build.5]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/source/TCD.Collections.MultiValueDictionary
@@ -147,6 +158,7 @@ dotnet build .\tcdfx.sln
 [Badges.NuGet.Pre.10]: https://badgen.net/nuget/v/TCD.UI/pre?color=green&label=prerelease
 [Badges.NuGet.Pre.11]: https://badgen.net/nuget/v/TCD.Drawing.Common/pre?color=green&label=prerelease
 [Badges.NuGet.Pre.12]: https://badgen.net/nuget/v/TCD.Drawing.Text/pre?color=green&label=prerelease
+-->
 [Badges.License]: https://badgen.net/badge/license/MIT/blue
 [Badges.Contributors]: https://badgen.net/github/contributors/tom-corwin/tcdfx
 [Badges.CSharpVersion]: https://badgen.net/badge/C%23/8.0/green
@@ -160,6 +172,7 @@ dotnet build .\tcdfx.sln
 [Badges.Gitter]: https://badgen.net/badge/chat/on%20gitter/cyan
 
 <!-- Links -->
+<!--
 [Links.Build.3]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=3
 [Links.Build.4]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=4
 [Links.Build.5]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=5
@@ -170,6 +183,7 @@ dotnet build .\tcdfx.sln
 [Links.Build.10]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=10
 [Links.Build.11]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=11
 [Links.Build.12]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=12
+-->
 [Links.License]: https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
 [Links.Contributors]: https://github.com/tom-corwin/tcdfx/graphs/contributors
 [Links.Issues.Open]: https://github.com/tom-corwin/tcdfx/issues?&q=is%3Aissue+is%3Aopen
