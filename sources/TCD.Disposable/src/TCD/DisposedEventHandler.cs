@@ -1,15 +1,15 @@
 /***************************************************************************************************
- * FileName:             DisposingEventHandler.cs
+ * FileName:             DisposedEventHandler.cs
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-namespace TCD.ComponentModel
+namespace TCD
 {
     /// <summary>
-    /// Represents the method that will handle the <see cref="IComponent.Disposing"/> event raised when a component is disposing.
+    /// Represents the method that will handle the <see cref="IDisposableEx.Disposed"/> event raised when a component is disposed.
     /// </summary>
     /// <param name="sender">The source of the event.</param>
-    /// <param name="e">A <see cref="DisposingEventArgs"/> that contains the event data.</param>
-    public delegate void DisposingEventHandler(object sender, DisposingEventArgs e);
+    /// <param name="e">An <see cref="EventArgs"/> that contains the event data.</param>
+    public delegate void DisposedEventHandler(IDisposableEx sender, EventArgs e);
 }

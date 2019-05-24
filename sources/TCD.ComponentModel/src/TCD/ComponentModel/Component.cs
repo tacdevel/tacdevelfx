@@ -5,34 +5,42 @@
  **************************************************************************************************/
 
 using System;
+using System.Collections;
 using TCD.Collections;
 
 namespace TCD.ComponentModel
 {
     /// <summary>
-    /// Provides the base implementation for the <see cref="IComponent"/> interface.
+    /// Provides functionality required by all components.
     /// </summary>
-    public abstract class Component : IComponent, IDisposable, INotifyPropertyChanged, INotifyPropertyChanging
+    public interface IComponent : IDisposableEx
     {
-        private string name;
-        internal static readonly MultiValueDictionary<string, Type, Component> Cache = new MultiValueDictionary<string, Type, Component>();
+        /// <summary>
+        /// Gets or sets the name of this component.
+        /// </summary>
+        /// <value>The name of this component.</value>
+        string Name { get; }
 
         /// <summary>
-        /// Initializes a new instance if the <see cref="Component"/> class with a mutable name.
+        /// Gets a value indicating whether this component is invalid.
         /// </summary>
-        protected internal Component()
-        {
-            IsNameImmutable = false;
-            InitializeComponent();
-        }
+        /// <value><c>true</c> if this component is invalid; otherwise, <c>false</c>.</value>
+        bool IsInvalid { get; }
+    }
 
-        ~Component() => Dispose(false);
+    /// <summary>
+    /// Provides the base implementation for the <see cref="IComponent"/> interface.
+    /// </summary>
+    public abstract class Component : Disposable, IComponent, INotifyPropertyChanged, INotifyPropertyChanging
+    {
+        private string name = null;
+        private bool isNameImmutable = false;
+        internal static readonly MultiValueDictionary<string, Type, Component> cache = new MultiValueDictionary<string, Type, Component>();
 
-        /// <inheritdoc />
-        public event DisposingEventHandler Disposing;
-
-        /// <inheritdoc />
-        public event DisposedEventHandler Disposed;
+        /// <summary>
+        /// Initializes a new instance if the <see cref="ComponentBase"/> class.
+        /// </summary>
+        protected internal Component() => InitializeComponent();
 
         /// <inheritdoc />
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,26 +48,22 @@ namespace TCD.ComponentModel
         /// <inheritdoc />
         public event PropertyChangingEventHandler PropertyChanging;
 
-        /// <summary>
-        /// Gets a value determining if <see cref="Name"/> is immutable.
-        /// </summary>
-        /// <value><c>true</c> if <see cref="Name"/> is immutable; otherwise, <c>false</c>.</value>
-        public bool IsNameImmutable { get; private set; }
-
         /// <inheritdoc />
-        public string Name
+        public virtual string Name
         {
             get => name;
             protected set
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
-                if (IsNameImmutable) throw new ArgumentException("Name property has already been set.", nameof(value));
-                if (Cache.ContainsKey(value)) throw new DuplicateComponentException($"The component '{value}' has already been created.");
+                if (isNameImmutable) throw new ArgumentException("Name property has already been set.", nameof(value));
+                if (cache.ContainsKey(value)) throw new DuplicateComponentException($"The component '{value}' has already been created.");
 
+                OnPropertyChanging(nameof(Name));
                 if (name != value)
                     name = value;
-                IsNameImmutable = true;
-                Cache.Add(name, GetType(), this);
+                isNameImmutable = true;
+                cache.Add(Name, GetType(), this);
+                OnPropertyChanged(nameof(Name));
             }
         }
 
@@ -67,77 +71,29 @@ namespace TCD.ComponentModel
         public abstract bool IsInvalid { get; }
 
         /// <summary>
-        /// Performs tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            OnDisposing();
-            Dispose(true);
-            GC.SuppressFinalize(this);
-            OnDisposed();
-        }
-
-        /// <inheritdoc />
-        public bool SafeDispose(Action<Exception> exceptionHandler = null)
-        {
-            if (this == null) return true; // Not initialized, so, already disposed.
-
-            try
-            {
-                Dispose();
-                return true;
-            }
-            catch (ObjectDisposedException)
-            {
-                return true; // Already disposed.
-            }
-            catch (Exception ex)
-            {
-                exceptionHandler?.Invoke(ex);
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Initializes this <see cref="Component"/>.
         /// </summary>
-        protected abstract void InitializeComponent();
+        protected virtual void InitializeComponent() { }
 
         /// <summary>
-        /// Performs tasks associated with freeing, releasing, or resetting managed resources.
+        /// Raises the <see cref="PropertyChanged"/> event.
         /// </summary>
-        protected virtual void ReleaseManagedResources()
+        /// <param name="propertyName"></param>
+        protected virtual void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        /// <summary>
+        /// Raises the <see cref="OnPropertyChanging"/> event.
+        /// </summary>
+        /// <param name="propertyName"></param>
+        protected virtual void OnPropertyChanging(string propertyName) => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
+
+        protected override void ReleaseManagedResources()
         {
             if (!IsInvalid)
-                if (Cache.ContainsKey(Name))
-                    Cache.Remove(Name);
+                if (cache.ContainsKey(Name))
+                    cache.Remove(Name);
+            base.ReleaseManagedResources();
         }
 
-        /// <summary>
-        /// Performs tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        protected virtual void ReleaseUnmanagedResources() { }
-
-        /// <summary>
-        /// Raises the <see cref="Disposing"/> event.
-        /// </summary>
-        protected virtual void OnDisposing() => Disposing?.Invoke(this, new DisposingEventArgs(Name));
-
-        /// <summary>
-        /// Raises the <see cref="Disposed"/> event.
-        /// </summary>
-        protected virtual void OnDisposed() => Disposed?.Invoke(this, new DisposedEventArgs(Name));
-
-        private void Dispose(bool disposing)
-        {
-            if (!IsInvalid)
-            {
-                OnDisposing();
-                if (disposing)
-                    ReleaseManagedResources();
-                ReleaseUnmanagedResources();
-                OnDisposed();
-            }
-        }
     }
 }
