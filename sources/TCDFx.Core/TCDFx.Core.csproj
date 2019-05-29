@@ -1,0 +1,23 @@
+﻿<!--================================================================================================
+* FileName:             TCDFx.Core.csproj
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>$(DefineConstants);TCDFXCORE</DefineConstants>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <!-- TODO: This targets netstandard1.6, so those deps are included. https://github.com/dotnet/core-setup/pull/4586 -->
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>TCDFx.UI</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+</Project>
