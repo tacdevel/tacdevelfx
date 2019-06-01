@@ -23,7 +23,11 @@
     <PackageReference Include="Etg.SimpleStubs" Version="2.4.7" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <_TestingProjectName>$(MSBuildProjectName.TrimEnd('Tests'))</_TestingProjectName>
+  </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="$(_RepositoryPath)sources\$(MSBuildProjectName.TrimEnd('Tests'))\$(MSBuildProjectName.TrimEnd('Tests')).csproj" />
+    <ProjectReference Include="$(_RepositoryPath)sources\$(_TestingProjectName)\$(_TestingProjectName).csproj" />
   </ItemGroup>
 </Project>

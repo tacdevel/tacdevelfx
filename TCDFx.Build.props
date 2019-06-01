@@ -25,7 +25,7 @@
     <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'examples'">false</_BuildGroupIsPackable>
     <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'tests'">false</_BuildGroupIsPackable>
     <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'sources'">true</_BuildGroupIsPackable>
-
+ 
     <_BuildGroupPath>$(_RepositoryPath)$(_BuildGroup)\</_BuildGroupPath>
     <_BuildGroupProjectPath>$(_BuildGroupPath)$(MSBuildProjectName)\</_BuildGroupProjectPath>
   </PropertyGroup>
@@ -35,7 +35,7 @@
     <Platform Condition="'$(Platform)' == ''">Any CPU</Platform>
   </PropertyGroup>
 
-  <!-- Until I decide to start targeting netcoreapp3.0 and/or netfx also, this needs to be here. -->
+  <!-- Until I decide to start targeting netcoreapp and/or netfx, this should be here. -->
   <!-- See here: https://github.com/dotnet/sdk/blob/cd25d6bbfc2aac61cc790c511900427ac64fdaa8/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.TargetFrameworkInference.targets#L167-L174 -->
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
