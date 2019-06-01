@@ -1,6 +1,6 @@
 # Contributing to TCDFx
 
-It's great to see the community taking a part in the development and evolution of the TCD Framework. This document's goal is to make contributing to this project as simple and transparent as possible, whether it's:
+It's great to see the community taking a part in the development and evolution of TCDFx. This document's goal is to make contributing to this project as simple and transparent as possible, whether it's:
 
 - Reporting a bug or other issue.
 - Discussing the current state of the code.
@@ -12,9 +12,7 @@ We use [GitHub](https://github.com)'s services to host our code, track issues an
 
 ## Pull Requests
 
-Once TCDFx v1.0.0 is released, the project will use [GitHub Flow](https://guides.github.com/introduction/flow/index.html). This means that all code changes will happen via pull requests.
-
-<!-- As of the release of TCDFx v1.0.0, we use [GitHub Flow](https://guides.github.com/introduction/flow/index.html). This means that all code changes happen through pull requests. -->
+In the next couple months, this project will begin using [GitHub Flow](https://guides.github.com/introduction/flow/index.html). This means that all code changes will happen via pull requests.
 
 Submitting a pull request is easy. Just follow the steps below:
 
@@ -37,9 +35,9 @@ For the most part, everything should be formatted as per the suggestions in the 
 
 ## Issue Reporting
 
-Reporting an issue is even easier than submitting a pull request. Just follow the steps below to write and report an issue/bug:
+Reporting an issue is even easier than submitting a pull request. Just follow the step below to write and report an issue/bug:
 
-1. [Write a descriptive issue and submit](https://github.com/tom-corwin/tcdfx/issue/new)!
+1. [Write a descriptive issue and submit](https://github.com/tom-corwin/tcdfx/issue/new)
     - Provide a summary of the issue you would like to report.
     - Explain what should have happened.
     - Explain what actually happens.
