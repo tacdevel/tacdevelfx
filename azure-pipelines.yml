@@ -10,16 +10,10 @@ trigger:
   branches:
     include:
     - '*'
-  tags:
-    include:
-    - '*'
 
 pr:
   autoCancel: true
   branches:
-    include:
-    - '*'
-  tags:
     include:
     - '*'
 
