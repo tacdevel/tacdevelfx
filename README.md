@@ -21,14 +21,24 @@ This section contains information about the TCDFx project, such as build status 
 [Links.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tom-corwin/tcdfx
 [Links.Gitter]: https://gitter.im/tom-corwin/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 
-### Build Status
+### Builds and Releases
 
-**Notice**: *The CI builds will be reintegrated in the next couple weeks.*
+We use Azure Pipelines for CI builds. Currently, builds run on the following platforms:
 
-| Package Name | Build Status                                                                                                                                             |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TCDFx.Core   | [![Build Status][TCDFxCore.BuildStatus.Badge]][TCDFxCore.BuildStatus.Link]<br/>[![Build Stats][TCDFxCore.BuildStatus.Stats]][TCDFxCore.BuildStatus.Link] |
-| TCDFx.UI     | [![Build Status][TCDFxUI.BuildStatus.Badge]][TCDFxUI.BuildStatus.Link]<br/>[![Build Stats][TCDFxUI.BuildStatus.Stats]][TCDFxUI.BuildStatus.Link]         |
+  - Windows Server 2012 R2
+  - Windows Server 2016
+  - Windows Server 2019
+  - macOS 10.14
+  - macOS 10.13
+  - Ubuntu 16.04
+
+**Notice**: *The first pre-release packages will be released after [andlabs/libui:remodel](https://github.com/andlabs/libui/tree/remodel) is merged into [andlabs/libui:master](https://github.com/andlabs/libui/tree/master) since there are going to be major changes to the native `libui` API.*
+
+
+| Package Name | Build Status                                                                                                                                             | Latest Releases                                                                      |
+| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------: |
+| TCDFx.Core   | [![Build Status][TCDFxCore.BuildStatus.Badge]][TCDFxCore.BuildStatus.Link]<br/>[![Build Stats][TCDFxCore.BuildStatus.Stats]][TCDFxCore.BuildStatus.Link] | ![Stable][TCDFxCore.Packages.Badge]<br/>![Pre-Release][TCDFxCore.Packages.Badge.Pre] |
+| TCDFx.UI     | [![Build Status][TCDFxUI.BuildStatus.Badge]][TCDFxUI.BuildStatus.Link]<br/>[![Build Stats][TCDFxUI.BuildStatus.Stats]][TCDFxUI.BuildStatus.Link]         | ![Stable][TCDFxUI.Packages.Badge]<br/>![Pre-Release][TCDFxUI.Packages.Badge.Pre]     |
 
 [TCDFxCore.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core
 [TCDFxCore.BuildStatus.Stats]: https://buildstats.info/azurepipelines/chart/tom-corwin/tcdfx/13?showStats=false
@@ -36,16 +46,6 @@ This section contains information about the TCDFx project, such as build status 
 [TCDFxUI.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI
 [TCDFxUI.BuildStatus.Stats]: https://buildstats.info/azurepipelines/chart/tom-corwin/tcdfx/14?showStats=false
 [TCDFxUI.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=14
-
-### Releases
-
-**Notice**: *The first pre-release packages will be released after [andlabs/libui:remodel](https://github.com/andlabs/libui/tree/remodel) is merged into [andlabs/libui:master](https://github.com/andlabs/libui/tree/master) since there are going to be major changes to the native `libui` API.*
-
-| Package Name | Stable                              | Pre-Release                                  |
-| :----------- | :---------------------------------: | :------------------------------------------: |
-| TCDFx.Core   | ![Stable][TCDFxCore.Packages.Badge] | ![Pre-Release][TCDFxCore.Packages.Badge.Pre] |
-| TCDFx.UI     | ![Stable][TCDFxUI.Packages.Badge]   | ![Pre-Release][TCDFxUI.Packages.Badge.Pre]   |
-
 [TCDFxCore.Packages.Badge]: https://badgen.net/nuget/v/TCDFx.Core?color=blue&label=stable
 [TCDFxCore.Packages.Badge.Pre]: https://badgen.net/nuget/v/TCDFx.Core/pre?color=cyan&label=pre-release
 [TCDFxUI.Packages.Badge]: https://badgen.net/nuget/v/TCDFx.UI?color=blue&label=stable
