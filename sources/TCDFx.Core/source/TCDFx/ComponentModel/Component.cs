@@ -9,7 +9,6 @@ using TCD.Collections;
 
 namespace TCD.ComponentModel
 {
-
     /// <summary>
     /// Provides the base implementation for the <see cref="IComponent"/> interface.
     /// </summary>
@@ -22,7 +21,7 @@ namespace TCD.ComponentModel
         /// <summary>
         /// Initializes a new instance if the <see cref="Component"/> class.
         /// </summary>
-        protected internal Component() => InitializeComponent();
+        protected internal Component() { }
 
         /// <inheritdoc />
         public event PropertyChangedEventHandler PropertyChanged;
@@ -53,30 +52,24 @@ namespace TCD.ComponentModel
         public abstract bool IsInvalid { get; }
 
         /// <summary>
-        /// Initializes this <see cref="Component"/>.
-        /// </summary>
-        protected virtual void InitializeComponent() { }
-
-        /// <summary>
         /// Raises the <see cref="PropertyChanged"/> event.
         /// </summary>
-        /// <param name="propertyName"></param>
+        /// <param name="propertyName">The name of the property that changed.</param>
         protected virtual void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         /// <summary>
         /// Raises the <see cref="OnPropertyChanging"/> event.
         /// </summary>
-        /// <param name="propertyName"></param>
+        /// <param name="propertyName">The name of the property that changed.</param>
         protected virtual void OnPropertyChanging(string propertyName) => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
 
         /// <inheritdoc />
         protected override void ReleaseManagedResources()
         {
-            if (!IsInvalid)
+            if (!IsInvalid && name != null)
                 if (cache.ContainsKey(Name))
                     cache.Remove(Name);
             base.ReleaseManagedResources();
         }
-
     }
 }

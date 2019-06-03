@@ -42,7 +42,7 @@ namespace TCD.InteropServices
                 if (!handle.Equals(value))
                     handle = value;
                 IsHandleImmutable = true;
-                OnPropertyChanged("Handle");
+                OnPropertyChanged(nameof(Handle));
             }
         }
 

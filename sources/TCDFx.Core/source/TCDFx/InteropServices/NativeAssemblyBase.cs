@@ -57,7 +57,7 @@ namespace TCD.InteropServices
         /// Loads a function pointer with the given name.
         /// </summary>
         /// <param name="name">The name of the native function.</param>
-        /// <returns>A function pointer for the given name, or <see cref="IntPtr.Zero"/> if no function with the specified name was fou
+        /// <returns>A function pointer for the given name, or <see cref="IntPtr.Zero"/> if no function with the specified name was found.</returns>
         public IntPtr LoadFunctionPointer(string name)
         {
             IntPtr ret;
