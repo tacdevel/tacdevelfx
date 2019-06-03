@@ -34,18 +34,17 @@ We use Azure Pipelines for CI builds. Currently, builds run on the following pla
 
 **Notice**: *The first pre-release packages will be released after [andlabs/libui:remodel](https://github.com/andlabs/libui/tree/remodel) is merged into [andlabs/libui:master](https://github.com/andlabs/libui/tree/master) since there are going to be major changes to the native `libui` API.*
 
-
 | Package Name | Build Status                                                                                                                                             | Latest Releases                                                                      |
 | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------: |
 | TCDFx.Core   | [![Build Status][TCDFxCore.BuildStatus.Badge]][TCDFxCore.BuildStatus.Link]<br/>[![Build Stats][TCDFxCore.BuildStatus.Stats]][TCDFxCore.BuildStatus.Link] | ![Stable][TCDFxCore.Packages.Badge]<br/>![Pre-Release][TCDFxCore.Packages.Badge.Pre] |
 | TCDFx.UI     | [![Build Status][TCDFxUI.BuildStatus.Badge]][TCDFxUI.BuildStatus.Link]<br/>[![Build Stats][TCDFxUI.BuildStatus.Stats]][TCDFxUI.BuildStatus.Link]         | ![Stable][TCDFxUI.Packages.Badge]<br/>![Pre-Release][TCDFxUI.Packages.Badge.Pre]     |
 
 [TCDFxCore.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core
-[TCDFxCore.BuildStatus.Stats]: https://buildstats.info/azurepipelines/chart/tom-corwin/tcdfx/13?showStats=false
-[TCDFxCore.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=13
+[TCDFxCore.BuildStatus.Stats]: https://buildstats.info/azurepipelines/chart/tom-corwin/tcdfx/15?showStats=false
+[TCDFxCore.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=15
 [TCDFxUI.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI
-[TCDFxUI.BuildStatus.Stats]: https://buildstats.info/azurepipelines/chart/tom-corwin/tcdfx/14?showStats=false
-[TCDFxUI.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=14
+[TCDFxUI.BuildStatus.Stats]: https://buildstats.info/azurepipelines/chart/tom-corwin/tcdfx/16?showStats=false
+[TCDFxUI.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=16
 [TCDFxCore.Packages.Badge]: https://badgen.net/nuget/v/TCDFx.Core?color=blue&label=stable
 [TCDFxCore.Packages.Badge.Pre]: https://badgen.net/nuget/v/TCDFx.Core/pre?color=cyan&label=pre-release
 [TCDFxUI.Packages.Badge]: https://badgen.net/nuget/v/TCDFx.UI?color=blue&label=stable
