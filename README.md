@@ -5,8 +5,7 @@ TCDFx is a small collection of libraries targeting .NET Standard 2.1 Preview.
 <!--TODO: Add a sentence or two to the summary.-->
 
 ## Project Status
-
-[![CodeFactor Status][Badges.CodeFactor]][Links.CodeFactor]
+[![Codacy Status][Badges.Codacy]][Links.Codacy]
 [![Dependabot Status][Badges.Dependabot]][Links.Dependabot]
 [![Gitter Chat][Badges.Gitter]][Links.Gitter]
 
@@ -14,36 +13,26 @@ This section contains information about the TCDFx project, such as build status 
 
 **Notice**: *This project is currently a work-in-progress, and should not be used in a production environment. Anything is subject to change at anytime.*
 
-[Badges.CodeFactor]: https://www.codefactor.io/repository/github/tom-corwin/tcdfx/badge
+[Badges.Codacy]: https://api.codacy.com/project/badge/Grade/2140aa3a23a848a28391aa3c778b9526
 [Badges.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tom-corwin/tcdfx
 [Badges.Gitter]: https://badgen.net/badge/chat/on%20gitter/cyan
-[Links.CodeFactor]: https://www.codefactor.io/repository/github/tom-corwin/tcdfx
+[Links.Codacy]: https://www.codacy.com/app/tom-corwin/tcdfx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tom-corwin/tcdfx&amp;utm_campaign=Badge_Grade
 [Links.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tom-corwin/tcdfx
 [Links.Gitter]: https://gitter.im/tom-corwin/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
 
 ### Builds and Releases
 
-We use Azure Pipelines for CI builds. Currently, builds run on the following platforms:
-
-  - Windows Server 2012 R2
-  - Windows Server 2016
-  - Windows Server 2019
-  - macOS 10.14
-  - macOS 10.13
-  - Ubuntu 16.04
-
 **Notice**: *The first pre-release packages will be released after [andlabs/libui:remodel](https://github.com/andlabs/libui/tree/remodel) is merged into [andlabs/libui:master](https://github.com/andlabs/libui/tree/master) since there are going to be major changes to the native `libui` API.*
 
-| Package Name | Build Status                                                                                                                                             | Latest Releases                                                                      |
-| :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------: |
-| TCDFx.Core   | [![Build Status][TCDFxCore.BuildStatus.Badge]][TCDFxCore.BuildStatus.Link]<br/>[![Build Stats][TCDFxCore.BuildStatus.Stats]][TCDFxCore.BuildStatus.Link] | ![Stable][TCDFxCore.Packages.Badge]<br/>![Pre-Release][TCDFxCore.Packages.Badge.Pre] |
-| TCDFx.UI     | [![Build Status][TCDFxUI.BuildStatus.Badge]][TCDFxUI.BuildStatus.Link]<br/>[![Build Stats][TCDFxUI.BuildStatus.Stats]][TCDFxUI.BuildStatus.Link]         | ![Stable][TCDFxUI.Packages.Badge]<br/>![Pre-Release][TCDFxUI.Packages.Badge.Pre]     |
+| Package Name | Build Status                                                               | Latest Releases                                                                      |
+| :----------- | :--------------------------------------------------------------------------| :----------------------------------------------------------------------------------: |
+| TCDFx.Core   | [![Build Status][TCDFxCore.BuildStatus.Badge]][TCDFxCore.BuildStatus.Link] | ![Stable][TCDFxCore.Packages.Badge]<br/>![Pre-Release][TCDFxCore.Packages.Badge.Pre] |
+| TCDFx.UI     | [![Build Status][TCDFxUI.BuildStatus.Badge]][TCDFxUI.BuildStatus.Link]     | ![Stable][TCDFxUI.Packages.Badge]<br/>![Pre-Release][TCDFxUI.Packages.Badge.Pre]     |
 
-[TCDFxCore.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core
-[TCDFxCore.BuildStatus.Stats]: https://buildstats.info/azurepipelines/chart/tom-corwin/tcdfx/15?showStats=false
+
+[TCDFxCore.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=code-rewrite
 [TCDFxCore.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=15
-[TCDFxUI.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI
-[TCDFxUI.BuildStatus.Stats]: https://buildstats.info/azurepipelines/chart/tom-corwin/tcdfx/16?showStats=false
+[TCDFxUI.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=code-rewrite
 [TCDFxUI.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=16
 [TCDFxCore.Packages.Badge]: https://badgen.net/nuget/v/TCDFx.Core?color=blue&label=stable
 [TCDFxCore.Packages.Badge.Pre]: https://badgen.net/nuget/v/TCDFx.Core/pre?color=cyan&label=pre-release
