@@ -1,16 +1,15 @@
 #TODO: Simplify jobs/tasks a bit with templates.
 #TODO: Add trigger/pr excludes .md, .github/, tests/, and examples/.
 
+# General pipeline configuration
 name: $(Date:yyyyMMdd)$(Rev:.rr)
 resources:
 - repo: self
-
 trigger:
   batch: false
   branches:
     include:
     - '*'
-
 pr:
   autoCancel: true
   branches:
@@ -18,9 +17,10 @@ pr:
     - '*'
 
 jobs:
+
+# Windows 2012R2
 - job: windows2012r2_debug
   displayName: Windows 2012R2 Debug
-  condition: succeeded()
   pool:
     vmImage: 'vs2015-win2012r2'
   workspace:
@@ -31,13 +31,10 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
 - job: windows2012r2_release
   displayName: Windows 2012R2 Release
-  condition: succeeded()
   pool:
     vmImage: 'vs2015-win2012r2'
   workspace:
@@ -48,13 +45,12 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
+
+# Windows 2016
 - job: windows2016_debug
   displayName: Windows 2016 Debug
-  condition: succeeded()
   pool:
     vmImage: 'vs2017-win2016'
   workspace:
@@ -65,13 +61,10 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
 - job: windows2016_release
   displayName: Windows 2016 Release
-  condition: succeeded()
   pool:
     vmImage: 'vs2017-win2016'
   workspace:
@@ -82,13 +75,12 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
+
+# Windows 2019
 - job: windows2019_debug
   displayName: Windows 2019 Debug
-  condition: succeeded()
   pool:
     vmImage: 'windows-2019'
   workspace:
@@ -99,13 +91,10 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
 - job: windows2019_release
   displayName: Windows 2019 Release
-  condition: succeeded()
   pool:
     vmImage: 'windows-2019'
   workspace:
@@ -116,13 +105,12 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
+
+# macOS 10.13
 - job: macos1013_debug
   displayName: macOS 10.13 Debug
-  condition: succeeded()
   pool:
     vmImage: 'macOS-10.13'
   workspace:
@@ -133,13 +121,10 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
 - job: macos1013_release
   displayName: macOS 10.13 Release
-  condition: succeeded()
   pool:
     vmImage: 'macOS-10.13'
   workspace:
@@ -150,13 +135,12 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
+
+# macOS 10.14
 - job: macos1014_debug
   displayName: macOS 10.14 Debug
-  condition: succeeded()
   pool:
     vmImage: 'macOS-10.14'
   workspace:
@@ -167,13 +151,10 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
 - job: macos1014_release
   displayName: macOS 10.14 Release
-  condition: succeeded()
   pool:
     vmImage: 'macOS-10.14'
   workspace:
@@ -184,13 +165,12 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
+
+# Ubuntu 16.04
 - job: ubuntu1604_debug
   displayName: Ubuntu 16.04 Debug
-  condition: succeeded()
   pool:
     vmImage: 'ubuntu-16.04'
   workspace:
@@ -201,13 +181,10 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
 - job: ubuntu1604_release
   displayName: Ubuntu 16.04 Release
-  condition: succeeded()
   pool:
     vmImage: 'ubuntu-16.04'
   workspace:
@@ -218,7 +195,5 @@ jobs:
     inputs:
       version: 3.0.100-preview5-011568
       includePreviewVersions: true
-  - script: dotnet restore $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj --force --no-dependencies --disable-parallel
-    displayName: 'dotnet restore ($(Build.DefinitionName))'
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --no-restore --version-suffix $(Build.BuildNumber)
+  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --no-dependencies --nologo --version-suffix $(Build.BuildNumber)
     displayName: 'dotnet build ($(Build.DefinitionName))'
