@@ -1,15 +1,12 @@
 # TCDFx
 
-TCDFx is a small collection of libraries targeting .NET Standard 2.1 Preview.
-
-<!--TODO: Add a sentence or two to the summary.-->
-
-## Project Status
 [![Codacy Status][Badges.Codacy]][Links.Codacy]
 [![Dependabot Status][Badges.Dependabot]][Links.Dependabot]
 [![Gitter Chat][Badges.Gitter]][Links.Gitter]
 
-This section contains information about the TCDFx project, such as build status (per-project) and current releases.
+TCDFx is a small collection of libraries targeting .NET Standard 2.1 Preview.
+
+<!--TODO: Add a sentence or two to the summary.-->
 
 **Notice**: *This project is currently a work-in-progress, and should not be used in a production environment. Anything is subject to change at anytime.*
 
@@ -41,9 +38,11 @@ This section contains information about the TCDFx project, such as build status 
 
 ## Using TCDFx Libraries
 
-You can either use pre-built libraries hosted on NuGet, or build the libraries from source.
-
 For examples, see the `examples\` directory.
+
+Until the first packages are released, you must build the libraries from source.
+<!--
+You can either use pre-built libraries hosted on NuGet, or build the libraries from source.
 
 ### Using Pre-Built Packages
 
@@ -77,6 +76,7 @@ Add the following to your `.csproj`:
   <PackageReference Include="{PackageName}" Version="{PackageVersion}" />
 </ItemGroup>
 ```
+-->
 
 ### Building From Source
 
