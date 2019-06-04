@@ -1,7 +1,7 @@
 #TODO: Simplify jobs/tasks a bit with templates.
 #TODO: Add trigger/pr excludes .md, .github/, tests/, and examples/.
 
-name: build-$(Date:yyyyMMdd)$(Rev:.rr)
+name: $(Date:yyyyMMdd)$(Rev:.rr)
 resources:
 - repo: self
 
