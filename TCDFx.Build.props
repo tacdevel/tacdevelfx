@@ -11,10 +11,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TCDFxVersionPrefix>0.6.0</TCDFxVersionPrefix>
+    <VersionPrefix>0.6.0</VersionPrefix>
     <!-- Set TCDFxVersionSuffix via the command line for pre-releases, not here. -->
-    <Version Condition="'$(VersionSuffix)' != ''">$(TCDFxVersionPrefix)-$(TCDFxVersionSuffix)</Version>
-    <Version Condition="'$(Version)' == ''">$(TCDFxVersionPrefix)</Version>
+    <Version Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</Version>
+    <Version Condition="'$(Version)' == ''">$(VersionPrefix)</Version>
   </PropertyGroup>
 
   <PropertyGroup>
