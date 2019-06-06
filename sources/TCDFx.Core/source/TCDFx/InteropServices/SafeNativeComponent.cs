@@ -6,9 +6,9 @@
 
 using System;
 using System.Runtime.InteropServices;
-using TCD.Numerics.Hashing;
+using TCDFx.Numerics.Hashing;
 
-namespace TCD.InteropServices
+namespace TCDFx.InteropServices
 {
     /// <summary>
     /// Provides the base implementation of a native component with a <see cref="SafeHandle"/> of the specified type as a handle.

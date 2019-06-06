@@ -6,7 +6,7 @@
 
 using System;
 
-namespace TCD.ComponentModel
+namespace TCDFx.ComponentModel
 {
     /// <summary>
     /// Provides data for the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.

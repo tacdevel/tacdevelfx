@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace TCD.InteropServices
+namespace TCDFx.InteropServices
 {
     /// <summary>
     /// Represents a native (shared) assembly that is embedded in the calling managed assembly.

@@ -6,7 +6,7 @@
 
 using System;
 
-namespace TCD.ComponentModel
+namespace TCDFx.ComponentModel
 {
     /// <summary>
     /// Provides functionality required by all components.

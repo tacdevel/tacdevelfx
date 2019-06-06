@@ -5,9 +5,9 @@
  **************************************************************************************************/
 
 using System;
-using TCD.Collections;
+using TCDFx.Collections;
 
-namespace TCD.ComponentModel
+namespace TCDFx.ComponentModel
 {
     /// <summary>
     /// Provides the base implementation for the <see cref="IComponent"/> interface.
@@ -16,7 +16,7 @@ namespace TCD.ComponentModel
     {
         private string name = null;
         private bool isNameImmutable = false;
-        internal static readonly MultiValueDictionary<string, Type, Component> cache = new MultiValueDictionary<string, Type, Component>();
+        internal static readonly MultiValueDictionary<string, Type, Component> Cache = new MultiValueDictionary<string, Type, Component>();
 
         /// <summary>
         /// Initializes a new instance if the <see cref="Component"/> class.
@@ -37,13 +37,13 @@ namespace TCD.ComponentModel
             {
                 if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
                 if (isNameImmutable) throw new ArgumentException("Name property has already been set.", nameof(value));
-                if (cache.ContainsKey(value)) throw new DuplicateComponentException($"The component '{value}' has already been created.");
+                if (Cache.ContainsKey(value)) throw new DuplicateComponentException($"The component '{value}' has already been created.");
 
                 OnPropertyChanging(nameof(Name));
                 if (name != value)
                     name = value;
                 isNameImmutable = true;
-                cache.Add(Name, GetType(), this);
+                Cache.Add(Name, GetType(), this);
                 OnPropertyChanged(nameof(Name));
             }
         }
@@ -67,8 +67,8 @@ namespace TCD.ComponentModel
         protected override void ReleaseManagedResources()
         {
             if (!IsInvalid && name != null)
-                if (cache.ContainsKey(Name))
-                    cache.Remove(Name);
+                if (Cache.ContainsKey(Name))
+                    Cache.Remove(Name);
             base.ReleaseManagedResources();
         }
     }

@@ -4,9 +4,9 @@
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-using TCD.ComponentModel;
+using TCDFx.ComponentModel;
 
-namespace TCD.InteropServices
+namespace TCDFx.InteropServices
 {
     /// <summary>
     /// Provides functionality required by all components that have a native handle.

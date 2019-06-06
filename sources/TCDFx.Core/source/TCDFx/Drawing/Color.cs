@@ -6,9 +6,9 @@
 
 using System;
 using System.Runtime.InteropServices;
-using TCD.Numerics.Hashing;
+using TCDFx.Numerics.Hashing;
 
-namespace TCD.Drawing
+namespace TCDFx.Drawing
 {
     /// <summary>
     /// Represents an ARGB (alpha, red, green, blue) color.

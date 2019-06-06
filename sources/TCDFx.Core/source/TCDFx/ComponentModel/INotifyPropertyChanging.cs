@@ -4,7 +4,7 @@
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-namespace TCD.ComponentModel
+namespace TCDFx.ComponentModel
 {
     /// <summary>
     /// Notifies clients that a property value is changing.

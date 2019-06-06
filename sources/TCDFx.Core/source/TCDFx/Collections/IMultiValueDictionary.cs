@@ -7,7 +7,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace TCD.Collections
+namespace TCDFx.Collections
 {
     /// <summary>
     /// Represents a non-generic collection of key/multi-value sets

@@ -6,9 +6,9 @@
 
 using System;
 using System.Collections.Generic;
-using TCD.Numerics.Hashing;
+using TCDFx.Numerics.Hashing;
 
-namespace TCD.Collections
+namespace TCDFx.Collections
 {
     public class MultiObjectContainer<TValue1, TValue2> : IEquatable<MultiObjectContainer<TValue1, TValue2>>
     {

@@ -5,10 +5,10 @@
  **************************************************************************************************/
 
 using System;
-using TCD.ComponentModel;
-using TCD.Numerics.Hashing;
+using TCDFx.ComponentModel;
+using TCDFx.Numerics.Hashing;
 
-namespace TCD.InteropServices
+namespace TCDFx.InteropServices
 {
     /// <summary>
     /// Provides the base implementation of the <see cref="INativeComponent{T}"/> interface.

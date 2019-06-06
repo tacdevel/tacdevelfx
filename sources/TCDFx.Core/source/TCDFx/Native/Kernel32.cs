@@ -8,7 +8,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace TCD.Native
+namespace TCDFx.Native
 {
     [SuppressUnmanagedCodeSecurity]
     internal static class Kernel32

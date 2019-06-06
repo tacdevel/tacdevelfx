@@ -6,9 +6,9 @@
 
 using System;
 using System.Runtime.InteropServices;
-using TCD.Numerics.Hashing;
+using TCDFx.Numerics.Hashing;
 
-namespace TCD.Drawing
+namespace TCDFx.Drawing
 {
     /// <summary>
     /// Stores a set of four double-precision floating-point numbers that represent the location and size of a rectangle.

@@ -4,7 +4,7 @@
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-namespace TCD.ComponentModel
+namespace TCDFx.ComponentModel
 {
     /// <summary>
     /// Represents the method that will handle the <see cref="INotifyInitialized.Initialized"/> event raised when a component is intialized.

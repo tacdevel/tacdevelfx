@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace TCD.ComponentModel
+namespace TCDFx.ComponentModel
 {
     /// <summary>
     /// The exception that is thrown when a duplicate component has been created.

@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
 //TODO: Add a TryAdd() method to the MultiValueDictionary classes.
-namespace TCD.Collections
+namespace TCDFx.Collections
 {
     /// <summary>
     /// A wrapper class for a <see cref="Dictionary{TKey, TValue}"/>, representing a collection of keys with two values.

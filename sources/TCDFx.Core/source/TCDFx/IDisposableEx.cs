@@ -6,7 +6,7 @@
 
 using System;
 
-namespace TCD
+namespace TCDFx
 {
     /// <summary>
     /// Provides added functionality on top of the <see cref="IDisposable"/> interface.

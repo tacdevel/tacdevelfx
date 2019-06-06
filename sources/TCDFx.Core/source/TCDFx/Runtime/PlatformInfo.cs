@@ -6,7 +6,7 @@
 
 using System;
 
-namespace TCD
+namespace TCDFx
 {
     /// <summary>
     /// Contains information about a platform.

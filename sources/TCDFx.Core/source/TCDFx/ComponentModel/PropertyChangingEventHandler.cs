@@ -4,7 +4,7 @@
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-namespace TCD.ComponentModel
+namespace TCDFx.ComponentModel
 {
     /// <summary>
     /// Represents the method that will handle the <see cref="INotifyPropertyChanging.PropertyChanging"/> event raised when a property is changing on a component.

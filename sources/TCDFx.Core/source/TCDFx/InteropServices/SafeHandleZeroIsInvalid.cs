@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TCD.InteropServices
+namespace TCDFx.InteropServices
 {
     /// <summary>
     /// Provides a base class for safe handle implementations in which the value of <see cref="IntPtr.Zero"/> indicates an invalid handle.

@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
-using TCD.Native;
-using TCD.SafeHandles;
+using TCDFx.Native;
+using TCDFx.SafeHandles;
 
-namespace TCD.InteropServices
+namespace TCDFx.InteropServices
 {
     /// <summary>
     /// Provides the base implementation of a native (shared) assembly.
@@ -20,8 +20,6 @@ namespace TCD.InteropServices
     [SuppressUnmanagedCodeSecurity]
     public abstract class NativeAssemblyBase : SafeNativeComponent<SafeAssemblyHandle>, INativeComponent<SafeAssemblyHandle>
     {
-        internal static readonly Dictionary<string, NativeAssemblyBase> LoadedAssemblies = new Dictionary<string, NativeAssemblyBase>();
-
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeAssemblyBase"/> class.
         /// </summary>

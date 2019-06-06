@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace TCD.InteropServices
+namespace TCDFx.InteropServices
 {
     /// <summary>
     /// The exception that is thrown when a handle's value is invalid.

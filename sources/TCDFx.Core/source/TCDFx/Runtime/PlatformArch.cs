@@ -4,7 +4,7 @@
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-namespace TCD
+namespace TCDFx
 {
     /// <summary>
     /// Indicates the architecture of the processor.

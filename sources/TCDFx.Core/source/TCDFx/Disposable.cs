@@ -6,7 +6,7 @@
 
 using System;
 
-namespace TCD
+namespace TCDFx
 {
     /// <summary>
     /// Provides a base implementation for the <see cref="IDisposableEx"/> interface.

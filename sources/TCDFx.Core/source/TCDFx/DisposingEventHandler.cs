@@ -6,7 +6,7 @@
 
 using System;
 
-namespace TCD
+namespace TCDFx
 {
     /// <summary>
     /// Represents the method that will handle the <see cref="IDisposableEx.Disposing"/> event raised when a component is disposing.

@@ -6,7 +6,7 @@
 
  using System.Reflection;
 
-namespace TCD.Numerics.Hashing
+namespace TCDFx.Numerics.Hashing
 {
     /// <summary>
     /// Contains extension methods to hash object values.

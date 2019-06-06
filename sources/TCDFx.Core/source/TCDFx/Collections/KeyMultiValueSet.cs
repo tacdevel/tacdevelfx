@@ -7,9 +7,9 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using TCD.Numerics.Hashing;
+using TCDFx.Numerics.Hashing;
 
-namespace TCD.Collections
+namespace TCDFx.Collections
 {
     /// <summary>
     /// Defines a key/multi-value set with two values that can be set or retrieved.

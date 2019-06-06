@@ -4,7 +4,7 @@
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-namespace TCD.Drawing
+namespace TCDFx.Drawing
 {
     // This list is based on https://www.w3schools.com/colors/colors_hex.asp.
     // Please keep this in order.
