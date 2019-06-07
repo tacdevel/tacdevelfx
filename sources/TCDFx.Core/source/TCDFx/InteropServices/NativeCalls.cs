@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TCDFx.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -18,12 +19,11 @@ namespace TCDFx.InteropServices
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     public sealed class NativeCallAttribute : Attribute
     {
-        public string? EntryPoint;
-        // public CharSet CharSet;
-        // public CallingConvention CallingConvention;
+        public string EntryPoint;
 
         public NativeCallAttribute(params string[] assemblyNames)
         {
+
             if (assemblyNames == null || assemblyNames.Length == 0)
                 throw new NativeCallException("No assembly specified.");
 
@@ -49,21 +49,80 @@ namespace TCDFx.InteropServices
     {
         private static readonly object sync = new object();
 
-        public static void LoadNativeCalls()
+        public static void Load()
         {
             lock (sync)
             {
                 MethodInfo[] methods = GetNativeCalls();
                 for (int i = 0; i < methods.Length; i++)
                 {
-                    string[] assemblyNames = methods[i].GetCustomAttribute<NativeCallAttribute>(false).AssemblyNames;
+                    NativeCallAttribute attribute = methods[i].GetCustomAttribute<NativeCallAttribute>(false);
+                    string[] assemblyNames = attribute.AssemblyNames;
+                    bool isAssemblyLoaded = false;
+                    NativeAssemblyBase loadedAssembly = null;
                     foreach (string name in assemblyNames)
                     {
-                        //TODO: Load the native assembly
-                        //TODO: Load the native function pointer
-                        //TODO: Convert the native function pointer into a DynamicMethod (???)
-                        //TODO: Call ReplaceMethod(MethodInfo, DynamicMethod)
+                        if (!Component.Cache.ContainsKey(Path.GetFileNameWithoutExtension(name)))
+                        {
+                            isAssemblyLoaded = true;
+                            Type asmType = Component.Cache[Path.GetFileNameWithoutExtension(name)].Value1;
+                            if (asmType == typeof(NativeAssembly))
+                                loadedAssembly = (NativeAssembly)Component.Cache[Path.GetFileNameWithoutExtension(name)].Value2;
+                            else if (asmType == typeof(NativeAssembly))
+                                loadedAssembly = (DependencyNativeAssembly)Component.Cache[Path.GetFileNameWithoutExtension(name)].Value2;
+                            else if (asmType == typeof(NativeAssembly))
+                                loadedAssembly = (EmbeddedNativeAssembly)Component.Cache[Path.GetFileNameWithoutExtension(name)].Value2;
+                            break;
+                        }
                     }
+                    if (!isAssemblyLoaded)
+                    {
+                        Exception exception = null;
+                        try
+                        {
+                            loadedAssembly = new NativeAssembly(assemblyNames);
+                        }
+                        catch (Exception ex)
+                        {
+                            exception = ex;
+                        }
+                        try
+                        {
+                            if (exception != null)
+                                loadedAssembly = new DependencyNativeAssembly(assemblyNames);
+                        }
+                        catch (Exception ex)
+                        {
+                            exception = ex;
+                        }
+                        try
+                        {
+                            if (exception != null)
+                                loadedAssembly = new EmbeddedNativeAssembly(assemblyNames);
+                        }
+                        catch (Exception ex)
+                        {
+                            exception = ex;
+                        }
+                        if (exception != null)
+                            throw exception;
+                    }
+
+                    string funcName = attribute.EntryPoint ?? methods[i].Name;
+
+                    IntPtr funcPtr = loadedAssembly.LoadFunctionPointer(funcName);
+
+                    ParameterInfo[] parameters = methods[i].GetParameters();
+                    Type[] parameterTypes = new Type[] { };
+                    for (int ii = 0; ii < parameters.Length ; ii++)
+                    {
+                        parameterTypes[ii] = parameters[ii].ParameterType;
+                    }
+
+                    //TODO: Somehow set the body of this DynamicMethod to funcPtr. I really hope I don't have to add custom generic Action<> and Func<> delegates...
+                    DynamicMethod nativeMethod = new DynamicMethod(funcName, methods[i].ReturnType, parameterTypes);
+
+                    ReplaceMethod(methods[i], nativeMethod);
                 }
             }
         }
