@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
+using TCDFx.ComponentModel;
 using TCDFx.Native;
 using TCDFx.SafeHandles;
 
@@ -75,14 +76,6 @@ namespace TCDFx.InteropServices
         /// <returns>An enumerator yielding load targets.</returns>
         protected abstract IEnumerable<string> EnumerateLoadTargets(string name);
 
-        /// <inheritdoc />
-        protected override void ReleaseManagedResources()
-        {
-            if (!IsInvalid)
-                LoadedAssemblies.Remove(Name);
-            base.ReleaseManagedResources();
-        }
-
         private IntPtr LoadAssembly(params string[] names)
         {
             if (names == null || names.Length == 0)
@@ -104,7 +97,7 @@ namespace TCDFx.InteropServices
                             {
                                 ret = ret2;
                                 Name = Path.GetFileNameWithoutExtension(loadTarget);
-                                LoadedAssemblies.TryAdd(Name, this);
+                                Component.Cache.TryAdd(Name, GetType(), this);
                             }
                         }
                     }
