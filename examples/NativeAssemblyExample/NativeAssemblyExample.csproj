@@ -6,6 +6,6 @@
 
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ProjectReference Include="$(TCDFxFolder)source\TCD.InteropServices\TCD.InteropServices.csproj" />
+    <ProjectReference Include="$(_RepositoryPath)sources\TCDFx.Core\TCDFx.Core.csproj" />
   </ItemGroup>
 </Project>

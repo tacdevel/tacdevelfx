@@ -6,6 +6,6 @@
 
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ProjectReference Include="$(TCDFxFolder)source\TCD.UI\TCD.UI.csproj" />
+    <ProjectReference Include="$(_RepositoryPath)sources\TCDFx.UI\TCDFx.UI.csproj" />
   </ItemGroup>
 </Project>
