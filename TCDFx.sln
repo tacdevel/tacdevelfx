@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sources", "sources", "{5441
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{54414344-6576-656C-4678-464C44523033}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeCallExample", "examples\NativeCallExample\NativeCallExample.csproj", "{30205EA3-009A-4E44-9DD5-DECA8CA85590}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisposableExample", "examples\DisposableExample\DisposableExample.csproj", "{54414344-6576-656C-4678-455830303031}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiValueDictionaryExample", "examples\MultiValueDictionaryExample\MultiValueDictionaryExample.csproj", "{54414344-6576-656C-4678-455830303032}"
@@ -36,6 +38,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30205EA3-009A-4E44-9DD5-DECA8CA85590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30205EA3-009A-4E44-9DD5-DECA8CA85590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30205EA3-009A-4E44-9DD5-DECA8CA85590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30205EA3-009A-4E44-9DD5-DECA8CA85590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54414344-6576-656C-4678-455830303031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54414344-6576-656C-4678-455830303031}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54414344-6576-656C-4678-455830303031}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -85,6 +91,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{30205EA3-009A-4E44-9DD5-DECA8CA85590} = {175E6581-7B78-4B67-A26C-B01BE5DEADE9}
 		{54414344-6576-656C-4678-455830303031} = {54414344-6576-656C-4678-464C44523031}
 		{54414344-6576-656C-4678-455830303032} = {54414344-6576-656C-4678-464C44523031}
 		{54414344-6576-656C-4678-455830303033} = {54414344-6576-656C-4678-464C44523031}
