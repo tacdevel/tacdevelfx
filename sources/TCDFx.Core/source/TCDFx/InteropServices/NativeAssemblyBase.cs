@@ -97,7 +97,8 @@ namespace TCDFx.InteropServices
                             {
                                 ret = ret2;
                                 Name = Path.GetFileNameWithoutExtension(loadTarget);
-                                Component.Cache.TryAdd(Name, GetType(), this);
+                                Component.Cache.Add(Name, GetType(), this);
+                                // Component.Cache.TryAdd(Name, GetType(), this);
                             }
                         }
                     }
