@@ -6,7 +6,7 @@
 
 using System;
 
-namespace TCDFx
+namespace TCDFx.Runtime
 {
     /// <summary>
     /// Contains information about a platform.

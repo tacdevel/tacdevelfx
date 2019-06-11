@@ -8,8 +8,9 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using TCDFx.Native;
 
-namespace TCDFx
+namespace TCDFx.Runtime
 {
     // Based on: https://github.com/dotnet/core-setup/blob/master/src/managed/Microsoft.DotNet.PlatformAbstractions/RuntimeEnvironment.cs
     /// <summary>
@@ -152,10 +153,10 @@ namespace TCDFx
 
         private static (PlatformOS OS, Version Version) GetWindowsInfo()
         {
-            Native.Ntdll.RTL_OSVERSIONINFOEX osvi = new Native.Ntdll.RTL_OSVERSIONINFOEX();
+            Ntdll.RTL_OSVERSIONINFOEX osvi = new Native.Ntdll.RTL_OSVERSIONINFOEX();
             osvi.dwOSVersionInfoSize = (uint)Marshal.SizeOf(osvi);
 
-            return Native.Ntdll.RtlGetVersion(out osvi) == 0
+            return Ntdll.RtlGetVersion(out osvi) == 0
                 ? (PlatformOS.Windows, new Version((int)osvi.dwMajorVersion, (int)osvi.dwMinorVersion))
                 : (PlatformOS.Windows, new Version(0, 0));
         }
@@ -177,7 +178,7 @@ namespace TCDFx
 
             try
             {
-                if (Native.Libc.sysctl(name, 2, buf, len, IntPtr.Zero, 0) == 0 && *len < BUFFER_LENGTH)
+                if (Libc.sysctl(name, 2, buf, len, IntPtr.Zero, 0) == 0 && *len < BUFFER_LENGTH)
                     if (Version.TryParse(Marshal.PtrToStringAnsi((IntPtr)buf, (int)*len), out Version version))
                         return (PlatformOS.MacOS, new Version(10, version.Major));
             }

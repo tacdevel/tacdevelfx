@@ -4,7 +4,7 @@
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-namespace TCDFx
+namespace TCDFx.Runtime
 {
     /// <summary>
     /// Indicates the operating system type.
