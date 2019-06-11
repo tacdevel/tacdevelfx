@@ -1,6 +1,5 @@
-using System;
 using System.Runtime.InteropServices;
-using TCD.InteropServices;
+using TCDFx.Runtime.InteropServices;
 
 namespace NativeAssemblyExample
 {
