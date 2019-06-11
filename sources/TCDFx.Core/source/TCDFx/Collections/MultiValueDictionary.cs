@@ -1827,6 +1827,17 @@ namespace TCDFx.Collections
         /// <param name="value3">The third value of the element to add. The value can be <see langword="null"/> for reference types.</param>
         /// <param name="value4">The fourth value of the element to add. The value can be <see langword="null"/> for reference types.</param>
         /// <param name="value5">The fifth value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        public void Add(TKey key, TValue1 value1, TValue2 value2, TValue3 value3, TValue4 value4, TValue5 value5) => Inner.Add(key, new MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>(value1, value2, value3, value4, value5));
+
+        /// <summary>
+        /// Adds the specified key and value to the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
+        /// </summary>
+        /// <param name="key">The key of the element to add.</param>
+        /// <param name="value1">The first value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value2">The second value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value3">The third value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value4">The fourth value of the element to add. The value can be <see langword="null"/> for reference types.</param>
+        /// <param name="value5">The fifth value of the element to add. The value can be <see langword="null"/> for reference types.</param>
         /// <returns>1 if added successfully; else 0.</returns>
         public bool TryAdd(TKey key, TValue1 value1, TValue2 value2, TValue3 value3, TValue4 value4, TValue5 value5) => Inner.TryAdd(key, new MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>(value1, value2, value3, value4, value5));
 
