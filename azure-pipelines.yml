@@ -2,7 +2,7 @@
 #TODO: Add trigger/pr excludes .md, .github/, tests/, and examples/.
 
 # General pipeline configuration
-name: $(Date:yyyyMMdd)$(Rev:-rr)
+name: $(Date:yyyyMMdd)$(Rev:-rrr)
 resources:
 - repo: self
 trigger:
