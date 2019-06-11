@@ -10,9 +10,9 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
 using TCDFx.Native;
-using TCDFx.SafeHandles;
+using TCDFx.Runtime.InteropServices.SafeHandles;
 
-namespace TCDFx.InteropServices
+namespace TCDFx.Runtime.InteropServices
 {
     /// <summary>
     /// Provides the base implementation of a native (shared) assembly.

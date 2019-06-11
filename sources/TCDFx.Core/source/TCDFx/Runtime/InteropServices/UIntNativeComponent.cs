@@ -7,7 +7,7 @@
 using System;
 using TCDFx.Numerics.Hashing;
 
-namespace TCDFx.InteropServices
+namespace TCDFx.Runtime.InteropServices
 {
     /// <summary>
     /// Provides the base implementation of a native component with an <see cref="UIntPtr"/> as a handle.

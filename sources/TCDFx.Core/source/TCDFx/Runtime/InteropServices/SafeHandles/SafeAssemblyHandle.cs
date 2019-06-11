@@ -6,10 +6,9 @@
 
 using System;
 using System.Security;
-using TCDFx.InteropServices;
 using TCDFx.Native;
 
-namespace TCDFx.SafeHandles
+namespace TCDFx.Runtime.InteropServices.SafeHandles
 {
     /// <summary>
     /// Represents a wrapper class for a native assembly handle.

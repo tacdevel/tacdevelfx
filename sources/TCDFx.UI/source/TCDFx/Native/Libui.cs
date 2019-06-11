@@ -7,7 +7,8 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
-using TCDFx.InteropServices;
+using TCDFx.Runtime.InteropServices;
+using TCDFx.Runtime;
 
 namespace TCDFx.Native
 {

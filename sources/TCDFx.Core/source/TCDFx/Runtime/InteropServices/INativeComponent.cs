@@ -6,7 +6,7 @@
 
 using TCDFx.ComponentModel;
 
-namespace TCDFx.InteropServices
+namespace TCDFx.Runtime.InteropServices
 {
     /// <summary>
     /// Provides functionality required by all components that have a native handle.

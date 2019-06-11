@@ -8,7 +8,7 @@ using System;
 using TCDFx.ComponentModel;
 using TCDFx.Numerics.Hashing;
 
-namespace TCDFx.InteropServices
+namespace TCDFx.Runtime.InteropServices
 {
     /// <summary>
     /// Provides the base implementation of the <see cref="INativeComponent{T}"/> interface.

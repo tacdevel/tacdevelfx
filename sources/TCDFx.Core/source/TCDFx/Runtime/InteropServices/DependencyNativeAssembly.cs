@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace TCDFx.InteropServices
+namespace TCDFx.Runtime.InteropServices
 {
     /// <summary>
     /// Represents a native (shared) assembly that is located in a dependency.
