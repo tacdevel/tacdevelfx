@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
-using TCDFx.ComponentModel;
 using TCDFx.Native;
 using TCDFx.SafeHandles;
 
@@ -97,8 +96,6 @@ namespace TCDFx.InteropServices
                             {
                                 ret = ret2;
                                 Name = Path.GetFileNameWithoutExtension(loadTarget);
-                                Component.Cache.Add(Name, GetType(), this);
-                                // Component.Cache.TryAdd(Name, GetType(), this);
                             }
                         }
                     }
