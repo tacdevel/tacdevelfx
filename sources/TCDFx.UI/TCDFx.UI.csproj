@@ -13,6 +13,7 @@
   <!-- Once I'm finished rewriting this library, this PropertyGroup will be removed. -->
   <ItemGroup>
     <Compile Remove="source\**\*.cs" />
+    <Compile Include="source\TCDFx\Native\*.cs" />
   </ItemGroup>
 
 

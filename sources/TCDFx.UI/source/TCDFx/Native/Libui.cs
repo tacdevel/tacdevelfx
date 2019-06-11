@@ -1,17 +1,15 @@
 /***************************************************************************************************
  * FileName:             Libui.cs
- * Copyright:             Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+ * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using System;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
-using TCD.InteropServices;
-using static TCD.Platform;
+using TCDFx.InteropServices;
 
-namespace TCD.Native
+namespace TCDFx.Native
 {
     [SuppressUnmanagedCodeSecurity]
     internal static partial class Libui
