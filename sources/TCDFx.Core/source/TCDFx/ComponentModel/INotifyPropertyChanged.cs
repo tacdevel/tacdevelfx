@@ -14,6 +14,6 @@ namespace TCDFx.ComponentModel
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
-        event PropertyChangedEventHandler PropertyChanged;
+        event EventHandler<Component, PropertyChangedEventArgs> PropertyChanged;
     }
 }

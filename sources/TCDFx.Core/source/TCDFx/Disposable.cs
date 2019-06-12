@@ -16,10 +16,10 @@ namespace TCDFx
         ~Disposable() => Dispose(false);
 
         /// <inheritdoc />
-        public event DisposingEventHandler Disposing;
+        public event EventHandler<Disposable, EventArgs> Disposing;
 
         /// <inheritdoc />
-        public event DisposedEventHandler Disposed;
+        public event EventHandler<Disposable, EventArgs> Disposed;
 
         /// <summary>
         /// Performs tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -54,12 +54,12 @@ namespace TCDFx
         /// <summary>
         /// Raises the <see cref="Disposing"/> event.
         /// </summary>
-        protected virtual void OnDisposing(Disposable sender) => Disposing?.Invoke(sender ?? (this), EventArgs.Empty);
+        protected virtual void OnDisposing() => Disposing?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Raises the <see cref="Disposed"/> event.
         /// </summary>
-        protected virtual void OnDisposed(Disposable sender) => Disposed?.Invoke(sender ?? (this), EventArgs.Empty);
+        protected virtual void OnDisposed() => Disposed?.Invoke(this, EventArgs.Empty);
 
         /// <summary>
         /// Performs tasks associated with freeing, releasing, or resetting managed resources.
@@ -73,12 +73,11 @@ namespace TCDFx
 
         private void Dispose(bool disposing)
         {
-            OnDisposing(null);
+            OnDisposing();
             if (disposing)
                 ReleaseManagedResources();
             ReleaseUnmanagedResources();
-            OnDisposed(null);
+            OnDisposed();
         }
-
     }
 }

@@ -24,10 +24,10 @@ namespace TCDFx.ComponentModel
         protected internal Component() { }
 
         /// <inheritdoc />
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler<Component, PropertyChangedEventArgs> PropertyChanged;
 
         /// <inheritdoc />
-        public event PropertyChangingEventHandler PropertyChanging;
+        public event EventHandler<Component, PropertyChangingEventArgs> PropertyChanging;
 
         /// <inheritdoc />
         public virtual string Name
