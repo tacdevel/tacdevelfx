@@ -27,9 +27,9 @@ TCDFx is a small collection of libraries targeting .NET Standard 2.1 Preview.
 | TCDFx.UI     | [![Build Status][TCDFxUI.BuildStatus.Badge]][TCDFxUI.BuildStatus.Link]     | ![Stable][TCDFxUI.Packages.Badge]<br/>![Pre-Release][TCDFxUI.Packages.Badge.Pre]     |
 
 
-[TCDFxCore.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=code-rewrite
+[TCDFxCore.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master
 [TCDFxCore.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=15
-[TCDFxUI.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=code-rewrite
+[TCDFxUI.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master
 [TCDFxUI.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=16
 [TCDFxCore.Packages.Badge]: https://badgen.net/nuget/v/TCDFx.Core?color=blue&label=stable
 [TCDFxCore.Packages.Badge.Pre]: https://badgen.net/nuget/v/TCDFx.Core/pre?color=cyan&label=pre-release

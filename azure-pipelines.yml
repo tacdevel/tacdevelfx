@@ -1,5 +1,9 @@
 #TODO: Simplify jobs/tasks a bit with templates.
-#TODO: Add trigger/pr excludes .md, .github/, tests/, and examples/.
+#TODO: Set up tests once finished.
+#TODO: Set up documentation generation once finished.
+#TODO: Set up CI builds to push to MyGet.
+#TODO: Set up tagged/release builds to push to NuGet.
+#TODO: Add trigger/pr excludes .md, .github/.
 
 # General pipeline configuration
 name: $(Date:yyyyMMdd)$(Rev:-rrr)
