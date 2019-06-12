@@ -1,7 +1,7 @@
 # Third-Party Notices
 
-The TCDFx Framework uses third-party code and/or other resources that may be distributed under
-different licensing terms. This file contains a list of third-party notices.
+The TCDFx Framework uses third-party code (that is also licensed under the MIT license) and/or other resources that may be distributed under
+different copyrights. This file contains a list of third-party notices.
 
 If you notice that we accidentally failed to list a required notice, please bring it to our
 attention by either posting an issue, or contacting [tom-corwin](https://github.com/tom-corwin).
@@ -11,9 +11,9 @@ attention by either posting an issue, or contacting [tom-corwin](https://github.
 
 ## nativelibraryloader
 
-**Repository URL**: https://github.com/mellinoe/nativelibraryloader
+**Repository URL**: <https://github.com/mellinoe/nativelibraryloader>
 
-### Copyright Notice(s):
+### Copyright Notice(s)
 
 Copyright (c) 2017 Eric Mellino and contributors to the nativelibraryloader project.
 
@@ -37,9 +37,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 
 ## libui
 
-**Repository URL**: https://github.com/andlabs/libui
+**Repository URL**: <https://github.com/andlabs/libui>
 
-### Copyright Notice(s):
+### Copyright Notice(s)
 
 Copyright (c) 2014 Pietro Gagliardi
 
@@ -63,9 +63,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
 
 ## core-setup
 
-**Repository URL**: https://github.com/dotnet/core-setup
+**Repository URL**: <https://github.com/dotnet/core-setup>
 
-### Copyright Notice(s):
+### Copyright Notice(s)
 
 Copyright (c) .NET Foundation and Contributors
 
