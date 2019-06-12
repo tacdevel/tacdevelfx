@@ -8,7 +8,13 @@ It's great to see the community taking a part in the development and evolution o
   - Proposing a new feature.
   - Becoming a maintainer.
 
-We use [GitHub](https://github.com)'s services to host our code, track issues and releases, and accept code changes via pull requests.
+We use [GitHub](https://github.com)'s services to host our code, track issues and releases, and accept code changes via pull requests. We also use the following [GitHub Probots](https://probot.github.io/) for the described purpose(s):
+
+  - [triage-new-issues](https://github.com/tunnckoCore/triage-new-issues): Adds a `triage` label to new issues/PRs that have no labels.
+  - [request-info](https://probot.github.io/apps/request-info): Requests more information from new issues and PRs with generic titles and/or empty descriptions.
+  - [pr-triage](https://github.com/pr-triage/pr-triage): Adds labels to a PR depending on the review status.
+  - [Mergeable](https://github.com/mergeability/mergeable): Adds a check for a `NO-MERGE` label.
+  - [helPR](https://github.com/rsarky/helpr): Adds labels to issues with information about a related PR.
 
 ## Pull Requests
 
