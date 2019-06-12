@@ -4,7 +4,7 @@
 * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
 =================================================================================================-->
 
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
   <PropertyGroup>
@@ -13,52 +13,19 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <RepositoryType>$(TCDFxRepoType)</RepositoryType>
-    <RepositoryUrl>$(TCDFxRepoUrl)</RepositoryUrl>
-    <Version>$(TCDFxVersion)</Version>
-    <AssemblyName>$(TCDFxProjName)</AssemblyName>
-    <AssemblyTitle>$(TCDFxProjName)</AssemblyTitle>
-    <RootNamespace>$(TCDFxProjName)</RootNamespace>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <EnableDefaultItems>false</EnableDefaultItems>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <BaseOutputPath>$(TCDFxProjBuildBaseOutputFolder)</BaseOutputPath>
-    <OutputPath>$(TCDFxProjBuildOutputFolder)</OutputPath>
-    <BaseIntermediateOutputPath>$(TCDFxProjBuildBaseIntermediateOutputFolder)</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(TCDFxProjBuildIntermediateOutputFolder)</IntermediateOutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-  </PropertyGroup>
+  <!-- This doesn't work because of https://github.com/microsoft/msbuild/issues/2281 -->
+  <!--
+  <ItemGroup>
+    <AssemblyAttribute Include="System.CLSCompliant">
+      <_Parameter1>true</_Parameter1>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.InteropServices.ComVisible">
+      <_Parameter1>false</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+  -->
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+  </ItemGroup>
 
-  <Choose>
-    <When Condition="'$(Configuration)' == 'Debug'">
-      <PropertyGroup>
-        <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-        <Optimize>false</Optimize>
-        <DebugType>full</DebugType>
-        <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
-      </PropertyGroup>
-    </When>
-    <When Condition="'$(Configuration)' == 'Release'">
-      <PropertyGroup>
-        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-        <Optimize>true</Optimize>
-        <DebugType>pdbonly</DebugType>
-      </PropertyGroup>
-      <PropertyGroup Condition="'$(TCDFxProjIsPackable)' == 'true'">
-        <PackageProjectUrl>$(TCDFxRepoUrl)</PackageProjectUrl>
-        <Authors>$(TCDFxOwners)</Authors>
-        <Copyright>$(TCDFxCopyrights)</Copyright>
-        <PackageLicenseExpression>$(TCDFxLicenseType)</PackageLicenseExpression>
-        <PackageReleaseNotes>$(TCDFxReleaseNotesFile)</PackageReleaseNotes>
-        <PackageId>$(TCDFxProjName)</PackageId>
-        <Description>$(TCDFxProjDescription)</Description>
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <DocumentationFile>$(TCDFxProjBuildDocumentationFile)</DocumentationFile>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageOutputPath>$(TCDFxProjBuildPackageOutputFolder)</PackageOutputPath>
-      </PropertyGroup>
-    </When>
-  </Choose>
 </Project>

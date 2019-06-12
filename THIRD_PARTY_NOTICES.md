@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-The TCD Framework uses third-party code and/or other resources that may be distributed under
+The TCDFx Framework uses third-party code and/or other resources that may be distributed under
 different licensing terms. This file contains a list of third-party notices.
 
 If you notice that we accidentally failed to list a required notice, please bring it to our

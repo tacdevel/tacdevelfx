@@ -4,45 +4,14 @@
 * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
 =================================================================================================-->
 
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
     <OutputType>Exe</OutputType>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <IsPackable>false</IsPackable>
-    <RepositoryType>$(TCDFxRepoType)</RepositoryType>
-    <RepositoryUrl>$(TCDFxRepoUrl)</RepositoryUrl>
-    <Version>$(TCDFxVersion)</Version>
-    <AssemblyName>$(TCDFxProjName)</AssemblyName>
-    <AssemblyTitle>$(TCDFxProjName)</AssemblyTitle>
-    <RootNamespace>$(TCDFxProjName)</RootNamespace>
-    <NeutralLanguage>en-US</NeutralLanguage>
-    <EnableDefaultItems>false</EnableDefaultItems>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <BaseOutputPath>$(TCDFxProjBuildBaseOutputFolder)</BaseOutputPath>
-    <OutputPath>$(TCDFxProjBuildOutputFolder)</OutputPath>
-    <BaseIntermediateOutputPath>$(TCDFxProjBuildBaseIntermediateOutputFolder)</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(TCDFxProjBuildIntermediateOutputFolder)</IntermediateOutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <Optimize>false</Optimize>
-    <DebugType>full</DebugType>
-    <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
-  </PropertyGroup>
-  
-  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -54,7 +23,11 @@
     <PackageReference Include="Etg.SimpleStubs" Version="2.4.7" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <_TestingProjectName>$(MSBuildProjectName.TrimEnd('Tests'))</_TestingProjectName>
+  </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="$(TCDFxFolder)source\$(TCDFxProjName.TrimEnd('Tests').TrimEnd('.'))\$(TCDFxProjName.TrimEnd('Tests').TrimEnd('.').csproj" />
+    <ProjectReference Include="$(_RepositoryPath)sources\$(_TestingProjectName)\$(_TestingProjectName).csproj" />
   </ItemGroup>
 </Project>

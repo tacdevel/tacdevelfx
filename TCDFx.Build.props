@@ -1,0 +1,113 @@
+<!--================================================================================================
+* FileName:             TCDFx.Build.props
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <_RepositoryPath>$(MSBuildThisFileDirectory)</_RepositoryPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <!-- Set TCDFxVersionSuffix via the command line for pre-releases, not here. -->
+    <Version Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</Version>
+    <Version Condition="'$(Version)' == ''">$(VersionPrefix)</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_BuildGroup Condition="$(MSBuildProjectName.EndsWith('Example')) AND '$(_BuildGroup)' == ''">examples</_BuildGroup>
+    <_BuildGroup Condition="$(MSBuildProjectName.EndsWith('Tests')) AND '$(_BuildGroup)' == ''">tests</_BuildGroup>
+    <_BuildGroup Condition="'$(_BuildGroup)' == ''">sources</_BuildGroup>
+
+    <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'examples'">false</_BuildGroupIsPackable>
+    <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'tests'">false</_BuildGroupIsPackable>
+    <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'sources'">true</_BuildGroupIsPackable>
+ 
+    <_BuildGroupPath>$(_RepositoryPath)$(_BuildGroup)\</_BuildGroupPath>
+    <_BuildGroupProjectPath>$(_BuildGroupPath)$(MSBuildProjectName)\</_BuildGroupProjectPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">Any CPU</Platform>
+  </PropertyGroup>
+
+  <!-- Until I decide to start targeting netcoreapp and/or netfx, this should be here. -->
+  <!-- See here: https://github.com/dotnet/sdk/blob/cd25d6bbfc2aac61cc790c511900427ac64fdaa8/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.TargetFrameworkInference.targets#L167-L174 -->
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_BuildBasePath>$(_RepositoryPath)build\</_BuildBasePath>
+    <_BuildPath>$(_BuildBasePath)\$(Configuration)\$(MSBuildProjectName)\</_BuildPath>
+    <_BuildGroupProjectBuildPath>$(_BuildPath)</_BuildGroupProjectBuildPath>
+    <BaseOutputPath>$(_BuildPath)bin\</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)</OutputPath>
+    <BaseIntermediateOutputPath>$(_BuildPath)obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/tom-corwin/tcdfx</RepositoryUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <DefineConstants>TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="'$(Configuration)' == 'Debug'">
+      <PropertyGroup>
+        <Optimize>false</Optimize>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(Configuration)' == 'Release'">
+      <PropertyGroup>
+        <Optimize>true</Optimize>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>pdbonly</DebugType>
+      </PropertyGroup>
+      <PropertyGroup Condition="'$(_BuildGroupIsPackable)' == 'true'">
+        <PackageProjectUrl>https://github.com/tom-corwin/tcdfx</PackageProjectUrl>
+        <Authors>Thomas Corwin, et al.</Authors>
+        <Copyright>Copyright © 2017-2019 $(Authors) All Rights Reserved.</Copyright>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageId>$(MSBuildProjectName)</PackageId>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <DocumentationFile>$(_BuildPath)doc\$(MSBuildProjectName).xml</DocumentationFile>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageOutputPath>$(_BuildPath)pkg\</PackageOutputPath>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+  <PropertyGroup>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="source\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Condition="Exists('$(_RepositoryPath)LICENSE.md')" Include="$(_RepositoryPath)LICENSE.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Condition="Exists('$(_RepositoryPath)THIRD_PARTY_NOTICES.md')" Include="$(_RepositoryPath)THIRD_PARTY_NOTICES.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+
+</Project>

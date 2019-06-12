@@ -1,0 +1,52 @@
+<!--================================================================================================
+* FileName:             TCDFx.UI.csproj
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>$(DefineConstants);TCDFXUI</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Once I'm finished rewriting this library, this PropertyGroup will be removed. -->
+  <ItemGroup>
+    <Compile Remove="source\**\*.cs" />
+    <Compile Include="source\TCDFx\Native\*.cs" />
+  </ItemGroup>
+
+
+  <!--TODO: Eventually build these at compile time from a source-zip.-->
+  <ItemGroup>
+    <Content Include="native\win-x64\libui.dll">
+      <Link>runtimes\win-x64\libui.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="runtimes\linux-x64\native\libui.so">
+      <Link>runtimes\linux-x64\libui.so</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="runtimes\linux-x64\native\libui.so.0">
+      <Link>runtimes\linux-x64\libui.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="runtimes\osx-x64\native\libui.dylib">
+      <Link>runtimes\osx-x64\libui.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="runtimes\osx-x64\native\libui.A.dylib">
+      <Link>runtimes\osx-x64\libui.A.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TCDFx.Core\TCDFx.Core.csproj" />
+  </ItemGroup>
+</Project>
