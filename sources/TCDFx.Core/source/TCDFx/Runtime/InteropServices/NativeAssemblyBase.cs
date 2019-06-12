@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
+using TCDFx.ComponentModel;
 using TCDFx.Native;
 using TCDFx.Runtime.InteropServices.SafeHandles;
 
@@ -18,7 +19,7 @@ namespace TCDFx.Runtime.InteropServices
     /// Provides the base implementation of a native (shared) assembly.
     /// </summary>
     [SuppressUnmanagedCodeSecurity]
-    public abstract class NativeAssemblyBase : SafeNativeComponent<SafeAssemblyHandle>, INativeComponent<SafeAssemblyHandle>
+    public abstract class NativeAssemblyBase : SafeNativeComponent<SafeAssemblyHandle>, INativeComponent<SafeAssemblyHandle>, INotifyInitialized
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeAssemblyBase"/> class.
@@ -29,6 +30,8 @@ namespace TCDFx.Runtime.InteropServices
             IntPtr asmHnd = LoadAssembly(names);
             Handle = new SafeAssemblyHandle(asmHnd);
         }
+
+        public event EventHandler<Component, EventArgs> Initialized;
 
         /// <summary>
         /// Loads a function whose signature and name match the given delegate type's signature and name.
@@ -74,6 +77,9 @@ namespace TCDFx.Runtime.InteropServices
         /// <param name="name">The name of the library to load.</param>
         /// <returns>An enumerator yielding load targets.</returns>
         protected abstract IEnumerable<string> EnumerateLoadTargets(string name);
+
+        /// <inheritdoc />
+        protected virtual void OnInitialized() => Initialized?.Invoke(this, EventArgs.Empty);
 
         private IntPtr LoadAssembly(params string[] names)
         {
