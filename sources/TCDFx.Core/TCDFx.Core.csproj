@@ -11,8 +11,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <!-- TODO: This targets netstandard1.6, so those deps are included. https://github.com/dotnet/core-setup/pull/4586 -->
-    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview5-27626-15" />
   </ItemGroup>
 
   <ItemGroup>
