@@ -28,6 +28,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(_RepositoryPath)sources\$(_TestingProjectName)\$(_TestingProjectName).csproj" />
+    <!-- For some reason, when $(_TestingProjectName) is 'TCDFx.Core', it loads it as 'TCDFx.Cor' and fails. -->
+    <ProjectReference Include="$(_RepositoryPath)sources\$(_TestingProjectName)e\$(_TestingProjectName)e.csproj" Condition="'$(_TestingProjectName)' == 'TCDFx.Cor'"/>
+    <ProjectReference Include="$(_RepositoryPath)sources\$(_TestingProjectName)\$(_TestingProjectName).csproj" Condition="'$(_TestingProjectName)' != 'TCDFx.Cor'"/>
   </ItemGroup>
 </Project>
