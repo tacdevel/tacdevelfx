@@ -7,7 +7,7 @@
 using System;
 using System.Security;
 
-namespace TCDFx.InteropServices
+namespace TCDFx.Runtime.InteropServices
 {
     /// <summary>
     /// Indicates that the attributed method is exposed by an native assembly as a static entry point.
