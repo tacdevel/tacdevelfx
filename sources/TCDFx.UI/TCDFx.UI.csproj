@@ -1,4 +1,4 @@
-<!--================================================================================================
+﻿<!--================================================================================================
 * FileName:             TCDFx.UI.csproj
 * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
 * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
@@ -16,7 +16,6 @@
     <Compile Include="source\TCDFx\Native\*.cs" />
   </ItemGroup>
 
-
   <!--TODO: Eventually build these at compile time from a source-zip.-->
   <ItemGroup>
     <Content Include="native\win-x64\libui.dll">
@@ -24,22 +23,22 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="runtimes\linux-x64\native\libui.so">
+    <Content Include="native\linux-x64\libui.so">
       <Link>runtimes\linux-x64\libui.so</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="runtimes\linux-x64\native\libui.so.0">
+    <Content Include="native\linux-x64\libui.so.0">
       <Link>runtimes\linux-x64\libui.so.0</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="runtimes\osx-x64\native\libui.dylib">
+    <Content Include="native\osx-x64\libui.dylib">
       <Link>runtimes\osx-x64\libui.dylib</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
     </Content>
-    <Content Include="runtimes\osx-x64\native\libui.A.dylib">
+    <Content Include="native\osx-x64\libui.A.dylib">
       <Link>runtimes\osx-x64\libui.A.dylib</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
