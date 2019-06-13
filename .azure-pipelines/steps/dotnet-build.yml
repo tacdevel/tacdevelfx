@@ -1,0 +1,6 @@
+parameters:
+  configuration: ''
+
+steps:
+- script: dotnet restore $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj --force /property:Configuration=${{ parameters.configuration }} 
+  displayName: 'Restore Packages (${{ parameters.configuration }})'

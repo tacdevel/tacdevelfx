@@ -1,18 +1,28 @@
-#TODO: Simplify jobs/tasks a bit with templates.
+####################################################################################################
+## FileName:             azure-pipelines.yml
+## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+####################################################################################################
+
 #TODO: Set up tests once finished.
 #TODO: Set up documentation generation once finished.
 #TODO: Set up CI builds to push to MyGet.
 #TODO: Set up tagged/release builds to push to NuGet.
 
-# General pipeline configuration
-name: $(Date:yyyyMMdd)$(Rev:-rrr)
+## General Configuration
+name: $(Date:yyyyMMdd)$(Rev:-rrr) # Build.BuildNumber
 resources:
 - repo: self
+
+## Pipeline Triggers
 trigger:
   batch: false
   branches:
     include:
     - '*'
+  tags:
+    include:
+    - v*
   paths:
     exclude:
     - "*.md"
@@ -20,7 +30,6 @@ trigger:
     - ".gitattributes"
     - ".editorconfig"
     - ".github/*"
-
 pr:
   autoCancel: true
   branches:
@@ -34,184 +43,65 @@ pr:
     - ".editorconfig"
     - ".github/*"
 
+## Build Jobs
 jobs:
-
-# Windows 2012R2
-- job: windows2012r2_debug
-  displayName: Windows 2012R2 Debug
-  pool:
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'Windows 8.1'
     vmImage: 'vs2015-win2012r2'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-- job: windows2012r2_release
-  displayName: Windows 2012R2 Release
-  pool:
+    configuration: 'Debug'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'Windows 8.1'
     vmImage: 'vs2015-win2012r2'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-
-# Windows 2016
-- job: windows2016_debug
-  displayName: Windows 2016 Debug
-  pool:
+    configuration: 'Release'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'Windows 10 v1803'
     vmImage: 'vs2017-win2016'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-- job: windows2016_release
-  displayName: Windows 2016 Release
-  pool:
+    configuration: 'Debug'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'Windows 10 v1803'
     vmImage: 'vs2017-win2016'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-
-# Windows 2019
-- job: windows2019_debug
-  displayName: Windows 2019 Debug
-  pool:
+    configuration: 'Release'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'Windows 10 v1809'
     vmImage: 'windows-2019'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Debug --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-- job: windows2019_release
-  displayName: Windows 2019 Release
-  pool:
+    configuration: 'Debug'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'Windows 10 v1809'
     vmImage: 'windows-2019'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj -c Release --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-
-# macOS 10.13
-- job: macos1013_debug
-  displayName: macOS 10.13 Debug
-  pool:
+    configuration: 'Release'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'macOS 10.13'
     vmImage: 'macOS-10.13'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-- job: macos1013_release
-  displayName: macOS 10.13 Release
-  pool:
+    configuration: 'Debug'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'macOS 10.13'
     vmImage: 'macOS-10.13'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-
-# macOS 10.14
-- job: macos1014_debug
-  displayName: macOS 10.14 Debug
-  pool:
+    configuration: 'Release'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'macOS 10.14'
     vmImage: 'macOS-10.14'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-- job: macos1014_release
-  displayName: macOS 10.14 Release
-  pool:
+    configuration: 'Debug'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'macOS 10.14'
     vmImage: 'macOS-10.14'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-
-# Ubuntu 16.04
-- job: ubuntu1604_debug
-  displayName: Ubuntu 16.04 Debug
-  pool:
+    configuration: 'Release'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'Ubuntu 16.04'
     vmImage: 'ubuntu-16.04'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Debug --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
-- job: ubuntu1604_release
-  displayName: Ubuntu 16.04 Release
-  pool:
+    configuration: 'Debug'
+- template: .azure-pipelines/jobs/build.yml
+  parameters:
+    displayName: 'Ubuntu 16.04'
     vmImage: 'ubuntu-16.04'
-  workspace:
-    clean: all
-  steps:
-  - task: UseDotNet@2
-    displayName: 'Install .NET Core'
-    inputs:
-      version: 3.0.100-preview5-011568
-      includePreviewVersions: true
-  - script: dotnet build $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj -c Release --force --nologo --version-suffix $(Build.BuildNumber)
-    displayName: 'dotnet build ($(Build.DefinitionName))'
+    configuration: 'Release'

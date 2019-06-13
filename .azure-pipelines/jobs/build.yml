@@ -1,0 +1,25 @@
+parameters:
+  displayName: ''
+  vmImage: ''
+  configuration: ''
+  projectFile: '$(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj'
+
+jobs:
+- job: Build_$(Build.DefinitionName)_${{ parameters.vmImage }}_${{ parameters.configuration }}
+  displayName: ${{ parameters.displayName }} ($(Build.DefinitionName)|Debug)
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  workspace:
+    clean: all
+  steps:
+  - template: .azure-pipelines/steps/install-dotnet-preview.yml
+    parameters:
+      sdkVersion: 3.0.100-preview5-011568
+  - template: .azure-pipelines/steps/dotnet-restore.yml
+    parameters:
+      configuration: ${{ parameters.configuration }}
+      projectFile: ${{ parameters.projectFile }}
+  - template: .azure-pipelines/steps/dotnet-build.yml
+    parameters:
+      configuration: ${{ parameters.configuration }}
+      projectFile: ${{ parameters.projectFile }}

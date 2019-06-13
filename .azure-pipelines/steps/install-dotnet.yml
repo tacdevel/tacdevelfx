@@ -1,0 +1,8 @@
+parameters:
+  sdkVersion: '' # .NET Core SDK Version
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Install .NET Core ${{ parameters.sdkVersion }}'
+  inputs:
+    version: ${{ parameters.sdkVersion }}
