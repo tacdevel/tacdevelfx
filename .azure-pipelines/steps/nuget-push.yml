@@ -1,0 +1,10 @@
+parameters:
+  nupkgFile: ''
+
+steps:
+- task: NuGetCommand@2
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'nuget-tacorwin'
+    packagesToPush: '${{ nupkgFile }}'
