@@ -22,8 +22,8 @@
   </ImportGroup>
 
   <ImportGroup>
-    <Import Project="Build.BuildGroups.Examples.props" Condition="'$(_BuildGroup)' == 'examples'" />
-    <Import Project="Build.BuildGroups.Sources.props" Condition="'$(_BuildGroup)' == 'sources'" />
-    <Import Project="Build.BuildGroups.Tests.props" Condition="'$(_BuildGroup)' == 'tests'" />
+    <Import Project="$(_DotMSBuildPath)Build.BuildGroups.Examples.props" Condition="'$(_BuildGroup)' == 'examples'" />
+    <Import Project="$(_DotMSBuildPath)Build.BuildGroups.Sources.props" Condition="'$(_BuildGroup)' == 'sources'" />
+    <Import Project="$(_DotMSBuildPath)Build.BuildGroups.Tests.props" Condition="'$(_BuildGroup)' == 'tests'" />
   </ImportGroup>
 </Project>
