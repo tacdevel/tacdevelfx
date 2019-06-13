@@ -20,7 +20,7 @@ jobs:
     parameters:
       configuration: ${{ parameters.configuration }}
       projectFile: ${{ parameters.projectFile }}
-  - template: ../steps/dotnet-build.yml
+  - template: ../steps/dotnet-build-no-versionsuffix.yml
     parameters:
       configuration: ${{ parameters.configuration }}
       projectFile: ${{ parameters.projectFile }}

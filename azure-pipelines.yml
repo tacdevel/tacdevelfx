@@ -8,7 +8,7 @@
 #TODO: Set up documentation generation once finished.
 
 ## General Configuration
-name: $(Date:yyyyMMdd)$(Rev:-rrr) # Build.BuildNumber
+name: $(Date:yyyyMMdd)-$(SourceBranchName)$(Rev:-rrr) # Build.BuildNumber
 resources:
 - repo: self
 
