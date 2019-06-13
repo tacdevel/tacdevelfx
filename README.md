@@ -14,7 +14,7 @@ TCDFx is a small collection of libraries targeting .NET Standard 2.1 Preview.
 
 **Notice**: *The first pre-release packages will be released after [andlabs/libui:remodel](https://github.com/andlabs/libui/tree/remodel) is merged into [andlabs/libui:master](https://github.com/andlabs/libui/tree/master) since there are going to be major changes to the native `libui` API.*
 
-| Package Name | Build Status                                                               | Latest Releases                                                                      |
+| Package Name | Build Status                                                               | Latest Releases (nuget.org)                                                          |
 | :----------- | :--------------------------------------------------------------------------| :----------------------------------------------------------------------------------: |
 | TCDFx.Core   | [![Build Status][TCDFxCore.BuildStatus.Badge]][TCDFxCore.BuildStatus.Link] | ![Stable][TCDFxCore.Packages.Badge]<br/>![Pre-Release][TCDFxCore.Packages.Badge.Pre] |
 | TCDFx.UI     | [![Build Status][TCDFxUI.BuildStatus.Badge]][TCDFxUI.BuildStatus.Link]     | ![Stable][TCDFxUI.Packages.Badge]<br/>![Pre-Release][TCDFxUI.Packages.Badge.Pre]     |
@@ -23,9 +23,11 @@ TCDFx is a small collection of libraries targeting .NET Standard 2.1 Preview.
 
 For examples, see the `examples\` directory.
 
-Until the first packages are released, you must build the libraries from source.
-<!--
-You can either use pre-built libraries hosted on NuGet, or build the libraries from source.
+Until the first stable packages are released, you can either build the libraries from source, or use unstable pre-built packages from our [CI build feed](https://www.myget.org/feed/Details/tcdfx-build).
+
+```
+ https://www.myget.org/F/tcdfx-build/api/v3/index.json
+```
 
 ### Using Pre-Built Packages
 
@@ -59,7 +61,6 @@ Add the following to your `.csproj`:
   <PackageReference Include="{PackageName}" Version="{PackageVersion}" />
 </ItemGroup>
 ```
--->
 
 ### Building From Source
 
