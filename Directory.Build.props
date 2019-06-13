@@ -14,11 +14,11 @@
   <ImportGroup>
     <Import Project="$(_DotMSBuildPath)Build.Version.props" />
     <Import Project="$(_DotMSBuildPath)Build.BuildGroups.props" />
-    <Import Project="$(_DotMSBuildPath)Build.Defaults.Common.props" />
+    <Import Project="$(_DotMSBuildPath)Build.Defaults.props" />
     <Import Project="$(_DotMSBuildPath)Build.BuildPaths.props" />
     <Import Project="$(_DotMSBuildPath)Build.Defaults.Debug.props" Condition="'$(Configuration)' == 'Debug'" />
     <Import Project="$(_DotMSBuildPath)Build.Defaults.Release.props" Condition="'$(Configuration)' == 'Release'" />
-    <Import Project="$(_DotMSBuildPath)Build.DefaultItems.Common.props" />
+    <Import Project="$(_DotMSBuildPath)Build.DefaultItems.props" />
   </ImportGroup>
 
   <ImportGroup>
