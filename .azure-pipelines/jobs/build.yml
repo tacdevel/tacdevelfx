@@ -2,7 +2,7 @@ parameters:
   displayName: ''
   vmImage: ''
   configuration: ''
-  projectFile: '$(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj'
+  projectFile: ''
 
 jobs:
 - job: Build_${{ parameters.displayName }}_${{ parameters.configuration }}

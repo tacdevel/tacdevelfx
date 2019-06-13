@@ -3,5 +3,5 @@ parameters:
   projectFile: ''
 
 steps:
-- script: dotnet restore ${{ parameters.projectFile }} --force /property:Configuration=${{ parameters.configuration }} 
-  displayName: 'Restore Packages (${{ parameters.configuration }})'
+- script: dotnet build ${{ parameters.projectFile }} -c ${{ parameters.configuration }}  --force --nologo --version-suffix $(Build.BuildNumber)
+  displayName: 'Build Project (${{ parameters.configuration }})'
