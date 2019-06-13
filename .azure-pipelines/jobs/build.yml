@@ -6,7 +6,7 @@ parameters:
 
 jobs:
 - job: Build_${{ parameters.displayName }}_${{ parameters.configuration }}
-  displayName: ${{ parameters.displayName }} ($(Build.DefinitionName)|${{ parameters.configuration }})
+  displayName: ${{ parameters.displayName }} (${{ parameters.configuration }})
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:

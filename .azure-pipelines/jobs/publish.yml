@@ -7,7 +7,7 @@ parameters:
 
 jobs:
 - job: Publish_${{ parameters.displayName }}
-  displayName: ${{ parameters.displayName }} ($(Build.DefinitionName)|Publish)
+  displayName: ${{ parameters.displayName }} (Publish)
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:
