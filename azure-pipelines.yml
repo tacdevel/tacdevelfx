@@ -17,7 +17,7 @@ trigger:
   batch: false
   branches:
     include:
-    - '*'
+    - 'master'
   tags:
     include:
     - v*
@@ -32,7 +32,7 @@ pr:
   autoCancel: true
   branches:
     include:
-    - '*'
+    - 'master'
   paths:
     exclude:
     - "*.md"
