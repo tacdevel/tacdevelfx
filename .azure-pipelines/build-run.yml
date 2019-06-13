@@ -1,0 +1,30 @@
+parameters:
+  configuration: ''
+  projectFile: '$(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj'
+  includeVersionSuffix: 'true'
+  versionSuffix: '$(Build.BuildNumber)'
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'Restore Packages (${{ parameters.configuration }})'
+  inputs:
+    command: custom
+    projects: ${{ parameters.projectFile }}
+    custom: 'restore'
+    arguments: '--force /property:Configuration=${{ parameters.configuration }}'
+- task: DotNetCoreCLI@2
+  displayName: 'Build Project (${{ parameters.configuration }})'
+  condition: eq(${{ parameters.includeVersionSuffix }}, 'true')
+  inputs:
+    command: custom
+    projects: ${{ parameters.projectFile }}
+    custom: 'build'
+    arguments: '-c ${{ parameters.configuration }} --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}'
+- task: DotNetCoreCLI@2
+  displayName: 'Build Project (${{ parameters.configuration }})'
+  condition: eq(${{ parameters.includeVersionSuffix }}, 'false')
+  inputs:
+    command: custom
+    projects: ${{ parameters.projectFile }}
+    custom: 'build'
+    arguments: '-c ${{ parameters.configuration }} --no-restore --force --nologo'

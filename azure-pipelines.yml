@@ -104,5 +104,3 @@ jobs:
     vmImage: 'windows-2019'
     configuration: 'Release'
 - template: .azure-pipelines/jobs/publish.yml
-  parameters:
-    displayName: 'Windows10v1809'

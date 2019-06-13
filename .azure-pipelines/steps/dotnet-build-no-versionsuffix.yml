@@ -1,7 +1,0 @@
-parameters:
-  configuration: ''
-  projectFile: ''
-
-steps:
-- script: dotnet build ${{ parameters.projectFile }} -c ${{ parameters.configuration }}  --force --nologo
-  displayName: 'Build Project (${{ parameters.configuration }})'

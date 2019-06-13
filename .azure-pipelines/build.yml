@@ -1,0 +1,20 @@
+parameters:
+  displayName: ''
+  vmImage: ''
+  configuration: ''
+
+jobs:
+- job: ${{ parameters.displayName }}${{ parameters.configuration }}
+  displayName: ${{ parameters.displayName }}(${{ parameters.configuration }})
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  workspace:
+    clean: all
+  steps:
+  - template: ./build-init.yml
+    parameters:
+      sdkVersion: 3.0.100-preview5-011568
+      isPreview: true
+  - template: ./build-run.yml
+    parameters:
+      configuration: ${{ parameters.configuration }}
