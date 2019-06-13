@@ -1,0 +1,24 @@
+<!--================================================================================================
+* FileName:             Build.BuildPaths.props
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Until I decide to start targeting netcoreapp and/or netfx, this should be here. -->
+  <!-- See here: https://github.com/dotnet/sdk/blob/cd25d6bbfc2aac61cc790c511900427ac64fdaa8/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.TargetFrameworkInference.targets#L167-L174 -->
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_BuildBasePath>$(_RepositoryPath)build\</_BuildBasePath>
+    <_BuildPath>$(_BuildBasePath)\$(_BuildGroup)\$(MSBuildProjectName)\$(Configuration)\</_BuildPath>
+    <BaseOutputPath>$(_BuildPath)bin\</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)</OutputPath>
+    <BaseIntermediateOutputPath>$(_BuildPath)obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+  </PropertyGroup>
+
+</Project>

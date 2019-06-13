@@ -1,9 +1,8 @@
 parameters:
   displayName: ''
   vmImage: 'windows-2019'
-  configuration: 'Release'
   projectFile: $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj
-  nupkgFile: $(Build.Repository.LocalPath)\build\Release\$(Build.DefinitionName)\pkg\$(Build.DefinitionName)*.nupkg
+  nupkgFile: $(Build.Repository.LocalPath)\build\sources\$(Build.DefinitionName)\Release\pkg\$(Build.DefinitionName)*.nupkg
 
 jobs:
 - job: Publish_${{ parameters.displayName }}
@@ -18,11 +17,11 @@ jobs:
       sdkVersion: 3.0.100-preview5-011568
   - template: ../steps/dotnet-restore.yml
     parameters:
-      configuration: ${{ parameters.configuration }}
+      configuration: Release
       projectFile: ${{ parameters.projectFile }}
   - template: ../steps/dotnet-build-no-versionsuffix.yml
     parameters:
-      configuration: ${{ parameters.configuration }}
+      configuration: Release
       projectFile: ${{ parameters.projectFile }}
   - template: ../steps/myget-push.yml
     parameters:

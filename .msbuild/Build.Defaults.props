@@ -1,0 +1,25 @@
+<!--================================================================================================
+* FileName:             Build.Defaults.props
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">Any CPU</Platform>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/tom-corwin/tcdfx</RepositoryUrl>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <DefineConstants>TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+
+</Project>

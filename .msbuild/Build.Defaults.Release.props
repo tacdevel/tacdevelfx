@@ -1,0 +1,27 @@
+<!--================================================================================================
+* FileName:             Build.Defaults.Release.props
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <Optimize>true</Optimize>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(_BuildGroupIsPackable)' == 'true'">
+    <PackageProjectUrl>https://github.com/tom-corwin/tcdfx</PackageProjectUrl>
+    <Authors>Thomas Corwin, et al.</Authors>
+    <Copyright>Copyright © 2017-2019 $(Authors) All Rights Reserved.</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(_BuildPath)doc\$(MSBuildProjectName).xml</DocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>$(_BuildPath)pkg\</PackageOutputPath>
+  </PropertyGroup>
+
+</Project>

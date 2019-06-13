@@ -1,0 +1,22 @@
+<!--================================================================================================
+* FileName:             Build.BuildGroups.props
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <_BuildGroup Condition="$(MSBuildProjectName.EndsWith('Example')) AND '$(_BuildGroup)' == ''">examples</_BuildGroup>
+    <_BuildGroup Condition="$(MSBuildProjectName.EndsWith('Tests')) AND '$(_BuildGroup)' == ''">tests</_BuildGroup>
+    <_BuildGroup Condition="'$(_BuildGroup)' == ''">sources</_BuildGroup>
+
+    <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'examples'">false</_BuildGroupIsPackable>
+    <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'tests'">false</_BuildGroupIsPackable>
+    <_BuildGroupIsPackable Condition="'$(_BuildGroup)' == 'sources'">true</_BuildGroupIsPackable>
+
+    <_BuildGroupPath>$(_RepositoryPath)$(_BuildGroup)\</_BuildGroupPath>
+    <_BuildGroupProjectPath>$(_BuildGroupPath)$(MSBuildProjectName)\</_BuildGroupProjectPath>
+  </PropertyGroup>
+
+</Project>

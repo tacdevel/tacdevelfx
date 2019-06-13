@@ -6,6 +6,24 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Import Project="$(MSBuildThisFileDirectory)TCDFx.Build.props" />
+  <PropertyGroup>
+    <_RepositoryPath>$(MSBuildThisFileDirectory)</_RepositoryPath>
+    <_DotMSBuildPath>$(_RepositoryPath).msbuild\</_DotMSBuildPath>
+  </PropertyGroup>
 
+  <ImportGroup>
+    <Import Project="$(_DotMSBuildPath)Build.Version.props" />
+    <Import Project="$(_DotMSBuildPath)Build.BuildGroups.props" />
+    <Import Project="$(_DotMSBuildPath)Build.Defaults.Common.props" />
+    <Import Project="$(_DotMSBuildPath)Build.BuildPaths.props" />
+    <Import Project="$(_DotMSBuildPath)Build.Defaults.Debug.props" Condition="'$(Configuration)' == 'Debug'" />
+    <Import Project="$(_DotMSBuildPath)Build.Defaults.Release.props" Condition="'$(Configuration)' == 'Release'" />
+    <Import Project="$(_DotMSBuildPath)Build.DefaultItems.Common.props" />
+  </ImportGroup>
+
+  <ImportGroup>
+    <Import Project="Build.BuildGroups.Examples.props" Condition="'$(_BuildGroup)' == 'examples'" />
+    <Import Project="Build.BuildGroups.Sources.props" Condition="'$(_BuildGroup)' == 'sources'" />
+    <Import Project="Build.BuildGroups.Tests.props" Condition="'$(_BuildGroup)' == 'tests'" />
+  </ImportGroup>
 </Project>

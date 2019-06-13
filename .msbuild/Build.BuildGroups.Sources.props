@@ -1,11 +1,10 @@
 <!--================================================================================================
-* FileName:             Directory.Build.props
+* FileName:             Build.BuildGroups.Sources.props
 * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
 * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
 =================================================================================================-->
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
@@ -25,7 +24,7 @@
   </ItemGroup>
   -->
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
+    <Compile Include="$(_BuildGroupPath)AssemblyInfo.cs" />
   </ItemGroup>
 
 </Project>

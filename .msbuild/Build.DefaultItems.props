@@ -1,0 +1,28 @@
+<!--================================================================================================
+* FileName:             Build.DefaultItems.props
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="source\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Condition="Exists('$(_RepositoryPath)LICENSE.md')" Include="$(_RepositoryPath)LICENSE.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Condition="Exists('$(_RepositoryPath)THIRD_PARTY_NOTICES.md')" Include="$(_RepositoryPath)THIRD_PARTY_NOTICES.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+
+</Project>
