@@ -12,12 +12,17 @@ TCDFx is a small collection of libraries targeting .NET Standard 2.1 Preview.
 
 ## Builds and Releases
 
-**Notice**: *The first pre-release packages will be released after [andlabs/libui:remodel](https://github.com/andlabs/libui/tree/remodel) is merged into [andlabs/libui:master](https://github.com/andlabs/libui/tree/master) since there are going to be major changes to the native `libui` API.*
+**Notice**: *There are currently no packages released to NuGet yet, so some badges may be broken.*  
+**Notice**: *The first pre-release packages will be released after [andlabs/libui:remodel](https://github.com/andlabs/libui/tree/remodel) is merged into [andlabs/libui:master](https://github.com/andlabs/libui/tree/master) since there are major changes to the native `libui` API.*
 
-| Package Name | Build Status                                                               | Latest Releases (nuget.org)                                                          |
-| :----------- | :--------------------------------------------------------------------------| :----------------------------------------------------------------------------------: |
-| TCDFx.Core   | [![Build Status][TCDFxCore.BuildStatus.Badge]][TCDFxCore.BuildStatus.Link] | ![Stable][TCDFxCore.Packages.Badge]<br/>![Pre-Release][TCDFxCore.Packages.Badge.Pre] |
-| TCDFx.UI     | [![Build Status][TCDFxUI.BuildStatus.Badge]][TCDFxUI.BuildStatus.Link]     | ![Stable][TCDFxUI.Packages.Badge]<br/>![Pre-Release][TCDFxUI.Packages.Badge.Pre]     |
+|                      | TCDFx.Core <sub><sub>![Stable][TCDFxCore.Packages.Badge]</sub></sub>                                                                                                                                                                                            | TCDFx.Core <sub><sub>![Stable][TCDFxCore.Packages.Badge]</sub></sub>                                                                                                                                                                                    |
+| :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Windows 8.1**      | Debug: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.Windows81Debug.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.Windows81Release.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub>           | Debug: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.Windows81Debug.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.Windows81Release.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub>           |
+| **Windows 10 v1803** | Debug: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.Windows10v1803Debug.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.Windows10v1803Release.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub> | Debug: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.Windows10v1803Debug.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.Windows10v1803Release.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub> |
+| **Windows 10 v1809** | Debug: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.Windows10v1809Debug.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.Windows10v1809Release.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub> | Debug: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.Windows10v1809Debug.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.Windows10v1809Release.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub> |
+| **Ubuntu 16.04**     | Debug: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.Ubuntu1604Debug.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.Ubuntu1604Release.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub>         | Debug: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.Ubuntu1604Debug.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.Ubuntu1604Release.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub>         |
+| **macOS 10.13**      | Debug: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.macOS1013Debug.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.macOS1013Release.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub>           | Debug: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.macOS1013Debug.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.macOS1013Release.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub>           |
+| **macOS 10.14**      | Debug: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.macOS1014Debug.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxCore.BuildStatus.macOS1014Release.Badge]][TCDFxCore.BuildStatus.Link]</sub></sub>           | Debug: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.macOS1014Debug.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub><br/>Release: <sub><sub>[![Build Status][TCDFxUI.BuildStatus.macOS1014Release.Badge]][TCDFxUI.BuildStatus.Link]</sub></sub>           |
 
 ## Using TCDFx Libraries
 
@@ -109,14 +114,34 @@ For all a list of all contributors with some stats about their contributions, se
 [Links.Codacy]: https://www.codacy.com/app/tom-corwin/tcdfx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tom-corwin/tcdfx&amp;utm_campaign=Badge_Grade
 [Links.Dependabot]: https://api.dependabot.com/badges/status?host=github&repo=tom-corwin/tcdfx
 [Links.Gitter]: https://gitter.im/tom-corwin/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
-[TCDFxCore.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master
-[TCDFxCore.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=15
-[TCDFxUI.BuildStatus.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master
-[TCDFxUI.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=16
+[TCDFxCore.BuildStatus.Windows10v1809Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=Windows10v1809%20(Debug)
+[TCDFxCore.BuildStatus.Windows10v1809Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=Windows10v1809%20(Release)
+[TCDFxCore.BuildStatus.Windows10v1803Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=Windows10v1803%20(Debug)
+[TCDFxCore.BuildStatus.Windows10v1803Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=Windows10v1803%20(Release)
+[TCDFxCore.BuildStatus.Windows81Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=Windows81%20(Debug)
+[TCDFxCore.BuildStatus.Windows81Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=Windows81%20(Release)
+[TCDFxCore.BuildStatus.Ubuntu1604Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=Ubuntu1604%20(Debug)
+[TCDFxCore.BuildStatus.Ubuntu1604Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=Ubuntu1604%20(Release)
+[TCDFxCore.BuildStatus.macOS1013Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=macOS1013%20(Debug)
+[TCDFxCore.BuildStatus.macOS1013Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=macOS1013%20(Release)
+[TCDFxCore.BuildStatus.macOS1014Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=macOS1014%20(Debug)
+[TCDFxCore.BuildStatus.macOS1014Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.Core?branchName=master&jobName=macOS1014%20(Release)
+[TCDFxUI.BuildStatus.Windows10v1809Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=Windows10v1809%20(Debug)
+[TCDFxUI.BuildStatus.Windows10v1809Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=Windows10v1809%20(Release)
+[TCDFxUI.BuildStatus.Windows10v1803Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=Windows10v1803%20(Debug)
+[TCDFxUI.BuildStatus.Windows10v1803Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=Windows10v1803%20(Release)
+[TCDFxUI.BuildStatus.Windows81Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=Windows81%20(Debug)
+[TCDFxUI.BuildStatus.Windows81Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=Windows81%20(Release)
+[TCDFxUI.BuildStatus.Ubuntu1604Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=Ubuntu1604%20(Debug)
+[TCDFxUI.BuildStatus.Ubuntu1604Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=Ubuntu1604%20(Release)
+[TCDFxUI.BuildStatus.macOS1013Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=macOS1013%20(Debug)
+[TCDFxUI.BuildStatus.macOS1013Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=macOS1013%20(Release)
+[TCDFxUI.BuildStatus.macOS1014Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=macOS1014%20(Debug)
+[TCDFxUI.BuildStatus.macOS1014Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx-build/_apis/build/status/TCDFx.UI?branchName=master&jobName=macOS1014%20(Release)
+[TCDFxCore.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=15&branchName=master
+[TCDFxUI.BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx-build/_build/latest?definitionId=16&branchName=master
 [TCDFxCore.Packages.Badge]: https://badgen.net/nuget/v/TCDFx.Core?color=blue&label=stable
-[TCDFxCore.Packages.Badge.Pre]: https://badgen.net/nuget/v/TCDFx.Core/pre?color=cyan&label=pre-release
 [TCDFxUI.Packages.Badge]: https://badgen.net/nuget/v/TCDFx.UI?color=blue&label=stable
-[TCDFxUI.Packages.Badge.Pre]: https://badgen.net/nuget/v/TCDFx.UI/pre?color=cyan&label=pre-release
 [Badges.Contributors]: https://badgen.net/github/contributors/tom-corwin/tcdfx
 [Badges.Issues.Open]: https://badgen.net/github/open-issues/tom-corwin/tcdfx/
 [Badges.Issues.Closed]: https://badgen.net/github/closed-issues/tom-corwin/tcdfx/
