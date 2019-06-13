@@ -1,6 +1,6 @@
 parameters:
   configuration: ''
-  projectFile: '$(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj'
+  projectFile: ''
   includeVersionSuffix: 'true'
   versionSuffix: '$(Build.BuildNumber)'
 

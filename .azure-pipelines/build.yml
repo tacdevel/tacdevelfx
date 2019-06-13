@@ -6,6 +6,7 @@ parameters:
 jobs:
 - job: ${{ parameters.displayName }}${{ parameters.configuration }}
   displayName: ${{ parameters.displayName }}(${{ parameters.configuration }})
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:
@@ -18,3 +19,20 @@ jobs:
   - template: ./build-run.yml
     parameters:
       configuration: ${{ parameters.configuration }}
+      projectFile: $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj
+- job: ${{ parameters.displayName }}${{ parameters.configuration }}
+  displayName: ${{ parameters.displayName }}(${{ parameters.configuration }})
+  condition: neq( variables['Agent.OS'], 'Windows_NT' )
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  workspace:
+    clean: all
+  steps:
+  - template: ./build-init.yml
+    parameters:
+      sdkVersion: 3.0.100-preview5-011568
+      isPreview: true
+  - template: ./build-run.yml
+    parameters:
+      configuration: ${{ parameters.configuration }}
+      projectFile: $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj
