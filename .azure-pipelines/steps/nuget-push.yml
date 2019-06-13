@@ -8,4 +8,4 @@ steps:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'nuget-tacorwin'
-    packagesToPush: '${{ nupkgFile }}'
+    packagesToPush: '${{ parameters.nupkgFile }}'

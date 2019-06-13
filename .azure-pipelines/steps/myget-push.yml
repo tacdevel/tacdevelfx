@@ -7,4 +7,4 @@ steps:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'myget-tacorwin'
-    packagesToPush: '${{ nupkgFile }}'
+    packagesToPush: '${{ parameters.nupkgFile }}'
