@@ -15,7 +15,7 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using TCDFx.ComponentModel;
 
-namespace TCDFx.InteropServices
+namespace TCDFx.Runtime.InteropServices
 {
     /// <summary>
     /// Provides <see cref="Load"/> for loading methods from native assemblies.
