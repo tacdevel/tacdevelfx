@@ -28,6 +28,5 @@ jobs:
     parameters:
       nupkgFile: ${{ nupkgFile }}
   - template: ../steps/nuget-push.yml
-    condition: startsWith('$(Build.SourceBranch)', 'ref/tags/v')
     parameters:
       nupkgFile: ${{ nupkgFile }}
