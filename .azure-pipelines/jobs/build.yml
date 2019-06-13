@@ -12,14 +12,14 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: .azure-pipelines/steps/install-dotnet-preview.yml
+  - template: ../steps/install-dotnet-preview.yml
     parameters:
       sdkVersion: 3.0.100-preview5-011568
-  - template: .azure-pipelines/steps/dotnet-restore.yml
+  - template: ../steps/dotnet-restore.yml
     parameters:
       configuration: ${{ parameters.configuration }}
       projectFile: ${{ parameters.projectFile }}
-  - template: .azure-pipelines/steps/dotnet-build.yml
+  - template: ../steps/dotnet-build.yml
     parameters:
       configuration: ${{ parameters.configuration }}
       projectFile: ${{ parameters.projectFile }}
