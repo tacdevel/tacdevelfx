@@ -22,7 +22,7 @@ jobs:
       projectFile: $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj
 - job: ${{ parameters.displayName }}${{ parameters.configuration }}
   displayName: ${{ parameters.displayName }}(${{ parameters.configuration }})
-  condition: neq( variables['Agent.OS'], 'Windows_NT' )
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:

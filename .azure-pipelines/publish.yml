@@ -25,7 +25,7 @@ jobs:
       nupkgFile: $(Build.Repository.LocalPath)\build\sources\$(Build.DefinitionName)\Release\pkg\$(Build.DefinitionName)*.nupkg
 - job: Publish_${{ parameters.displayName }}
   displayName: ${{ parameters.displayName }} (Publish)
-  condition: neq( variables['Agent.OS'], 'Windows_NT' )
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:
