@@ -125,7 +125,7 @@ For all a list of all contributors with some stats about their contributions, se
 [TCDFxCore.BuildStatus.macOS1013Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1013_Debug
 [TCDFxCore.BuildStatus.macOS1013Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1013_Release
 [TCDFxCore.BuildStatus.macOS1014Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1014_Debug
-[TCDFxUI.BuildStatus.macOS1014Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1014_Release
+[TCDFxCore.BuildStatus.macOS1014Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1014_Release
 [TCDFxUI.BuildStatus.Windows81Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows81_Debug
 [TCDFxUI.BuildStatus.Windows81Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows81_Debug
 [TCDFxUI.BuildStatus.Windows10v1803Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows10v1803_Debug
