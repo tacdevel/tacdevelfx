@@ -33,7 +33,7 @@ steps:
 - script: |
     python -m pip install --upgrade pip setuptools wheel
     pip install meson
-  condition: nq( variables['Agent.OS'], 'Windows_NT' )
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
   name: InstallLibuiDevDeps_InstallMeson_Windows
   displayName: InstallLibuiDevDeps_InstallMeson_Windows
   workingDirectory: $(Build.Repository.LocalPath)\external\libui
