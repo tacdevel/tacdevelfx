@@ -1,0 +1,42 @@
+####################################################################################################
+## FileName:             build-tcdfx-project.yml
+## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+####################################################################################################
+
+parameters:
+  configuration: ''
+  projectName: ''
+  versionSuffix: ''
+
+steps:
+
+# BuildTCDFxProject_RestorePackages_Windows
+- script: dotnet restore ${{ parameters.projectName }}.csproj --force /property:Configuration=${{ parameters.configuration }}
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  name: BuildTCDFxProject_RestorePackages_Windows
+  displayName: BuildTCDFxProject_RestorePackages_Windows
+  workingDirectory: $(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}
+  continueOnError: false
+# BuildTCDFxProject_RestorePackages_Linux
+- script: dotnet restore ${{ parameters.projectName }}.csproj --force /property:Configuration=${{ parameters.configuration }}
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  name: BuildTCDFxProject_RestorePackages_Linux
+  displayName: BuildTCDFxProject_RestorePackages_Linux
+  workingDirectory: $(Build.Repository.LocalPath)/sources/${{ parameters.projectName }}
+  continueOnError: false
+
+# BuildTCDFxProject_BuildProject_Windows
+- script: dotnet build ${{ parameters.projectName }}.csproj --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  name: BuildTCDFxProject_BuildProject_Windows
+  displayName: BuildTCDFxProject_BuildProject_Windows
+  workingDirectory: $(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}
+  continueOnError: false
+# BuildTCDFxProject_BuildProject_Linux
+- script: dotnet build ${{ parameters.projectName }}.csproj --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  name: BuildTCDFxProject_BuildProject_Linux
+  displayName: BuildTCDFxProject_BuildProject_Linux
+  workingDirectory: $(Build.Repository.LocalPath)/sources/${{ parameters.projectName }}
+  continueOnError: false

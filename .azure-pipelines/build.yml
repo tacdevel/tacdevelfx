@@ -1,38 +1,53 @@
 parameters:
-  displayName: ''
+  platform: ''
   vmImage: ''
   configuration: ''
+  versionSuffix: '$(Build.BuildNumber)'
+  dotnetVersion: '3.0.100-preview5-011568'
 
 jobs:
-- job: ${{ parameters.displayName }}${{ parameters.configuration }}
-  displayName: ${{ parameters.displayName }}(${{ parameters.configuration }})
-  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+
+# TCDFxCore_*
+- job: TCDFxCore_${{ parameters.platform }}_${{ parameters.configuration }}
+  displayName: TCDFxCore_${{ parameters.platform }}_${{ parameters.configuration }}
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:
     clean: all
   steps:
-  - template: ./build-init.yml
-    parameters:
-      sdkVersion: 3.0.100-preview5-011568
-      isPreview: true
-  - template: ./build-run.yml
-    parameters:
-      configuration: ${{ parameters.configuration }}
-      projectFile: $(Build.Repository.LocalPath)\sources\$(Build.DefinitionName)\$(Build.DefinitionName).csproj
-- job: ${{ parameters.displayName }}${{ parameters.configuration }}
-  displayName: ${{ parameters.displayName }}(${{ parameters.configuration }})
-  condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  - template: ./install-tcdfx-dev-deps.yml
+    dotnetVersion: ${{ parameters.dotnetVersion }}
+
+  - template: ./build-tcdfx-project.yml
+    configuration: ${{ parameters.configuration }}
+    projectName: TCDFx.Core
+    versionSuffix: ${{ parameters.versionSuffix }}
+
+  #- template: ./make-intermediate-pkg.yml
+  #- template: ./push-pkg-myget.yml
+  #- template: ./push-pkg-nuget.yml
+
+# TCDFxUI_*
+- job: TCDFxUI_${{ parameters.platform }}_${{ parameters.configuration }}
+  displayName: TCDFxUI_${{ parameters.platform }}_${{ parameters.configuration }}
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:
     clean: all
   steps:
-  - template: ./build-init.yml
-    parameters:
-      sdkVersion: 3.0.100-preview5-011568
-      isPreview: true
-  - template: ./build-run.yml
-    parameters:
-      configuration: ${{ parameters.configuration }}
-      projectFile: $(Build.Repository.LocalPath)/sources/$(Build.DefinitionName)/$(Build.DefinitionName).csproj
+  - template: ./install-libui-dev-deps.yml
+
+  - template: ./install-tcdfx-dev-deps.yml
+    dotnetVersion: ${{ parameters.dotnetVersion }}
+
+  - template: ./build-libui-shared-libs.yml
+
+  - template: ./build-tcdfx-project.yml
+    configuration: ${{ parameters.configuration }}
+    projectName: TCD.FxUI
+    includeVersionSuffix: ${{ parameters.includeVersionSuffix }}
+    versionSuffix: ${{ parameters.versionSuffix }}
+
+  #- template: ./make-intermediate-pkg.yml
+  #- template: ./push-pkg-myget.yml
+  #- template: ./push-pkg-nuget.yml

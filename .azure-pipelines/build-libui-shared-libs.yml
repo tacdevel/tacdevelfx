@@ -1,0 +1,58 @@
+####################################################################################################
+## FileName:             build-libui-shared-libs.yml
+## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+####################################################################################################
+
+steps:
+#! BuildLibuiSharedLibs_Configure_Windows
+- script: |
+    if exist C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat (
+      call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+    ) else (
+      if exist C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat (
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+      ) else (
+        call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
+      )
+    )
+    meson setup build --buildtype=release --default-library=shared
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  name: BuildLibuiSharedLibs_Configure_Windows
+  displayName: BuildLibuiSharedLibs_Configure_Windows
+  workingDirectory: $(Build.Repository.LocalPath)\external\libui
+  continueOnError: false
+#! BuildLibuiSharedLibs_Configure_Unix
+- script: |
+    meson setup build --buildtype=release --default-library=shared
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  name: BuildLibuiSharedLibs_Configure_Unix
+  displayName: BuildLibuiSharedLibs_Configure_Unix
+  workingDirectory: $(Build.Repository.LocalPath)/external/libui
+  continueOnError: false
+
+#! BuildLibuiSharedLibs_Build_Windows
+- script: |
+    if exist C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat (
+      call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+    ) else (
+      if exist C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat (
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+      ) else (
+        call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64
+      )
+    )
+    ninja -C build -v
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  name: BuildLibuiSharedLibs_Build_Windows
+  displayName: BuildLibuiSharedLibs_Build_Windows
+  workingDirectory: $(Build.Repository.LocalPath)\external\libui
+  continueOnError: false
+#! BuildLibuiSharedLibs_Build_Unix
+- script: |
+    ninja -C build -v
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  name: BuildLibuiSharedLibs_Build_Unix
+  displayName: BuildLibuiSharedLibs_Build_Unix
+  workingDirectory: $(Build.Repository.LocalPath)/external/libui
+  continueOnError: false
