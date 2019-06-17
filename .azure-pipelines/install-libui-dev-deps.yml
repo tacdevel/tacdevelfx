@@ -5,7 +5,7 @@
 ####################################################################################################
 
 parameters:
-  pythonVersion: '3.7.3' # This differs from libui's default
+  pythonVersion: '3.7.2' # This differs from libui's default
 
 steps:
 
@@ -33,7 +33,7 @@ steps:
 - script: |
     python -m pip install --upgrade pip setuptools wheel
     pip install meson
-  condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
   name: InstallLibuiDevDeps_InstallMeson_Windows
   displayName: InstallLibuiDevDeps_InstallMeson_Windows
   workingDirectory: $(Build.Repository.LocalPath)\external\libui

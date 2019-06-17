@@ -27,14 +27,14 @@ steps:
   continueOnError: false
 
 # BuildTCDFxProject_BuildProject_Windows
-- script: dotnet build ${{ parameters.projectName }}.csproj --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
+- script: dotnet build ${{ parameters.projectName }}.csproj -c ${{ parameters.configuration }} --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   name: BuildTCDFxProject_BuildProject_Windows
   displayName: BuildTCDFxProject_BuildProject_Windows
   workingDirectory: $(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}
   continueOnError: false
 # BuildTCDFxProject_BuildProject_Linux
-- script: dotnet build ${{ parameters.projectName }}.csproj --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
+- script: dotnet build ${{ parameters.projectName }}.csproj -c ${{ parameters.configuration }} --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
   condition: ne( variables['Agent.OS'], 'Windows_NT' )
   name: BuildTCDFxProject_BuildProject_Linux
   displayName: BuildTCDFxProject_BuildProject_Linux
