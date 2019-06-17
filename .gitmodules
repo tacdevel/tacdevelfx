@@ -1,0 +1,4 @@
+[submodule "external/libui"]
+	path = external/libui
+	url = https://github.com/andlabs/libui
+    branch = remodel
