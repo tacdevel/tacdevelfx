@@ -18,7 +18,7 @@ steps:
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   name: InstallLibuiDevDeps_InstallPython_Windows
   displayName: InstallLibuiDevDeps_InstallPython_Windows
-  workingDirectory: $(Build.Repository.LocalPath)\external\libui
+  workingDirectory: $(Build.Repository.LocalPath)\sources\libui
   continueOnError: false
 #! InstallLibuiDevDeps_InstallPython_Unix
 - task: UsePythonVersion@0
@@ -36,7 +36,7 @@ steps:
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   name: InstallLibuiDevDeps_InstallMeson_Windows
   displayName: InstallLibuiDevDeps_InstallMeson_Windows
-  workingDirectory: $(Build.Repository.LocalPath)\external\libui
+  workingDirectory: $(Build.Repository.LocalPath)\sources\libui
   continueOnError: false
 #! InstallLibuiDevDeps_InstallMeson_Unix
 - script: |
@@ -45,7 +45,7 @@ steps:
   condition: ne( variables['Agent.OS'], 'Windows_NT' )
   name: InstallLibuiDevDeps_InstallMeson_Unix
   displayName: InstallLibuiDevDeps_InstallMeson_Unix
-  workingDirectory: $(Build.Repository.LocalPath)/external/libui
+  workingDirectory: $(Build.Repository.LocalPath)/sources/libui
   continueOnError: false
 
 #! InstallLibuiDevDeps_InstallGtk_Linux
@@ -53,7 +53,7 @@ steps:
   condition: eq( variables['Agent.OS'], 'Linux' )
   name: InstallLibuiDevDeps_InstallGtk_Linux
   displayName: InstallLibuiDevDeps_InstallGtk_Linux
-  workingDirectory: $(Build.Repository.LocalPath)/external/libui
+  workingDirectory: $(Build.Repository.LocalPath)/sources/libui
   continueOnError: false
 
 #! InstallLibuiDevDeps_InstallNinja_Windows
@@ -65,14 +65,14 @@ steps:
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   name: InstallLibuiDevDeps_InstallNinja_Windows
   displayName: InstallLibuiDevDeps_InstallNinja_Windows
-  workingDirectory: $(Build.Repository.LocalPath)\external\libui
+  workingDirectory: $(Build.Repository.LocalPath)\sources\libui
   continueOnError: false
 #! InstallLibuiDevDeps_InstallNinja_Linux
 - script: sudo apt-get install ninja-build
   condition: eq( variables['Agent.OS'], 'Linux' )
   name: InstallLibuiDevDeps_InstallNinja_Linux
   displayName: InstallLibuiDevDeps_InstallNinja_Linux
-  workingDirectory: $(Build.Repository.LocalPath)/external/libui
+  workingDirectory: $(Build.Repository.LocalPath)/sources/libui
   continueOnError: false
 #! InstallLibuiDevDeps_InstallNinja_macOS
 - script: |
@@ -86,5 +86,5 @@ steps:
   condition: eq( variables['Agent.OS'], 'Darwin' )
   name: InstallLibuiDevDeps_InstallNinja_macOS
   displayName: InstallLibuiDevDeps_InstallNinja_macOS
-  workingDirectory: $(Build.Repository.LocalPath)/external/libui
+  workingDirectory: $(Build.Repository.LocalPath)/sources/libui
   continueOnError: false
