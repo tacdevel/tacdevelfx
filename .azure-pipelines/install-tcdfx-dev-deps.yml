@@ -12,14 +12,14 @@ steps:
 #! InstallTCDFxDevDeps_InstallDotNet_Windows
 - powershell: |
     Invoke-WebRequest 'https://dot.net/v1/dotnet-install.ps1' -OutFile 'dotnet-install.ps1'
-    ./dotnet-install.ps1 -Channel '${{ parameters.dotnetChannel }}' -Version '${{ parameters.dotnetVersion }}' -InstallDir './.dotnet'"
+    ./dotnet-install.ps1 -Channel '${{ parameters.dotnetChannel }}' -Version '${{ parameters.dotnetVersion }}'"
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   name: InstallTCDFxDevDeps_InstallDotNet_Windows
   displayName: InstallTCDFxDevDeps_InstallDotNet_Windows
   workingDirectory: $(Build.Repository.LocalPath)
   continueOnError: false
 #! InstallTCDFxDevDeps_InstallDotNet_Unix
-- script: curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel ${{ parameters.dotnetChannel }} --version ${{ parameters.dotnetVersion }} --install-dir ./.dotnet"
+- script: curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel ${{ parameters.dotnetChannel }} --version ${{ parameters.dotnetVersion }}"
   condition: ne( variables['Agent.OS'], 'Windows_NT' )
   name: InstallTCDFxDevDeps_InstallDotNet_Unix
   displayName: InstallTCDFxDevDeps_InstallDotNet_Unix

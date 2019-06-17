@@ -73,14 +73,14 @@ You can build the packages with either Visual Studio 2019.1+, Visual Studio Code
 
 | Operating System | Prerequisites                                                                                                                                             |
 | :--------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Windows 7/8.1/10 | .NET Core 3.0 Preview 5+ SDK<br/><br/>**Optional:**<br/>Visual Studio 2019.1+<br/>Visual Studio Code (With the C# extension)                              |
-| Mac OS X         | .NET Core 3.0 Preview 5+ SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                                        |
-| Linux            | .NET Core 3.0 Preview 5+ SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                                        |
+| Windows 7/8.1/10 | .NET Core 3.0 Preview 6+ SDK<br/><br/>**Optional:**<br/>Visual Studio 2019.1+<br/>Visual Studio Code (With the C# extension)                              |
+| Mac OS X         | .NET Core 3.0 Preview 6+ SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                                        |
+| Linux            | .NET Core 3.0 Preview 6+ SDK<br/><br/>**Optional:**<br/>Visual Studio Code (With the C# extension)                                                        |
 
 #### Build Using Visual Studio (Windows)
 
 *Ensure you have the latest version of Visual Studio 2019 installed with the .NET Core
-workload, installed .NET Core 3.0 Preview 5, and enabled the use of preview versions of
+workload, installed .NET Core 3.0 Preview 6, and enabled the use of preview versions of
 .NET Core in Visual Studio's options.*
 
   1. Open the `.\TCDFx.sln` file.

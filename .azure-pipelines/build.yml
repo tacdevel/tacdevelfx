@@ -3,7 +3,7 @@ parameters:
   vmImage: ''
   configuration: ''
   versionSuffix: '$(Build.BuildNumber)'
-  dotnetVersion: '3.0.100-preview5-011568'
+  dotnetVersion: '3.0.100-preview6-012264'
 
 jobs:
 
