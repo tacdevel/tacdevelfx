@@ -16,12 +16,14 @@ jobs:
     clean: all
   steps:
   - template: ./install-tcdfx-dev-deps.yml
-    dotnetVersion: '${{ parameters.dotnetVersion }}'
+    parameters:
+      dotnetVersion: '${{ parameters.dotnetVersion }}'
 
   - template: ./build-tcdfx-project.yml
-    configuration: '${{ parameters.configuration }}'
-    projectName: 'TCDFx.Core'
-    versionSuffix: '${{ parameters.versionSuffix }}'
+    parameters:
+      configuration: '${{ parameters.configuration }}'
+      projectName: 'TCDFx.Core'
+      versionSuffix: '${{ parameters.versionSuffix }}'
 
   #- template: ./make-intermediate-pkg.yml
   #- template: ./push-pkg-myget.yml
@@ -38,14 +40,16 @@ jobs:
   - template: ./install-libui-dev-deps.yml
 
   - template: ./install-tcdfx-dev-deps.yml
-    dotnetVersion: '${{ parameters.dotnetVersion }}'
+    parameters:
+      dotnetVersion: '${{ parameters.dotnetVersion }}'
 
   - template: ./build-libui-shared-libs.yml
 
   - template: ./build-tcdfx-project.yml
-    configuration: '${{ parameters.configuration }}'
-    projectName: 'TCDFx.UI'
-    versionSuffix: '${{ parameters.versionSuffix }}'
+    parameters:
+      configuration: '${{ parameters.configuration }}'
+      projectName: 'TCDFx.UI'
+      versionSuffix: '${{ parameters.versionSuffix }}'
 
   #- template: ./make-intermediate-pkg.yml
   #- template: ./push-pkg-myget.yml
