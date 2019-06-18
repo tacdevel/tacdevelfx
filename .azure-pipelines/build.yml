@@ -14,11 +14,11 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: ./checkout-sources.yml
-  - template: ./install-tcdfx-dev-deps.yml
+  - template: ./steps/checkout-sources.yml
+  - template: ./steps/install-tcdfx-dev-deps.yml
     parameters:
       dotnetVersion: '${{ parameters.dotnetVersion }}'
-  - template: ./build-tcdfx-project.yml
+  - template: ./steps/build-tcdfx-project.yml
     parameters:
       configuration: '${{ parameters.configuration }}'
       projectName: 'TCDFx.Core'
@@ -35,13 +35,13 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: ./checkout-sources.yml
-  - template: ./install-libui-dev-deps.yml
-  - template: ./install-tcdfx-dev-deps.yml
+  - template: ./steps/checkout-sources.yml
+  - template: ./steps/install-libui-dev-deps.yml
+  - template: ./steps/install-tcdfx-dev-deps.yml
     parameters:
       dotnetVersion: '${{ parameters.dotnetVersion }}'
-  - template: ./build-libui-shared-libs.yml
-  - template: ./build-tcdfx-project.yml
+  - template: ./steps/build-libui-shared-libs.yml
+  - template: ./steps/build-tcdfx-project.yml
     parameters:
       configuration: '${{ parameters.configuration }}'
       projectName: 'TCDFx.UI'

@@ -1,0 +1,23 @@
+####################################################################################################
+## FileName:             install-tcdfx-dev-deps.yml
+## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+####################################################################################################
+
+parameters:
+  dotnetVersion: ''
+
+steps:
+
+# InstallTCDFxDevDeps_InstallDotNet_Windows
+- task: UseDotNet@2
+  displayName: 'InstallTCDFxDevDeps_InstallDotnet_Windows'
+  inputs:
+    packageType: sdk
+    version: ${{ parameters.dotnetVersion }}
+# InstallTCDFxDevDeps_InstallDotNet_Unix
+- task: UseDotNet@2
+  displayName: 'InstallTCDFxDevDeps_InstallDotnet_Unix'
+  inputs:
+    packageType: sdk
+    version: ${{ parameters.dotnetVersion }}

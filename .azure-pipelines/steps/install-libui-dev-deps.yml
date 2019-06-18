@@ -9,27 +9,15 @@ parameters:
 
 steps:
 
-#! InstallLibuiDevDeps_InstallPython_Windows
-- script: |
-    @powershell -Command "Invoke-WebRequest https://www.python.org/ftp/python/${{ parameters.pythonVersion }}/python-${{ parameters.pythonVersion }}-amd64-webinstall.exe -OutFile C:\py-setup.exe"
-    C:\py-setup.exe /quiet PrependPath=0 InstallAllUsers=0 Include_launcher=0 InstallLauncherAllUsers=0 Include_test=0 Include_doc=0 Include_dev=0 Include_debug=0 Include_tcltk=0 TargetDir=C:\Python${{ parameters.pythonVersion }}
-    @echo ##vso[task.prependpath]C:\Python${{ parameters.pythonVersion }}
-    @echo ##vso[task.prependpath]C:\Python${{ parameters.pythonVersion }}\Scripts
-  condition: eq( variables['Agent.OS'], 'Windows_NT' )
-  name: InstallLibuiDevDeps_InstallPython_Windows
-  displayName: InstallLibuiDevDeps_InstallPython_Windows
-  workingDirectory: $(Build.Repository.LocalPath)\sources\libui
-  continueOnError: false
-#! InstallLibuiDevDeps_InstallPython_Unix
+# InstallLibuiDevDeps_InstallPython
 - task: UsePythonVersion@0
-  condition: ne( variables['Agent.OS'], 'Windows_NT' )
-  name: InstallLibuiDevDeps_InstallPython_Unix
-  displayName: InstallLibuiDevDeps_InstallPython_Unix
+  name: InstallLibuiDevDeps_InstallPython
+  displayName: InstallLibuiDevDeps_InstallPython
   inputs:
     versionSpec: ${{ parameters.pythonVersion }}
     architecture: 'x64'
 
-#! InstallLibuiDevDeps_InstallMeson_Windows
+# InstallLibuiDevDeps_InstallMeson_Windows
 - script: |
     python -m pip install --upgrade pip setuptools wheel
     pip install meson
@@ -38,7 +26,7 @@ steps:
   displayName: InstallLibuiDevDeps_InstallMeson_Windows
   workingDirectory: $(Build.Repository.LocalPath)\sources\libui
   continueOnError: false
-#! InstallLibuiDevDeps_InstallMeson_Unix
+# InstallLibuiDevDeps_InstallMeson_Unix
 - script: |
     python -m pip install --upgrade pip setuptools wheel
     pip install meson
@@ -48,7 +36,7 @@ steps:
   workingDirectory: $(Build.Repository.LocalPath)/sources/libui
   continueOnError: false
 
-#! InstallLibuiDevDeps_InstallGtk_Linux
+# InstallLibuiDevDeps_InstallGtk_Linux
 - script: sudo apt-get install libgtk-3-dev
   condition: eq( variables['Agent.OS'], 'Linux' )
   name: InstallLibuiDevDeps_InstallGtk_Linux
@@ -56,7 +44,7 @@ steps:
   workingDirectory: $(Build.Repository.LocalPath)/sources/libui
   continueOnError: false
 
-#! InstallLibuiDevDeps_InstallNinja_Windows
+# InstallLibuiDevDeps_InstallNinja_Windows
 - script: |
     @powershell -Command "Invoke-WebRequest https://github.com/ninja-build/ninja/releases/download/v1.9.0/ninja-win.zip -OutFile C:\ninja-win.zip"
     mkdir C:\ninja
@@ -67,14 +55,14 @@ steps:
   displayName: InstallLibuiDevDeps_InstallNinja_Windows
   workingDirectory: $(Build.Repository.LocalPath)\sources\libui
   continueOnError: false
-#! InstallLibuiDevDeps_InstallNinja_Linux
+# InstallLibuiDevDeps_InstallNinja_Linux
 - script: sudo apt-get install ninja-build
   condition: eq( variables['Agent.OS'], 'Linux' )
   name: InstallLibuiDevDeps_InstallNinja_Linux
   displayName: InstallLibuiDevDeps_InstallNinja_Linux
   workingDirectory: $(Build.Repository.LocalPath)/sources/libui
   continueOnError: false
-#! InstallLibuiDevDeps_InstallNinja_macOS
+# InstallLibuiDevDeps_InstallNinja_macOS
 - script: |
     sudo mkdir -p /opt/ninja
     pushd /opt/ninja
