@@ -44,7 +44,7 @@ steps:
     command: custom
     projects: '$(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}\${{ parameters.projectName }}.csproj'
     custom: 'build'
-    arguments: '--no-restore -c ${{ parameters.configuration }} --version-suffix ${{ parameters.versionSuffix }}'    
+    arguments: '--no-restore -c ${{ parameters.configuration }} --version-suffix ${{ parameters.versionSuffix }}'
 # BuildTCDFxProject_BuildProject_Unix
 - task: DotNetCoreCLI@2
   condition: ne( variables['Agent.OS'], 'Windows_NT' )

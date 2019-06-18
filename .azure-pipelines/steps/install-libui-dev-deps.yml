@@ -5,7 +5,7 @@
 ####################################################################################################
 
 parameters:
-  pythonVersion: '3.7.2' # This differs from libui's default
+  pythonVersion: '3.x' # This differs from libui's default
 
 steps:
 
