@@ -12,14 +12,14 @@ parameters:
 steps:
 
 # BuildTCDFxProject_RestorePackages_Windows
-- script: dotnet restore ${{ parameters.projectName }}.csproj --force /property:Configuration=${{ parameters.configuration }}
+- script: dotnet restore ${{ parameters.projectName }}.csproj /property:Configuration=${{ parameters.configuration }}
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   name: BuildTCDFxProject_RestorePackages_Windows
   displayName: BuildTCDFxProject_RestorePackages_Windows
   workingDirectory: $(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}
   continueOnError: false
 # BuildTCDFxProject_RestorePackages_Unix
-- script: dotnet restore ${{ parameters.projectName }}.csproj --force /property:Configuration=${{ parameters.configuration }}
+- script: dotnet restore ${{ parameters.projectName }}.csproj /property:Configuration=${{ parameters.configuration }}
   condition: ne( variables['Agent.OS'], 'Windows_NT' )
   name: BuildTCDFxProject_RestorePackages_Unix
   displayName: BuildTCDFxProject_RestorePackages_Unix
@@ -27,14 +27,14 @@ steps:
   continueOnError: false
 
 # BuildTCDFxProject_BuildProject_Windows
-- script: dotnet build ${{ parameters.projectName }}.csproj -c ${{ parameters.configuration }} --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
+- script: dotnet build ${{ parameters.projectName }}.csproj -c ${{ parameters.configuration }} --version-suffix ${{ parameters.versionSuffix }}
   condition: eq( variables['Agent.OS'], 'Windows_NT' )
   name: BuildTCDFxProject_BuildProject_Windows
   displayName: BuildTCDFxProject_BuildProject_Windows
   workingDirectory: $(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}
   continueOnError: false
 # BuildTCDFxProject_BuildProject_Unix
-- script: dotnet build ${{ parameters.projectName }}.csproj -c ${{ parameters.configuration }} --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
+- script: dotnet build ${{ parameters.projectName }}.csproj -c ${{ parameters.configuration }} --version-suffix ${{ parameters.versionSuffix }}
   condition: ne( variables['Agent.OS'], 'Windows_NT' )
   name: BuildTCDFxProject_BuildProject_Unix
   displayName: BuildTCDFxProject_BuildProject_Unix
