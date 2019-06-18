@@ -18,6 +18,14 @@ steps:
   displayName: InstallTCDFxDevDeps_InstallDotNet_Windows
   workingDirectory: $(Build.Repository.LocalPath)
   continueOnError: false
+#! InstallTCDFxDevDeps_AddDotnetToPath_Windows
+- script: setx path "%PATH%;C:\Users\VssAdministrator\AppData\Local\Microsoft\dotnet\"
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  name: InstallTCDFxDevDeps_AddDotnetToPath_Windows
+  displayName: InstallTCDFxDevDeps_AddDotnetToPath_Windows
+  workingDirectory: $(Build.Repository.LocalPath)
+  continueOnError: false
+
 #! InstallTCDFxDevDeps_InstallDotNet_Unix
 - script: curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel ${{ parameters.dotnetChannel }} --version ${{ parameters.dotnetVersion }}
   condition: ne( variables['Agent.OS'], 'Windows_NT' )

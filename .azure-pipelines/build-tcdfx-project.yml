@@ -18,11 +18,11 @@ steps:
   displayName: BuildTCDFxProject_RestorePackages_Windows
   workingDirectory: $(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}
   continueOnError: false
-# BuildTCDFxProject_RestorePackages_Linux
+# BuildTCDFxProject_RestorePackages_Unix
 - script: dotnet restore ${{ parameters.projectName }}.csproj --force /property:Configuration=${{ parameters.configuration }}
   condition: ne( variables['Agent.OS'], 'Windows_NT' )
-  name: BuildTCDFxProject_RestorePackages_Linux
-  displayName: BuildTCDFxProject_RestorePackages_Linux
+  name: BuildTCDFxProject_RestorePackages_Unix
+  displayName: BuildTCDFxProject_RestorePackages_Unix
   workingDirectory: $(Build.Repository.LocalPath)/sources/${{ parameters.projectName }}
   continueOnError: false
 
@@ -33,10 +33,10 @@ steps:
   displayName: BuildTCDFxProject_BuildProject_Windows
   workingDirectory: $(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}
   continueOnError: false
-# BuildTCDFxProject_BuildProject_Linux
+# BuildTCDFxProject_BuildProject_Unix
 - script: dotnet build ${{ parameters.projectName }}.csproj -c ${{ parameters.configuration }} --no-restore --force --nologo --version-suffix ${{ parameters.versionSuffix }}
   condition: ne( variables['Agent.OS'], 'Windows_NT' )
-  name: BuildTCDFxProject_BuildProject_Linux
-  displayName: BuildTCDFxProject_BuildProject_Linux
+  name: BuildTCDFxProject_BuildProject_Unix
+  displayName: BuildTCDFxProject_BuildProject_Unix
   workingDirectory: $(Build.Repository.LocalPath)/sources/${{ parameters.projectName }}
   continueOnError: false
