@@ -6,7 +6,6 @@ parameters:
   dotnetVersion: '3.0.100-preview6-012264'
 
 jobs:
-
 # TCDFxCore_*
 - job: TCDFxCore_${{ parameters.platform }}_${{ parameters.configuration }}
   displayName: TCDFxCore_${{ parameters.platform }}_${{ parameters.configuration }}
@@ -15,19 +14,18 @@ jobs:
   workspace:
     clean: all
   steps:
+  - template: ./checkout-sources.yml
   - template: ./install-tcdfx-dev-deps.yml
     parameters:
       dotnetVersion: '${{ parameters.dotnetVersion }}'
-
   - template: ./build-tcdfx-project.yml
     parameters:
       configuration: '${{ parameters.configuration }}'
       projectName: 'TCDFx.Core'
       versionSuffix: '${{ parameters.versionSuffix }}'
-
-  #- template: ./make-intermediate-pkg.yml
-  #- template: ./push-pkg-myget.yml
-  #- template: ./push-pkg-nuget.yml
+# - template: ./make-intermediate-pkg.yml
+# - template: ./push-pkg-myget.yml
+# - template: ./push-pkg-nuget.yml
 
 # TCDFxUI_*
 - job: TCDFxUI_${{ parameters.platform }}_${{ parameters.configuration }}
@@ -37,20 +35,17 @@ jobs:
   workspace:
     clean: all
   steps:
+  - template: ./checkout-sources.yml
   - template: ./install-libui-dev-deps.yml
-
   - template: ./install-tcdfx-dev-deps.yml
     parameters:
       dotnetVersion: '${{ parameters.dotnetVersion }}'
-
   - template: ./build-libui-shared-libs.yml
-
   - template: ./build-tcdfx-project.yml
     parameters:
       configuration: '${{ parameters.configuration }}'
       projectName: 'TCDFx.UI'
       versionSuffix: '${{ parameters.versionSuffix }}'
-
-  #- template: ./make-intermediate-pkg.yml
-  #- template: ./push-pkg-myget.yml
-  #- template: ./push-pkg-nuget.yml
+# - template: ./make-intermediate-pkg.yml
+# - template: ./push-pkg-myget.yml
+# - template: ./push-pkg-nuget.yml

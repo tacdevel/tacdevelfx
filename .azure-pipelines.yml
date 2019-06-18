@@ -11,11 +11,7 @@
 #TODO: make-nuget-pkg.yml for pushing release packages to the release feed.
 
 ## General Configuration
-name: $(Date:yyyyMMdd)-$(SourceBranchName)$(Rev:-rrr) # Build.BuildNumber
-resources:
-- repo: self
-
-## Pipeline Triggers
+name: $(Date:yyyyMMdd)-$(SourceBranchName)$(Rev:-rrr)
 trigger:
   batch: false
   branches:
