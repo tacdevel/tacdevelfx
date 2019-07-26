@@ -1,0 +1,48 @@
+<!--================================================================================================
+* FileName:             Directory.Build.targets
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <Choose>
+    <When Condition="'$(TCDFxProjectIsSource)' == 'true'">
+      <ItemGroup>
+        <!-- This doesn't work because of https://github.com/microsoft/msbuild/issues/2281 -->
+        <!--
+        <AssemblyAttribute Include="System.CLSCompliant">
+          <_Parameter1>true</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Runtime.InteropServices.ComVisible">
+          <_Parameter1>false</_Parameter1>
+        </AssemblyAttribute>
+        -->
+        <Compile Include="$(_BuildGroupPath)AssemblyInfo.cs" />
+      </ItemGroup>
+    </When>
+
+    <When Condition="'$(TCDFxProjectIsTest)' == 'true'">
+      <PropertyGroup>
+        <!-- For some reason, when $(TCDFxTestingProjectName) is 'TCDFx.Core', it loads it as 'TCDFx.Cor' and fails. -->
+        <TCDFxTestingProjectReference>$(TCDFxSolutionPath)src\$(TCDFxTestingProjectName).csproj</TCDFxTestingProjectReference>
+        <TCDFxTestingProjectReference Condition="'$(TCDFxTestingProjectReference.EndsWith('Cor')' == 'true'">$(TCDFxSolutionPath)src\$(TCDFxTestingProjectName)e.csproj</TCDFxTestingProjectReference>
+      </PropertyGroup>
+      <ItemGroup>
+        <ProjectReference Include="$(TCDFxTestingProjectReference)" />
+      </ItemGroup>
+      <!--TODO: Replace these with the ones we will actually use. These are just placeholders at this point. -->
+      <ItemGroup>
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Etg.SimpleStubs" Version="2.4.7" />
+      </ItemGroup>
+    </When>
+
+    <When Condition="'$(TCDFxProjectIsExample)' == 'true'" />
+  </Choose>
+</Project>

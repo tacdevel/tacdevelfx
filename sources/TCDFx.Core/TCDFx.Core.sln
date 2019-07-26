@@ -1,0 +1,81 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ex", "ex", "{54414344-6576-656C-4678-464C44523031}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src",  "{54414344-6576-656C-4678-464C44523032}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test",  "{54414344-6576-656C-4678-464C44523033}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisposableExample", "ex\DisposableExample.csproj",  "{54414344-6576-656C-4678-455830303031}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiValueDictionaryExample", "ex\MultiValueDictionaryExample.csproj",  "{54414344-6576-656C-4678-455830303032}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeAssemblyExample", "ex\NativeAssemblyExample.csproj",  "{54414344-6576-656C-4678-455830303033}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatformExample", "ex\PlatformExample.csproj",  "{54414344-6576-656C-4678-455830303034}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCDFx.Core", "src\TCDFx.Core.csproj",  "{54414344-6576-656C-4678-4C4942303031}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCDFx.Core.Tests", "tests\TCDFx.Core.Tests.csproj",  "{54414344-6576-656C-4678-544553543031}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Publish|Any CPU = Publish|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54414344-6576-656C-4678-455830303031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54414344-6576-656C-4678-455830303031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54414344-6576-656C-4678-455830303031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54414344-6576-656C-4678-455830303031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54414344-6576-656C-4678-455830303031}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{54414344-6576-656C-4678-455830303031}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{54414344-6576-656C-4678-455830303032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54414344-6576-656C-4678-455830303032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54414344-6576-656C-4678-455830303032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54414344-6576-656C-4678-455830303032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54414344-6576-656C-4678-455830303032}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{54414344-6576-656C-4678-455830303032}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{54414344-6576-656C-4678-455830303033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54414344-6576-656C-4678-455830303033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54414344-6576-656C-4678-455830303033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54414344-6576-656C-4678-455830303033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54414344-6576-656C-4678-455830303033}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{54414344-6576-656C-4678-455830303033}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{54414344-6576-656C-4678-455830303034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54414344-6576-656C-4678-455830303034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54414344-6576-656C-4678-455830303034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54414344-6576-656C-4678-455830303034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54414344-6576-656C-4678-455830303034}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{54414344-6576-656C-4678-455830303034}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{54414344-6576-656C-4678-4C4942303031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54414344-6576-656C-4678-4C4942303031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54414344-6576-656C-4678-4C4942303031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54414344-6576-656C-4678-4C4942303031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54414344-6576-656C-4678-4C4942303031}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{54414344-6576-656C-4678-4C4942303031}.Publish|Any CPU.Build.0 = Publish|Any CPU
+		{54414344-6576-656C-4678-544553543031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54414344-6576-656C-4678-544553543031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54414344-6576-656C-4678-544553543031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54414344-6576-656C-4678-544553543031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54414344-6576-656C-4678-544553543031}.Publish|Any CPU.ActiveCfg = Publish|Any CPU
+		{54414344-6576-656C-4678-544553543031}.Publish|Any CPU.Build.0 = Publish|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54414344-6576-656C-4678-455830303031} = {54414344-6576-656C-4678-464C44523031}
+		{54414344-6576-656C-4678-455830303032} = {54414344-6576-656C-4678-464C44523031}
+		{54414344-6576-656C-4678-455830303033} = {54414344-6576-656C-4678-464C44523031}
+		{54414344-6576-656C-4678-455830303034} = {54414344-6576-656C-4678-464C44523031}
+		{54414344-6576-656C-4678-4C4942303031} = {54414344-6576-656C-4678-464C44523032}
+		{54414344-6576-656C-4678-544553543031} = {54414344-6576-656C-4678-464C44523033}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54414344-6576-656C-4678-534C4E303031}
+	EndGlobalSection
+EndGlobal

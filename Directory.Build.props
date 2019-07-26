@@ -4,26 +4,97 @@
 * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
 =================================================================================================-->
 
+<!--
+Managed:
+Debug;Release;Publish
+Any CPU
+
+native:
+Debug;Release
+x86;x64;ARM;ARM64
+-->
+
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+  <!-- Repository Properties -->
   <PropertyGroup>
-    <_RepositoryPath>$(MSBuildThisFileDirectory)</_RepositoryPath>
-    <_DotMSBuildPath>$(_RepositoryPath).msbuild\</_DotMSBuildPath>
+    <TCDFxUrl>https://github.com/tom-corwin/tcdfx</TCDFxUrl>
+    <TCDFxAuthors>Thomas Corwin, et al.</TCDFxAuthors>
+    <TCDFxCopyright>Copyright © 2017-2019 $(Authors) All Rights Reserved.</TCDFxCopyright>
+    <TCDFxLicenseType>MIT</TCDFxLicenseType>
+    <TCDFxBasePath>$(MSBuildThisFileDirectory)</TCDFxBasePath>
   </PropertyGroup>
 
-  <ImportGroup>
-    <Import Project="$(_DotMSBuildPath)Build.Version.props" />
-    <Import Project="$(_DotMSBuildPath)Build.BuildGroups.props" />
-    <Import Project="$(_DotMSBuildPath)Build.Defaults.props" />
-    <Import Project="$(_DotMSBuildPath)Build.BuildPaths.props" />
-    <Import Project="$(_DotMSBuildPath)Build.Defaults.Debug.props" Condition="'$(Configuration)' == 'Debug'" />
-    <Import Project="$(_DotMSBuildPath)Build.Defaults.Release.props" Condition="'$(Configuration)' == 'Release'" />
-    <Import Project="$(_DotMSBuildPath)Build.DefaultItems.props" />
-  </ImportGroup>
+  <!-- Versioning -->
+  <PropertyGroup>
+    <VersionPrefix Condition="'$(VersionPrefix)' == ''">1.0.0</VersionPrefix>
+    <VersionSuffix Condition="'$(VersionSuffix)' == ''">pre1</VersionSuffix>
+  </PropertyGroup>
 
-  <ImportGroup>
-    <Import Project="$(_DotMSBuildPath)Build.BuildGroups.Examples.props" Condition="'$(_BuildGroup)' == 'examples'" />
-    <Import Project="$(_DotMSBuildPath)Build.BuildGroups.Sources.props" Condition="'$(_BuildGroup)' == 'sources'" />
-    <Import Project="$(_DotMSBuildPath)Build.BuildGroups.Tests.props" Condition="'$(_BuildGroup)' == 'tests'" />
-  </ImportGroup>
+  <!-- Global Project Properties -->
+  <PropertyGroup>
+    <TCDFxProjectName>$(MSBuildProjectName)</TCDFxProjectName>
+    <TCDFxProjectConfiguration Condition="'$(TCDFxProjectConfiguration)' == ''">Debug</TCDFxProjectConfiguration>
+    <TCDFxProjectPlatform Condition="'$(TCDFxProjectPlatform)' == ''">Any CPU</TCDFxProjectPlatform>
+    <TCDFxProjectGroup Condition="$(TCDFxProjectName.EndsWith('Example')) OR $(TCDFxProjectName.EndsWith('Examples'))">examples</TCDFxProjectGroup>
+    <TCDFxProjectGroup Condition="$(TCDFxProjectName.EndsWith('Test')) OR $(TCDFxProjectName.EndsWith('Tests'))">tests</TCDFxProjectGroup>
+    <TCDFxProjectGroup Condition="$(TCDFxProjectName.EndsWith('Tool')) OR $(TCDFxProjectName.EndsWith('Tools'))">tools</TCDFxProjectGroup>
+    <TCDFxProjectGroup Condition="'$(TCDFxProjectGroup)' == ''">sources</TCDFxProjectGroup>
+    <TCDFxProjectGroupPath>$(TCDFxBasePath)$(TCDFxProjectGroup)\</TCDFxProjectGroupPath>
+    <TCDFxProjectPath>$(TCDFxProjectGroupPath)$(TCDFxProjectName)\</TCDFxProjectPath>
+  </PropertyGroup>
+
+  <!-- TCDFx only targets the latest .NET Standard version.  -->
+  <!-- See here: https://github.com/dotnet/sdk/blob/cd25d6bbfc2aac61cc790c511900427ac64fdaa8/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.TargetFrameworkInference.targets#L167-L174 -->
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <!-- Build Paths; \build\$(ProjectGroup)\$(ProjectName)\ProjectConfiguration -->
+  <PropertyGroup>
+    <TCDFxBuildBasePath>$(TCDFxBasePath)build\</TCDFxBuildBasePath>
+    <TCDFxProjectGroupBuildPath>$(TCDFxBuildBasePath)$(TCDFxProjectGroup)\</TCDFxProjectGroupBuildPath>
+    <TCDFxProjectBaseBuildPath>$(TCDFxProjectGroupBuildPath)$(TCDFxProjectName)\</TCDFxProjectBaseBuildPath>
+    <TCDFxProjectBuildPath>$(TCDFxProjectBaseBuildPath)\$(TCDFxProjectConfiguration)\</TCDFxProjectBuildPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
+    <NeutralLanguage>en</NeutralLanguage>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <AssemblyName>$(TCDFxProjectName)</AssemblyName>
+    <AssemblyTitle>$(TCDFxProjectName)</AssemblyTitle>
+    <RootNamespace>$(TCDFxProjectName)</RootNamespace>
+    <Configuration>$(TCDFxProjectConfiguration)</Configuration>
+    <Platform>$(TCDFxProjectPlatform)</Platform>
+    <DefineConstants>TRACE</DefineConstants>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <Authors>$(TCDFxAuthors)</Authors>
+    <Copyright>$(TCDFxCopyright)</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BaseOutputPath>$(TCDFxProjectBaseBuildPath)bin\</BaseOutputPath>
+    <OutputPath>$(TCDFxProjectBuildPath)</OutputPath>
+    <BaseIntermediateOutputPath>$(TCDFxProjectBaseBuildPath)obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(TCDFxProjectConfiguration)\</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="'$(TCDFxProjectConfiguration)' == 'Debug'">
+      <PropertyGroup>
+        <Optimize>false</Optimize>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(TCDFxProjectConfiguration)' == 'Release' OR '$(TCDFxProjectConfiguration)' == 'Publish'">
+      <PropertyGroup>
+        <Optimize>true</Optimize>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>embedded</DebugType>
+      </PropertyGroup>
+    </When>
+  </Choose>
 </Project>
