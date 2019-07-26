@@ -5,7 +5,6 @@
 =================================================================================================-->
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
   <PropertyGroup>
     <!-- For some reason, when $(TCDFxTestingProjectName) is 'TCDFx.Core', it loads it as 'TCDFx.Cor' and fails. -->
     <TCDFxTestingProjectReference>$(TCDFxBasePath)source\$(TCDFxProjectName.TrimEnd('Tests'))\$(TCDFxProjectName.TrimEnd('Tests')).csproj</TCDFxTestingProjectReference>
@@ -26,4 +25,5 @@
     </PackageReference>
     <PackageReference Include="Etg.SimpleStubs" Version="2.4.7" />
   </ItemGroup>
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))" />
 </Project>

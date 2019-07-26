@@ -20,7 +20,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleWindowExample", "exam
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleWindowWithMenuExample", "examples\SimpleWindowWithMenuExample\SimpleWindowWithMenuExample.csproj", "{54414344-6576-656C-4678-455830303036}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlGallery", "examples\ControlGallery\ControlGallery.csproj", "{54414344-6576-656C-4678-455830303037}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControlGalleryExample", "examples\ControlGalleryExample\ControlGalleryExample.csproj", "{54414344-6576-656C-4678-455830303037}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCDFx.Core", "sources\TCDFx.Core\TCDFx.Core.csproj", "{54414344-6576-656C-4678-4C4942303031}"
 EndProject
