@@ -7,30 +7,22 @@
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
-  <Choose>
-    <When Condition="'$(TCDFxProjectIsSource)' == 'true'">
-      <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <OutputType>Library</OutputType>
-      </PropertyGroup>
-    </When>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
 
-    <When Condition="'$(TCDFxProjectIsTest)' == 'true'">
-      <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
-        <OutputType>Exe</OutputType>
-        <IsPackable>false</IsPackable>
-      </PropertyGroup>
-      <PropertyGroup>
-        <TCDFxTestingProjectName>$(MSBuildProjectName.TrimEnd('Tests'))</TCDFxTestingProjectName>
-      </PropertyGroup>
-    </When>
-
-    <When Condition="'$(TCDFxProjectIsExample)' == 'true'">
-      <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
-        <OutputType>Exe</OutputType>
-      </PropertyGroup>
-    </When>
-  </Choose>
+  <PropertyGroup Condition="'$(TCDFxProjectConfiguration)' == 'Publish'">
+    <Authors>$(TCDFxAuthors)</Authors>
+    <Copyright>$(TCDFxCopyright)</Copyright>
+    <RepositoryUrl>$(TCDFxUrl)</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>$(TCDFxLicenseType)</PackageLicenseExpression>
+    <PackageOutputPath>$(TCDFxProjectBaseBuildPath)pkg\</PackageOutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>$(TCDFxProjectName)</PackageId>
+    <PackageProjectUrl>$(TCDFxUrl)</PackageProjectUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(OutputPath)\docs\$(TCDFxProjectName).xml</DocumentationFile>
+  </PropertyGroup>
 </Project>
