@@ -1,0 +1,26 @@
+<!--================================================================================================
+* FileName:             Directory.Build.targets
+* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+=================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="xmldoc\**\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- This doesn't work because of https://github.com/microsoft/msbuild/issues/2281 -->
+    <!--
+        <AssemblyAttribute Include="System.CLSCompliant">
+          <_Parameter1>true</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Runtime.InteropServices.ComVisible">
+          <_Parameter1>false</_Parameter1>
+        </AssemblyAttribute>
+    -->
+    <Compile Include="$(TCDFxProjectGroupPath)AssemblyInfo.cs" />
+  </ItemGroup>
+  
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))" />
+</Project>

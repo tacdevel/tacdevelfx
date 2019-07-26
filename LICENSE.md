@@ -1,10 +1,10 @@
-# Licenses & Copyrights
+# License (MIT)
 
 ## Copyright Notice(s)
 
 Copyright © 2017-2019 Thomas Corwin, et al.
 
-## License (MIT)
+## License Terms
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
 associated documentation files (the "Software"), to deal in the Software without restriction,

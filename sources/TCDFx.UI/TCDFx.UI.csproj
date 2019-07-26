@@ -1,4 +1,4 @@
-﻿<!--================================================================================================
+<!--================================================================================================
 * FileName:             TCDFx.UI.csproj
 * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
 * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
@@ -12,40 +12,54 @@
 
   <!-- Once I'm finished rewriting this library, this PropertyGroup will be removed. -->
   <ItemGroup>
-    <Compile Remove="source\**\*.cs" />
-    <Compile Include="source\TCDFx\Native\*.cs" />
-  </ItemGroup>
-
-  <!--TODO: Eventually build these at compile time from a source-zip.-->
-  <ItemGroup>
-    <Content Include="native\win-x64\libui.dll">
-      <Link>runtimes\win-x64\libui.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-    </Content>
-    <Content Include="native\linux-x64\libui.so">
-      <Link>runtimes\linux-x64\libui.so</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-    </Content>
-    <Content Include="native\linux-x64\libui.so.0">
-      <Link>runtimes\linux-x64\libui.so.0</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-    </Content>
-    <Content Include="native\osx-x64\libui.dylib">
-      <Link>runtimes\osx-x64\libui.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-    </Content>
-    <Content Include="native\osx-x64\libui.A.dylib">
-      <Link>runtimes\osx-x64\libui.A.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-    </Content>
+    <Compile Remove="**\*.cs" />
+    <Compile Include="TCDFx\Native\*.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TCDFx.Core\TCDFx.Core.csproj" />
+    <ProjectReference Include="$(TCDFxSourcePath)TCDFx.Core\src\TCDFx.Core.csproj" />
   </ItemGroup>
+
+  <!--TODO: This should come from an intermidate package from the CI builds. See https://github.com/MicrosoftDocs/vsts-docs/issues/3834 -->
+  <Choose>
+    <When Condition="'$(TCDFxDevBuild)' == 'true'">
+      <ItemGroup Condition="'$(IsWindows)' = 'true'">
+        <Content Include="$(TCDFxExternalPath)libui\meson-out\libui.dll">
+          <Link>runtimes\win-x64\libui.dll</Link>
+          <PackagePath>runtimes\win-x64\libui.dll</PackagePath>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>true</Pack>
+        </Content>
+      </ItemGroup>
+      <ItemGroup Condition="'$(IsLinux)' = 'true'">
+        <Content Include="$(TCDFxExternalPath)libui\meson-out\libui.so">
+          <Link>runtimes\linux-x64\libui.so</Link>
+          <PackagePath>runtimes\win-x64\libui.so</PackagePath>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>true</Pack>
+        </Content>
+        <Content Include="$(TCDFxExternalPath)libui\meson-out\libui.so.0">
+          <Link>runtimes\linux-x64\libui.so.0</Link>
+          <PackagePath>runtimes\win-x64\libui.so.0</PackagePath>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>true</Pack>
+        </Content>
+      </ItemGroup>
+      <ItemGroup Condition="'$(IsMacOS)' = 'true'">
+        <Content Include="$(TCDFxExternalPath)libui\meson-out\libui.dylib">
+          <Link>runtimes\osx-x64\libui.dylib</Link>
+          <PackagePath>runtimes\win-x64\libui.dll</PackagePath>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>true</Pack>
+        </Content>
+        <Content Include="$(TCDFxExternalPath)libui\meson-out\libui.A.dylib">
+          <Link>runtimes\osx-x64\libui.dll</Link>
+          <PackagePath>runtimes\win-x64\libui.A.dylib</PackagePath>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <Pack>true</Pack>
+        </Content>
+      </ItemGroup>
+    </When>
+    <!--TODO: <When Condition="'$(TCDFxCIBuild)' == 'true'" /> -->
+  </Choose>
 </Project>
