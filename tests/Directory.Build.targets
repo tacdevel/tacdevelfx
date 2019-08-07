@@ -9,8 +9,7 @@
     <!-- For some reason, when $(TCDFxTestingProjectName) is 'TCDFx.Core', it loads it as 'TCDFx.Cor' and fails. -->
     <TCDFxTestingProjectReference>$(TCDFxBasePath)source\$(TCDFxProjectName.TrimEnd('Tests'))\$(TCDFxProjectName.TrimEnd('Tests')).csproj</TCDFxTestingProjectReference>
     <TCDFxTestingProjectReference Condition="$(TCDFxTestingProjectReference.EndsWith('.'))">$(TCDFxBasePath)source\$(TCDFxTestingProjectReference.TrimEnd('.'))\$(TCDFxTestingProjectReference.TrimEnd('.')).csproj</TCDFxTestingProjectReference>
-    <TCDFxTestingProjectReference Condition="'$(TCDFxTestingProjectReference.EndsWith('Cor')' == 'true'">$(TCDFxBasePath)source\$(TCDFxTestingProjectReference)e\$(TCDFxTestingProjectReference)e.csproj</TCDFxTestingProjectReference>
-  </PropertyGroup>
+</PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="$(TCDFxTestingProjectReference)" />

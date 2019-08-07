@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TCDFxProjectConfiguration)' == 'Publish'">
+  <PropertyGroup Condition="'$(TCDFxCIBuild)|$(Configuration)|$(TCDFxProjectGroup)' == 'true|Release|sources'">
     <Authors>$(TCDFxAuthors)</Authors>
     <Copyright>$(TCDFxCopyright)</Copyright>
     <RepositoryUrl>$(TCDFxUrl)</RepositoryUrl>
@@ -23,6 +23,6 @@
     <PackageId>$(TCDFxProjectName)</PackageId>
     <PackageProjectUrl>$(TCDFxUrl)</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>$(OutputPath)\docs\$(TCDFxProjectName).xml</DocumentationFile>
+    <DocumentationFile>$(TCDFxProjectBaseBuildPath)\xmldoc\$(TCDFxProjectName).xml</DocumentationFile>
   </PropertyGroup>
 </Project>

@@ -4,16 +4,6 @@
 * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
 =================================================================================================-->
 
-<!--
-Managed:
-Debug;Release;Publish
-Any CPU
-
-native:
-Debug;Release
-x86;x64;ARM;ARM64
--->
-
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <!-- Repository Properties -->
@@ -34,8 +24,6 @@ x86;x64;ARM;ARM64
   <!-- Global Project Properties -->
   <PropertyGroup>
     <TCDFxProjectName>$(MSBuildProjectName)</TCDFxProjectName>
-    <TCDFxProjectConfiguration Condition="'$(TCDFxProjectConfiguration)' == ''">Debug</TCDFxProjectConfiguration>
-    <TCDFxProjectPlatform Condition="'$(TCDFxProjectPlatform)' == ''">Any CPU</TCDFxProjectPlatform>
     <TCDFxProjectGroup Condition="$(TCDFxProjectName.EndsWith('Example')) OR $(TCDFxProjectName.EndsWith('Examples'))">examples</TCDFxProjectGroup>
     <TCDFxProjectGroup Condition="$(TCDFxProjectName.EndsWith('Test')) OR $(TCDFxProjectName.EndsWith('Tests'))">tests</TCDFxProjectGroup>
     <TCDFxProjectGroup Condition="$(TCDFxProjectName.EndsWith('Tool')) OR $(TCDFxProjectName.EndsWith('Tools'))">tools</TCDFxProjectGroup>
@@ -55,7 +43,7 @@ x86;x64;ARM;ARM64
     <TCDFxBuildBasePath>$(TCDFxBasePath)build\</TCDFxBuildBasePath>
     <TCDFxProjectGroupBuildPath>$(TCDFxBuildBasePath)$(TCDFxProjectGroup)\</TCDFxProjectGroupBuildPath>
     <TCDFxProjectBaseBuildPath>$(TCDFxProjectGroupBuildPath)$(TCDFxProjectName)\</TCDFxProjectBaseBuildPath>
-    <TCDFxProjectBuildPath>$(TCDFxProjectBaseBuildPath)\$(TCDFxProjectConfiguration)\</TCDFxProjectBuildPath>
+    <TCDFxProjectBuildPath>$(TCDFxProjectBaseBuildPath)\$(Configuration)\</TCDFxProjectBuildPath>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -65,8 +53,8 @@ x86;x64;ARM;ARM64
     <AssemblyName>$(TCDFxProjectName)</AssemblyName>
     <AssemblyTitle>$(TCDFxProjectName)</AssemblyTitle>
     <RootNamespace>$(TCDFxProjectName)</RootNamespace>
-    <Configuration>$(TCDFxProjectConfiguration)</Configuration>
-    <Platform>$(TCDFxProjectPlatform)</Platform>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform>Any CPU</Platform>
     <DefineConstants>TRACE</DefineConstants>
     <EnableDefaultItems>false</EnableDefaultItems>
     <Authors>$(TCDFxAuthors)</Authors>
@@ -77,11 +65,11 @@ x86;x64;ARM;ARM64
     <BaseOutputPath>$(TCDFxProjectBaseBuildPath)bin\</BaseOutputPath>
     <OutputPath>$(TCDFxProjectBuildPath)</OutputPath>
     <BaseIntermediateOutputPath>$(TCDFxProjectBaseBuildPath)obj\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(TCDFxProjectConfiguration)\</IntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
   </PropertyGroup>
 
   <Choose>
-    <When Condition="'$(TCDFxProjectConfiguration)' == 'Debug'">
+    <When Condition="'$(Configuration)' == 'Debug'">
       <PropertyGroup>
         <Optimize>false</Optimize>
         <DebugSymbols>true</DebugSymbols>
@@ -89,7 +77,7 @@ x86;x64;ARM;ARM64
         <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
       </PropertyGroup>
     </When>
-    <When Condition="'$(TCDFxProjectConfiguration)' == 'Release' OR '$(TCDFxProjectConfiguration)' == 'Publish'">
+    <When Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'Publish'">
       <PropertyGroup>
         <Optimize>true</Optimize>
         <DebugSymbols>false</DebugSymbols>

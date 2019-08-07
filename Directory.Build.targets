@@ -19,4 +19,10 @@
       <Visible>false</Visible>
     </Content>
   </ItemGroup>
+
+  <Target Name="PublishPackage" AfterTargets="GenerateNuspec" Condition="'$(TCDFxCIBuild)|$(Configuration)|$(TCDFxProjectGroup)' == 'true|Release|sources' AND '$(TCDFxPublishApiKey)' != ''">
+    <Exec Command="dotnet nuget push $(PackageOutputPath)$(TCDFxProjectName).$(VersionPrefix).nupkg -k $(TCDFxPublishApiKey) -s https://api.nuget.org/v3/index.json" Condition="'$(VersionSuffix)' == ''" />
+    <Exec Command="dotnet nuget push $(PackageOutputPath)$(TCDFxProjectName).$(VersionPrefix)-$(VersionSuffix).nupkg -k $(TCDFxPublishApiKey) -s https://api.nuget.org/v3/index.json" Condition="$(VersionSuffix.StartsWith('pre')) OR $(VersionSuffix.StartsWith('rc'))" />
+    <Exec Command="dotnet nuget push $(PackageOutputPath)$(TCDFxProjectName).$(VersionPrefix)-$(VersionSuffix).nupkg -k $(TCDFxPublishApiKey) -s https://www.myget.org/F/tcdfx/api/v3/index.json" Condition="$(VersionSuffix.StartsWith('build')) OR $(VersionSuffix.StartsWith('pull'))" />
+  </Target>
 </Project>
