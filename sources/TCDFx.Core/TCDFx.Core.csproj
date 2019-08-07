@@ -13,10 +13,4 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview7-27912-14" />
   </ItemGroup>
-
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>TCDFx.UI</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
 </Project>
