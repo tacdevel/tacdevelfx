@@ -6,7 +6,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using TCDFx.Numerics.Hashing;
 
 namespace TCDFx.Drawing
 {
@@ -91,7 +90,7 @@ namespace TCDFx.Drawing
         public override bool Equals(object obj) => !(obj is PointD) ? false : Equals((PointD)obj);
 
         /// <inheritdoc />
-        public override int GetHashCode() => unchecked(this.GenerateHashCode(X, Y));
+        public override int GetHashCode() => unchecked(HashCode.Combine(X, Y));
 
         /// <inheritdoc />
         public override string ToString() => $"[X: {X}, Y: {Y}]";

@@ -6,7 +6,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using TCDFx.Numerics.Hashing;
 
 namespace TCDFx.Drawing
 {
@@ -260,7 +259,7 @@ namespace TCDFx.Drawing
         public override bool Equals(object obj) => !(obj is RectangleD) ? false : Equals((RectangleD)obj);
 
         /// <inheritdoc />
-        public override int GetHashCode() => unchecked(this.GenerateHashCode(X, Y, Width, Height));
+        public override int GetHashCode() => unchecked(HashCode.Combine(X, Y, Width, Height));
 
         /// <inheritdoc />
         public override string ToString() => $"[X: {X}, Y: {Y}, Width: {Width}, Height: {Height}]";

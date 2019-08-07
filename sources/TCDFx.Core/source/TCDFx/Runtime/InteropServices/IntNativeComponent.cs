@@ -5,7 +5,6 @@
  **************************************************************************************************/
 
 using System;
-using TCDFx.Numerics.Hashing;
 
 namespace TCDFx.Runtime.InteropServices
 {
@@ -26,7 +25,7 @@ namespace TCDFx.Runtime.InteropServices
         public override bool Equals(object obj) => !(obj is IntNativeComponent) ? false : Equals((IntNativeComponent)obj);
 
         /// <inheritdoc />
-        public override int GetHashCode() => unchecked(this.GenerateHashCode(Handle));
+        public override int GetHashCode() => unchecked(HashCode.Combine(Handle));
 
         /// <inheritdoc />
         public override string ToString() => Handle.ToInt64().ToString();

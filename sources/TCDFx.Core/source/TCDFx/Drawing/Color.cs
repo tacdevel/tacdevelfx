@@ -6,7 +6,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using TCDFx.Numerics.Hashing;
 
 namespace TCDFx.Drawing
 {
@@ -74,7 +73,7 @@ namespace TCDFx.Drawing
         public override bool Equals(object obj) => !(obj is Color) ? false : Equals((Color)obj);
 
         /// <inheritdoc />
-        public override int GetHashCode() => unchecked(this.GenerateHashCode(R, G, B, A));
+        public override int GetHashCode() => HashCode.Combine(R, G, B, A);
 
         /// <inheritdoc />
         public override string ToString() => $"[R: {R}, G: {G}, B: {B}, A: {A}]";

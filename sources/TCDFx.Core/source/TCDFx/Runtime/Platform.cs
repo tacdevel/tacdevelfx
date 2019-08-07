@@ -93,27 +93,14 @@ namespace TCDFx.Runtime
                 : RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? PlatformType.MacOS
                 : RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")) ? PlatformType.FreeBSD
                 : PlatformType.Unknown;
-
-                (PlatformOS OS, Version Version) osInfo;
-                switch (PlatformType)
+                (PlatformOS OS, Version Version) osInfo = PlatformType switch
                 {
-                    case PlatformType.Windows:
-                        osInfo = GetWindowsInfo();
-                        break;
-                    case PlatformType.Linux:
-                        osInfo = GetLinuxInfo();
-                        break;
-                    case PlatformType.MacOS:
-                        osInfo = GetMacOSInfo();
-                        break;
-                    case PlatformType.FreeBSD:
-                        osInfo = GetFreeBSDInfo();
-                        break;
-                    default:
-                        osInfo = (PlatformOS.Unknown, new Version(0, 0));
-                        break;
-                }
-
+                    PlatformType.Windows => GetWindowsInfo(),
+                    PlatformType.Linux => GetLinuxInfo(),
+                    PlatformType.MacOS => GetMacOSInfo(),
+                    PlatformType.FreeBSD => GetFreeBSDInfo(),
+                    _ => (PlatformOS.Unknown, new Version(0, 0)),
+                };
                 OperatingSystem = osInfo.OS;
                 Version = osInfo.Version;
                 RuntimeID = $"{GetRIDOS()}{GetRIDVersion()}{GetRIDArch()}";

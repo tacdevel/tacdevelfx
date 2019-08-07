@@ -6,7 +6,6 @@
 
 using System;
 using System.Collections.Generic;
-using TCDFx.Numerics.Hashing;
 
 namespace TCDFx.Collections
 {
@@ -27,7 +26,7 @@ namespace TCDFx.Collections
             EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
             EqualityComparer<TValue2>.Default.Equals(Value2, moc.Value2);
 
-        public override int GetHashCode() => this.GenerateHashCode(Value1, Value2);
+        public override int GetHashCode() => HashCode.Combine(Value1, Value2);
 
         public override string ToString() => $"[{Value1}, {Value2}]";
 
@@ -55,7 +54,7 @@ namespace TCDFx.Collections
             EqualityComparer<TValue2>.Default.Equals(Value2, moc.Value2) &&
             EqualityComparer<TValue3>.Default.Equals(Value3, moc.Value3);
 
-        public override int GetHashCode() => this.GenerateHashCode(Value1, Value2, Value3);
+        public override int GetHashCode() => HashCode.Combine(Value1, Value2, Value3);
 
         public override string ToString() => $"[{Value1}, {Value2}, {Value3}]";
 
@@ -88,7 +87,7 @@ namespace TCDFx.Collections
             EqualityComparer<TValue3>.Default.Equals(Value3, moc.Value3) &&
             EqualityComparer<TValue4>.Default.Equals(Value4, moc.Value4);
 
-        public override int GetHashCode() => this.GenerateHashCode(Value1, Value2, Value3, Value4);
+        public override int GetHashCode() => HashCode.Combine(Value1, Value2, Value3, Value4);
 
         public override string ToString() => $"[{Value1}, {Value2}, {Value3}, {Value4}]";
 
@@ -124,7 +123,7 @@ namespace TCDFx.Collections
             EqualityComparer<TValue4>.Default.Equals(Value4, moc.Value4) &&
             EqualityComparer<TValue5>.Default.Equals(Value5, moc.Value5);
 
-        public override int GetHashCode() => this.GenerateHashCode(Value1, Value2, Value3, Value4, Value5);
+        public override int GetHashCode() => HashCode.Combine(Value1, Value2, Value3, Value4, Value5);
 
         public override string ToString() => $"[{Value1}, {Value2}, {Value3}, {Value4}, {Value5}]";
 

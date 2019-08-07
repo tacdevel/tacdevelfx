@@ -16,6 +16,6 @@ namespace TCDFx
     /// <param name="sender">The source of the event.</param>
     /// <param name="e">An object that contains the event data.</param>
     public delegate void EventHandler<TSender, TEventArgs>(TSender sender, TEventArgs e)
-        where TSender : object
+        where TSender : class
         where TEventArgs : EventArgs;
 }
