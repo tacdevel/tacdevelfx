@@ -1,4 +1,0 @@
-[submodule "external/tcdfx-libui"]
-	path = external/tcdfx-libui
-	url = https://github.com/tom-corwin/tcdfx-libui
-    branch = remodel
