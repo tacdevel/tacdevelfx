@@ -6,32 +6,22 @@
 
 #TODO: Set up tests once finished.
 #TODO: Set up documentation generation once finished.
-#TODO: push-universal-pkg.yml for intermediate assemblies and files inbetween builds for publishing
-#TODO: push-myget-pkg.yml for pushing CI builds to the build feed
-#TODO: make-nuget-pkg.yml for pushing release packages to the release feed.
+#TODO: Have jobs for all (most) OS in this list using Docker maybe?: https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md
+#TODO: Use a matrix to clean the jobs up a fair bit in-code.
 
-## General Configuration
-name: $(Date:yyyyMMdd)-$(SourceBranchName)$(Rev:-rrr)
+## Global Configuration
+################################################################################
+
+name: $(Date:yyMMdd)$(Rev:rrr)
+
 trigger:
   batch: false
   branches:
     include:
-    - 'master'
-  tags:
-    include:
-    - v*
-  paths:
-    exclude:
-    - "*.md"
-    - ".gitignore"
-    - ".gitattributes"
-    - ".editorconfig"
-    - ".github/*"
-pr:
-  autoCancel: true
-  branches:
-    include:
-    - 'master'
+    - "master"
+    - "feature/*"
+    - "hotfix/*"
+    - "ref/tags/v*"
   paths:
     exclude:
     - "*.md"
@@ -40,64 +30,91 @@ pr:
     - ".editorconfig"
     - ".github/*"
 
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - master
+    - feature/*
+    - hotfix/*
+    - ref/tags/v*
+  paths:
+    exclude:
+    - "*.md"
+    - ".gitignore"
+    - ".gitattributes"
+    - ".editorconfig"
+    - ".github/*"
+
+variables:
+  TCDFxCITaggedBuild: $[ startsWith( variables['Build.SourceBranch'], 'ref/tags/v' )]
+  DotNetCore.Sdk.Version: '3.0.100-preview7-012821'
+
 jobs:
-- template: .azure-pipelines/build.yml
+
+## Build Jobs
+################################################################################
+- template: ./.azure-pipelines/jobs/build.yml
   parameters:
-    platform: 'Windows81'
-    vmImage: 'vs2015-win2012r2'
-    configuration: 'Debug'
-- template: .azure-pipelines/build.yml
-  parameters:
-    platform: 'Windows81'
-    vmImage: 'vs2015-win2012r2'
-    configuration: 'Release'
-- template: .azure-pipelines/build.yml
-  parameters:
-    platform: 'Windows10v1803'
-    vmImage: 'vs2017-win2016'
-    configuration: 'Debug'
-- template: .azure-pipelines/build.yml
-  parameters:
-    platform: 'Windows10v1803'
-    vmImage: 'vs2017-win2016'
-    configuration: 'Release'
-- template: .azure-pipelines/build.yml
-  parameters:
-    platform: 'Windows10v1809'
-    vmImage: 'windows-2019'
-    configuration: 'Debug'
-- template: .azure-pipelines/build.yml
-  parameters:
-    platform: 'Windows10v1809'
-    vmImage: 'windows-2019'
-    configuration: 'Release'
-- template: .azure-pipelines/build.yml
-  parameters:
-    platform: 'Ubuntu1604'
+    osName: 'Ubuntu1604'
+    osDisplayName: 'Ubuntu 16.04'
     vmImage: 'ubuntu-16.04'
     configuration: 'Debug'
-- template: .azure-pipelines/build.yml
+- template: ./.azure-pipelines/jobs/build.yml
   parameters:
-    platform: 'Ubuntu1604'
+    osName: 'Ubuntu1604'
+    osDisplayName: 'Ubuntu 16.04'
     vmImage: 'ubuntu-16.04'
     configuration: 'Release'
-- template: .azure-pipelines/build.yml
+- template: ./.azure-pipelines/jobs/build.yml
   parameters:
-    platform: 'macOS1013'
+    osName: 'macOS1013'
+    osDisplayName: 'macOS 10.13'
     vmImage: 'macOS-10.13'
     configuration: 'Debug'
-- template: .azure-pipelines/build.yml
+- template: ./.azure-pipelines/jobs/build.yml
   parameters:
-    platform: 'macOS1013'
+    osName: 'macOS1013'
+    osDisplayName: 'macOS 10.13'
     vmImage: 'macOS-10.13'
     configuration: 'Release'
-- template: .azure-pipelines/build.yml
+- template: ./.azure-pipelines/jobs/build.yml
   parameters:
-    platform: 'macOS1014'
+    osName: 'macOS1014'
+    osDisplayName: 'macOS 10.14'
     vmImage: 'macOS-10.14'
     configuration: 'Debug'
-- template: .azure-pipelines/build.yml
+- template: ./.azure-pipelines/jobs/build.yml
   parameters:
-    platform: 'macOS1014'
+    osName: 'macOS1014'
+    osDisplayName: 'macOS 10.14'
     vmImage: 'macOS-10.14'
     configuration: 'Release'
+- template: ./.azure-pipelines/jobs/build.yml
+  parameters:
+    osName: 'Windows81'
+    osDisplayName: 'Windows 8.1'
+    vmImage: 'vs2015-win2012r2'
+    configuration: 'Debug'
+- template: ./.azure-pipelines/jobs/build.yml
+  parameters:
+    osName: 'Windows81'
+    osDisplayName: 'Windows 8.1'
+    vmImage: 'vs2015-win2012r2'
+    configuration: 'Release'
+- template: ./.azure-pipelines/jobs/build.yml
+  parameters:
+    osName: 'Windows10'
+    osDisplayName: 'Windows 10'
+    vmImage: 'windows-2019'
+    configuration: 'Debug'
+- template: ./.azure-pipelines/jobs/build.yml
+  parameters:
+    osName: 'Windows10'
+    osDisplayName: 'Windows 10'
+    vmImage: 'windows-2019'
+    configuration: 'Release'
+
+## Publish Jobs
+################################################################################
+- template: ./.azure-pipelines/jobs/publish.yml

@@ -1,0 +1,36 @@
+####################################################################################################
+## FileName:             restore-project.yml
+## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+####################################################################################################
+
+parameters:
+  projectName: ''
+  configuration: ''
+  buildType: ''
+
+steps:
+
+# Windows
+- task: DotNetCoreCLI@2
+  condition: eq( variables['Agent.OS'], 'Windows_NT' )
+  name: 'Restore_Project_WinNT'
+  displayName: 'Restore NuGet Packages for ${{ parameters.projectName }} (${{ parameters.configuration }})'
+  continueOnError: false
+  inputs:
+    command: custom
+    projects: '$(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}\${{ parameters.projectName }}.csproj'
+    custom: 'restore'
+    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxCIBuildNumber=$(Build.BuildNumber) /property:TCDFxCIBuildType=${{ parameters.buildType }} /property:TCDFxCITaggedBuild=$(TCDFxCITaggedBuild) /property:TCDFxCIBuildReason=$(Build.Reason) /property:TCDFxCIPullNumber=$(System.PullRequest.PullRequestNumber) /property:TCDFxCINuGetKey=$(TCDFxPublishApiKey.NuGet) /property:TCDFxCIMyGetKey=$(TCDFxPublishApiKey.MyGet)'
+
+# Linux/macOS
+- task: DotNetCoreCLI@2
+  condition: ne( variables['Agent.OS'], 'Windows_NT' )
+  name: 'Restore_Project_Unix'
+  displayName: 'Restore NuGet Packages for ${{ parameters.projectName }} (${{ parameters.configuration }})'
+  continueOnError: false
+  inputs:
+    command: custom
+    projects: '$(Build.Repository.LocalPath)/sources/${{ parameters.projectName }}/${{ parameters.projectName }}.csproj'
+    custom: 'restore'
+    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxCIBuildNumber=$(Build.BuildNumber) /property:TCDFxCIBuildType=${{ parameters.buildType }} /property:TCDFxCITaggedBuild=$(TCDFxCITaggedBuild) /property:TCDFxCIBuildReason=$(Build.Reason) /property:TCDFxCIPullNumber=$(System.PullRequest.PullRequestNumber) /property:TCDFxCINuGetKey=$(TCDFxPublishApiKey.NuGet) /property:TCDFxCIMyGetKey=$(TCDFxPublishApiKey.MyGet)'

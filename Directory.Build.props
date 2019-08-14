@@ -6,6 +6,16 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+  <!-- Variables for CI use:
+    TCDFxCIBuildNumber
+    TCDFxCIBuildType
+    TCDFxCITaggedBuild
+    TCDFxCIBuildReason
+    TCDFxCIPullNumber
+    TCDFxCINuGetKey
+    TCDFxCIMyGetKey
+  -->
+
   <!-- Repository Properties -->
   <PropertyGroup>
     <TCDFxUrl>https://github.com/tom-corwin/tcdfx</TCDFxUrl>
@@ -15,10 +25,21 @@
     <TCDFxBasePath>$(MSBuildThisFileDirectory)</TCDFxBasePath>
   </PropertyGroup>
 
-  <!-- Versioning -->
   <PropertyGroup>
-    <VersionPrefix Condition="'$(VersionPrefix)' == ''">1.0.0</VersionPrefix>
-    <VersionSuffix Condition="'$(VersionSuffix)' == ''">pre1</VersionSuffix>
+    <TCDFxVersionMajor>1</TCDFxVersionMajor>
+    <TCDFxVersionMinor>0</TCDFxVersionMinor>
+    <TCDFxVersionPatch>0</TCDFxVersionPatch>
+    <TCDFxVersionChannel>pre</TCDFxVersionChannel>
+    <TCDFxVersionChannel Condition="('$(TCDFxCIBuildReason)' != '' AND '$(TCDFxCIBuildReason)' == 'PullRequest') AND '$(TCDFxCITaggedBuild)' != ''">pull</TCDFxVersionChannel>
+    <TCDFxVersionChannel Condition="('$(TCDFxCIBuildReason)' != '' AND '$(TCDFxCIBuildReason)' != 'PullRequest') AND '$(TCDFxCITaggedBuild)' != ''">build</TCDFxVersionChannel>
+    <TCDFxVersionBuild>1</TCDFxVersionBuild>
+    <TCDFxVersionBuild Condition="('$(TCDFxCIBuildReason)' != '' AND '$(TCDFxCIBuildReason)' == 'PullRequest') AND '$(TCDFxCITaggedBuild)' != ''">$(TCDFxCIPullNumber)</TCDFxVersionBuild>
+    <TCDFxVersionBuild Condition="('$(TCDFxCIBuildReason)' != '' AND '$(TCDFxCIBuildReason)' != 'PullRequest') AND '$(TCDFxCITaggedBuild)' != ''"></TCDFxVersionBuild>
+    <TCDFxVersionPrefix>$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersionPrefix>
+    <TCDFxVersionSuffix>$(TCDFxVersionChannel)$(TCDFxVersionBuild)</TCDFxVersionSuffix>
+    <TCDFxVersion>$(TCDFxVersionPrefix)</TCDFxVersion>
+    <TCDFxVersion Condition="'$(TCDFxVersionSuffix)' != ''">$(TCDFxVersion)-$(TCDFxVersionSuffix)</TCDFxVersion>
+    <TCDFxVersion Condition="'$(TCDFxCIBuildNumber)' != '' AND '$(TCDFxCITaggedBuild)' != ''">$(TCDFxVersion)-$(TCDFxCIBuildNumber)</TCDFxVersion>
   </PropertyGroup>
 
   <!-- Global Project Properties -->
@@ -32,12 +53,6 @@
     <TCDFxProjectPath>$(TCDFxProjectGroupPath)$(TCDFxProjectName)\</TCDFxProjectPath>
   </PropertyGroup>
 
-  <!-- TCDFx only targets the latest .NET Standard version.  -->
-  <!-- See here: https://github.com/dotnet/sdk/blob/cd25d6bbfc2aac61cc790c511900427ac64fdaa8/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.TargetFrameworkInference.targets#L167-L174 -->
-  <PropertyGroup>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
-
   <!-- Build Paths; \build\$(ProjectGroup)\$(ProjectName)\ProjectConfiguration -->
   <PropertyGroup>
     <TCDFxBuildBasePath>$(TCDFxBasePath)build\</TCDFxBuildBasePath>
@@ -46,19 +61,26 @@
     <TCDFxProjectBuildPath>$(TCDFxProjectBaseBuildPath)\$(Configuration)\</TCDFxProjectBuildPath>
   </PropertyGroup>
 
+  <!-- TCDFx only targets the latest .NET Standard version.  -->
+  <!-- See here: https://github.com/dotnet/sdk/blob/cd25d6bbfc2aac61cc790c511900427ac64fdaa8/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.TargetFrameworkInference.targets#L167-L174 -->
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
   <PropertyGroup>
     <LangVersion>8.0</LangVersion>
-    <NeutralLanguage>en</NeutralLanguage>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <AssemblyName>$(TCDFxProjectName)</AssemblyName>
     <AssemblyTitle>$(TCDFxProjectName)</AssemblyTitle>
     <RootNamespace>$(TCDFxProjectName)</RootNamespace>
-    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
-    <Platform>Any CPU</Platform>
-    <DefineConstants>TRACE</DefineConstants>
-    <EnableDefaultItems>false</EnableDefaultItems>
     <Authors>$(TCDFxAuthors)</Authors>
     <Copyright>$(TCDFxCopyright)</Copyright>
+    <Version>$(TCDFxVersion)</Version>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform>Any CPU</Platform>
+    <NeutralLanguage>en</NeutralLanguage>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <EnableDefaultItems>false</EnableDefaultItems>
   </PropertyGroup>
 
   <PropertyGroup>

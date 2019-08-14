@@ -1,11 +1,18 @@
 ####################################################################################################
-## FileName:             checkout-sources.yml
+## FileName:             install-dotnetcore-sdk.yml
 ## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
 ## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
 ####################################################################################################
 
+parameters:
+  dotnetVersion: '3.0.100-preview7-012821'
+
 steps:
-- checkout: self
-  clean: true
-  submodules: recursive
-  persistCredentials: false
+
+- task: UseDotNet@2
+  name: 'Install_DotNetCore_Sdk'
+  displayName: 'Install .NET Core SDK ${{ parameters.dotnetVersion }}'
+  continueOnError: false
+  inputs:
+    packageType: sdk
+    version: ${{ parameters.dotnetVersion }}

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.Build.Traversal" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ProjectReference Include="sources\dirs.proj" />
-    <ProjectReference Include="tests\dirs.proj" />
-    <ProjectReference Include="examples\dirs.proj" />
+    <!-- <ProjectReference Include="tests\dirs.proj" /> -->
+    <!-- <ProjectReference Include="examples\dirs.proj" /> -->
   </ItemGroup>
 </Project>

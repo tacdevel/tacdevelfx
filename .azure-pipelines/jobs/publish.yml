@@ -1,0 +1,45 @@
+####################################################################################################
+## FileName:             publish.yml
+## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+####################################################################################################
+
+jobs:
+
+- job: 'TCDFxCore_AnyOS_Publish'
+  displayName: 'TCDFx.Core (AnyOS | Publish)'
+  pool:
+    vmImage: 'windows-2019'
+  workspace:
+    clean: all
+  steps:
+  - template: ../steps/install-dotnetcore-sdk.yml
+  - template: ../steps/restore-project.yml
+    parameters:
+      projectName: 'TCDFx.Core'
+      configuration: 'Release'
+      buildType: 'publish'
+  - template: ../steps/build-binaries.yml
+    parameters:
+      projectName: 'TCDFx.Core'
+      configuration: 'Release'
+      buildType: 'publish'
+      
+- job: 'TCDFxUI_AnyOS_Publish'
+  displayName: 'TCDFx.UI (AnyOS | Publish)'
+  pool:
+    vmImage: 'windows-2019'
+  workspace:
+    clean: all
+  steps:
+  - template: ../steps/install-dotnetcore-sdk.yml
+  - template: ../steps/restore-project.yml
+    parameters:
+      projectName: 'TCDFx.UI'
+      configuration: 'Release'
+      buildType: 'publish'
+  - template: ../steps/build-binaries.yml
+    parameters:
+      projectName: 'TCDFx.UI'
+      configuration: 'Release'
+      buildType: 'publish'

@@ -1,0 +1,51 @@
+####################################################################################################
+## FileName:             build.yml
+## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+####################################################################################################
+
+parameters:
+  osName: ''
+  osDisplayName: ''
+  vmImage: ''
+  configuration: ''
+
+jobs:
+
+- job: 'TCDFxCore_${{ parameters.osName }}_${{ parameters.configuration }}'
+  displayName: 'TCDFx.Core (${{ parameters.osDisplayName }} | ${{ parameters.configuration }})'
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  workspace:
+    clean: all
+  steps:
+  - template: ../steps/install-dotnetcore-sdk.yml
+  - template: ../steps/restore-project.yml
+    parameters:
+      projectName: 'TCDFx.Core'
+      configuration: '${{ parameters.configuration }}'
+      buildType: 'build'
+  - template: ../steps/build-binaries.yml
+    parameters:
+      projectName: 'TCDFx.Core'
+      configuration: '${{ parameters.configuration }}'
+      buildType: 'build'
+
+- job: 'TCDFxUI_${{ parameters.osName }}_${{ parameters.configuration }}'
+  displayName: 'TCDFx.UI (${{ parameters.osDisplayName }} | ${{ parameters.configuration }})'
+  pool:
+    vmImage: ${{ parameters.vmImage }}
+  workspace:
+    clean: all
+  steps:
+  - template: ../steps/install-dotnetcore-sdk.yml
+  - template: ../steps/restore-project.yml
+    parameters:
+      projectName: 'TCDFx.UI'
+      configuration: '${{ parameters.configuration }}'
+      buildType: 'build'
+  - template: ../steps/build-binaries.yml
+    parameters:
+      projectName: 'TCDFx.UI'
+      configuration: '${{ parameters.configuration }}'
+      buildType: 'build'
