@@ -37,23 +37,11 @@
       <Pack>true</Pack>
       <PackagePath>runtimes\win-x64\libui.dll</PackagePath>
     </Content>
-    <Content Include="$(TCDFxProjectPath)\libraries\linux-x64\libui.so">
-      <Link>$(TCDFxProjectPath)\libraries\linux-x64\libui.so</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-      <PackagePath>runtimes\linux-x64\libui.so</PackagePath>
-    </Content>
     <Content Include="$(TCDFxProjectPath)\libraries\linux-x64\libui.so.0">
       <Link>$(TCDFxProjectPath)\libraries\linux-x64\libui.so.0</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
       <PackagePath>runtimes\linux-x64\libui.so.0</PackagePath>
-    </Content>
-    <Content Include="$(TCDFxProjectPath)\libraries\osx-x64\libui.dylib">
-      <Link>$(TCDFxProjectPath)\libraries\osx-x64\libui.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-      <PackagePath>runtimes\osx-x64\libui.dylib</PackagePath>
     </Content>
     <Content Include="$(TCDFxProjectPath)\libraries\osx-x64\libui.A.dylib">
       <Link>$(TCDFxProjectPath)\libraries\osx-x64\libui.A.dylib</Link>
