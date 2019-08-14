@@ -13,7 +13,7 @@ parameters:
 jobs:
 
 - job: 'TCDFxCore_${{ parameters.osName }}_${{ parameters.configuration }}'
-  displayName: 'TCDFx.Core (${{ parameters.osDisplayName }} | ${{ parameters.configuration }})'
+  displayName: 'TCDFxCore_${{ parameters.osName }}_${{ parameters.configuration }}'
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:
@@ -32,7 +32,7 @@ jobs:
       buildType: 'build'
 
 - job: 'TCDFxUI_${{ parameters.osName }}_${{ parameters.configuration }}'
-  displayName: 'TCDFx.UI (${{ parameters.osDisplayName }} | ${{ parameters.configuration }})'
+  displayName: 'TCDFxUI_${{ parameters.osName }}_${{ parameters.configuration }}'
   pool:
     vmImage: ${{ parameters.vmImage }}
   workspace:
