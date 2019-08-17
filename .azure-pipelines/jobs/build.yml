@@ -6,7 +6,6 @@
 
 parameters:
   osName: ''
-  osDisplayName: ''
   vmImage: ''
   configuration: ''
 

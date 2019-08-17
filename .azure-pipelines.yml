@@ -51,61 +51,51 @@ jobs:
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'Ubuntu1604'
-    osDisplayName: 'Ubuntu 16.04'
     vmImage: 'ubuntu-16.04'
     configuration: 'Debug'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'Ubuntu1604'
-    osDisplayName: 'Ubuntu 16.04'
     vmImage: 'ubuntu-16.04'
     configuration: 'Release'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'macOS1013'
-    osDisplayName: 'macOS 10.13'
     vmImage: 'macOS-10.13'
     configuration: 'Debug'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'macOS1013'
-    osDisplayName: 'macOS 10.13'
     vmImage: 'macOS-10.13'
     configuration: 'Release'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'macOS1014'
-    osDisplayName: 'macOS 10.14'
     vmImage: 'macOS-10.14'
     configuration: 'Debug'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'macOS1014'
-    osDisplayName: 'macOS 10.14'
     vmImage: 'macOS-10.14'
     configuration: 'Release'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'Windows81'
-    osDisplayName: 'Windows 8.1'
     vmImage: 'vs2015-win2012r2'
     configuration: 'Debug'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'Windows81'
-    osDisplayName: 'Windows 8.1'
     vmImage: 'vs2015-win2012r2'
     configuration: 'Release'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'Windows10'
-    osDisplayName: 'Windows 10'
     vmImage: 'windows-2019'
     configuration: 'Debug'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'Windows10'
-    osDisplayName: 'Windows 10'
     vmImage: 'windows-2019'
     configuration: 'Release'
 

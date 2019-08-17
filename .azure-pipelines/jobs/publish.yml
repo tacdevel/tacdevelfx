@@ -36,9 +36,10 @@ jobs:
   - template: ../steps/run-dotnet-nuget-push.yml
     parameters:
       projectName: 'TCDFx.Core'
-      
+
 - job: 'TCDFxUI_AnyOS_Publish'
   displayName: 'TCDFxUI_AnyOS_Publish'
+  dependsOn:
   - TCDFxUI_Windows81_Debug
   - TCDFxUI_Windows81_Release
   - TCDFxUI_Windows10_Debug
