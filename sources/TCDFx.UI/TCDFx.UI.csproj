@@ -24,25 +24,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="$(TCDFxProjectPath)\libraries\win-x86\libui.dll">
+    <Content Include="libraries\win-x86\libui.dll">
       <Link>libraries\win-x86\libui.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
       <PackagePath>runtimes\win-x86\libui.dll</PackagePath>
     </Content>
-    <Content Include="$(TCDFxProjectPath)\libraries\win-x64\libui.dll">
+    <Content Include="libraries\win-x64\libui.dll">
       <Link>libraries\win-x64\libui.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
       <PackagePath>runtimes\win-x64\libui.dll</PackagePath>
     </Content>
-    <Content Include="$(TCDFxProjectPath)\libraries\linux-x64\libui.so.0">
+    <Content Include="libraries\linux-x64\libui.so.0">
       <Link>libraries\linux-x64\libui.so.0</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
       <PackagePath>runtimes\linux-x64\libui.so.0</PackagePath>
     </Content>
-    <Content Include="$(TCDFxProjectPath)\libraries\osx-x64\libui.A.dylib">
+    <Content Include="libraries\osx-x64\libui.A.dylib">
       <Link>libraries\osx-x64\libui.A.dylib</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>true</Pack>
