@@ -20,18 +20,18 @@ jobs:
     clean: all
   steps:
   - template: ../steps/install-dotnetcore-sdk.yml
-  - template: ../steps/restore-project.yml
+  - template: ../steps/run-dotnet-restore.yml
     parameters:
       projectName: 'TCDFx.Core'
       configuration: '${{ parameters.configuration }}'
-      buildType: 'build'
-  - template: ../steps/build-binaries.yml
+  - template: ../steps/run-dotnet-build.yml
     parameters:
       projectName: 'TCDFx.Core'
       configuration: '${{ parameters.configuration }}'
-      buildType: 'build'
 
 - job: 'TCDFxUI_${{ parameters.osName }}_${{ parameters.configuration }}'
+  dependsOn:
+  - TCDFxCore_${{ parameters.osName }}_${{ parameters.configuration }}
   displayName: 'TCDFxUI_${{ parameters.osName }}_${{ parameters.configuration }}'
   pool:
     vmImage: ${{ parameters.vmImage }}
@@ -39,13 +39,11 @@ jobs:
     clean: all
   steps:
   - template: ../steps/install-dotnetcore-sdk.yml
-  - template: ../steps/restore-project.yml
+  - template: ../steps/run-dotnet-restore.yml
     parameters:
       projectName: 'TCDFx.UI'
       configuration: '${{ parameters.configuration }}'
-      buildType: 'build'
-  - template: ../steps/build-binaries.yml
+  - template: ../steps/run-dotnet-build.yml
     parameters:
       projectName: 'TCDFx.UI'
       configuration: '${{ parameters.configuration }}'
-      buildType: 'build'

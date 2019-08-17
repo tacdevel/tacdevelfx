@@ -7,7 +7,6 @@
 #TODO: Set up tests once finished.
 #TODO: Set up documentation generation once finished.
 #TODO: Have jobs for all (most) OS in this list using Docker maybe?: https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md
-#TODO: Use a matrix to clean the jobs up a fair bit in-code.
 
 ## Global Configuration
 ################################################################################
@@ -18,10 +17,10 @@ trigger:
   batch: false
   branches:
     include:
-    - "master"
-    - "feature/*"
-    - "hotfix/*"
-    - "ref/tags/v*"
+    - master
+    - feature/*
+    - hotfix/*
+    - ref/tags/v*
   paths:
     exclude:
     - "*.md"
@@ -37,7 +36,6 @@ pr:
     - master
     - feature/*
     - hotfix/*
-    - ref/tags/v*
   paths:
     exclude:
     - "*.md"
@@ -45,10 +43,6 @@ pr:
     - ".gitattributes"
     - ".editorconfig"
     - ".github/*"
-
-variables:
-  TCDFxCITaggedBuild: $[ startsWith( variables['Build.SourceBranch'], 'ref/tags/v' )]
-  DotNetCore.Sdk.Version: '3.0.100-preview7-012821'
 
 jobs:
 

@@ -6,17 +6,13 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <!-- Variables for CI use:
-    TCDFxCIBuildNumber
-    TCDFxCIBuildType
-    TCDFxCITaggedBuild
-    TCDFxCIBuildReason
-    TCDFxCIPullNumber
-    TCDFxCINuGetKey
-    TCDFxCIMyGetKey
-  -->
+  <!-- CI Properties -->
+  <PropertyGroup>
+    <TCDFXIsCIBuild Condition="'$(TCDFXIsCIBuild)' != 'true'">false</TCDFXIsCIBuild>
+    <TCDFXIsGABuild Condition="'$(TCDFXIsGABuild)' != 'true'">false</TCDFXIsGABuild>
+  </PropertyGroup>
 
-  <!-- Repository Properties -->
+  <!-- Repository Properties-->
   <PropertyGroup>
     <TCDFxUrl>https://github.com/tom-corwin/tcdfx</TCDFxUrl>
     <TCDFxAuthors>Thomas Corwin, et al.</TCDFxAuthors>
@@ -25,21 +21,20 @@
     <TCDFxBasePath>$(MSBuildThisFileDirectory)</TCDFxBasePath>
   </PropertyGroup>
 
+  <!-- Versioning -->
   <PropertyGroup>
-    <TCDFxVersionMajor>1</TCDFxVersionMajor>
-    <TCDFxVersionMinor>0</TCDFxVersionMinor>
-    <TCDFxVersionPatch>0</TCDFxVersionPatch>
-    <TCDFxVersionChannel>pre</TCDFxVersionChannel>
-    <TCDFxVersionChannel Condition="('$(TCDFxCIBuildReason)' != '' AND '$(TCDFxCIBuildReason)' == 'PullRequest') AND '$(TCDFxCITaggedBuild)' != ''">pull</TCDFxVersionChannel>
-    <TCDFxVersionChannel Condition="('$(TCDFxCIBuildReason)' != '' AND '$(TCDFxCIBuildReason)' != 'PullRequest') AND '$(TCDFxCITaggedBuild)' != ''">build</TCDFxVersionChannel>
-    <TCDFxVersionBuild>1</TCDFxVersionBuild>
-    <TCDFxVersionBuild Condition="('$(TCDFxCIBuildReason)' != '' AND '$(TCDFxCIBuildReason)' == 'PullRequest') AND '$(TCDFxCITaggedBuild)' != ''">$(TCDFxCIPullNumber)</TCDFxVersionBuild>
-    <TCDFxVersionBuild Condition="('$(TCDFxCIBuildReason)' != '' AND '$(TCDFxCIBuildReason)' != 'PullRequest') AND '$(TCDFxCITaggedBuild)' != ''"></TCDFxVersionBuild>
-    <TCDFxVersionPrefix>$(TCDFxVersionMajor).$(TCDFxVersionMinor).$(TCDFxVersionPatch)</TCDFxVersionPrefix>
-    <TCDFxVersionSuffix>$(TCDFxVersionChannel)$(TCDFxVersionBuild)</TCDFxVersionSuffix>
+    <TCDFxVersionPrefix>1.0.0</TCDFxVersionPrefix>
+    
+    <TCDFxVersionBuildType Condition="'$(TCDFxVersionBuildType)' == ''">pre</TCDFxVersionBuildType>
+    <TCDFxVersionBuildNumber Condition="'$(TCDFxVersionBuildNumber)' == '' AND '$(TCDFxVersionBuildType)' != 'build'">1</TCDFxVersionBuildNumber>
+    <TCDFxVersionMetadata Condition="'$(TCDFxVersionMetadata)' == ''"></TCDFxVersionMetadata>
+    <TCDFxVersionSuffix>$(TCDFxVersionBuildType)</TCDFxVersionSuffix>
+    <TCDFxVersionSuffix Condition="'$(TCDFxVersionSuffix)' != '' AND '$(TCDFxVersionBuildNumber)' != ''">$(TCDFxVersionSuffix)$(TCDFxVersionBuildNumber)</TCDFxVersionSuffix>
+    
     <TCDFxVersion>$(TCDFxVersionPrefix)</TCDFxVersion>
     <TCDFxVersion Condition="'$(TCDFxVersionSuffix)' != ''">$(TCDFxVersion)-$(TCDFxVersionSuffix)</TCDFxVersion>
-    <TCDFxVersion Condition="'$(TCDFxCIBuildNumber)' != '' AND '$(TCDFxCITaggedBuild)' != ''">$(TCDFxVersion)-$(TCDFxCIBuildNumber)</TCDFxVersion>
+    <TCDFxVersion Condition="'$(TCDFxIsCIBuild)|$(TCDFxIsGABuild)' == 'true|false' AND '$(TCDFxVersionMetadata)' != ''">$(TCDFxVersion)-$(TCDFxVersionMetadata)</TCDFxVersion>
+    <TCDFxVersion Condition="'$(TCDFxIsCIBuild)|$(TCDFxIsGABuild)' == 'true|true' AND '$(TCDFxVersionMetadata)' != ''">$(TCDFxVersion)+$(TCDFxVersionMetadata)</TCDFxVersion>
   </PropertyGroup>
 
   <!-- Global Project Properties -->
@@ -53,7 +48,7 @@
     <TCDFxProjectPath>$(TCDFxProjectGroupPath)$(TCDFxProjectName)\</TCDFxProjectPath>
   </PropertyGroup>
 
-  <!-- Build Paths; \build\$(ProjectGroup)\$(ProjectName)\ProjectConfiguration -->
+  <!-- Build Paths -->
   <PropertyGroup>
     <TCDFxBuildBasePath>$(TCDFxBasePath)build\</TCDFxBuildBasePath>
     <TCDFxProjectGroupBuildPath>$(TCDFxBuildBasePath)$(TCDFxProjectGroup)\</TCDFxProjectGroupBuildPath>

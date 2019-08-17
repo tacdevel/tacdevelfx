@@ -1,0 +1,58 @@
+####################################################################################################
+## FileName:             run-dotnet-nuget-push.yml
+## Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
+## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+####################################################################################################
+
+parameters:
+  projectName: ''
+
+steps:
+
+- task: DotNetCoreCLI@2
+  condition: and(eq( variables['Agent.OS'], 'Windows_NT' ), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
+  name: 'Run_DotNet_NuGet_Push__WinNT_MyGet'
+  displayName: 'Run `dotnet nuget push` (WinNT|MyGet)'
+  continueOnError: false
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\pkg\*.nupkg'
+    nugetFeedType: 'external'
+    publishPackageMetadata: false
+    publishFeedCredentials: 'TCDFxMyGetFeed'
+
+- task: DotNetCoreCLI@2
+  condition: and(ne( variables['Agent.OS'], 'Windows_NT' ), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
+  name: 'Run_DotNet_NuGet_Push__Unix_MyGet'
+  displayName: 'Run `dotnet nuget push` (Unix|MyGet)'
+  continueOnError: false
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\pkg\*.nupkg'
+    nugetFeedType: 'external'
+    publishPackageMetadata: false
+    publishFeedCredentials: 'TCDFxMyGetFeed'
+
+- task: DotNetCoreCLI@2
+  condition: and(eq( variables['Agent.OS'], 'Windows_NT' ), startsWith(variables['Build.SourceBranch'], 'ref/tags/v'))
+  name: 'Run_DotNet_NuGet_Push__WinNT_NuGet'
+  displayName: 'Run `dotnet nuget push` (WinNT|NuGet)'
+  continueOnError: false
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/pkg/*.nupkg'
+    nugetFeedType: 'external'
+    publishPackageMetadata: false
+    publishFeedCredentials: 'TCDFxNuGetFeed'
+
+- task: DotNetCoreCLI@2
+  condition: and(ne( variables['Agent.OS'], 'Windows_NT' ), startsWith(variables['Build.SourceBranch'], 'ref/tags/v'))
+  name: 'Run_DotNet_NuGet_Push__Unix_NuGet'
+  displayName: 'Run `dotnet nuget push` (Unix|NuGet)'
+  continueOnError: false
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/pkg/*.nupkg'
+    nugetFeedType: 'external'
+    publishPackageMetadata: false
+    publishFeedCredentials: 'TCDFxNuGetFeed'

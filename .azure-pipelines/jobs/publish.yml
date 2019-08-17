@@ -7,39 +7,62 @@
 jobs:
 
 - job: 'TCDFxCore_AnyOS_Publish'
-  displayName: 'TCDFx.Core (AnyOS | Publish)'
+  displayName: 'TCDFxCore_AnyOS_Publish'
+  dependsOn:
+  - TCDFxCore_Windows81_Debug
+  - TCDFxCore_Windows81_Release
+  - TCDFxCore_Windows10_Debug
+  - TCDFxCore_Windows10_Release
+  - TCDFxCore_Ubuntu1604_Debug
+  - TCDFxCore_Ubuntu1604_Release
+  - TCDFxCore_macOS1013_Debug
+  - TCDFxCore_macOS1013_Release
+  - TCDFxCore_macOS1014_Debug
+  - TCDFxCore_macOS1014_Release
   pool:
     vmImage: 'windows-2019'
   workspace:
     clean: all
   steps:
   - template: ../steps/install-dotnetcore-sdk.yml
-  - template: ../steps/restore-project.yml
+  - template: ../steps/run-dotnet-restore.yml
     parameters:
       projectName: 'TCDFx.Core'
       configuration: 'Release'
-      buildType: 'publish'
-  - template: ../steps/build-binaries.yml
+  - template: ../steps/run-dotnet-build.yml
     parameters:
       projectName: 'TCDFx.Core'
       configuration: 'Release'
-      buildType: 'publish'
+  - template: ../steps/run-dotnet-nuget-push.yml
+    parameters:
+      projectName: 'TCDFx.Core'
       
 - job: 'TCDFxUI_AnyOS_Publish'
-  displayName: 'TCDFx.UI (AnyOS | Publish)'
+  displayName: 'TCDFxUI_AnyOS_Publish'
+  - TCDFxUI_Windows81_Debug
+  - TCDFxUI_Windows81_Release
+  - TCDFxUI_Windows10_Debug
+  - TCDFxUI_Windows10_Release
+  - TCDFxUI_Ubuntu1604_Debug
+  - TCDFxUI_Ubuntu1604_Release
+  - TCDFxUI_macOS1013_Debug
+  - TCDFxUI_macOS1013_Release
+  - TCDFxUI_macOS1014_Debug
+  - TCDFxUI_macOS1014_Release
   pool:
     vmImage: 'windows-2019'
   workspace:
     clean: all
   steps:
   - template: ../steps/install-dotnetcore-sdk.yml
-  - template: ../steps/restore-project.yml
+  - template: ../steps/run-dotnet-restore.yml
     parameters:
       projectName: 'TCDFx.UI'
       configuration: 'Release'
-      buildType: 'publish'
-  - template: ../steps/build-binaries.yml
+  - template: ../steps/run-dotnet-build.yml
     parameters:
       projectName: 'TCDFx.UI'
       configuration: 'Release'
-      buildType: 'publish'
+  - template: ../steps/run-dotnet-nuget-push.yml
+    parameters:
+      projectName: 'TCDFx.UI'
