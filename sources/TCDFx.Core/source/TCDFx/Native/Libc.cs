@@ -5,6 +5,7 @@
  **************************************************************************************************/
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -16,8 +17,8 @@ namespace TCDFx.Native
         private const string AssemblyRef = "libc";
 
         [DllImport(AssemblyRef)]
-#pragma warning disable IDE1006
+        [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "NativeMethodName")]
         internal static extern unsafe int sysctl(int* name, uint namelen, byte* oldp, uint* oldlenp, IntPtr newp, uint newlen);
-#pragma warning restore IDE1006
+
     }
 }

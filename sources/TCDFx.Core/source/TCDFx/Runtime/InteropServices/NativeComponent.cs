@@ -37,8 +37,10 @@ namespace TCDFx.Runtime.InteropServices
             get => handle;
             protected internal set
             {
-                if (value == null) throw new ArgumentNullException(nameof(value));
-                if (IsHandleImmutable) throw new ArgumentException("Handle property has already been set.", nameof(value));
+                if (value == null)
+                    throw new ArgumentNullException(nameof(value));
+                if (IsHandleImmutable)
+                    throw new ArgumentException("Handle property has already been set.", nameof(value));
 
                 OnPropertyChanging(nameof(Handle));
                 if (handle == null || !handle.Equals(value))

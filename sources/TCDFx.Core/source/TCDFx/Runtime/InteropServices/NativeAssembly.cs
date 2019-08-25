@@ -47,7 +47,7 @@ namespace TCDFx.Runtime.InteropServices
         /// Initializes a new instance of the <see cref="NativeAssembly"/> class.
         /// </summary>
         /// <param name="names">An ordered list of assembly names to attempt to load.</param>
-        public NativeAssembly(params string[] names) : this(NativeAssemblyLocationType.Default, names){ }
+        public NativeAssembly(params string[] names) : this(NativeAssemblyLocationType.Default, names) { }
 
         public event EventHandler<Component, EventArgs> Initialized;
 

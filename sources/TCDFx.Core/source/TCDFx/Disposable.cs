@@ -33,7 +33,8 @@ namespace TCDFx
         /// <inheritdoc />
         public bool SafeDispose(Action<Exception> exceptionHandler = null)
         {
-            if (this == null) return true; // Not initialized, so, already disposed.
+            if (this == null)
+                return true; // Not initialized, so, already disposed.
 
             try
             {

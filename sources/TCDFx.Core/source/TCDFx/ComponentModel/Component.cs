@@ -35,9 +35,12 @@ namespace TCDFx.ComponentModel
             get => name;
             protected set
             {
-                if (string.IsNullOrWhiteSpace(value)) throw new ArgumentNullException(nameof(value));
-                if (isNameImmutable) throw new ArgumentException("Name property has already been set.", nameof(value));
-                if (Cache.ContainsKey(value)) throw new DuplicateComponentException($"The component '{value}' has already been created.");
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentNullException(nameof(value));
+                if (isNameImmutable)
+                    throw new ArgumentException("Name property has already been set.", nameof(value));
+                if (Cache.ContainsKey(value))
+                    throw new DuplicateComponentException($"The component '{value}' has already been created.");
 
                 OnPropertyChanging(nameof(Name));
                 if (name != value)

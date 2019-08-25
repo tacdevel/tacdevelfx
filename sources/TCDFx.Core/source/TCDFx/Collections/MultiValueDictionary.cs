@@ -54,7 +54,8 @@ namespace TCDFx.Collections
         /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
         public MultiValueDictionary(IMultiValueDictionary<TKey, TValue1, TValue2> dictionary, IEqualityComparer<TKey> comparer) : this((dictionary != null) ? dictionary.Count : 0, comparer)
         {
-            if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+            if (dictionary == null)
+                throw new ArgumentNullException(nameof(dictionary));
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2> kmvs in dictionary)
                 Add(kmvs.Key, kmvs.Value1, kmvs.Value2);
@@ -176,9 +177,12 @@ namespace TCDFx.Collections
 
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2>[] array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            if ((index < 0) || (index > array.Length))  throw new ArgumentOutOfRangeException("index must be non-negative");
-            if ((array.Length - index) < Count)  throw new ArgumentException("Array plus offset too small");
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if ((index < 0) || (index > array.Length))
+                throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count)
+                throw new ArgumentException("Array plus offset too small");
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2> kmvs in this)
                 array[index++] = kmvs;
@@ -186,14 +190,17 @@ namespace TCDFx.Collections
 
         private bool VerifyKey(object key)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
             return key is TKey;
         }
 
         private bool VerifyValues(object value1, object value2)
         {
-            if (value1 == null && (value1 as Type).IsValueType) throw new ArgumentNullException(nameof(value1));
-            if (value2 == null && (value2 as Type).IsValueType) throw new ArgumentNullException(nameof(value2));
+            if (value1 == null && (value1 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value1));
+            if (value2 == null && (value2 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value2));
             return value1 is TValue1 && value2 is TValue2;
         }
 
@@ -246,11 +253,16 @@ namespace TCDFx.Collections
 
         void ICollection.CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
-            if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
-            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
-            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if (array.Rank != 1)
+                throw new ArgumentException("Multi dim not supported");
+            if (array.GetLowerBound(0) != 0)
+                throw new ArgumentException("NonZero lower bound");
+            if ((index < 0) || (index > array.Length))
+                throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count)
+                throw new ArgumentException("Array plus offset too small");
 
             if (array is KeyMultiValueSet<TKey, TValue1, TValue2>[] setArray)
                 CopyTo(setArray, index);
@@ -262,7 +274,8 @@ namespace TCDFx.Collections
             }
             else
             {
-                if (!(array is object[] objArray)) throw new ArgumentException("Invalid array type");
+                if (!(array is object[] objArray))
+                    throw new ArgumentException("Invalid array type");
                 try
                 {
                     foreach (TKey key in Keys)
@@ -304,8 +317,10 @@ namespace TCDFx.Collections
 
         void IMultiValueDictionary<TKey, TValue1, TValue2>.Add(object key, object value1, object value2)
         {
-            if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
-            if (!VerifyValues(value1, value2)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, and value2 must be of type {typeof(TValue2).Name}");
+            if (!VerifyKey(key))
+                throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+            if (!VerifyValues(value1, value2))
+                throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, and value2 must be of type {typeof(TValue2).Name}");
             Add((TKey)key, (TValue1)value1, (TValue2)value2);
         }
 
@@ -326,8 +341,10 @@ namespace TCDFx.Collections
             }
             set
             {
-                if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
-                if (!VerifyValues(value.Value1, value.Value2)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, and value2 must be of type {typeof(TValue2).Name}");
+                if (!VerifyKey(key))
+                    throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+                if (!VerifyValues(value.Value1, value.Value2))
+                    throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, and value2 must be of type {typeof(TValue2).Name}");
                 this[(TKey)key] = new MultiObjectContainer<TValue1, TValue2>((TValue1)value.Value1, (TValue2)value.Value2);
             }
         }
@@ -618,7 +635,8 @@ namespace TCDFx.Collections
         /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
         public MultiValueDictionary(IMultiValueDictionary<TKey, TValue1, TValue2, TValue3> dictionary, IEqualityComparer<TKey> comparer) : this((dictionary != null) ? dictionary.Count : 0, comparer)
         {
-            if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+            if (dictionary == null)
+                throw new ArgumentNullException(nameof(dictionary));
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3> kmvs in dictionary)
                 Add(kmvs.Key, kmvs.Value1, kmvs.Value2, kmvs.Value3);
@@ -745,9 +763,12 @@ namespace TCDFx.Collections
 
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3>[] array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
-            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if ((index < 0) || (index > array.Length))
+                throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count)
+                throw new ArgumentException("Array plus offset too small");
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3> kmvs in this)
                 array[index++] = kmvs;
@@ -755,15 +776,19 @@ namespace TCDFx.Collections
 
         private bool VerifyKey(object key)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
             return key is TKey;
         }
 
         private bool VerifyValues(object value1, object value2, object value3)
         {
-            if (value1 == null && (value1 as Type).IsValueType) throw new ArgumentNullException(nameof(value1));
-            if (value2 == null && (value2 as Type).IsValueType) throw new ArgumentNullException(nameof(value2));
-            if (value3 == null && (value3 as Type).IsValueType) throw new ArgumentNullException(nameof(value3));
+            if (value1 == null && (value1 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value1));
+            if (value2 == null && (value2 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value2));
+            if (value3 == null && (value3 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value3));
             return value1 is TValue1 && value2 is TValue2 && value3 is TValue3;
         }
 
@@ -816,11 +841,16 @@ namespace TCDFx.Collections
 
         void ICollection.CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
-            if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
-            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
-            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if (array.Rank != 1)
+                throw new ArgumentException("Multi dim not supported");
+            if (array.GetLowerBound(0) != 0)
+                throw new ArgumentException("NonZero lower bound");
+            if ((index < 0) || (index > array.Length))
+                throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count)
+                throw new ArgumentException("Array plus offset too small");
 
             if (array is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3>[] setArray)
                 CopyTo(setArray, index);
@@ -832,7 +862,8 @@ namespace TCDFx.Collections
             }
             else
             {
-                if (!(array is object[] objArray)) throw new ArgumentException("Invalid array type");
+                if (!(array is object[] objArray))
+                    throw new ArgumentException("Invalid array type");
                 try
                 {
                     foreach (TKey key in Keys)
@@ -874,8 +905,10 @@ namespace TCDFx.Collections
 
         void IMultiValueDictionary<TKey, TValue1, TValue2, TValue3>.Add(object key, object value1, object value2, object value3)
         {
-            if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
-            if (!VerifyValues(value1, value2, value3)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, and value3 must be of type {typeof(TValue2).Name}.");
+            if (!VerifyKey(key))
+                throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+            if (!VerifyValues(value1, value2, value3))
+                throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, and value3 must be of type {typeof(TValue2).Name}.");
             Add((TKey)key, (TValue1)value1, (TValue2)value2, (TValue3)value3);
         }
 
@@ -896,8 +929,10 @@ namespace TCDFx.Collections
             }
             set
             {
-                if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
-                if (!VerifyValues(value.Value1, value.Value2, value.Value3)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, and value3 must be of type {typeof(TValue2).Name}.");
+                if (!VerifyKey(key))
+                    throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+                if (!VerifyValues(value.Value1, value.Value2, value.Value3))
+                    throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, and value3 must be of type {typeof(TValue2).Name}.");
                 this[(TKey)key] = new MultiObjectContainer<TValue1, TValue2, TValue3>((TValue1)value.Value1, (TValue2)value.Value2, (TValue3)value.Value3);
             }
         }
@@ -1189,7 +1224,8 @@ namespace TCDFx.Collections
         /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
         public MultiValueDictionary(IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4> dictionary, IEqualityComparer<TKey> comparer) : this((dictionary != null) ? dictionary.Count : 0, comparer)
         {
-            if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+            if (dictionary == null)
+                throw new ArgumentNullException(nameof(dictionary));
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> kmvs in dictionary)
                 Add(kmvs.Key, kmvs.Value1, kmvs.Value2, kmvs.Value3, kmvs.Value4);
@@ -1321,9 +1357,12 @@ namespace TCDFx.Collections
 
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>[] array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
-            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if ((index < 0) || (index > array.Length))
+                throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count)
+                throw new ArgumentException("Array plus offset too small");
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> kmvs in this)
                 array[index++] = kmvs;
@@ -1331,16 +1370,21 @@ namespace TCDFx.Collections
 
         private bool VerifyKey(object key)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
             return key is TKey;
         }
 
         private bool VerifyValues(object value1, object value2, object value3, object value4)
         {
-            if (value1 == null && (value1 as Type).IsValueType) throw new ArgumentNullException(nameof(value1));
-            if (value2 == null && (value2 as Type).IsValueType) throw new ArgumentNullException(nameof(value2));
-            if (value3 == null && (value3 as Type).IsValueType) throw new ArgumentNullException(nameof(value3));
-            if (value4 == null && (value4 as Type).IsValueType) throw new ArgumentNullException(nameof(value4));
+            if (value1 == null && (value1 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value1));
+            if (value2 == null && (value2 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value2));
+            if (value3 == null && (value3 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value3));
+            if (value4 == null && (value4 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value4));
             return value1 is TValue1 && value2 is TValue2 && value3 is TValue3 && value4 is TValue4;
         }
 
@@ -1393,11 +1437,16 @@ namespace TCDFx.Collections
 
         void ICollection.CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
-            if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
-            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
-            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if (array.Rank != 1)
+                throw new ArgumentException("Multi dim not supported");
+            if (array.GetLowerBound(0) != 0)
+                throw new ArgumentException("NonZero lower bound");
+            if ((index < 0) || (index > array.Length))
+                throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count)
+                throw new ArgumentException("Array plus offset too small");
 
             if (array is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>[] setArray)
                 CopyTo(setArray, index);
@@ -1409,7 +1458,8 @@ namespace TCDFx.Collections
             }
             else
             {
-                if (!(array is object[] objArray)) throw new ArgumentException("Invalid array type");
+                if (!(array is object[] objArray))
+                    throw new ArgumentException("Invalid array type");
                 try
                 {
                     foreach (TKey key in Keys)
@@ -1451,8 +1501,10 @@ namespace TCDFx.Collections
 
         void IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4>.Add(object key, object value1, object value2, object value3, object value4)
         {
-            if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
-            if (!VerifyValues(value1, value2, value3, value4)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, and value4 must be of type {typeof(TValue4).Name}.");
+            if (!VerifyKey(key))
+                throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+            if (!VerifyValues(value1, value2, value3, value4))
+                throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, and value4 must be of type {typeof(TValue4).Name}.");
             Add((TKey)key, (TValue1)value1, (TValue2)value2, (TValue3)value3, (TValue4)value4);
         }
 
@@ -1473,8 +1525,10 @@ namespace TCDFx.Collections
             }
             set
             {
-                if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
-                if (!VerifyValues(value.Value1, value.Value2, value.Value3, value.Value4)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, and value4 must be of type {typeof(TValue4).Name}.");
+                if (!VerifyKey(key))
+                    throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+                if (!VerifyValues(value.Value1, value.Value2, value.Value3, value.Value4))
+                    throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, and value4 must be of type {typeof(TValue4).Name}.");
                 this[(TKey)key] = new MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>((TValue1)value.Value1, (TValue2)value.Value2, (TValue3)value.Value3, (TValue4)value.Value4);
             }
         }
@@ -1767,7 +1821,8 @@ namespace TCDFx.Collections
         /// <param name="comparer">The <see cref="EqualityComparer{T}"/> implementation to use when comparing keys, or <c>null</c> to use the default <see cref="EqualityComparer{T}"/> for the type of the key.</param>
         public MultiValueDictionary(IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> dictionary, IEqualityComparer<TKey> comparer) : this((dictionary != null) ? dictionary.Count : 0, comparer)
         {
-            if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
+            if (dictionary == null)
+                throw new ArgumentNullException(nameof(dictionary));
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> kmvs in dictionary)
                 Add(kmvs.Key, kmvs.Value1, kmvs.Value2, kmvs.Value3, kmvs.Value4, kmvs.Value5);
@@ -1904,9 +1959,12 @@ namespace TCDFx.Collections
 
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>[] array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
-            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if ((index < 0) || (index > array.Length))
+                throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count)
+                throw new ArgumentException("Array plus offset too small");
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> kmvs in this)
                 array[index++] = kmvs;
@@ -1914,17 +1972,23 @@ namespace TCDFx.Collections
 
         private bool VerifyKey(object key)
         {
-            if (key == null) throw new ArgumentNullException(nameof(key));
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
             return key is TKey;
         }
 
         private bool VerifyValues(object value1, object value2, object value3, object value4, object value5)
         {
-            if (value1 == null && (value1 as Type).IsValueType) throw new ArgumentNullException(nameof(value1));
-            if (value2 == null && (value2 as Type).IsValueType) throw new ArgumentNullException(nameof(value2));
-            if (value3 == null && (value3 as Type).IsValueType) throw new ArgumentNullException(nameof(value3));
-            if (value4 == null && (value4 as Type).IsValueType) throw new ArgumentNullException(nameof(value4));
-            if (value5 == null && (value5 as Type).IsValueType) throw new ArgumentNullException(nameof(value5));
+            if (value1 == null && (value1 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value1));
+            if (value2 == null && (value2 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value2));
+            if (value3 == null && (value3 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value3));
+            if (value4 == null && (value4 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value4));
+            if (value5 == null && (value5 as Type).IsValueType)
+                throw new ArgumentNullException(nameof(value5));
             return value1 is TValue1 && value2 is TValue2 && value3 is TValue3 && value4 is TValue4 && value5 is TValue5;
         }
 
@@ -1977,11 +2041,16 @@ namespace TCDFx.Collections
 
         void ICollection.CopyTo(Array array, int index)
         {
-            if (array == null) throw new ArgumentNullException(nameof(array));
-            if (array.Rank != 1) throw new ArgumentException("Multi dim not supported");
-            if (array.GetLowerBound(0) != 0) throw new ArgumentException("NonZero lower bound");
-            if ((index < 0) || (index > array.Length)) throw new ArgumentOutOfRangeException("index must be non-negative");
-            if ((array.Length - index) < Count) throw new ArgumentException("Array plus offset too small");
+            if (array == null)
+                throw new ArgumentNullException(nameof(array));
+            if (array.Rank != 1)
+                throw new ArgumentException("Multi dim not supported");
+            if (array.GetLowerBound(0) != 0)
+                throw new ArgumentException("NonZero lower bound");
+            if ((index < 0) || (index > array.Length))
+                throw new ArgumentOutOfRangeException("index must be non-negative");
+            if ((array.Length - index) < Count)
+                throw new ArgumentException("Array plus offset too small");
 
             if (array is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>[] setArray)
                 CopyTo(setArray, index);
@@ -1993,7 +2062,8 @@ namespace TCDFx.Collections
             }
             else
             {
-                if (!(array is object[] objArray)) throw new ArgumentException("Invalid array type");
+                if (!(array is object[] objArray))
+                    throw new ArgumentException("Invalid array type");
                 try
                 {
                     foreach (TKey key in Keys)
@@ -2008,7 +2078,7 @@ namespace TCDFx.Collections
                 }
             }
         }
-    
+
         IEnumerator IEnumerable.GetEnumerator() => Inner.GetEnumerator();
         #endregion IMultiValueDictionary Implementation
 
@@ -2035,8 +2105,10 @@ namespace TCDFx.Collections
 
         void IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>.Add(object key, object value1, object value2, object value3, object value4, object value5)
         {
-            if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
-            if (!VerifyValues(value1, value2, value3, value4, value5)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, value4 must be of type {typeof(TValue4).Name}, and value5 must be of type {typeof(TValue5).Name}.");
+            if (!VerifyKey(key))
+                throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+            if (!VerifyValues(value1, value2, value3, value4, value5))
+                throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, value4 must be of type {typeof(TValue4).Name}, and value5 must be of type {typeof(TValue5).Name}.");
             Add((TKey)key, (TValue1)value1, (TValue2)value2, (TValue3)value3, (TValue4)value4, (TValue5)value5);
         }
 
@@ -2057,8 +2129,10 @@ namespace TCDFx.Collections
             }
             set
             {
-                if (!VerifyKey(key)) throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
-                if (!VerifyValues(value.Value1, value.Value2, value.Value3, value.Value4, value.Value5)) throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, value4 must be of type {typeof(TValue4).Name}, and value5 must be of type {typeof(TValue5).Name}.");
+                if (!VerifyKey(key))
+                    throw new ArgumentException($"key must be of type {typeof(TKey).Name}");
+                if (!VerifyValues(value.Value1, value.Value2, value.Value3, value.Value4, value.Value5))
+                    throw new ArgumentException($"value1 must be of type {typeof(TValue1).Name}, value2 must be of type {typeof(TValue2).Name}, value3 must be of type {typeof(TValue3).Name}, value4 must be of type {typeof(TValue4).Name}, and value5 must be of type {typeof(TValue5).Name}.");
                 this[(TKey)key] = new MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>((TValue1)value.Value1, (TValue2)value.Value2, (TValue3)value.Value3, (TValue4)value.Value4, (TValue5)value.Value5);
             }
         }
