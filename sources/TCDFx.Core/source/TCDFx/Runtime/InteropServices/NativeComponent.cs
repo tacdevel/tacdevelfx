@@ -41,7 +41,7 @@ namespace TCDFx.Runtime.InteropServices
                 if (IsHandleImmutable) throw new ArgumentException("Handle property has already been set.", nameof(value));
 
                 OnPropertyChanging(nameof(Handle));
-                if (!handle.Equals(value))
+                if (handle == null || !handle.Equals(value))
                     handle = value;
                 IsHandleImmutable = true;
                 OnPropertyChanged(nameof(Handle));
