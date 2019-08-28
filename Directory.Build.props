@@ -79,10 +79,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <BaseOutputPath>$(TCDFxProjectBaseBuildPath)bin\</BaseOutputPath>
-    <OutputPath>$(TCDFxProjectBuildPath)</OutputPath>
-    <BaseIntermediateOutputPath>$(TCDFxProjectBaseBuildPath)obj\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)$(Configuration)\</IntermediateOutputPath>
+    <BaseOutputPath>$(TCDFxProjectBuildPath)bin\</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)</OutputPath>
+    <BaseIntermediateOutputPath>$(TCDFxProjectBuildPath)obj\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
 
   <Choose>

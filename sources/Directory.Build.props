@@ -12,7 +12,12 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TCDFxCIBuild)|$(Configuration)|$(TCDFxProjectGroup)' == 'true|Release|sources'">
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(TCDFxProjectBaseBuildPath)\xmldoc\$(TCDFxProjectName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TCDFxCIBuild)|$(Configuration)' == 'true|Release'">
     <Authors>$(TCDFxAuthors)</Authors>
     <Copyright>$(TCDFxCopyright)</Copyright>
     <RepositoryUrl>$(TCDFxUrl)</RepositoryUrl>
@@ -22,7 +27,5 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>$(TCDFxProjectName)</PackageId>
     <PackageProjectUrl>$(TCDFxUrl)</PackageProjectUrl>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>$(TCDFxProjectBaseBuildPath)\xmldoc\$(TCDFxProjectName).xml</DocumentationFile>
   </PropertyGroup>
 </Project>
