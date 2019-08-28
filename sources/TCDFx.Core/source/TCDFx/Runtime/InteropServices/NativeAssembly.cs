@@ -18,10 +18,24 @@ using TCDFx.Runtime.InteropServices.SafeHandles;
 
 namespace TCDFx.Runtime.InteropServices
 {
-    public enum NativeAssemblyLocationType
+    /// <summary>
+    /// The type of a <see cref="NativeAssembly"/>.
+    /// </summary>
+    public enum NativeAssemblyType
     {
+        /// <summary>
+        /// An assembly that is located in a relative folder for is a system assembly.
+        /// </summary>
         Default = 0,
+
+        /// <summary>
+        /// An assembly that is located in a dependency. (i.e. from a nupkg)
+        /// </summary>
         Dependency = 1,
+
+        /// <summary>
+        /// an assembly that is embedded in an assembly as a resource.
+        /// </summary>
         Embedded = 2
     }
 
@@ -34,11 +48,11 @@ namespace TCDFx.Runtime.InteropServices
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeAssembly"/> class.
         /// </summary>
-        /// <param name="flags">The type of location that the assembly is located.</param>
+        /// <param name="type">The type of  assembly.</param>
         /// <param name="names">An ordered list of assembly names to attempt to load.</param>
-        public NativeAssembly(NativeAssemblyLocationType locationType, params string[] names) : base()
+        public NativeAssembly(NativeAssemblyType type, params string[] names) : base()
         {
-            LocationType = locationType;
+            Type = type;
             IntPtr asmHnd = LoadAssembly(names);
             Handle = new SafeAssemblyHandle(asmHnd);
         }
@@ -47,11 +61,11 @@ namespace TCDFx.Runtime.InteropServices
         /// Initializes a new instance of the <see cref="NativeAssembly"/> class.
         /// </summary>
         /// <param name="names">An ordered list of assembly names to attempt to load.</param>
-        public NativeAssembly(params string[] names) : this(NativeAssemblyLocationType.Default, names) { }
+        public NativeAssembly(params string[] names) : this(NativeAssemblyType.Default, names) { }
 
         public event EventHandler<Component, EventArgs> Initialized;
 
-        public NativeAssemblyLocationType LocationType { get; }
+        public NativeAssemblyType Type { get; }
 
         /// <summary>
         /// Loads a function whose signature and name match the given delegate type's signature and name.
@@ -93,22 +107,22 @@ namespace TCDFx.Runtime.InteropServices
 
         private IEnumerable<string> EnumerateLoadTargets(string name)
         {
-            switch (LocationType)
+            switch (Type)
             {
-                case NativeAssemblyLocationType.Dependency:
+                case NativeAssemblyType.Dependency:
                     if (TryLocateNativeAssetFromDeps(name, out string appLocalNativePath, out string depsResolvedPath))
                     {
                         yield return appLocalNativePath;
                         yield return depsResolvedPath;
                     }
                     break;
-                case NativeAssemblyLocationType.Embedded:
+                case NativeAssemblyType.Embedded:
                     if (TryExtractEmbeddedAssembly(name, out string embeddedResolvedPath))
                     {
                         yield return embeddedResolvedPath;
                     }
                     break;
-                case NativeAssemblyLocationType.Default:
+                case NativeAssemblyType.Default:
                 default:
                     yield return Path.Combine(AppContext.BaseDirectory, name);
                     yield return name;
