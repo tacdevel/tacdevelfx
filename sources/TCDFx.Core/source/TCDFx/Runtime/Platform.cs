@@ -82,7 +82,7 @@ namespace TCDFx.Runtime
                 else
                     Architecture = Enum.TryParse(ridParts[1], true, out PlatformArch arch) ? arch : PlatformArch.Unknown;
 
-                RuntimeID = pRIDEnv;
+                RuntimeID = pRIDEnv.ToLowerInvariant();
             }
             else
             {
@@ -234,7 +234,7 @@ namespace TCDFx.Runtime
             return (PlatformOS.FreeBSD, new Version(0, 0));
         }
 
-        private static string GetRIDArch() => Architecture == PlatformArch.ARM32 ? "-arm" : $"-{Architecture}";
+        private static string GetRIDArch() => Architecture == PlatformArch.ARM32 ? "-arm" : $"-{Architecture.ToString().ToLowerInvariant()}";
 
         private static string GetRIDVersion()
         {
