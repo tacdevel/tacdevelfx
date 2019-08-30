@@ -19,6 +19,7 @@ namespace TCDFx.Collections
     /// <typeparam name="TKey">The type of the keys in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2}"/>.</typeparam>
     /// <typeparam name="TValue1">The type of the first values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2}"/>.</typeparam>
     /// <typeparam name="TValue2">The type of the second values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2}"/>.</typeparam>
+    [Serializable]
     public class MultiValueDictionary<TKey, TValue1, TValue2> : IMultiValueDictionary, IMultiValueDictionary<TKey, TValue1, TValue2>, ISerializable, IDeserializationCallback
     {
         private KeyCollection keys;
@@ -180,7 +181,7 @@ namespace TCDFx.Collections
             if (array == null)
                 throw new ArgumentNullException(nameof(array));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException("index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), "index must be non-negative");
             if ((array.Length - index) < Count)
                 throw new ArgumentException("Array plus offset too small");
 
@@ -385,7 +386,7 @@ namespace TCDFx.Collections
         /// <summary>
         /// Enumerates the elements of a <see cref="MultiValueDictionary{TKey, TValue1, TValue2}"/>.
         /// </summary>
-        [Serializable, StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         public struct Enumerator : IDictionaryEnumerator, IEnumerator<KeyMultiValueSet<TKey, TValue1, TValue2>>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2>>.Enumerator enumerator;
@@ -435,7 +436,6 @@ namespace TCDFx.Collections
         /// <summary>
         /// Represents the collection of keys in a <see cref="MultiValueDictionary{TKey, TValue1, TValue2}"/>.
         /// </summary>
-        [Serializable]
         public sealed class KeyCollection : ICollection, ICollection<TKey>, IEnumerable<TKey>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2>>.KeyCollection keyCollection;
@@ -481,7 +481,7 @@ namespace TCDFx.Collections
             /// <summary>
             /// Enumerates the elements of a <see cref="KeyCollection"/>.
             /// </summary>
-            [Serializable, StructLayout(LayoutKind.Sequential)]
+            [StructLayout(LayoutKind.Sequential)]
             public struct Enumerator : IEnumerator<TKey>
             {
                 private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2>>.Enumerator enumerator;
@@ -515,7 +515,6 @@ namespace TCDFx.Collections
         /// <summary>
         /// Represents the collection of values in a <see cref="MultiValueDictionary{TKey, TValue1, TValue2}"/>.
         /// </summary>
-        [Serializable]
         public sealed class ValueCollection : ICollection, ICollection<MultiObjectContainer<TValue1, TValue2>>, IEnumerable<MultiObjectContainer<TValue1, TValue2>>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2>>.ValueCollection valueCollection;
@@ -560,7 +559,7 @@ namespace TCDFx.Collections
             /// <summary>
             /// Enumerates the elements of a <see cref="ValueCollection"/>.
             /// </summary>
-            [Serializable, StructLayout(LayoutKind.Sequential)]
+            [StructLayout(LayoutKind.Sequential)]
             public struct Enumerator : IEnumerator<MultiObjectContainer<TValue1, TValue2>>
             {
                 private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2>>.Enumerator enumerator;
@@ -599,6 +598,7 @@ namespace TCDFx.Collections
     /// <typeparam name="TValue1">The type of the first values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3}"/>.</typeparam>
     /// <typeparam name="TValue2">The type of the second values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3}"/>.</typeparam>
     /// <typeparam name="TValue3">The type of the third values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3}"/>.</typeparam>
+    [Serializable]
     public class MultiValueDictionary<TKey, TValue1, TValue2, TValue3> :
         IMultiValueDictionary, IMultiValueDictionary<TKey, TValue1, TValue2, TValue3>, ISerializable, IDeserializationCallback
     {
@@ -973,7 +973,7 @@ namespace TCDFx.Collections
         /// <summary>
         /// Enumerates the elements of a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3}"/>.
         /// </summary>
-        [Serializable, StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         public struct Enumerator : IDictionaryEnumerator, IEnumerator<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3>>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3>>.Enumerator enumerator;
@@ -1023,7 +1023,6 @@ namespace TCDFx.Collections
         /// <summary>
         /// Represents the collection of keys in a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3}"/>.
         /// </summary>
-        [Serializable]
         public sealed class KeyCollection : ICollection, ICollection<TKey>, IEnumerable<TKey>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3>>.KeyCollection keyCollection;
@@ -1069,7 +1068,7 @@ namespace TCDFx.Collections
             /// <summary>
             /// Enumerates the elements of a <see cref="KeyCollection"/>.
             /// </summary>
-            [Serializable, StructLayout(LayoutKind.Sequential)]
+            [StructLayout(LayoutKind.Sequential)]
             public struct Enumerator : IEnumerator<TKey>
             {
                 private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3>>.Enumerator enumerator;
@@ -1103,7 +1102,6 @@ namespace TCDFx.Collections
         /// <summary>
         /// Represents the collection of values in a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3}"/>.
         /// </summary>
-        [Serializable]
         public sealed class ValueCollection : ICollection, ICollection<MultiObjectContainer<TValue1, TValue2, TValue3>>, IEnumerable<MultiObjectContainer<TValue1, TValue2, TValue3>>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3>>.ValueCollection valueCollection;
@@ -1148,7 +1146,7 @@ namespace TCDFx.Collections
             /// <summary>
             /// Enumerates the elements of a <see cref="ValueCollection"/>.
             /// </summary>
-            [Serializable, StructLayout(LayoutKind.Sequential)]
+            [StructLayout(LayoutKind.Sequential)]
             public struct Enumerator : IEnumerator<MultiObjectContainer<TValue1, TValue2, TValue3>>
             {
                 private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3>>.Enumerator enumerator;
@@ -1188,6 +1186,7 @@ namespace TCDFx.Collections
     /// <typeparam name="TValue2">The type of the second values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</typeparam>
     /// <typeparam name="TValue3">The type of the third values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</typeparam>
     /// <typeparam name="TValue4">The type of the fourth values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.</typeparam>
+    [Serializable]
     public class MultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4> :
         IMultiValueDictionary, IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4>, ISerializable, IDeserializationCallback
     {
@@ -1569,7 +1568,7 @@ namespace TCDFx.Collections
         /// <summary>
         /// Enumerates the elements of a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
         /// </summary>
-        [Serializable, StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         public struct Enumerator : IDictionaryEnumerator, IEnumerator<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>.Enumerator enumerator;
@@ -1619,7 +1618,6 @@ namespace TCDFx.Collections
         /// <summary>
         /// Represents the collection of keys in a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
         /// </summary>
-        [Serializable]
         public sealed class KeyCollection : ICollection, ICollection<TKey>, IEnumerable<TKey>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>.KeyCollection keyCollection;
@@ -1665,7 +1663,7 @@ namespace TCDFx.Collections
             /// <summary>
             /// Enumerates the elements of a <see cref="KeyCollection"/>.
             /// </summary>
-            [Serializable, StructLayout(LayoutKind.Sequential)]
+            [StructLayout(LayoutKind.Sequential)]
             public struct Enumerator : IEnumerator<TKey>
             {
                 private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>.Enumerator enumerator;
@@ -1699,7 +1697,6 @@ namespace TCDFx.Collections
         /// <summary>
         /// Represents the collection of values in a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4}"/>.
         /// </summary>
-        [Serializable]
         public sealed class ValueCollection : ICollection, ICollection<MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>, IEnumerable<MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>.ValueCollection valueCollection;
@@ -1744,7 +1741,7 @@ namespace TCDFx.Collections
             /// <summary>
             /// Enumerates the elements of a <see cref="ValueCollection"/>.
             /// </summary>
-            [Serializable, StructLayout(LayoutKind.Sequential)]
+            [StructLayout(LayoutKind.Sequential)]
             public struct Enumerator : IEnumerator<MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>
             {
                 private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>>.Enumerator enumerator;
@@ -1785,6 +1782,7 @@ namespace TCDFx.Collections
     /// <typeparam name="TValue3">The type of the third values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
     /// <typeparam name="TValue4">The type of the fourth values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
     /// <typeparam name="TValue5">The type of the fifth values in the <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.</typeparam>
+    [Serializable]
     public class MultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> :
         IMultiValueDictionary, IMultiValueDictionary<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>, ISerializable, IDeserializationCallback
     {
@@ -2173,7 +2171,7 @@ namespace TCDFx.Collections
         /// <summary>
         /// Enumerates the elements of a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
         /// </summary>
-        [Serializable, StructLayout(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         public struct Enumerator : IDictionaryEnumerator, IEnumerator<KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>.Enumerator enumerator;
@@ -2223,7 +2221,6 @@ namespace TCDFx.Collections
         /// <summary>
         /// Represents the collection of keys in a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
         /// </summary>
-        [Serializable]
         public sealed class KeyCollection : ICollection, ICollection<TKey>, IEnumerable<TKey>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>.KeyCollection keyCollection;
@@ -2269,7 +2266,7 @@ namespace TCDFx.Collections
             /// <summary>
             /// Enumerates the elements of a <see cref="KeyCollection"/>.
             /// </summary>
-            [Serializable, StructLayout(LayoutKind.Sequential)]
+            [StructLayout(LayoutKind.Sequential)]
             public struct Enumerator : IEnumerator<TKey>
             {
                 private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>.Enumerator enumerator;
@@ -2303,7 +2300,6 @@ namespace TCDFx.Collections
         /// <summary>
         /// Represents the collection of values in a <see cref="MultiValueDictionary{TKey, TValue1, TValue2, TValue3, TValue4, TValue5}"/>.
         /// </summary>
-        [Serializable]
         public sealed class ValueCollection : ICollection, ICollection<MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>, IEnumerable<MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>
         {
             private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>.ValueCollection valueCollection;
@@ -2348,7 +2344,7 @@ namespace TCDFx.Collections
             /// <summary>
             /// Enumerates the elements of a <see cref="ValueCollection"/>.
             /// </summary>
-            [Serializable, StructLayout(LayoutKind.Sequential)]
+            [StructLayout(LayoutKind.Sequential)]
             public struct Enumerator : IEnumerator<MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>
             {
                 private readonly Dictionary<TKey, MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>>.Enumerator enumerator;
