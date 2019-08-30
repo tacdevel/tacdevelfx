@@ -251,7 +251,7 @@ namespace TCDFx.Runtime.InteropServices
             return false;
         }
 
-        private string GuessFallbackRID(string actualRuntimeIdentifier)
+        private static string GuessFallbackRID(string actualRuntimeIdentifier)
         {
             if (actualRuntimeIdentifier == "osx.10.13-x64")
                 return "osx.10.12-x64";
@@ -261,7 +261,7 @@ namespace TCDFx.Runtime.InteropServices
             return null;
         }
 
-        private bool AddFallbacks(List<string> fallbacks, string rid, IReadOnlyList<RuntimeFallbacks> allFallbacks)
+        private static bool AddFallbacks(List<string> fallbacks, string rid, IReadOnlyList<RuntimeFallbacks> allFallbacks)
         {
             foreach (RuntimeFallbacks fb in allFallbacks)
             {
@@ -277,7 +277,7 @@ namespace TCDFx.Runtime.InteropServices
 
         private string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
 
-        private string GetUserDirectory() => Platform.PlatformType == PlatformType.Windows ? Environment.GetEnvironmentVariable("USERPROFILE") : Environment.GetEnvironmentVariable("HOME");
+        private static string GetUserDirectory() => Platform.PlatformType == PlatformType.Windows ? Environment.GetEnvironmentVariable("USERPROFILE") : Environment.GetEnvironmentVariable("HOME");
 
         private static bool TryExtractEmbeddedAssembly(string name, out string embeddedResolvedPath)
         {
