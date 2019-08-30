@@ -13,6 +13,8 @@ namespace TCDFx
     /// </summary>
     public abstract class Disposable : IDisposableEx
     {
+        protected Disposable() => IsDisposed = false;
+
         ~Disposable() => Dispose(false);
 
         /// <inheritdoc />
@@ -20,6 +22,8 @@ namespace TCDFx
 
         /// <inheritdoc />
         public event EventHandler<Disposable, EventArgs> Disposed;
+
+        public bool IsDisposed { get; private set; }
 
         /// <summary>
         /// Performs tasks associated with freeing, releasing, or resetting unmanaged resources.
@@ -78,6 +82,7 @@ namespace TCDFx
             if (disposing)
                 ReleaseManagedResources();
             ReleaseUnmanagedResources();
+            IsDisposed = true;
             OnDisposed();
         }
     }
