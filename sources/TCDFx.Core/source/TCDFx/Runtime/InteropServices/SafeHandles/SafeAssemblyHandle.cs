@@ -33,7 +33,7 @@ namespace TCDFx.Runtime.InteropServices.SafeHandles
             try
             {
                 if (handle == IntPtr.Zero)
-                    throw new InvalidHandleException();
+                    throw new InvalidHandleException("An invalid handle cannot be released.");
 
                 switch (Platform.PlatformType)
                 {

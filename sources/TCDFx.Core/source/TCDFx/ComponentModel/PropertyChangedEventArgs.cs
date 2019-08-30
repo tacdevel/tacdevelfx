@@ -9,7 +9,7 @@ using System;
 namespace TCDFx.ComponentModel
 {
     /// <summary>
-    /// Provides data for the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.
+    /// Provides data for the <see cref="IComponent.PropertyChanged"/> event.
     /// </summary>
     public class PropertyChangedEventArgs : EventArgs
     {

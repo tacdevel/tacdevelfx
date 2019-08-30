@@ -14,10 +14,19 @@ namespace TCDFx.ComponentModel
     public interface IComponent : IDisposableEx
     {
         /// <summary>
-        /// Gets or sets the name of this component.
+        /// Occurs when a property value changes.
         /// </summary>
-        /// <value>The name of this component.</value>
-        string Name { get; }
+        event EventHandler<Component, PropertyChangedEventArgs> PropertyChanged;
+
+        /// <summary>
+        /// Occurs when a property value is changing.
+        /// </summary>
+        event EventHandler<Component, PropertyChangingEventArgs> PropertyChanging;
+
+        /// <summary>
+        /// Gets the unique identifier (UID) for this component.
+        /// </summary>
+        Guid UID { get; }
 
         /// <summary>
         /// Gets a value indicating whether this component is invalid.

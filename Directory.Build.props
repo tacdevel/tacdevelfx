@@ -94,7 +94,7 @@
         <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
       </PropertyGroup>
     </When>
-    <When Condition="'$(Configuration)' == 'Release' OR '$(Configuration)' == 'Publish'">
+    <When Condition="'$(Configuration)' == 'Release'">
       <PropertyGroup>
         <Optimize>true</Optimize>
         <DebugSymbols>false</DebugSymbols>

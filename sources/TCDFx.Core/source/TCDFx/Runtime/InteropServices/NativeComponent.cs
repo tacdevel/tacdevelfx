@@ -6,6 +6,7 @@
 
 using System;
 using TCDFx.ComponentModel;
+using TCDFx.Resources;
 
 namespace TCDFx.Runtime.InteropServices
 {
@@ -13,17 +14,14 @@ namespace TCDFx.Runtime.InteropServices
     /// Provides the base implementation of the <see cref="INativeComponent{T}"/> interface.
     /// </summary>
     /// <typeparam name="T">The type of handle.</typeparam>
-    public abstract class NativeComponent<T> : Component, IEquatable<NativeComponent<T>>, INativeComponent<T>, INotifyInitializing
+    public abstract class NativeComponent<T> : Component, IEquatable<NativeComponent<T>>, INativeComponent<T>
     {
         private T handle = default;
 
         /// <summary>
         /// Initializes a new instance if the <see cref="NativeComponent{T}"/> class.
         /// </summary>
-        protected internal NativeComponent() : base() => OnInitializing();
-
-        /// <inheritdoc />
-        public event EventHandler<Component, EventArgs> Initializing;
+        protected internal NativeComponent() : base() { }
 
         /// <summary>
         /// Gets a value determining if <see cref="Handle"/> is immutable.
@@ -38,9 +36,9 @@ namespace TCDFx.Runtime.InteropServices
             protected internal set
             {
                 if (value == null)
-                    throw new ArgumentNullException(nameof(value));
+                    throw new ArgumentNullException(nameof(value), Strings.NativeComponentSetHandleNull);
                 if (IsHandleImmutable)
-                    throw new ArgumentException("Handle property has already been set.", nameof(value));
+                    throw new ArgumentException(Strings.NativeComponentSetHandleImmutable, nameof(value));
 
                 OnPropertyChanging(nameof(Handle));
                 if (handle == null || !handle.Equals(value))
@@ -52,9 +50,6 @@ namespace TCDFx.Runtime.InteropServices
 
         /// <inheritdoc />
         public abstract override bool IsInvalid { get; }
-
-        /// <inheritdoc />
-        protected virtual void OnInitializing() => Initializing?.Invoke(this, EventArgs.Empty);
 
         /// <inheritdoc />
         public bool Equals(NativeComponent<T> component) => Handle.Equals(component.Handle);

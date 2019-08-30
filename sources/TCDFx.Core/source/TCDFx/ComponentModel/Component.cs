@@ -5,23 +5,28 @@
  **************************************************************************************************/
 
 using System;
-using TCDFx.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace TCDFx.ComponentModel
 {
     /// <summary>
     /// Provides the base implementation for the <see cref="IComponent"/> interface.
     /// </summary>
-    public abstract class Component : Disposable, IComponent, INotifyPropertyChanged, INotifyPropertyChanging
+    public abstract class Component : Disposable, IComponent
     {
-        private string name = null;
-        private bool isNameImmutable = false;
-        internal static readonly MultiValueDictionary<string, Type, Component> Cache = new MultiValueDictionary<string, Type, Component>();
+        private static readonly Dictionary<Guid, IComponent> componentCache = new Dictionary<Guid, IComponent>();
 
+#nullable enable
         /// <summary>
         /// Initializes a new instance if the <see cref="Component"/> class.
         /// </summary>
-        protected internal Component() { }
+        protected Component()
+        {
+            UID = GenerateNewUID();
+            componentCache.Add(UID, this);
+        }
+#nullable disable
 
         /// <inheritdoc />
         public event EventHandler<Component, PropertyChangedEventArgs> PropertyChanged;
@@ -30,26 +35,7 @@ namespace TCDFx.ComponentModel
         public event EventHandler<Component, PropertyChangingEventArgs> PropertyChanging;
 
         /// <inheritdoc />
-        public virtual string Name
-        {
-            get => name;
-            protected set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentNullException(nameof(value));
-                if (isNameImmutable)
-                    throw new ArgumentException("Name property has already been set.", nameof(value));
-                if (Cache.ContainsKey(value))
-                    throw new DuplicateComponentException($"The component '{value}' has already been created.");
-
-                OnPropertyChanging(nameof(Name));
-                if (name != value)
-                    name = value;
-                isNameImmutable = true;
-                Cache.Add(Name, GetType(), this);
-                OnPropertyChanged(nameof(Name));
-            }
-        }
+        public Guid UID { get; }
 
         /// <inheritdoc />
         public abstract bool IsInvalid { get; }
@@ -61,18 +47,36 @@ namespace TCDFx.ComponentModel
         protected virtual void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         /// <summary>
-        /// Raises the <see cref="OnPropertyChanging"/> event.
+        /// Raises the <see cref="PropertyChanging"/> event.
         /// </summary>
-        /// <param name="propertyName">The name of the property that changed.</param>
+        /// <param name="propertyName">The name of the property that is changing.</param>
         protected virtual void OnPropertyChanging(string propertyName) => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
 
         /// <inheritdoc />
         protected override void ReleaseManagedResources()
         {
-            if (!IsInvalid && name != null)
-                if (Cache.ContainsKey(Name))
-                    Cache.Remove(Name);
+            if (!IsInvalid && componentCache.ContainsKey(UID))
+                componentCache.Remove(UID);
             base.ReleaseManagedResources();
+        }
+
+        internal static void UpdateComponentInCache(Guid uid, Component component)
+        {
+            if (componentCache.ContainsKey(uid) && componentCache[uid] != component)
+                componentCache[uid] = component;
+        }
+
+        private static Guid GenerateNewUID()
+        {
+            Guid uid = Guid.Empty;
+            while (uid == Guid.Empty || componentCache.ContainsKey(uid))
+            {
+                byte[] bytes = new byte[16];
+                using (RNGCryptoServiceProvider uidGenerator = new RNGCryptoServiceProvider())
+                    uidGenerator.GetBytes(bytes);
+                uid = new Guid(bytes);
+            }
+            return uid;
         }
     }
 }

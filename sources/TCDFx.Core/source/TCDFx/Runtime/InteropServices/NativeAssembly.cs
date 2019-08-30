@@ -43,7 +43,7 @@ namespace TCDFx.Runtime.InteropServices
     /// Represents a native (shared) assembly.
     /// </summary>
     [SuppressUnmanagedCodeSecurity]
-    public class NativeAssembly : SafeNativeComponent<SafeAssemblyHandle>, INativeComponent<SafeAssemblyHandle>, INotifyInitialized
+    public class NativeAssembly : SafeNativeComponent<SafeAssemblyHandle>, INativeComponent<SafeAssemblyHandle>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeAssembly"/> class.
@@ -151,10 +151,7 @@ namespace TCDFx.Runtime.InteropServices
                         {
                             IntPtr ret2 = LoadAssembly(loadTarget);
                             if (ret2 != IntPtr.Zero)
-                            {
                                 ret = ret2;
-                                Name = Path.GetFileNameWithoutExtension(loadTarget);
-                            }
                         }
                     }
                 }

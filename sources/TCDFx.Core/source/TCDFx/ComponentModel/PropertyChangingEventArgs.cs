@@ -9,12 +9,12 @@ using System;
 namespace TCDFx.ComponentModel
 {
     /// <summary>
-    /// Provides data for the <see cref="INotifyPropertyChanging.PropertyChanging"/> event.
+    /// Provides data for the <see cref="IComponent.PropertyChanging"/> event.
     /// </summary>
     public class PropertyChangingEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InitializedEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="PropertyChangingEventArgs"/> class.
         /// </summary>
         /// <param name="propertyName">The name of the property whose value is changing.</param>
         public PropertyChangingEventArgs(string propertyName) => PropertyName = propertyName;
