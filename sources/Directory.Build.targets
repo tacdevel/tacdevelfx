@@ -18,7 +18,23 @@
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>$(TCDFxProjectName).Tests</_Parameter1>
     </AssemblyAttribute>
+  </ItemGroup>
+  
+  <ItemGroup>
     <Compile Include="$(TCDFxProjectGroupPath)AssemblyInfo.cs" />
+    <Compile Include="$(TCDFxProjectPath)resources\**\*.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>$(TCDFxProjectPath)resources\**\*.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Include="$(TCDFxProjectPath)resources\**\*.resx">
+      <CustomToolNamespace>TCDFx.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>$(TCDFxProjectPath)resources\**\*.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))" />
