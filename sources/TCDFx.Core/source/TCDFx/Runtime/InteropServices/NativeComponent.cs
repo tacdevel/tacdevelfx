@@ -6,7 +6,6 @@
 
 using System;
 using TCDFx.ComponentModel;
-using TCDFx.Resources;
 
 namespace TCDFx.Runtime.InteropServices
 {
@@ -36,9 +35,9 @@ namespace TCDFx.Runtime.InteropServices
             protected internal set
             {
                 if (value == null)
-                    throw new ArgumentNullException(nameof(value), Strings.NativeComponentSetHandleNull);
+                    throw new ArgumentNullException(nameof(value), "A handle cannot be set to 'null'.");
                 if (IsHandleImmutable)
-                    throw new ArgumentException(Strings.NativeComponentSetHandleImmutable, nameof(value));
+                    throw new ArgumentException("A handle cannot be changed once it is set.", nameof(value));
 
                 OnPropertyChanging(nameof(Handle));
                 if (handle == null || !handle.Equals(value))

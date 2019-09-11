@@ -6,7 +6,7 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <!-- This doesn't work because of https://github.com/microsoft/msbuild/issues/2281 -->
+    <!--TODO: This doesn't work because of https://github.com/microsoft/msbuild/issues/2281 -->
     <!--
         <AssemblyAttribute Include="System.CLSCompliant">
           <_Parameter1>true</_Parameter1>
@@ -22,19 +22,6 @@
   
   <ItemGroup>
     <Compile Include="$(TCDFxProjectGroupPath)AssemblyInfo.cs" />
-    <Compile Include="$(TCDFxProjectPath)resources\**\*.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>$(TCDFxProjectPath)resources\**\*.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <EmbeddedResource Include="$(TCDFxProjectPath)resources\**\*.resx">
-      <CustomToolNamespace>TCDFx.Resources</CustomToolNamespace>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>$(TCDFxProjectPath)resources\**\*.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))" />
