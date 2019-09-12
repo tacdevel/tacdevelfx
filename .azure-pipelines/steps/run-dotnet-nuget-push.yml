@@ -16,7 +16,7 @@ steps:
   continueOnError: false
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\pkg\*.nupkg'
+    packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\Release\pkg\*.nupkg'
     nugetFeedType: 'external'
     publishPackageMetadata: false
     publishFeedCredentials: 'TCDFxMyGetFeed'
@@ -28,7 +28,7 @@ steps:
   continueOnError: false
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\pkg\*.nupkg'
+    packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/Release/pkg/*.nupkg'
     nugetFeedType: 'external'
     publishPackageMetadata: false
     publishFeedCredentials: 'TCDFxMyGetFeed'
@@ -40,7 +40,7 @@ steps:
   continueOnError: false
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/pkg/*.nupkg'
+    packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\Release\pkg\*.nupkg'
     nugetFeedType: 'external'
     publishPackageMetadata: false
     publishFeedCredentials: 'TCDFxNuGetFeed'
@@ -52,7 +52,7 @@ steps:
   continueOnError: false
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/pkg/*.nupkg'
+    packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/Release/pkg/*.nupkg'
     nugetFeedType: 'external'
     publishPackageMetadata: false
     publishFeedCredentials: 'TCDFxNuGetFeed'
