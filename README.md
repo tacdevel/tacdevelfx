@@ -94,10 +94,10 @@ CI builds are available on our [MyGet feed](https://www.myget.org/feed/Details/t
 
 [Versions.TCDFxCore.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.Core.svg?color=blue&label=Stable&logo=nuget
 [Versions.TCDFxCore.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.Core.svg?color=orange&label=Preview&logo=nuget
-[Versions.TCDFxCore.CIBuild.Badge]: https://img.shields.io/myget/tcdfx-build/vpre/TCDFx.Core.svg?color=lightgrey&label=CIBuild&logo=nuget
+[Versions.TCDFxCore.CIBuild.Badge]: https://img.shields.io/myget/tcdfx/vpre/TCDFx.Core.svg?color=lightgrey&label=CIBuild&logo=nuget
 [Versions.TCDFxUI.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.UI.svg?color=blue&label=Stable&logo=nuget
 [Versions.TCDFxUI.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.UI.svg?color=orange&label=Preview&logo=nuget
-[Versions.TCDFxUI.CIBuild.Badge]: https://img.shields.io/myget/tcdfx-build/vpre/TCDFx.UI.svg?color=lightgrey&label=CIBuild&logo=nuget
+[Versions.TCDFxUI.CIBuild.Badge]: https://img.shields.io/myget/tcdfx/vpre/TCDFx.UI.svg?color=lightgrey&label=CIBuild&logo=nuget
 
 <!--TODO: Package Links -->
 
