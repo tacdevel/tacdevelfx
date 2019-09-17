@@ -14,7 +14,7 @@ namespace TCDFx.ComponentModel
     public interface IComponent : IDisposableEx
     {
         /// <summary>
-        /// Occurs when a property value changes.
+        /// Occurs when a property value is changed.
         /// </summary>
         event EventHandler<Component, PropertyChangedEventArgs> PropertyChanged;
 

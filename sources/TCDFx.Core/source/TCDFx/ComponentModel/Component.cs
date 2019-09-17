@@ -28,16 +28,25 @@ namespace TCDFx.ComponentModel
         }
 #nullable disable
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Occurs when a property value is changed.
+        /// </summary>
         public event EventHandler<Component, PropertyChangedEventArgs> PropertyChanged;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Occurs when a property value is changing.
+        /// </summary>
         public event EventHandler<Component, PropertyChangingEventArgs> PropertyChanging;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets the unique identifier (UID) for this component.
+        /// </summary>
         public Guid UID { get; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets a value indicating whether this component is invalid.
+        /// </summary>
+        /// <value><c>true</c> if this component is invalid; otherwise, <c>false</c>.</value>
         public abstract bool IsInvalid { get; }
 
         /// <summary>
@@ -52,7 +61,9 @@ namespace TCDFx.ComponentModel
         /// <param name="propertyName">The name of the property that is changing.</param>
         protected virtual void OnPropertyChanging(string propertyName) => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Performs tasks associated with freeing, releasing, or resetting managed resources.
+        /// </summary>
         protected override void ReleaseManagedResources()
         {
             if (!IsInvalid && componentCache.ContainsKey(UID))

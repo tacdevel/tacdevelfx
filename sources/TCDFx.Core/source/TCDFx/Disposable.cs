@@ -13,16 +13,26 @@ namespace TCDFx
     /// </summary>
     public abstract class Disposable : IDisposableEx
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Disposable"/> class.
+        /// </summary>
         protected Disposable() => IsDisposed = false;
 
         ~Disposable() => Dispose(false);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Occurs when an object is disposing.
+        /// </summary>
         public event EventHandler<Disposable, EventArgs> Disposing;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Occurs when an object is disposed.
+        /// </summary>
         public event EventHandler<Disposable, EventArgs> Disposed;
 
+        /// <summary>
+        /// Determines whether this object is disposed.
+        /// </summary>
         public bool IsDisposed { get; private set; }
 
         /// <summary>
@@ -34,7 +44,11 @@ namespace TCDFx
             GC.SuppressFinalize(this);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Safely performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources, invoking the specified action in the event of an exception.
+        /// </summary>
+        /// <param name="exceptionHandler">The action to be invoked in the event of an exception.</param>
+        /// <returns><c>true</c> if properly disposed; otherwise, <c>false</c>.</returns>
         public bool SafeDispose(Action<Exception> exceptionHandler = null)
         {
             if (this == null)
