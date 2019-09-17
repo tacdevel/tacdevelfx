@@ -11,10 +11,8 @@ namespace TCDFx.Runtime
     /// <summary>
     /// Contains information about a platform.
     /// </summary>
-    public sealed class PlatformInfo
+    public readonly struct PlatformInfo
     {
-        private PlatformInfo() { }
-
         internal PlatformInfo(PlatformArch arch, PlatformType platform, PlatformOS os, Version version, string rid)
         {
             Architecture = arch;
