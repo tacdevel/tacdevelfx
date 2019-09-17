@@ -18,8 +18,7 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\Release\pkg\*.nupkg'
     nugetFeedType: 'external'
-    publishPackageMetadata: false
-    publishFeedCredentials: 'TCDFxMyGetFeed'
+    externalEndPoint: 'TCDFxMyGetFeed'
 
 - task: DotNetCoreCLI@2
   condition: and(ne( variables['Agent.OS'], 'Windows_NT' ), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
@@ -30,8 +29,7 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/Release/pkg/*.nupkg'
     nugetFeedType: 'external'
-    publishPackageMetadata: false
-    publishFeedCredentials: 'TCDFxMyGetFeed'
+    externalEndPoint: 'TCDFxMyGetFeed'
 
 - task: DotNetCoreCLI@2
   condition: and(eq( variables['Agent.OS'], 'Windows_NT' ), startsWith(variables['Build.SourceBranch'], 'ref/tags/v'))
@@ -42,8 +40,7 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\Release\pkg\*.nupkg'
     nugetFeedType: 'external'
-    publishPackageMetadata: false
-    publishFeedCredentials: 'TCDFxNuGetFeed'
+    externalEndPoint: 'TCDFxNuGetFeed'
 
 - task: DotNetCoreCLI@2
   condition: and(ne( variables['Agent.OS'], 'Windows_NT' ), startsWith(variables['Build.SourceBranch'], 'ref/tags/v'))
@@ -54,5 +51,4 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/Release/pkg/*.nupkg'
     nugetFeedType: 'external'
-    publishPackageMetadata: false
-    publishFeedCredentials: 'TCDFxNuGetFeed'
+    externalEndPoint: 'TCDFxNuGetFeed'
