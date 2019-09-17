@@ -138,6 +138,46 @@ namespace TCDFx.Runtime
         /// </summary>
         public static string GenericRuntimeID { get; }
 
+        /// <summary>
+        /// Determines whether the current operating system is a Windows-based operating system.
+        /// </summary>
+        public static bool IsWindows => PlatformType == PlatformType.Windows;
+
+        /// <summary>
+        /// Determines whether the current operating system is a macOS-based operating system.
+        /// </summary>
+        public static bool IsMacOS => PlatformType == PlatformType.MacOS;
+
+        /// <summary>
+        /// Determines whether the current operating system is a Linux-based operating system.
+        /// </summary>
+        public static bool IsLinux => PlatformType == PlatformType.Linux;
+
+        /// <summary>
+        /// Determines whether the current operating system is a FreeBSD-based operating system.
+        /// </summary>
+        public static bool IsFreeBSD => PlatformType == PlatformType.FreeBSD;
+
+        /// <summary>
+        /// Determines whether the current operating system is a 32-bit operating system.
+        /// </summary>
+        public static bool Is32Bit => Architecture == PlatformArch.X86;
+
+        /// <summary>
+        /// Determines whether the current operating system is a 64-bit operating system.
+        /// </summary>
+        public static bool Is64Bit => Architecture == PlatformArch.X64;
+
+        /// <summary>
+        /// Determines whether the current operating system is a 32-bit ARM operating system.
+        /// </summary>
+        public static bool IsARM32 => Architecture == PlatformArch.ARM32;
+
+        /// <summary>
+        /// Determines whether the current operating system is a 64-bit ARM operating system.
+        /// </summary>
+        public static bool IsARM64 => Architecture == PlatformArch.ARM64;
+
         private static (PlatformOS OS, Version Version) GetWindowsInfo()
         {
             Ntdll.RTL_OSVERSIONINFOEX osvi = new Native.Ntdll.RTL_OSVERSIONINFOEX();
