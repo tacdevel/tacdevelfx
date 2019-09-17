@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.Build.Traversal" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ProjectReference Include="TCDFx.*\TCDFx.*.csproj" />
+    <ProjectReference Include="TCDFx.Core\TCDFx.Core.csproj" />
+    <ProjectReference Include="TCDFx.UI\TCDFx.UI.csproj" />
   </ItemGroup>
 </Project>

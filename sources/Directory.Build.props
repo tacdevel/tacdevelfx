@@ -17,7 +17,7 @@
     <DocumentationFile>$(TCDFxProjectBuildPath)\xmldoc\$(TCDFxProjectName).xml</DocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(TCDFxCIBuild)|$(Configuration)' == 'true|Release'">
+  <PropertyGroup Condition="('$(TCDFxIsCIBuild)|$(Configuration)' == 'true|Release')">
     <Authors>$(TCDFxAuthors)</Authors>
     <Copyright>$(TCDFxCopyright)</Copyright>
     <RepositoryUrl>$(TCDFxUrl)</RepositoryUrl>

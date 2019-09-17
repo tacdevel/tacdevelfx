@@ -1,5 +1,11 @@
 <Project Sdk="Microsoft.Build.Traversal" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ProjectReference Include="*Example\*Example.csproj" />
+    <ProjectReference Include="ControlGalleryExample\ControlGalleryExample.csproj" />
+    <!--<ProjectReference Include="DisposableExample\DisposableExample.csproj" />-->
+    <!--<ProjectReference Include="MultiValueDictionaryExample\MultiValueDictionaryExample.csproj" />-->
+    <ProjectReference Include="NativeAssemblyExample\NativeAssemblyExample.csproj" />
+    <ProjectReference Include="PlatformExample\PlatformExample.csproj" />
+    <ProjectReference Include="SimpleWindowExample\SimpleWindowExample.csproj" />
+    <ProjectReference Include="SimpleWindowWithMenuExample\SimpleWindowWithMenuExample.csproj" />
   </ItemGroup>
 </Project>
