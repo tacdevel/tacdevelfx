@@ -75,7 +75,7 @@ We use [Azure Pipelines][AzurePipelines.Link] for our CI builds. Although we cur
 
 ### Current Packages
 
-`TCDFx.UI`, although being built by the CI, will not have any packages released to NuGet or MyGet because the API in [andlabs/libui](https://github.com/andlabs/libui) is currently being rewritten in [this branch](https://github.com/andlabs/libui/tree/remodel).
+`TCDFx.UI`, although being built by the CI, will not have any packages released to NuGet (yet) because the API in [andlabs/libui](https://github.com/andlabs/libui) is currently being rewritten in [this branch](https://github.com/andlabs/libui/tree/remodel).
 
 <!--TODO: Add description of versioning scheme. -->
 
