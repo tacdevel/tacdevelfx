@@ -4,10 +4,6 @@
 ## License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
 ####################################################################################################
 
-#TODO: Set up tests once finished.
-#TODO: Set up documentation generation once finished.
-#TODO: Have jobs for all (most) OS in this list using Docker maybe?: https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md
-
 ## Global Configuration
 ################################################################################
 

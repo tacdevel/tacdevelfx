@@ -9,8 +9,6 @@ parameters:
 
 steps:
 
-#TODO: We can't use DotNetCoreCLI@2 because of https://github.com/microsoft/azure-pipelines-tasks/issues/7160'
-
 - task: NuGetCommand@2
   condition: and(eq( variables['Agent.OS'], 'Windows_NT' ), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
   name: 'Run_NuGet_Push__WinNT_MyGet'
