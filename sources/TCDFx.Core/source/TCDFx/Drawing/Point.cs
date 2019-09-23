@@ -107,7 +107,7 @@ namespace TCDFx.Drawing
         public static Point Truncate(PointD val) => new Point((int)Math.Truncate(val.X), (int)Math.Truncate(val.Y));
 
         /// <inheritdoc />
-        public bool Equals(Point point) => X == point.X && Y == point.Y;
+        public bool Equals(Point other) => X == other.X && Y == other.Y;
 
         /// <inheritdoc />
         public override bool Equals(object obj) => !(obj is Point) ? false : Equals((Point)obj);

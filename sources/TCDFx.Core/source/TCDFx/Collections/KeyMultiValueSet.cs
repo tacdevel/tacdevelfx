@@ -63,12 +63,12 @@ namespace TCDFx.Collections
         /// <summary>
         /// Indicates whether this instance and a specified object are equal.
         /// </summary>
-        /// <param name="kmvs">The point to compare with the current instance.</param>
-        /// <returns>true if <paramref name="kmvs"/> and this instance represent the same value; otherwise, false.</returns>
-        public bool Equals(KeyMultiValueSet<TKey, TValue1, TValue2> kmvs) =>
-            EqualityComparer<TKey>.Default.Equals(Key, kmvs.Key) &&
-            EqualityComparer<TValue1>.Default.Equals(Value1, kmvs.Value1) &&
-            EqualityComparer<TValue2>.Default.Equals(Value2, kmvs.Value2);
+        /// <param name="other">The point to compare with the current instance.</param>
+        /// <returns>true if <paramref name="other"/> and this instance represent the same value; otherwise, false.</returns>
+        public bool Equals(KeyMultiValueSet<TKey, TValue1, TValue2> other) =>
+            EqualityComparer<TKey>.Default.Equals(Key, other.Key) &&
+            EqualityComparer<TValue1>.Default.Equals(Value1, other.Value1) &&
+            EqualityComparer<TValue2>.Default.Equals(Value2, other.Value2);
 
         /// <summary>
         /// Returns the hash code for this instance.
@@ -119,11 +119,11 @@ namespace TCDFx.Collections
 
         public override bool Equals(object obj) => obj is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3> ? Equals((KeyMultiValueSet<TKey, TValue1, TValue2, TValue3>)obj) : false;
 
-        public bool Equals(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3> kmvs) =>
-            EqualityComparer<TKey>.Default.Equals(Key, kmvs.Key) &&
-            EqualityComparer<TValue1>.Default.Equals(Value1, kmvs.Value1) &&
-            EqualityComparer<TValue2>.Default.Equals(Value2, kmvs.Value2) &&
-            EqualityComparer<TValue3>.Default.Equals(Value3, kmvs.Value3);
+        public bool Equals(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3> other) =>
+            EqualityComparer<TKey>.Default.Equals(Key, other.Key) &&
+            EqualityComparer<TValue1>.Default.Equals(Value1, other.Value1) &&
+            EqualityComparer<TValue2>.Default.Equals(Value2, other.Value2) &&
+            EqualityComparer<TValue3>.Default.Equals(Value3, other.Value3);
 
         public override int GetHashCode() => HashCode.Combine(Key, Value1, Value2, Value3);
 
@@ -157,12 +157,12 @@ namespace TCDFx.Collections
                 ? Equals((KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>)obj)
                 : false;
 
-        public bool Equals(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> kmvs) =>
-            EqualityComparer<TKey>.Default.Equals(Key, kmvs.Key) &&
-            EqualityComparer<TValue1>.Default.Equals(Value1, kmvs.Value1) &&
-            EqualityComparer<TValue2>.Default.Equals(Value2, kmvs.Value2) &&
-            EqualityComparer<TValue3>.Default.Equals(Value3, kmvs.Value3) &&
-            EqualityComparer<TValue4>.Default.Equals(Value4, kmvs.Value4);
+        public bool Equals(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> other) =>
+            EqualityComparer<TKey>.Default.Equals(Key, other.Key) &&
+            EqualityComparer<TValue1>.Default.Equals(Value1, other.Value1) &&
+            EqualityComparer<TValue2>.Default.Equals(Value2, other.Value2) &&
+            EqualityComparer<TValue3>.Default.Equals(Value3, other.Value3) &&
+            EqualityComparer<TValue4>.Default.Equals(Value4, other.Value4);
 
         public override int GetHashCode() => HashCode.Combine(Key, Value1, Value2, Value3, Value4);
 
@@ -198,13 +198,13 @@ namespace TCDFx.Collections
                 ? Equals((KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>)obj)
                 : false;
 
-        public bool Equals(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> kmvs) =>
-            EqualityComparer<TKey>.Default.Equals(Key, kmvs.Key) &&
-            EqualityComparer<TValue1>.Default.Equals(Value1, kmvs.Value1) &&
-            EqualityComparer<TValue2>.Default.Equals(Value2, kmvs.Value2) &&
-            EqualityComparer<TValue3>.Default.Equals(Value3, kmvs.Value3) &&
-            EqualityComparer<TValue4>.Default.Equals(Value4, kmvs.Value4) &&
-            EqualityComparer<TValue5>.Default.Equals(Value5, kmvs.Value5);
+        public bool Equals(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> other) =>
+            EqualityComparer<TKey>.Default.Equals(Key, other.Key) &&
+            EqualityComparer<TValue1>.Default.Equals(Value1, other.Value1) &&
+            EqualityComparer<TValue2>.Default.Equals(Value2, other.Value2) &&
+            EqualityComparer<TValue3>.Default.Equals(Value3, other.Value3) &&
+            EqualityComparer<TValue4>.Default.Equals(Value4, other.Value4) &&
+            EqualityComparer<TValue5>.Default.Equals(Value5, other.Value5);
 
         public override int GetHashCode() => HashCode.Combine(Key, Value1, Value2, Value3, Value4, Value5);
 

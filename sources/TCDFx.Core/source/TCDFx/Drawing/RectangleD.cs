@@ -253,7 +253,7 @@ namespace TCDFx.Drawing
         public static RectangleD FromLTRB(double left, double top, double right, double bottom) => new RectangleD(left, top, unchecked(right - left), unchecked(bottom - top));
 
         /// <inheritdoc />
-        public bool Equals(RectangleD rect) => X == rect.X && Y == rect.Y && Width == rect.Width && Height == rect.Height;
+        public bool Equals(RectangleD other) => X == other.X && Y == other.Y && Width == other.Width && Height == other.Height;
 
         /// <inheritdoc />
         public override bool Equals(object obj) => !(obj is RectangleD) ? false : Equals((RectangleD)obj);

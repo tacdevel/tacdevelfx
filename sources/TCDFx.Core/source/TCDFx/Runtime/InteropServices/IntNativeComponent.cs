@@ -5,6 +5,7 @@
  **************************************************************************************************/
 
 using System;
+using System.Globalization;
 
 namespace TCDFx.Runtime.InteropServices
 {
@@ -28,6 +29,6 @@ namespace TCDFx.Runtime.InteropServices
         public override int GetHashCode() => unchecked(HashCode.Combine(Handle));
 
         /// <inheritdoc />
-        public override string ToString() => Handle.ToInt64().ToString();
+        public override string ToString() => Handle.ToInt64().ToString(CultureInfo.InvariantCulture);
     }
 }

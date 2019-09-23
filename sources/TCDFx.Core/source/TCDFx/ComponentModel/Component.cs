@@ -17,7 +17,6 @@ namespace TCDFx.ComponentModel
     {
         private static readonly Dictionary<Guid, IComponent> componentCache = new Dictionary<Guid, IComponent>();
 
-#nullable enable
         /// <summary>
         /// Initializes a new instance if the <see cref="Component"/> class.
         /// </summary>
@@ -26,7 +25,6 @@ namespace TCDFx.ComponentModel
             UID = GenerateNewUID();
             componentCache.Add(UID, this);
         }
-#nullable disable
 
         /// <summary>
         /// Occurs when a property value is changed.

@@ -84,7 +84,7 @@ namespace TCDFx.Drawing
         public static PointD Subtract(PointD pt, SizeD sz) => new PointD(pt.X - sz.Width, pt.Y - sz.Height);
 
         /// <inheritdoc />
-        public bool Equals(PointD point) => X == point.X && Y == point.Y;
+        public bool Equals(PointD other) => X == other.X && Y == other.Y;
 
         /// <inheritdoc />
         public override bool Equals(object obj) => !(obj is PointD) ? false : Equals((PointD)obj);

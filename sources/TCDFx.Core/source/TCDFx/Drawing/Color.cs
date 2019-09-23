@@ -67,7 +67,7 @@ namespace TCDFx.Drawing
         public bool IsEmpty => this == Empty;
 
         /// <inheritdoc />
-        public bool Equals(Color color) => R == color.R && G == color.G && B == color.B && A == color.A;
+        public bool Equals(Color other) => R == other.R && G == other.G && B == other.B && A == other.A;
 
         /// <inheritdoc />
         public override bool Equals(object obj) => !(obj is Color) ? false : Equals((Color)obj);

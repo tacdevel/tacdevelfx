@@ -18,6 +18,9 @@ namespace TCDFx
         /// </summary>
         protected Disposable() => IsDisposed = false;
 
+        /// <summary>
+        /// Trys to free resources and perform other cleanup operations before being reclaimed by garbage collection.
+        /// </summary>
         ~Disposable() => Dispose(false);
 
         /// <summary>
@@ -42,32 +45,6 @@ namespace TCDFx
         {
             Dispose(true);
             GC.SuppressFinalize(this);
-        }
-
-        /// <summary>
-        /// Safely performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources, invoking the specified action in the event of an exception.
-        /// </summary>
-        /// <param name="exceptionHandler">The action to be invoked in the event of an exception.</param>
-        /// <returns><c>true</c> if properly disposed; otherwise, <c>false</c>.</returns>
-        public bool SafeDispose(Action<Exception> exceptionHandler = null)
-        {
-            if (this == null)
-                return true; // Not initialized, so, already disposed.
-
-            try
-            {
-                Dispose();
-                return true;
-            }
-            catch (ObjectDisposedException)
-            {
-                return true; // Already disposed.
-            }
-            catch (Exception ex)
-            {
-                exceptionHandler?.Invoke(ex);
-                return false;
-            }
         }
 
         /// <summary>

@@ -22,9 +22,9 @@ namespace TCDFx.Collections
 
         public override bool Equals(object obj) => obj is MultiObjectContainer<TValue1, TValue2> ? Equals((MultiObjectContainer<TValue1, TValue2>)obj) : false;
 
-        public bool Equals(MultiObjectContainer<TValue1, TValue2> moc) =>
-            EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
-            EqualityComparer<TValue2>.Default.Equals(Value2, moc.Value2);
+        public bool Equals(MultiObjectContainer<TValue1, TValue2> other) =>
+            EqualityComparer<TValue1>.Default.Equals(Value1, other.Value1) &&
+            EqualityComparer<TValue2>.Default.Equals(Value2, other.Value2);
 
         public override int GetHashCode() => HashCode.Combine(Value1, Value2);
 
@@ -49,10 +49,10 @@ namespace TCDFx.Collections
 
         public override bool Equals(object obj) => obj is MultiObjectContainer<TValue1, TValue2, TValue3> ? Equals((MultiObjectContainer<TValue1, TValue2, TValue3>)obj) : false;
 
-        public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3> moc) =>
-            EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
-            EqualityComparer<TValue2>.Default.Equals(Value2, moc.Value2) &&
-            EqualityComparer<TValue3>.Default.Equals(Value3, moc.Value3);
+        public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3> other) =>
+            EqualityComparer<TValue1>.Default.Equals(Value1, other.Value1) &&
+            EqualityComparer<TValue2>.Default.Equals(Value2, other.Value2) &&
+            EqualityComparer<TValue3>.Default.Equals(Value3, other.Value3);
 
         public override int GetHashCode() => HashCode.Combine(Value1, Value2, Value3);
 
@@ -81,11 +81,11 @@ namespace TCDFx.Collections
                 ? Equals((MultiObjectContainer<TValue1, TValue2, TValue3, TValue4>)obj)
                 : false;
 
-        public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> moc) =>
-            EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
-            EqualityComparer<TValue2>.Default.Equals(Value2, moc.Value2) &&
-            EqualityComparer<TValue3>.Default.Equals(Value3, moc.Value3) &&
-            EqualityComparer<TValue4>.Default.Equals(Value4, moc.Value4);
+        public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3, TValue4> other) =>
+            EqualityComparer<TValue1>.Default.Equals(Value1, other.Value1) &&
+            EqualityComparer<TValue2>.Default.Equals(Value2, other.Value2) &&
+            EqualityComparer<TValue3>.Default.Equals(Value3, other.Value3) &&
+            EqualityComparer<TValue4>.Default.Equals(Value4, other.Value4);
 
         public override int GetHashCode() => HashCode.Combine(Value1, Value2, Value3, Value4);
 
@@ -116,12 +116,12 @@ namespace TCDFx.Collections
                 ? Equals((MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5>)obj)
                 : false;
 
-        public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> moc) =>
-            EqualityComparer<TValue1>.Default.Equals(Value1, moc.Value1) &&
-            EqualityComparer<TValue2>.Default.Equals(Value2, moc.Value2) &&
-            EqualityComparer<TValue3>.Default.Equals(Value3, moc.Value3) &&
-            EqualityComparer<TValue4>.Default.Equals(Value4, moc.Value4) &&
-            EqualityComparer<TValue5>.Default.Equals(Value5, moc.Value5);
+        public bool Equals(MultiObjectContainer<TValue1, TValue2, TValue3, TValue4, TValue5> other) =>
+            EqualityComparer<TValue1>.Default.Equals(Value1, other.Value1) &&
+            EqualityComparer<TValue2>.Default.Equals(Value2, other.Value2) &&
+            EqualityComparer<TValue3>.Default.Equals(Value3, other.Value3) &&
+            EqualityComparer<TValue4>.Default.Equals(Value4, other.Value4) &&
+            EqualityComparer<TValue5>.Default.Equals(Value5, other.Value5);
 
         public override int GetHashCode() => HashCode.Combine(Value1, Value2, Value3, Value4, Value5);
 
