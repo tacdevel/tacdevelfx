@@ -38,7 +38,7 @@ steps:
   inputs:
     command: 'build'
     projects: '$(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}\${{ parameters.projectName }}.csproj'
-    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxIsCIBuild=true /property:TCDFxIsGABuild=false /property:TCDFxVersionBuildType=pull /property:TCDFxVersionBuildNumber=$(System.PullRequest.PullRequestNumber) /property:TCDFxVersionMetadata=$(Build.BuildNumber)'
+    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxIsCIBuild=true /property:TCDFxIsGABuild=false /property:TCDFxVersionMetadata=$(Build.BuildNumber)PR$(System.PullRequest.PullRequestNumber)'
 
 - task: DotNetCoreCLI@2
   condition: and(ne( variables['Agent.OS'], 'Windows_NT' ), eq(variables['Build.Reason'], 'PullRequest'), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
@@ -48,7 +48,7 @@ steps:
   inputs:
     command: 'build'
     projects: '$(Build.Repository.LocalPath)/sources/${{ parameters.projectName }}/${{ parameters.projectName }}.csproj'
-    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxIsCIBuild=true /property:TCDFxIsGABuild=false /property:TCDFxVersionBuildType=pull /property:TCDFxVersionBuildNumber=$(System.PullRequest.PullRequestNumber) /property:TCDFxVersionMetadata=$(Build.BuildNumber)'
+    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxIsCIBuild=true /property:TCDFxIsGABuild=false /property:TCDFxVersionMetadata=$(Build.BuildNumber)PR$(System.PullRequest.PullRequestNumber)'
 
 - task: DotNetCoreCLI@2
   condition: and(eq( variables['Agent.OS'], 'Windows_NT' ), ne(variables['Build.Reason'], 'PullRequest'), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
@@ -58,7 +58,7 @@ steps:
   inputs:
     command: 'build'
     projects: '$(Build.Repository.LocalPath)\sources\${{ parameters.projectName }}\${{ parameters.projectName }}.csproj'
-    arguments: '--force /property:Configuration=${{ parameters.configuration }}  /property:TCDFxIsCIBuild=true /property:TCDFxIsGABuild=false /property:TCDFxVersionBuildType=build /property:TCDFxVersionMetadata=$(Build.BuildNumber)'
+    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxIsCIBuild=true /property:TCDFxIsGABuild=false /property:TCDFxVersionMetadata=$(Build.BuildNumber)'
 
 - task: DotNetCoreCLI@2
   condition: and(ne( variables['Agent.OS'], 'Windows_NT' ), ne(variables['Build.Reason'], 'PullRequest'), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
@@ -68,4 +68,4 @@ steps:
   inputs:
     command: 'build'
     projects: '$(Build.Repository.LocalPath)/sources/${{ parameters.projectName }}/${{ parameters.projectName }}.csproj'
-    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxIsCIBuild=true /property:TCDFxIsGABuild=false /property:TCDFxVersionBuildType=build /property:TCDFxVersionMetadata=$(Build.BuildNumber)'
+    arguments: '--force /property:Configuration=${{ parameters.configuration }} /property:TCDFxIsCIBuild=true /property:TCDFxIsGABuild=false  /property:TCDFxVersionMetadata=$(Build.BuildNumber)'

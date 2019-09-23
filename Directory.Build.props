@@ -24,13 +24,9 @@
   <!-- Versioning -->
   <PropertyGroup>
     <TCDFxVersionPrefix>1.0.0</TCDFxVersionPrefix>
-    
-    <TCDFxVersionBuildType Condition="'$(TCDFxVersionBuildType)' == ''">pre</TCDFxVersionBuildType>
-    <TCDFxVersionBuildNumber Condition="'$(TCDFxVersionBuildNumber)' == '' AND '$(TCDFxVersionBuildType)' != 'build'">1</TCDFxVersionBuildNumber>
-    <TCDFxVersionMetadata Condition="'$(TCDFxVersionMetadata)' == ''"></TCDFxVersionMetadata>
-    <TCDFxVersionSuffix>$(TCDFxVersionBuildType)</TCDFxVersionSuffix>
-    <TCDFxVersionSuffix Condition="'$(TCDFxVersionSuffix)' != '' AND '$(TCDFxVersionBuildNumber)' != ''">$(TCDFxVersionSuffix)$(TCDFxVersionBuildNumber)</TCDFxVersionSuffix>
-    
+    <TCDFxVersionSuffix Condition="'$(TCDFxIsCIBuild)|$(TCDFxIsGABuild)' == 'true|false'">build</TCDFxVersionSuffix>
+    <TCDFxVersionSuffix Condition="'$(TCDFxVersionSuffix)' == ''">pre1</TCDFxVersionSuffix> <!-- i.e.: pre1, rc3, build -->
+    <TCDFxVersionMetadata Condition="'$(TCDFxVersionMetadata)' == ''"></TCDFxVersionMetadata> <!-- i.e.: 190923001, 190923001PR17 -->
     <TCDFxVersion>$(TCDFxVersionPrefix)</TCDFxVersion>
     <TCDFxVersion Condition="'$(TCDFxVersionSuffix)' != ''">$(TCDFxVersion)-$(TCDFxVersionSuffix)</TCDFxVersion>
     <TCDFxVersion Condition="'$(TCDFxIsCIBuild)|$(TCDFxIsGABuild)' == 'true|false' AND '$(TCDFxVersionMetadata)' != ''">$(TCDFxVersion)-$(TCDFxVersionMetadata)</TCDFxVersion>

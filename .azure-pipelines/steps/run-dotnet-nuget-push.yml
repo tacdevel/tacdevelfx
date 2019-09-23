@@ -11,25 +11,25 @@ steps:
 
 - task: NuGetCommand@2
   condition: and(eq( variables['Agent.OS'], 'Windows_NT' ), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
-  name: 'Run_NuGet_Push__WinNT_MyGet'
-  displayName: 'Run `dotnet nuget push` (WinNT|MyGet)'
+  name: 'Run_NuGet_Push__WinNT_GitHub'
+  displayName: 'Run `dotnet nuget push` (WinNT|GitHub)'
   continueOnError: false
   inputs:
     command: 'push'
     packagesToPush: '$(Build.Repository.LocalPath)\build\sources\${{ parameters.projectName }}\Release\pkg\*.nupkg'
     nugetFeedType: 'external'
-    publishFeedCredentials: 'TCDFxMyGetFeed'
+    publishFeedCredentials: 'TCDFxGitHubFeed'
 
 - task: NuGetCommand@2
   condition: and(ne( variables['Agent.OS'], 'Windows_NT' ), not(startsWith(variables['Build.SourceBranch'], 'ref/tags/v')))
-  name: 'Run_NuGet_Push__Unix_MyGet'
-  displayName: 'Run `dotnet nuget push` (Unix|MyGet)'
+  name: 'Run_NuGet_Push__Unix_GitHub'
+  displayName: 'Run `dotnet nuget push` (Unix|GitHub)'
   continueOnError: false
   inputs:
     command: 'push'
     packagesToPush: '$(Build.Repository.LocalPath)/build/sources/${{ parameters.projectName }}/Release/pkg/*.nupkg'
     nugetFeedType: 'external'
-    publishFeedCredentials: 'TCDFxMyGetFeed'
+    publishFeedCredentials: 'TCDFxGitHubFeed'
 
 - task: NuGetCommand@2
   condition: and(eq( variables['Agent.OS'], 'Windows_NT' ), startsWith(variables['Build.SourceBranch'], 'ref/tags/v'))
