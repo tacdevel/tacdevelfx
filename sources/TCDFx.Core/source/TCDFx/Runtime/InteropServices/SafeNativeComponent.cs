@@ -5,6 +5,7 @@
  **************************************************************************************************/
 
 using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 
 namespace TCDFx.Runtime.InteropServices
@@ -34,7 +35,7 @@ namespace TCDFx.Runtime.InteropServices
         public override int GetHashCode() => unchecked(HashCode.Combine(Handle));
 
         /// <inheritdoc />
-        public override string ToString() => Handle.DangerousGetHandle().ToInt64().ToString();
+        public override string ToString() => Handle.DangerousGetHandle().ToInt64().ToString(CultureInfo.InvariantCulture);
 
         /// <inheritdoc />
         protected override void ReleaseManagedResources()

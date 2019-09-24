@@ -217,7 +217,7 @@ namespace TCDFx.Runtime.InteropServices
         {
             if (actualRuntimeIdentifier == "osx.10.13-x64")
                 return "osx.10.12-x64";
-            else if (actualRuntimeIdentifier.StartsWith("osx"))
+            else if (actualRuntimeIdentifier.StartsWith("osx", StringComparison.Ordinal))
                 return "osx-x64";
 
             return null;

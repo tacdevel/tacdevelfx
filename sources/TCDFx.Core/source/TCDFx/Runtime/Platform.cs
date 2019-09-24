@@ -5,6 +5,7 @@
  **************************************************************************************************/
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -67,12 +68,12 @@ namespace TCDFx.Runtime
                 }
 
                 string versionStr = Regex.Replace(ridParts[0], "[^a-zA-Z]", "");
-                if (!versionStr.Contains("."))
-                    Version = new Version(int.Parse(versionStr), 0);
+                if (!versionStr.Contains(".", StringComparison.OrdinalIgnoreCase))
+                    Version = new Version(int.Parse(versionStr, CultureInfo.InvariantCulture), 0);
                 else
                 {
                     string[] splitVersion = versionStr.Split('.');
-                    Version = new Version(int.Parse(splitVersion[0]), int.Parse(splitVersion[1]));
+                    Version = new Version(int.Parse(splitVersion[0], CultureInfo.InvariantCulture), int.Parse(splitVersion[1], CultureInfo.InvariantCulture));
                 }
 
 #pragma warning disable IDE0045 // 'if' statement can be simplified
@@ -239,7 +240,7 @@ namespace TCDFx.Runtime
                 if (lines.Length >= 1)
                 {
                     string line = lines[0];
-                    if (line.StartsWith("Red Hat Enterprise Linux Server release") || line.StartsWith("CentOS release"))
+                    if (line.StartsWith("Red Hat Enterprise Linux Server release", StringComparison.Ordinal) || line.StartsWith("CentOS release", StringComparison.Ordinal))
                     {
                         osID = "rhel";
                         osVersion = "6";
@@ -250,7 +251,7 @@ namespace TCDFx.Runtime
             if (osVersion != "0.0")
             {
                 // Handle if VersionId is null by just setting the index to -1.
-                int lastVersionNumberSeparatorIndex = osVersion?.IndexOf('.') ?? -1;
+                int lastVersionNumberSeparatorIndex = osVersion?.IndexOf('.', StringComparison.Ordinal) ?? -1;
 
                 // For Alpine, the version reported has three components, so we need to find the second version separator
                 if (lastVersionNumberSeparatorIndex != -1 && osID == "alpine")
@@ -295,7 +296,7 @@ namespace TCDFx.Runtime
                             return "81";
                     }
                     else if (Version.Major >= 10)
-                        return Version.Major.ToString();
+                        return Version.Major.ToString(CultureInfo.InvariantCulture);
                     return string.Empty;
                 case PlatformType.MacOS:
                 case PlatformType.Linux:
