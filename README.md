@@ -81,23 +81,17 @@ We use [Azure Pipelines][AzurePipelines.Link] for our CI builds. Although we cur
 
 | Package    | Versions  |
 | :--------- | --------: |
-| TCDFx.Core | ![Stable][Versions.TCDFxCore.Stable.Badge]<br/>![Preview][Versions.TCDFxCore.Preview.Badge]<br/>![CIBuild][Versions.TCDFxCore.CIBuild.Badge] |
-| TCDFx.UI   | ![Stable][Versions.TCDFxUI.Stable.Badge]<br/>![Preview][Versions.TCDFxUI.Preview.Badge]<br/>![CIBuild][Versions.TCDFxUI.CIBuild.Badge] |
+| TCDFx.Core | ![Stable][Versions.TCDFxCore.Stable.Badge]<br/>![Preview][Versions.TCDFxCore.Preview.Badge] |
+| TCDFx.UI   | ![Stable][Versions.TCDFxUI.Stable.Badge]<br/>![Preview][Versions.TCDFxUI.Preview.Badge] |
 
 Stable and preview packages will be released onto NuGet (when they are released).
 
-CI builds are available on our [MyGet feed](https://www.myget.org/feed/Details/tcdfx)]:
-
-```
- https://www.myget.org/F/tcdfx/api/v3/index.json
-```
+CI builds are are published to our [GitHub Package Registry](https://github.com/tom-corwin/tcdfx/packages).
 
 [Versions.TCDFxCore.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.Core.svg?color=blue&label=Stable&logo=nuget
 [Versions.TCDFxCore.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.Core.svg?color=orange&label=Preview&logo=nuget
-[Versions.TCDFxCore.CIBuild.Badge]: https://img.shields.io/myget/tcdfx/vpre/TCDFx.Core.svg?color=lightgrey&label=CIBuild&logo=nuget
 [Versions.TCDFxUI.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.UI.svg?color=blue&label=Stable&logo=nuget
 [Versions.TCDFxUI.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.UI.svg?color=orange&label=Preview&logo=nuget
-[Versions.TCDFxUI.CIBuild.Badge]: https://img.shields.io/myget/tcdfx/vpre/TCDFx.UI.svg?color=lightgrey&label=CIBuild&logo=nuget
 
 <!--TODO: Package Links -->
 
@@ -107,11 +101,11 @@ For examples, see the `examples\` directory.
 
 ### Runtime Prerequisites
 
-| Operating System | Prerequisites                                             |
-| :--------------- | :---------------------------------------------------------|
-| Windows 7/8.1/10 | Microsoft .NET Core 3.0 Preview 9+ Runtime                |
-| Linux            | Microsoft .NET Core 3.0 Preview 9+ Runtime<br/>GTK+ 3.10+ |
-| macOS            | Microsoft .NET Core 3.0 Preview 9+ Runtime                |
+| Operating System | Prerequisites                                  |
+| :--------------- | :----------------------------------------------|
+| Windows 7/8.1/10 | Microsoft .NET Core 3.0 Runtime                |
+| Linux            | Microsoft .NET Core 3.0 Runtime<br/>GTK+ 3.10+ |
+| macOS            | Microsoft .NET Core 3.0 Runtime                |
 
 ### Utilizing Pre-Built Packages
 
@@ -144,11 +138,11 @@ You can build the packages just by installing the prerequisites and running a fe
 
 #### Build Prerequisites
 
-| Operating System | Prerequisites                          |
-| :--------------- | :--------------------------------------|
-| Windows 7/8.1/10 | Microsoft .NET Core 3.0 Preview 9+ SDK |
-| Linux            | Microsoft .NET Core 3.0 Preview 9+ SDK |
-| macOS            | Microsoft .NET Core 3.0 Preview 9+ SDK |
+| Operating System | Prerequisites               |
+| :--------------- | :---------------------------|
+| Windows 7/8.1/10 | Microsoft .NET Core 3.0 SDK |
+| Linux            | Microsoft .NET Core 3.0 SDK |
+| macOS            | Microsoft .NET Core 3.0 SDK |
 
 #### Build Using a CLI
 
