@@ -68,16 +68,30 @@ namespace TCDFx.Drawing
         /// <returns>The <see cref="SizeD"/> that is the result of the addition operation.</returns>
         public static SizeD Subtract(SizeD sz1, SizeD sz2) => new SizeD(sz1.Width - sz2.Width, sz1.Height - sz2.Height);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
         public bool Equals(SizeD size) => Width == size.Width && Height == size.Height;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
         public override bool Equals(object obj) => !(obj is SizeD) ? false : Equals((SizeD)obj);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode() => unchecked(HashCode.Combine(Width, Height));
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() => $"[Width: {Width}, Height: {Height}]";
 
         /// <summary>

@@ -272,16 +272,30 @@ namespace TCDFx.Drawing
         /// <returns>A new <see cref="Rectangle"/>.</returns>
         public static Rectangle FromLTRB(int left, int top, int right, int bottom) => new Rectangle(left, top, unchecked(right - left), unchecked(bottom - top));
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
         public bool Equals(Rectangle other) => X == other.X && Y == other.Y && Width == other.Width && Height == other.Height;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
         public override bool Equals(object obj) => !(obj is Rectangle) ? false : Equals((Rectangle)obj);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode() => unchecked(HashCode.Combine(X, Y, Width, Height));
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() => $"[X: {X}, Y: {Y}, Width: {Width}, Height: {Height}]";
 
         /// <summary>

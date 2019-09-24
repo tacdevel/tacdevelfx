@@ -83,16 +83,30 @@ namespace TCDFx.Drawing
         /// <param name="sz">The <see cref="SizeD"/> to subtract from <paramref name="pt"/>.</param>
         public static PointD Subtract(PointD pt, SizeD sz) => new PointD(pt.X - sz.Width, pt.Y - sz.Height);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
         public bool Equals(PointD other) => X == other.X && Y == other.Y;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
         public override bool Equals(object obj) => !(obj is PointD) ? false : Equals((PointD)obj);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode() => unchecked(HashCode.Combine(X, Y));
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() => $"[X: {X}, Y: {Y}]";
 
         /// <summary>

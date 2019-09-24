@@ -30,7 +30,9 @@ namespace TCDFx.Runtime.InteropServices
         /// <value><c>true</c> if <see cref="Handle"/> is immutable; otherwise, <c>false</c>.</value>
         public bool IsHandleImmutable { get; private set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets the native handle representing this native component.
+        /// </summary>
         public T Handle
         {
             get => handle;
@@ -49,19 +51,36 @@ namespace TCDFx.Runtime.InteropServices
             }
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets a value indicating whether this component is invalid.
+        /// </summary>
+        /// <value><c>true</c> if this component is invalid; otherwise, <c>false</c>.</value>
         public abstract override bool IsInvalid { get; }
 
-        /// <inheritdoc />
-        public bool Equals(NativeComponent<T> component) => Handle.Equals(component.Handle);
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
+        public bool Equals(NativeComponent<T> other) => Handle.Equals(other.Handle);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
         public override bool Equals(object obj) => !(obj is NativeComponent<T>) ? false : Equals((NativeComponent<T>)obj);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode() => unchecked(HashCode.Combine(Handle));
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() => Handle.ToString();
     }
 }

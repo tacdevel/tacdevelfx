@@ -95,7 +95,6 @@ namespace TCDFx.Runtime.InteropServices
             }
         }
 
-        /// <inheritdoc />
         protected virtual void OnLoaded(string assemblyName) => Loaded?.Invoke(this, new NativeAssemblyLoadedEventArgs(assemblyName));
 
         private IntPtr LoadAssembly(params string[] names)

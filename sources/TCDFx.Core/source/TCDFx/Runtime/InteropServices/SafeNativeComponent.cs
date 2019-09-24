@@ -22,22 +22,41 @@ namespace TCDFx.Runtime.InteropServices
         /// </summary>
         protected internal SafeNativeComponent() : base() { }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets a value indicating whether this component is invalid.
+        /// </summary>
+        /// <value><c>true</c> if this component is invalid; otherwise, <c>false</c>.</value>
         public override bool IsInvalid => Handle.IsClosed || Handle.IsInvalid;
 
-        /// <inheritdoc />
-        public bool Equals(SafeNativeComponent<T> component) => Handle == component.Handle;
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
+        public bool Equals(SafeNativeComponent<T> other) => Handle == other.Handle;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
         public override bool Equals(object obj) => !(obj is SafeNativeComponent<T>) ? false : Equals((SafeNativeComponent<T>)obj);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Serves as the default hash function.
+        /// </summary>
+        /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode() => unchecked(HashCode.Combine(Handle));
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString() => Handle.DangerousGetHandle().ToInt64().ToString(CultureInfo.InvariantCulture);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Performs tasks associated with freeing, releasing, or resetting managed resources.
+        /// </summary>
         protected override void ReleaseManagedResources()
         {
             if (!IsInvalid)
