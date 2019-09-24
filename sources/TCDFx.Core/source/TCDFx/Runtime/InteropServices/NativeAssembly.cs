@@ -6,38 +6,24 @@
 
 using Microsoft.Extensions.DependencyModel;
 using System;
-using System.Buffers.Text;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Security;
-using TCDFx.ComponentModel;
 using TCDFx.Native;
+using TCDFx.Resources;
 using TCDFx.Runtime.InteropServices.SafeHandles;
 
 namespace TCDFx.Runtime.InteropServices
 {
-    /// <summary>
-    /// The type of a <see cref="NativeAssembly"/>.
-    /// </summary>
-    public enum NativeAssemblyType
+    public sealed class NativeAssemblyLoadedEventArgs : EventArgs
     {
-        /// <summary>
-        /// An assembly that is located in a relative folder for is a system assembly.
-        /// </summary>
-        Default = 0,
+        public NativeAssemblyLoadedEventArgs(string assemblyName) => AssemblyName = assemblyName;
 
-        /// <summary>
-        /// An assembly that is located in a dependency. (i.e. from a nupkg)
-        /// </summary>
-        Dependency = 1,
-
-        /// <summary>
-        /// an assembly that is embedded in an assembly as a resource.
-        /// </summary>
-        Embedded = 2
+        public string AssemblyName { get; }
     }
+
 
     /// <summary>
     /// Represents a native (shared) assembly.
@@ -48,31 +34,24 @@ namespace TCDFx.Runtime.InteropServices
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeAssembly"/> class.
         /// </summary>
-        /// <param name="type">The type of  assembly.</param>
         /// <param name="names">An ordered list of assembly names to attempt to load.</param>
-        public NativeAssembly(NativeAssemblyType type, params string[] names) : base()
+        public NativeAssembly(params string[] names)
         {
-            Type = type;
             IntPtr asmHnd = LoadAssembly(names);
             Handle = new SafeAssemblyHandle(asmHnd);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NativeAssembly"/> class.
+        /// Occurs when an assembly is loaded.
         /// </summary>
-        /// <param name="names">An ordered list of assembly names to attempt to load.</param>
-        public NativeAssembly(params string[] names) : this(NativeAssemblyType.Default, names) { }
-
-        public event EventHandler<Component, EventArgs> Initialized;
-
-        public NativeAssemblyType Type { get; }
+        public event EventHandler<NativeAssembly, NativeAssemblyLoadedEventArgs> Loaded;
 
         /// <summary>
         /// Loads a function whose signature and name match the given delegate type's signature and name.
         /// </summary>
         /// <typeparam name="T">The type of delegate to return.</typeparam>
         /// <returns>A delegate wrapping the native function.</returns>
-        public T LoadFunction<T>() => LoadFunction<T>(typeof(T).Name);
+        public T LoadFunction<T>() where T : Delegate => LoadFunction<T>(typeof(T).Name);
 
         /// <summary>
         /// Loads a function whose signature matches the given delegate type's signature.
@@ -84,7 +63,7 @@ namespace TCDFx.Runtime.InteropServices
         {
             IntPtr functionPtr = LoadFunctionPointer(name);
             if (functionPtr == IntPtr.Zero)
-                throw new EntryPointNotFoundException($"No function was found with the name {name}.");
+                throw new EntryPointNotFoundException(string.Format(CultureInfo.InvariantCulture, Strings.NativeFunctionNotFound, nameof(name)));
             return Marshal.GetDelegateForFunctionPointer<T>(functionPtr);
         }
 
@@ -97,46 +76,32 @@ namespace TCDFx.Runtime.InteropServices
         {
             IntPtr ret;
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentNullException(nameof(name), "The function pointer's name nust not be null, empty, or whitespace.");
+                throw new ArgumentNullException(nameof(name), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNullEmptyOrWhitespace, nameof(name)));
             ret = LoadFunctionPointer(Handle, name);
 
             if (ret == IntPtr.Zero)
-                throw new EntryPointNotFoundException($"No function was found with the name {name}.");
+                throw new EntryPointNotFoundException(string.Format(CultureInfo.InvariantCulture, Strings.NativeFunctionNotFound, nameof(name)));
             return ret;
         }
 
         private IEnumerable<string> EnumerateLoadTargets(string name)
         {
-            switch (Type)
+            yield return name;
+            yield return Path.Combine(AppContext.BaseDirectory, name);
+            if (TryLocateNativeAssetFromDeps(name, out string appLocalNativePath, out string depsResolvedPath))
             {
-                case NativeAssemblyType.Dependency:
-                    if (TryLocateNativeAssetFromDeps(name, out string appLocalNativePath, out string depsResolvedPath))
-                    {
-                        yield return appLocalNativePath;
-                        yield return depsResolvedPath;
-                    }
-                    break;
-                case NativeAssemblyType.Embedded:
-                    if (TryExtractEmbeddedAssembly(name, out string embeddedResolvedPath))
-                    {
-                        yield return embeddedResolvedPath;
-                    }
-                    break;
-                case NativeAssemblyType.Default:
-                default:
-                    yield return Path.Combine(AppContext.BaseDirectory, name);
-                    yield return name;
-                    break;
+                yield return appLocalNativePath;
+                yield return depsResolvedPath;
             }
         }
 
         /// <inheritdoc />
-        protected virtual void OnInitialized() => Initialized?.Invoke(this, EventArgs.Empty);
+        protected virtual void OnLoaded(string assemblyName) => Loaded?.Invoke(this, new NativeAssemblyLoadedEventArgs(assemblyName));
 
         private IntPtr LoadAssembly(params string[] names)
         {
             if (names == null || names.Length == 0)
-                throw new ArgumentNullException(nameof(names), "Parameter must not be null or empty.");
+                throw new ArgumentNullException(nameof(names), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNullOrEmpty, nameof(names)));
 
             IntPtr ret = IntPtr.Zero;
             foreach (string name in names)
@@ -159,7 +124,7 @@ namespace TCDFx.Runtime.InteropServices
                     break;
             }
             if (ret == IntPtr.Zero)
-                throw new FileNotFoundException($"Could not find or load the native library from any name: [ {string.Join(", ", names)} ]");
+                throw new FileNotFoundException(string.Format(CultureInfo.InvariantCulture, Strings.NativeAssemblyNotFound, $"'{string.Join("', '", names)}'"));
             return ret;
         }
 
@@ -275,44 +240,5 @@ namespace TCDFx.Runtime.InteropServices
         private string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
 
         private static string GetUserDirectory() => Platform.PlatformType == PlatformType.Windows ? Environment.GetEnvironmentVariable("USERPROFILE") : Environment.GetEnvironmentVariable("HOME");
-
-        private static bool TryExtractEmbeddedAssembly(string name, out string embeddedResolvedPath)
-        {
-            Assembly asm = Assembly.GetEntryAssembly();
-            string[] resNames = asm.GetManifestResourceNames();
-            string resAsmName = name.Replace(".dll", string.Empty).Replace("-", "_").Replace(" ", "_").Replace(".", "_");
-            string tempDir = Path.Combine(Path.GetTempPath(), asm.GetName().Name, Platform.RuntimeID);
-            string outputAsm = Path.Combine(tempDir, name);
-
-            if (!Directory.Exists(tempDir))
-                Directory.CreateDirectory(tempDir);
-
-            Stream asmStream;
-            bool resAsmExists = false;
-            foreach (string resName in resNames)
-                if (resName == resAsmName)
-                    resAsmExists = true;
-            if (resAsmExists)
-            {
-                embeddedResolvedPath = outputAsm;
-                return true;
-            }
-
-            asmStream = asm.GetManifestResourceStream(resAsmName);
-            if (!File.Exists(outputAsm))
-            {
-                byte[] buffer = new byte[8 * 1024];
-                int len;
-                while ((len = asmStream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    using Stream output = File.Create(outputAsm);
-                    output.Write(buffer, 0, len);
-                }
-                embeddedResolvedPath = outputAsm;
-                return true;
-            }
-            embeddedResolvedPath = string.Empty;
-            return false;
-        }
     }
 }

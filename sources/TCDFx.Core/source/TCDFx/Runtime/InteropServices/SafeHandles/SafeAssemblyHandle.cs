@@ -7,6 +7,7 @@
 using System;
 using System.Security;
 using TCDFx.Native;
+using TCDFx.Resources;
 
 namespace TCDFx.Runtime.InteropServices.SafeHandles
 {
@@ -33,7 +34,7 @@ namespace TCDFx.Runtime.InteropServices.SafeHandles
             try
             {
                 if (handle == IntPtr.Zero)
-                    throw new InvalidHandleException("An invalid handle cannot be released.");
+                    throw new InvalidHandleException(Strings.CannotReleaseInvalidHandle);
 
                 switch (Platform.PlatformType)
                 {

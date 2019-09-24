@@ -15,5 +15,20 @@
     <Compile Include="$(TCDFxProjectGroupPath)AssemblyInfo.cs" />
   </ItemGroup>
   
+  <ItemGroup>
+    <Compile Condition="Exists('resources\Strings.Designer.cs')" Include="resources\Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Condition="Exists('resources\Strings.resx')" Include="resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>TCDFx.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+  </ItemGroup>
+  
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.targets', '$(MSBuildThisFileDirectory)../'))" />
 </Project>

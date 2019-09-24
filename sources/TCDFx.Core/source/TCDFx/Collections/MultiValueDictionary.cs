@@ -7,9 +7,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using TCDFx.Resources;
 
 namespace TCDFx.Collections
 {
@@ -179,11 +181,11 @@ namespace TCDFx.Collections
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2>[] array, int index)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
+                throw new ArgumentNullException(nameof(array), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(array)));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException(nameof(index), "index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), string.Format(CultureInfo.InvariantCulture, Strings.IndexMustBeNonNegative, nameof(index)));
             if ((array.Length - index) < Count)
-                throw new ArgumentException("Array plus offset too small");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ArrayPlusOffsetTooSmall, nameof(index), nameof(array)));
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2> kmvs in this)
                 array[index++] = kmvs;
@@ -255,15 +257,13 @@ namespace TCDFx.Collections
         void ICollection.CopyTo(Array array, int index)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
-            if (array.Rank != 1)
-                throw new ArgumentException("Multi dim not supported");
-            if (array.GetLowerBound(0) != 0)
-                throw new ArgumentException("NonZero lower bound");
+                throw new ArgumentNullException(nameof(array), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(array)));
+            if (array.Rank != 1 || array.GetLowerBound(0) != 0)
+                throw new ArgumentException(Strings.MultiDimArrayNotSupported, nameof(array));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException("index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), string.Format(CultureInfo.InvariantCulture, Strings.IndexMustBeNonNegative, nameof(index)));
             if ((array.Length - index) < Count)
-                throw new ArgumentException("Array plus offset too small");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ArrayPlusOffsetTooSmall, nameof(index), nameof(array)));
 
             if (array is KeyMultiValueSet<TKey, TValue1, TValue2>[] setArray)
                 CopyTo(setArray, index);
@@ -276,7 +276,7 @@ namespace TCDFx.Collections
             else
             {
                 if (!(array is object[] objArray))
-                    throw new ArgumentException("Invalid array type");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.InvalidArrayType, nameof(array)), nameof(array));
                 try
                 {
                     foreach (TKey key in Keys)
@@ -287,7 +287,7 @@ namespace TCDFx.Collections
                 }
                 catch (ArrayTypeMismatchException)
                 {
-                    throw new ArgumentException("Invalid array type");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.InvalidArrayType, nameof(array)), nameof(array));
                 }
             }
         }
@@ -764,11 +764,11 @@ namespace TCDFx.Collections
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3>[] array, int index)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
+                throw new ArgumentNullException(nameof(array), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(array)));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException("index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), string.Format(CultureInfo.InvariantCulture, Strings.IndexMustBeNonNegative, nameof(index)));
             if ((array.Length - index) < Count)
-                throw new ArgumentException("Array plus offset too small");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ArrayPlusOffsetTooSmall, nameof(index), nameof(array)));
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3> kmvs in this)
                 array[index++] = kmvs;
@@ -842,15 +842,13 @@ namespace TCDFx.Collections
         void ICollection.CopyTo(Array array, int index)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
-            if (array.Rank != 1)
-                throw new ArgumentException("Multi dim not supported");
-            if (array.GetLowerBound(0) != 0)
-                throw new ArgumentException("NonZero lower bound");
+                throw new ArgumentNullException(nameof(array), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(array)));
+            if (array.Rank != 1 || array.GetLowerBound(0) != 0)
+                throw new ArgumentException(Strings.MultiDimArrayNotSupported, nameof(array));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException("index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), string.Format(CultureInfo.InvariantCulture, Strings.IndexMustBeNonNegative, nameof(index)));
             if ((array.Length - index) < Count)
-                throw new ArgumentException("Array plus offset too small");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ArrayPlusOffsetTooSmall, nameof(index), nameof(array)));
 
             if (array is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3>[] setArray)
                 CopyTo(setArray, index);
@@ -863,7 +861,7 @@ namespace TCDFx.Collections
             else
             {
                 if (!(array is object[] objArray))
-                    throw new ArgumentException("Invalid array type");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.InvalidArrayType, nameof(array)), nameof(array));
                 try
                 {
                     foreach (TKey key in Keys)
@@ -874,7 +872,7 @@ namespace TCDFx.Collections
                 }
                 catch (ArrayTypeMismatchException)
                 {
-                    throw new ArgumentException("Invalid array type");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.InvalidArrayType, nameof(array)), nameof(array));
                 }
             }
         }
@@ -1357,11 +1355,11 @@ namespace TCDFx.Collections
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>[] array, int index)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
+                throw new ArgumentNullException(nameof(array), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(array)));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException("index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), string.Format(CultureInfo.InvariantCulture, Strings.IndexMustBeNonNegative, nameof(index)));
             if ((array.Length - index) < Count)
-                throw new ArgumentException("Array plus offset too small");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ArrayPlusOffsetTooSmall, nameof(index), nameof(array)));
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4> kmvs in this)
                 array[index++] = kmvs;
@@ -1437,15 +1435,15 @@ namespace TCDFx.Collections
         void ICollection.CopyTo(Array array, int index)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
+                throw new ArgumentNullException(nameof(array), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(array)));
             if (array.Rank != 1)
-                throw new ArgumentException("Multi dim not supported");
+                throw new ArgumentException(Strings.MultiDimArrayNotSupported, nameof(array));
             if (array.GetLowerBound(0) != 0)
-                throw new ArgumentException("NonZero lower bound");
+                throw new ArgumentException(Strings.MultiDimArrayNotSupported, nameof(array));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException("index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), string.Format(CultureInfo.InvariantCulture, Strings.IndexMustBeNonNegative, nameof(index)));
             if ((array.Length - index) < Count)
-                throw new ArgumentException("Array plus offset too small");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ArrayPlusOffsetTooSmall, nameof(index), nameof(array)));
 
             if (array is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4>[] setArray)
                 CopyTo(setArray, index);
@@ -1458,7 +1456,7 @@ namespace TCDFx.Collections
             else
             {
                 if (!(array is object[] objArray))
-                    throw new ArgumentException("Invalid array type");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.InvalidArrayType, nameof(array)), nameof(array));
                 try
                 {
                     foreach (TKey key in Keys)
@@ -1469,7 +1467,7 @@ namespace TCDFx.Collections
                 }
                 catch (ArrayTypeMismatchException)
                 {
-                    throw new ArgumentException("Invalid array type");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.InvalidArrayType, nameof(array)), nameof(array));
                 }
             }
         }
@@ -1958,11 +1956,11 @@ namespace TCDFx.Collections
         private void CopyTo(KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>[] array, int index)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
+                throw new ArgumentNullException(nameof(array), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(array)));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException("index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), string.Format(CultureInfo.InvariantCulture, Strings.IndexMustBeNonNegative, nameof(index)));
             if ((array.Length - index) < Count)
-                throw new ArgumentException("Array plus offset too small");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ArrayPlusOffsetTooSmall, nameof(index), nameof(array)));
 
             foreach (KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5> kmvs in this)
                 array[index++] = kmvs;
@@ -2040,15 +2038,15 @@ namespace TCDFx.Collections
         void ICollection.CopyTo(Array array, int index)
         {
             if (array == null)
-                throw new ArgumentNullException(nameof(array));
+                throw new ArgumentNullException(nameof(array), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(array)));
             if (array.Rank != 1)
-                throw new ArgumentException("Multi dim not supported");
+                throw new ArgumentException(Strings.MultiDimArrayNotSupported, nameof(array));
             if (array.GetLowerBound(0) != 0)
-                throw new ArgumentException("NonZero lower bound");
+                throw new ArgumentException(Strings.MultiDimArrayNotSupported, nameof(array));
             if ((index < 0) || (index > array.Length))
-                throw new ArgumentOutOfRangeException("index must be non-negative");
+                throw new ArgumentOutOfRangeException(nameof(index), string.Format(CultureInfo.InvariantCulture, Strings.IndexMustBeNonNegative, nameof(index)));
             if ((array.Length - index) < Count)
-                throw new ArgumentException("Array plus offset too small");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ArrayPlusOffsetTooSmall, nameof(index), nameof(array)));
 
             if (array is KeyMultiValueSet<TKey, TValue1, TValue2, TValue3, TValue4, TValue5>[] setArray)
                 CopyTo(setArray, index);
@@ -2061,7 +2059,7 @@ namespace TCDFx.Collections
             else
             {
                 if (!(array is object[] objArray))
-                    throw new ArgumentException("Invalid array type");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.InvalidArrayType, nameof(array)), nameof(array));
                 try
                 {
                     foreach (TKey key in Keys)
@@ -2072,7 +2070,7 @@ namespace TCDFx.Collections
                 }
                 catch (ArrayTypeMismatchException)
                 {
-                    throw new ArgumentException("Invalid array type");
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.InvalidArrayType, nameof(array)), nameof(array));
                 }
             }
         }

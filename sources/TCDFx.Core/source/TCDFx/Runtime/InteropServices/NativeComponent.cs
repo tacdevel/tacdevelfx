@@ -5,7 +5,9 @@
  **************************************************************************************************/
 
 using System;
+using System.Globalization;
 using TCDFx.ComponentModel;
+using TCDFx.Resources;
 
 namespace TCDFx.Runtime.InteropServices
 {
@@ -35,9 +37,9 @@ namespace TCDFx.Runtime.InteropServices
             protected internal set
             {
                 if (value == null)
-                    throw new ArgumentNullException(nameof(value), "A handle cannot be set to 'null'.");
+                    throw new ArgumentNullException(nameof(value), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(value)));
                 if (IsHandleImmutable)
-                    throw new ArgumentException("A handle cannot be changed once it is set.", nameof(value));
+                    throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ObjectIsImmutable, nameof(value)), nameof(value));
 
                 OnPropertyChanging(nameof(Handle));
                 if (handle == null || !handle.Equals(value))
