@@ -1,16 +1,5 @@
 # TCDFx<br/>![Repository Size][GitHub.RepoSize.Badge] ![Repository Top Language][GitHub.RepoLang.Badge] [![Contributors][GitHub.Contributors.Badge]][GitHub.Contributors.Link] [![Codacy Status][Codacy.Badge]][Codacy.Link] [![Dependabot Status][Dependabot.Badge]][Dependabot.Link] [![Gitter Chat][Gitter.Badge]][Gitter.Link]
 
-[GitHub.RepoSize.Badge]: https://img.shields.io/github/repo-size/tom-corwin/tcdfx.svg?color=grey&label=Size&logo=github
-[GitHub.RepoLang.Badge]: https://img.shields.io/github/languages/top/tom-corwin/tcdfx.svg?color=grey&label=C%23&logo=github
-[GitHub.Contributors.Badge]: https://img.shields.io/github/contributors/tom-corwin/tcdfx.svg?color=grey&label=Contributors&logo=github
-[GitHub.Contributors.Link]: https://github.com/tom-corwin/tcdfx/graphs/contributors
-[Codacy.Badge]: https://img.shields.io/codacy/grade/2140aa3a23a848a28391aa3c778b9526/master.svg?label=Codacy+Grade&logo=codacy
-[Codacy.Link]: https://www.codacy.com/app/tom-corwin/tcdfx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tom-corwin/tcdfx&amp;utm_campaign=Badge_Grade
-[Dependabot.Badge]: https://badgen.net/dependabot/tom-corwin/tcdfx?icon=dependabot
-[Dependabot.Link]: https://api.dependabot.com/badges/status?host=github&repo=tom-corwin/tcdfx
-[Gitter.Badge]: https://img.shields.io/gitter/room/tom-corwin/tcdfx.svg?label=Chat&logo=gitter
-[Gitter.Link]: https://gitter.im/tom-corwin/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
-
 <!--TODO: Add 1-2 paragraphs summarizing TCDFx. -->
 
 <small>**This README is being rewritten, and may contain outdated or missing information.**</small>
@@ -27,16 +16,6 @@ Currently, this project should still be considered a work-in-progress and should
 
 Contributing is as easy as filing an issue, fixing a bug, or suggesting a new feature. For more information about contributing to this project, see the [CONTRIBUTING.md][File.Contributing.Link] file.
 
-[GitHub.Issues.Open.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tcdfx.svg?color=grey&label=Open%20Issues&logo=github
-[GitHub.Issues.Open.Link]: https://github.com/tom-corwin/tcdfx/issues?&q=is%3Aissue+is%3Aopen
-[GitHub.Issues.Closed.Badge]: https://img.shields.io/github/issues-closed-raw/tom-corwin/tcdfx.svg?color=grey&label=Closed%20Issues&logo=github
-[GitHub.Issues.Closed.Link]: https://github.com/tom-corwin/tcdfx/issues?&q=is%3Aissue+is%3Aclosed
-[GitHub.Issues.HelpWanted.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tcdfx/HelpWanted.svg?color=grey&label=Help%20Wanted%20Issues&logo=github
-[GitHub.Issues.HelpWanted.Link]: https://github.com/tom-corwin/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22HelpWanted%22
-[GitHub.Issues.GoodFirstIssue.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tcdfx/GoodFirstIssue.svg?color=grey&label=Good%20First%20Issues&logo=github
-[GitHub.Issues.GoodFirstIssue.Link]: https://github.com/tom-corwin/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22GoodFirstIssue%22
-[File.Contributing.Link]: https://github.com/tom-corwin/tcdfx/blob/master/CONTRIBUTING.md
-
 ### Build Status
 
 We use [Azure Pipelines][AzurePipelines.Link] for our CI builds. Although we currently only run builds on the following platforms, TCDFx can be built and used on any [platform supported by .NET Core 3.0][DotNetCore.SupportedOS.Link].
@@ -48,30 +27,6 @@ We use [Azure Pipelines][AzurePipelines.Link] for our CI builds. Although we cur
 | **Ubuntu 16.04<br/><br/>** | <small>Debug: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxCore_Ubuntu1604_Debug.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub><br/>Release: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxCore_Ubuntu1604_Release.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub></small> | <small>Debug: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxUI_Ubuntu1604_Debug.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub><br/>Release: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxUI_Ubuntu1604_Release.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub></small> |
 | **macOS 10.13<br/><br/>**  | <small>Debug: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxCore_macOS1013_Debug.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub><br/>Release: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxCore_macOS1013_Release.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub></small>   | <small>Debug: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxUI_macos1013_Debug.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub><br/>Release: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxUI_macos1013_Release.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub></small> |
 | **macOS 10.14<br/><br/>**  | <small>Debug: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxCore_macOS1014_Debug.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub><br/>Release: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxCore_macOS1014_Release.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub></small>   | <small>Debug: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxUI_macos1014_Debug.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub><br/>Release: <sub><sub><sub><sub><sub><sub><sub>[![Build Status][BuildStatus.TCDFxUI_macos1014_Release.Badge]][BuildStatus.Link]</sub></sub></sub></sub></sub></sub></sub></small> |
-
-[AzurePipelines.Link]: https://azure.microsoft.com/en-us/services/devops/pipelines/
-[DotNetCore.SupportedOS.Link]: https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md
-[BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=15&branchName=master
-[BuildStatus.TCDFxCore_Windows81_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows81_Debug
-[BuildStatus.TCDFxCore_Windows81_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows81_Release
-[BuildStatus.TCDFxCore_Windows10_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows10_Debug
-[BuildStatus.TCDFxCore_Windows10_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows10_Release
-[BuildStatus.TCDFxCore_Ubuntu1604_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Ubuntu1604_Debug
-[BuildStatus.TCDFxCore_Ubuntu1604_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Ubuntu1604_Release
-[BuildStatus.TCDFxCore_macOS1013_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1013_Debug
-[BuildStatus.TCDFxCore_macOS1013_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1013_Release
-[BuildStatus.TCDFxCore_macOS1014_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1014_Debug
-[BuildStatus.TCDFxCore_macOS1014_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1014_Release
-[BuildStatus.TCDFxUI_Windows81_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows81_Debug
-[BuildStatus.TCDFxUI_Windows81_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows81_Release
-[BuildStatus.TCDFxUI_Windows10_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows10_Debug
-[BuildStatus.TCDFxUI_Windows10_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows10_Release
-[BuildStatus.TCDFxUI_Ubuntu1604_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Ubuntu1604_Debug
-[BuildStatus.TCDFxUI_Ubuntu1604_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Ubuntu1604_Release
-[BuildStatus.TCDFxUI_macOS1013_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1013_Debug
-[BuildStatus.TCDFxUI_macOS1013_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1013_Release
-[BuildStatus.TCDFxUI_macOS1014_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1014_Debug
-[BuildStatus.TCDFxUI_macOS1014_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1014_Release
 
 ### Current Packages
 
@@ -87,11 +42,6 @@ We use [Azure Pipelines][AzurePipelines.Link] for our CI builds. Although we cur
 Stable and preview packages will be released onto NuGet (when they are released).
 
 CI builds are are published to our [GitHub Package Registry](https://github.com/tom-corwin/tcdfx/packages).
-
-[Versions.TCDFxCore.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.Core.svg?color=blue&label=Stable&logo=nuget
-[Versions.TCDFxCore.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.Core.svg?color=orange&label=Preview&logo=nuget
-[Versions.TCDFxUI.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.UI.svg?color=blue&label=Stable&logo=nuget
-[Versions.TCDFxUI.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.UI.svg?color=orange&label=Preview&logo=nuget
 
 <!--TODO: Package Links -->
 
@@ -151,3 +101,50 @@ Run the following command in a command-line interface in the root directory of t
 ```
 dotnet build dirs.proj
 ```
+
+[GitHub.RepoSize.Badge]: https://img.shields.io/github/repo-size/tom-corwin/tcdfx.svg?color=grey&label=Size&logo=github
+[GitHub.RepoLang.Badge]: https://img.shields.io/github/languages/top/tom-corwin/tcdfx.svg?color=grey&label=C%23&logo=github
+[GitHub.Contributors.Badge]: https://img.shields.io/github/contributors/tom-corwin/tcdfx.svg?color=grey&label=Contributors&logo=github
+[GitHub.Contributors.Link]: https://github.com/tom-corwin/tcdfx/graphs/contributors
+[Codacy.Badge]: https://img.shields.io/codacy/grade/2140aa3a23a848a28391aa3c778b9526/master.svg?label=Codacy+Grade&logo=codacy
+[Codacy.Link]: https://www.codacy.com/app/tom-corwin/tcdfx?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tom-corwin/tcdfx&amp;utm_campaign=Badge_Grade
+[Dependabot.Badge]: https://badgen.net/dependabot/tom-corwin/tcdfx?icon=dependabot
+[Dependabot.Link]: https://api.dependabot.com/badges/status?host=github&repo=tom-corwin/tcdfx
+[Gitter.Badge]: https://img.shields.io/gitter/room/tom-corwin/tcdfx.svg?label=Chat&logo=gitter
+[Gitter.Link]: https://gitter.im/tom-corwin/tcdfx?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+[GitHub.Issues.Open.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tcdfx.svg?color=grey&label=Open%20Issues&logo=github
+[GitHub.Issues.Open.Link]: https://github.com/tom-corwin/tcdfx/issues?&q=is%3Aissue+is%3Aopen
+[GitHub.Issues.Closed.Badge]: https://img.shields.io/github/issues-closed-raw/tom-corwin/tcdfx.svg?color=grey&label=Closed%20Issues&logo=github
+[GitHub.Issues.Closed.Link]: https://github.com/tom-corwin/tcdfx/issues?&q=is%3Aissue+is%3Aclosed
+[GitHub.Issues.HelpWanted.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tcdfx/HelpWanted.svg?color=grey&label=Help%20Wanted%20Issues&logo=github
+[GitHub.Issues.HelpWanted.Link]: https://github.com/tom-corwin/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22HelpWanted%22
+[GitHub.Issues.GoodFirstIssue.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tcdfx/GoodFirstIssue.svg?color=grey&label=Good%20First%20Issues&logo=github
+[GitHub.Issues.GoodFirstIssue.Link]: https://github.com/tom-corwin/tcdfx/issues?q=is%3Aissue+is%3Aopen+label%3A%22GoodFirstIssue%22
+[File.Contributing.Link]: https://github.com/tom-corwin/tcdfx/blob/master/CONTRIBUTING.md
+[AzurePipelines.Link]: https://azure.microsoft.com/en-us/services/devops/pipelines/
+[DotNetCore.SupportedOS.Link]: https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md
+[BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=15&branchName=master
+[BuildStatus.TCDFxCore_Windows81_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows81_Debug
+[BuildStatus.TCDFxCore_Windows81_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows81_Release
+[BuildStatus.TCDFxCore_Windows10_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows10_Debug
+[BuildStatus.TCDFxCore_Windows10_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows10_Release
+[BuildStatus.TCDFxCore_Ubuntu1604_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Ubuntu1604_Debug
+[BuildStatus.TCDFxCore_Ubuntu1604_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Ubuntu1604_Release
+[BuildStatus.TCDFxCore_macOS1013_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1013_Debug
+[BuildStatus.TCDFxCore_macOS1013_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1013_Release
+[BuildStatus.TCDFxCore_macOS1014_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1014_Debug
+[BuildStatus.TCDFxCore_macOS1014_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1014_Release
+[BuildStatus.TCDFxUI_Windows81_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows81_Debug
+[BuildStatus.TCDFxUI_Windows81_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows81_Release
+[BuildStatus.TCDFxUI_Windows10_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows10_Debug
+[BuildStatus.TCDFxUI_Windows10_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows10_Release
+[BuildStatus.TCDFxUI_Ubuntu1604_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Ubuntu1604_Debug
+[BuildStatus.TCDFxUI_Ubuntu1604_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Ubuntu1604_Release
+[BuildStatus.TCDFxUI_macOS1013_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1013_Debug
+[BuildStatus.TCDFxUI_macOS1013_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1013_Release
+[BuildStatus.TCDFxUI_macOS1014_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1014_Debug
+[BuildStatus.TCDFxUI_macOS1014_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1014_Release
+[Versions.TCDFxCore.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.Core.svg?color=blue&label=Stable&logo=nuget
+[Versions.TCDFxCore.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.Core.svg?color=orange&label=Preview&logo=nuget
+[Versions.TCDFxUI.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.UI.svg?color=blue&label=Stable&logo=nuget
+[Versions.TCDFxUI.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.UI.svg?color=orange&label=Preview&logo=nuget
