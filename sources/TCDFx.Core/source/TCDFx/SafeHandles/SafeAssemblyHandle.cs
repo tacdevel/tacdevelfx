@@ -8,8 +8,10 @@ using System;
 using System.Security;
 using TCDFx.Native;
 using TCDFx.Resources;
+using TCDFx.Runtime;
+using TCDFx.Runtime.InteropServices;
 
-namespace TCDFx.Runtime.InteropServices.SafeHandles
+namespace TCDFx.SafeHandles
 {
     /// <summary>
     /// Represents a wrapper class for a native assembly handle.

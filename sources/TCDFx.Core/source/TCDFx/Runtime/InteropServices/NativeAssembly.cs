@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using TCDFx.Native;
 using TCDFx.Resources;
-using TCDFx.Runtime.InteropServices.SafeHandles;
+using TCDFx.SafeHandles;
 
 namespace TCDFx.Runtime.InteropServices
 {
@@ -23,7 +23,6 @@ namespace TCDFx.Runtime.InteropServices
 
         public string AssemblyName { get; }
     }
-
 
     /// <summary>
     /// Represents a native (shared) assembly.
