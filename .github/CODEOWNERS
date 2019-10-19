@@ -6,16 +6,3 @@
 
 # Maintainer
 *                                            @tom-corwin
-
-# Packages
-source/                                      
-source/TCD.Collections.MultiValueDictionary/ 
-source/TCD.Disposable/                       
-source/TCD.Drawing.Common/                   
-source/TCD.Drawing.Primitives/               
-source/TCD.Drawing.Text/                     
-source/TCD.InteropServices/                  
-source/TCD.UI/                               
-
-# Examples
-examples/                                   
