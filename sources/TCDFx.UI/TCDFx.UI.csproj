@@ -10,43 +10,8 @@
     <DefineConstants>$(DefineConstants);TCDFXUI</DefineConstants>
   </PropertyGroup>
 
-  <!-- Once I'm finished rewriting this library, this PropertyGroup will be removed. -->
-  <ItemGroup>
-    <None Include="source.old\**\*.cs" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="$(TCDFxProjectGroupPath)TCDFx.Core\TCDFx.Core.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="headers\**\*.h" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="libraries\win-x86\libui.dll">
-      <Link>libraries\win-x86\libui.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-      <PackagePath>runtimes\win-x86\libui.dll</PackagePath>
-    </Content>
-    <Content Include="libraries\win-x64\libui.dll">
-      <Link>libraries\win-x64\libui.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-      <PackagePath>runtimes\win-x64\libui.dll</PackagePath>
-    </Content>
-    <Content Include="libraries\linux-x64\libui.so.0">
-      <Link>libraries\linux-x64\libui.so.0</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-      <PackagePath>runtimes\linux-x64\libui.so.0</PackagePath>
-    </Content>
-    <Content Include="libraries\osx-x64\libui.A.dylib">
-      <Link>libraries\osx-x64\libui.A.dylib</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Pack>true</Pack>
-      <PackagePath>runtimes\osx-x64\libui.A.dylib</PackagePath>
-    </Content>
   </ItemGroup>
 </Project>
