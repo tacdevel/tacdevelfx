@@ -17,7 +17,6 @@ using TCDFx.SafeHandles;
 
 namespace TCDFx.Runtime.InteropServices
 {
-    [Obsolete]
     public sealed class NativeAssemblyLoadedEventArgs : EventArgs
     {
         public NativeAssemblyLoadedEventArgs(string assemblyName) => AssemblyName = assemblyName;
@@ -28,7 +27,6 @@ namespace TCDFx.Runtime.InteropServices
     /// <summary>
     /// Represents a native (shared) assembly.
     /// </summary>
-    [Obsolete("Use 'System.Runtime.InteropServices.NativeLibrary' instead.")]
     [SuppressUnmanagedCodeSecurity]
     public class NativeAssembly : SafeNativeComponent<SafeAssemblyHandle>, INativeComponent<SafeAssemblyHandle>
     {

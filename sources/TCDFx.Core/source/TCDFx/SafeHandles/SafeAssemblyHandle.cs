@@ -16,7 +16,6 @@ namespace TCDFx.SafeHandles
     /// <summary>
     /// Represents a wrapper class for a native assembly handle.
     /// </summary>
-    [Obsolete]
     [SuppressUnmanagedCodeSecurity]
     public sealed class SafeAssemblyHandle : SafeHandleZeroIsInvalid
     {
