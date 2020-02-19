@@ -1,6 +1,6 @@
 ---
-name: Feature Request
-about: Suggest a new feature or improvement for LibUISharp.
+name: Feature/Enhancement Request
+about: Suggest a new feature or functionality for TACDevelFx.
 
 ---
 
