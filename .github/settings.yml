@@ -60,6 +60,8 @@ labels:
     color: D32F2F
   - name: Type:Infrastructure
     color: 1976D2
+  - name: Type:Dependency
+    color: 1976D2
   - name: Platform:All
     color: 455A64
   - name: Platform:Windows

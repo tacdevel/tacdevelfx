@@ -1,9 +1,0 @@
-version: 2
-mergeable:
-  - when: pull_request.*, pull_request_review.*
-    validate:
-      # list of validators. Specify one or more.
-      - do: label
-        must_exclude:
-          regex: 'NO-MERGE' # an option will have one or more sub-options.
-          message: "This pull request should not be merged. (Contains `NO-MERGE`)"
