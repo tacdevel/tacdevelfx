@@ -1,8 +1,8 @@
-# These are the people responsible for various parts of TCDFx.
+# These are the people responsible for various parts of TACDevLibs.
 
 # If you want to be responsible for code reviews in specific sections of
-# the TCDFx code base, edit this file with your name next to the section
-# you'd like, and submit a pull request.
+# the code base, edit this file with your name next to the section you'd
+# like, and submit a pull request.
 
 # Maintainer
 *                                            @tom-corwin

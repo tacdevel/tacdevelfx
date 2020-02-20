@@ -1,6 +1,12 @@
+
+
+
+
+
+
 # Contributing to TCDFx
 
-It's great to see the community taking a part in the development and evolution of TCDFx. This document's goal is to make contributing to this project as simple and transparent as possible, whether it's:
+It's great to see other people looking to improve TACDevelFx. This document's goal is to make contributing to this project as simple and transparent as possible, whether it's:
 
   - Reporting a bug or other issue.
   - Discussing the current state of the code.
@@ -8,13 +14,9 @@ It's great to see the community taking a part in the development and evolution o
   - Proposing a new feature.
   - Becoming a maintainer.
 
-We use [GitHub](https://github.com)'s services to host our code, track issues and releases, and accept code changes via pull requests. We also use the following [GitHub Probots](https://probot.github.io/) for the described purpose(s):
 
-  - [triage-new-issues](https://github.com/tunnckoCore/triage-new-issues): Adds a `triage` label to new issues/PRs that have no labels.
-  - [request-info](https://probot.github.io/apps/request-info): Requests more information from new issues and PRs with generic titles and/or empty descriptions.
-  - [pr-triage](https://github.com/pr-triage/pr-triage): Adds labels to a PR depending on the review status.
-  - [Mergeable](https://github.com/mergeability/mergeable): Adds a check for a `NO-MERGE` label.
-  - [helPR](https://github.com/rsarky/helpr): Adds labels to issues with information about a related PR.
+
+We use [GitHub](https://github.com)'s services to host our code, track issues and releases, and accept code changes via pull requests.
 
 ## Pull Requests
 
@@ -52,4 +54,4 @@ Reporting an issue is even easier than submitting a pull request. Just follow th
 
 ## Contribution Licensing
 
-When you submit a pull request or issue, your submissions are understood to be under the same [license](https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md) that covers the project. Feel free to contact a project maintainer if that is a concern.
+When you submit a pull request or issue, your submissions are understood to be under the same [license](https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md) that covers the project. Feel free to contact a project maintainer if that is a concern.
