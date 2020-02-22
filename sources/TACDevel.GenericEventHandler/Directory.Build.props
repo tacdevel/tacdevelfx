@@ -1,0 +1,9 @@
+<!--====================================================================================================================
+* FileName:             Directory.Build.props
+* Copyright:            Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.
+* License:              https://github.com/tom-corwin/tacdevelfx/blob/master/LICENSE.md
+=====================================================================================================================-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+</Project>
