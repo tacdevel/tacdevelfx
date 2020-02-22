@@ -1,12 +1,12 @@
-/***************************************************************************************************
+/***********************************************************************************************************************
  * FileName:             Disposable.cs
- * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
- **************************************************************************************************/
+ * Copyright:            Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+ **********************************************************************************************************************/
 
 using System;
 
-namespace TCDFx
+namespace TACDevel
 {
     /// <summary>
     /// Provides a base implementation for the <see cref="IDisposableEx"/> interface.
@@ -26,12 +26,12 @@ namespace TCDFx
         /// <summary>
         /// Occurs when an object is disposing.
         /// </summary>
-        public event EventHandler<Disposable, EventArgs> Disposing;
+        public event GenericEventHandler<Disposable, EventArgs> Disposing;
 
         /// <summary>
         /// Occurs when an object is disposed.
         /// </summary>
-        public event EventHandler<Disposable, EventArgs> Disposed;
+        public event GenericEventHandler<Disposable, EventArgs> Disposed;
 
         /// <summary>
         /// Determines whether this object is disposed.
