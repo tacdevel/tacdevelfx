@@ -1,0 +1,106 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~ FileName:             /global.targets
+~ Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Package Versioning ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+  <PropertyGroup>
+    <TACDevLibsVersion Condition="$(TACDevLibsVersion)' == ''">0.0.1</TACDevLibsVersion>
+  </PropertyGroup>
+  
+  <UsingTask TaskName="GenerateSharedVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <IsAutoBuild ParameterType="System.Boolean" Required="true" />
+      <RepoRootDir ParameterType="System.String" Required="true" />
+      <OriginalVersion ParameterType="System.String" Required="true" />
+      <GeneratedVersion ParameterType="System.String" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+        string timestamp = DateTime.Now.ToString("yyMMdd");
+        string[] gitFetchHead = File.ReadAllLines($"{RepoRootDir}.git\FETCH_HEAD");
+        string commit = gitFetchHead[0].Substring(0, 7);
+        if (!IsAutoBuild)
+        {
+          GeneratedVersion = $"{InputVersion}-local-{timestamp}-{commit}";
+        else
+        {
+          if (gitFetchHead[0].Contains(@"branch 'release/v"))
+            GeneratedVersion = $"{InputVersion}+{timestamp}-{commit}";
+          else if (gitFetchHead[0].Contains(@"branch 'pull/"))
+          {
+            string pullNumberStr = gitFetchHead[0].Remove(0, 40).TrimStart('\t').Remove(0, 13);
+            int pullNumber = int.Parse(pullNumberStr.Substring(0, pullNumberStr.IndexOf('/'));
+            GeneratedVersion = $"{InputVersion}-dev-{timestamp}-pr{prNumber}-{commit}";
+          }
+          else
+            GeneratedVersion = $"{InputVersion}-dev-{timestamp}-{commit}";
+        }
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="GenerateSharedVersion" Condition="$(TACDevLibsSharedVersion)' == ''" BeforeTargets="Build">
+    <SharedVersionEditor IsAutoBuild="$(_IsAutomatedBuild)" RepoRootDir="$(MSBuildThisFileDirectory)" OriginalVersion="$(TACDevLibsVersion)">
+      <Output PropertyName="TACDevLibsSharedVersion" TaskParameter="GeneratedVersion" />
+    </SharedVersionEditor>
+    <Message Text="Generated Shared Version: $(TACDevLibsSharedVersion)" Importance="High" />
+  </Target>
+
+  <PropertyGroup>
+    <Version>$(TACDevLibsSharedVersion)</Version>
+  </PropertyGroup>
+
+  <!-- Default Items ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+  <PropertyGroup>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="src\**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="res**\*.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Condition="Exists('$(MSBuildThisFileDirectory)LICENSE.md')" Include="$(MSBuildThisFileDirectory)LICENSE.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+    <Content Condition="Exists('$(MSBuildThisFileDirectory)THIRD_PARTY_NOTICES.md')" Include="$(MSBuildThisFileDirectory)THIRD_PARTY_NOTICES.md">
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </Content>
+  </ItemGroup>
+
+  <!-- Default Items ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+  <PropertyGroup Condition="'$(TACDevLibsProjectCategory)' != 'examples'">
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(TACDevLibsProjectCategory)' != 'examples'">
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

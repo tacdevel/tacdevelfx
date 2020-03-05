@@ -1,0 +1,36 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* FileName:             /sources/sources.props
+* Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <TACDevLibsProjectCategory>sources</TACDevLibsProjectCategory>
+
+  <PropertyGroup>
+    <!--TODO: Make TargetFramework project-specific, so we can use TargetFrameworks instead.-->
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('global.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>$(TACDevLibsProjectBuildDocPath)$(MSBuildProjectName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="('$(Configuration)' == 'Release')">
+    <Copyright>Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.</Copyright>
+    <RepositoryUrl>https://github.com/tom-corwin/tacdevlibs</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageOutputPath>$(TACDevLibsProjectBuildPkgPath)</PackageOutputPath>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="('$(_IsAutomatedBuild)|$(Configuration)' == 'true|Release')">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>
