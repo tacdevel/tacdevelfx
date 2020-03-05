@@ -8,7 +8,7 @@
   <!-- Package Versioning ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
   <PropertyGroup>
-    <TACDevLibsVersion Condition="$(TACDevLibsVersion)' == ''">0.0.1</TACDevLibsVersion>
+    <TACDevLibsVersion Condition="'$(TACDevLibsVersion)' == ''">0.0.1</TACDevLibsVersion>
   </PropertyGroup>
   
   <UsingTask TaskName="GenerateSharedVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
@@ -69,15 +69,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="res**\*.resx" />
+    <EmbeddedResource Include="res\**\*.resx" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Condition="Exists('$(MSBuildThisFileDirectory)LICENSE.md')" Include="$(MSBuildThisFileDirectory)LICENSE.md">
-      <CopyToOutputDirectory>true</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </Content>
-    <Content Condition="Exists('$(MSBuildThisFileDirectory)THIRD_PARTY_NOTICES.md')" Include="$(MSBuildThisFileDirectory)THIRD_PARTY_NOTICES.md">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
