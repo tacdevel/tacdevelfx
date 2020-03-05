@@ -1,5 +1,5 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* FileName:             /sources/TACDevel.GenericEventHandler/TACDevel.GenericEventHandler.props
+* FileName:             /sources/TACDevel.Drawing.Primitives/TACDevel.Drawing.Primitives.props
 * Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -7,12 +7,8 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove('sources.props', '$(MSBuildThisFileDirectory)../'))" />
 
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);TACDEVEL_DISPOSABLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);TACDEVEL_DRAWING_PRIMITIVES</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TACDevel.GenericEventHandler\TACDevel.GenericEventHandler.csproj" />
-  </ItemGroup>
-  
   <Import Project="$([MSBuild]::GetPathOfFileAbove('sources.targets', '$(MSBuildThisFileDirectory)../'))" />
 </Project>

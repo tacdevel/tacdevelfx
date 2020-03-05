@@ -1,13 +1,13 @@
-/***************************************************************************************************
- * FileName:             PlatformHelper.cs
- * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
- **************************************************************************************************/
+/***********************************************************************************************************************
+ * FileName:             Ntdll.cs
+ * Copyright:            Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+ **********************************************************************************************************************/
 
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace TCDFx.Native
+namespace TACDevel.Native
 {
     [SuppressUnmanagedCodeSecurity]
     internal static class Ntdll

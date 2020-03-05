@@ -21,7 +21,77 @@ namespace TCDFx.Runtime
     {
         private static readonly string pRIDEnv = Environment.GetEnvironmentVariable("DOTNET_RUNTIME_ID");
 
-        static Platform()
+
+        private static string GetRIDArch() => Architecture == PlatformArch.ARM32 ? "-arm" : $"-{Architecture.ToString().ToLowerInvariant()}";
+
+        private static string GetRIDVersion()
+        {
+            if (Version.Major == 0 && Version.Minor == 0)
+                return string.Empty;
+
+            switch (PlatformType)
+            {
+                // Windows RIDs do not separate OS name and version by "."
+                case PlatformType.Windows:
+                    if (Version.Major == 6)
+                    {
+                        if (Version.Minor == 1)
+                            return "7";
+                        else if (Version.Minor == 2)
+                            return "8";
+                        else if (Version.Minor == 3)
+                            return "81";
+                    }
+                    else if (Version.Major >= 10)
+                        return Version.Major.ToString(CultureInfo.InvariantCulture);
+                    return string.Empty;
+                case PlatformType.MacOS:
+                case PlatformType.Linux:
+                case PlatformType.FreeBSD:
+                    if (Version.Minor > 0)
+                        return $".{Version.Major}";
+                    return $".{Version.Major}.{Version.Minor}";
+                case PlatformType.Unknown:
+                default:
+                    return string.Empty;
+            }
+        }
+
+        private static string GetRIDOS()
+        {
+            switch (OperatingSystem)
+            {
+                case PlatformOS.Windows:
+                    return "win";
+                case PlatformOS.MacOS:
+                    return "osx";
+                case PlatformOS.Linux:
+                case PlatformOS.FreeBSD:
+                case PlatformOS.Debian:
+                case PlatformOS.Ubuntu:
+                case PlatformOS.LinuxMint:
+                case PlatformOS.Fedora:
+                case PlatformOS.RHEL:
+                case PlatformOS.OL:
+                case PlatformOS.OpenSUSE:
+                case PlatformOS.SLES:
+                case PlatformOS.CentOS:
+                case PlatformOS.Alpine:
+                    return OperatingSystem.ToString().ToLowerInvariant();
+                case PlatformOS.Unknown:
+                default:
+                    return "unknown";
+            }
+        }
+    }
+
+
+
+
+    public static class Platform_
+    {
+
+        static Platform_()
         {
             if (pRIDEnv != null)
             {
@@ -273,68 +343,6 @@ namespace TCDFx.Runtime
             }
             catch { }
             return (PlatformOS.FreeBSD, new Version(0, 0));
-        }
-
-        private static string GetRIDArch() => Architecture == PlatformArch.ARM32 ? "-arm" : $"-{Architecture.ToString().ToLowerInvariant()}";
-
-        private static string GetRIDVersion()
-        {
-            if (Version.Major == 0 && Version.Minor == 0)
-                return string.Empty;
-
-            switch (PlatformType)
-            {
-                // Windows RIDs do not separate OS name and version by "."
-                case PlatformType.Windows:
-                    if (Version.Major == 6)
-                    {
-                        if (Version.Minor == 1)
-                            return "7";
-                        else if (Version.Minor == 2)
-                            return "8";
-                        else if (Version.Minor == 3)
-                            return "81";
-                    }
-                    else if (Version.Major >= 10)
-                        return Version.Major.ToString(CultureInfo.InvariantCulture);
-                    return string.Empty;
-                case PlatformType.MacOS:
-                case PlatformType.Linux:
-                case PlatformType.FreeBSD:
-                    if (Version.Minor > 0)
-                        return $".{Version.Major}";
-                    return $".{Version.Major}.{Version.Minor}";
-                case PlatformType.Unknown:
-                default:
-                    return string.Empty;
-            }
-        }
-
-        private static string GetRIDOS()
-        {
-            switch (OperatingSystem)
-            {
-                case PlatformOS.Windows:
-                    return "win";
-                case PlatformOS.MacOS:
-                    return "osx";
-                case PlatformOS.Linux:
-                case PlatformOS.FreeBSD:
-                case PlatformOS.Debian:
-                case PlatformOS.Ubuntu:
-                case PlatformOS.LinuxMint:
-                case PlatformOS.Fedora:
-                case PlatformOS.RHEL:
-                case PlatformOS.OL:
-                case PlatformOS.OpenSUSE:
-                case PlatformOS.SLES:
-                case PlatformOS.CentOS:
-                case PlatformOS.Alpine:
-                    return OperatingSystem.ToString().ToLowerInvariant();
-                case PlatformOS.Unknown:
-                default:
-                    return "unknown";
-            }
         }
     }
 }

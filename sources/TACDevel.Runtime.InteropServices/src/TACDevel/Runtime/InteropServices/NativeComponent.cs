@@ -1,8 +1,8 @@
-/***************************************************************************************************
- * FileName:             NativeComponent.cs
- * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
- **************************************************************************************************/
+/***********************************************************************************************************************
+ * FileName:             NativeObject.cs
+ * Copyright:            Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.
+ * License:              https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+ **********************************************************************************************************************/
 
 using System;
 using System.Globalization;
@@ -15,14 +15,14 @@ namespace TCDFx.Runtime.InteropServices
     /// Provides the base implementation of the <see cref="INativeComponent{T}"/> interface.
     /// </summary>
     /// <typeparam name="T">The type of handle.</typeparam>
-    public abstract class NativeComponent<T> : Component, IEquatable<NativeComponent<T>>, INativeComponent<T>
+    public abstract class NativeObject<T> : IEquatable<NativeObject<T>>, INativeComponent<T>
     {
         private T handle = default;
 
         /// <summary>
-        /// Initializes a new instance if the <see cref="NativeComponent{T}"/> class.
+        /// Initializes a new instance if the <see cref="NativeObject{T}"/> class.
         /// </summary>
-        protected internal NativeComponent() : base() { }
+        protected internal NativeObject() : base() { }
 
         /// <summary>
         /// Gets a value determining if <see cref="Handle"/> is immutable.
@@ -62,14 +62,14 @@ namespace TCDFx.Runtime.InteropServices
         /// </summary>
         /// <param name="other">The object to compare with the current object.</param>
         /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
-        public bool Equals(NativeComponent<T> other) => Handle.Equals(other.Handle);
+        public bool Equals(NativeObject<T> other) => Handle.Equals(other.Handle);
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
-        public override bool Equals(object obj) => !(obj is NativeComponent<T>) ? false : Equals((NativeComponent<T>)obj);
+        public override bool Equals(object obj) => !(obj is NativeObject<T>) ? false : Equals((NativeObject<T>)obj);
 
         /// <summary>
         /// Serves as the default hash function.
