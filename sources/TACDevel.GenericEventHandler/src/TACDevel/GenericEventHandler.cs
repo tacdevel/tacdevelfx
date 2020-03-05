@@ -1,10 +1,7 @@
 /***********************************************************************************************************************
- * FileName:             GenericEventHandler.cs
- * Copyright:            Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tom-corwin/tacdevelfx/blob/master/LICENSE.md
- **********************************************************************************************************************/
-
-using System;
+ * FileName:            /sources/TACDevel.GenericEventHandler/src/TACDevel/GenericEventHandler.cs
+ * Copyright/License:   https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+***********************************************************************************************************************/
 
 namespace TACDevel
 {
