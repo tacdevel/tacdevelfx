@@ -1,0 +1,120 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.89
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{5805268D-ECEF-416F-AF35-17BB7F5DCB17}"
+	ProjectSection(SolutionItems) = preProject
+		examples\dirs.proj = examples\dirs.proj
+		examples\examples.props = examples\examples.props
+		examples\examples.targets = examples\examples.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sources", "sources", "{515FFECF-3FF1-4C67-AA9C-F2D9DD72096E}"
+	ProjectSection(SolutionItems) = preProject
+		sources\dirs.proj = sources\dirs.proj
+		sources\sources.props = sources\sources.props
+		sources\sources.targets = sources\sources.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2BB85D8F-28AE-4C25-AF22-35D672E5B690}"
+	ProjectSection(SolutionItems) = preProject
+		tests\dirs.proj = tests\dirs.proj
+		tests\tests.props = tests\tests.props
+		tests\tests.targets = tests\tests.targets
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACDevel.GenericEventHandler", "sources\TACDevel.GenericEventHandler\TACDevel.GenericEventHandler.csproj", "{6B3D6587-CA12-4467-9824-8C6C36F454E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACDevel.Disposable", "sources\TACDevel.Disposable\TACDevel.Disposable.csproj", "{91ABBB5C-A32A-45D5-B361-DCA01CA6F496}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACDevel.Runtime", "sources\TACDevel.Runtime\TACDevel.Runtime.csproj", "{A02F1E05-39C3-4088-A5A3-52C4ED83B5CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACDevel.Runtime.InteropServices", "sources\TACDevel.Runtime.InteropServices\TACDevel.Runtime.InteropServices.csproj", "{C46AAA44-E4CD-4C53-B7F7-A6AB849CEFD9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACDevel.Drawing.Primitives", "sources\TACDevel.Drawing.Primitives\TACDevel.Drawing.Primitives.csproj", "{0D01FA9E-2FE7-4F9C-A6B0-976A382612A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACDevel.Collections.MultiValueDictionary", "sources\TACDevel.Collections.MultiValueDictionary\TACDevel.Collections.MultiValueDictionary.csproj", "{7F09EAA7-E699-4E96-A3A6-5E38752B4682}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisposableExample", "examples\DisposableExample\DisposableExample.csproj", "{7B8EAD21-0BB8-4C13-B892-848848C66178}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiValueDictionaryExample", "examples\MultiValueDictionaryExample\MultiValueDictionaryExample.csproj", "{6F8FC3D7-BF5D-4150-A8A6-9E555A6A0CBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeAssemblyExample", "examples\NativeAssemblyExample\NativeAssemblyExample.csproj", "{D886A211-AA4E-4352-9CC5-F0317921566F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlatformExample", "examples\PlatformExample\PlatformExample.csproj", "{A440E38D-B810-437C-BBA4-534E04F8A0BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{054DED3B-B890-4652-B449-839F581E5D86}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		dirs.proj = dirs.proj
+		global.json = global.json
+		global.props = global.props
+		global.targets = global.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6B3D6587-CA12-4467-9824-8C6C36F454E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B3D6587-CA12-4467-9824-8C6C36F454E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B3D6587-CA12-4467-9824-8C6C36F454E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B3D6587-CA12-4467-9824-8C6C36F454E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91ABBB5C-A32A-45D5-B361-DCA01CA6F496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91ABBB5C-A32A-45D5-B361-DCA01CA6F496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91ABBB5C-A32A-45D5-B361-DCA01CA6F496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91ABBB5C-A32A-45D5-B361-DCA01CA6F496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A02F1E05-39C3-4088-A5A3-52C4ED83B5CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A02F1E05-39C3-4088-A5A3-52C4ED83B5CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A02F1E05-39C3-4088-A5A3-52C4ED83B5CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A02F1E05-39C3-4088-A5A3-52C4ED83B5CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C46AAA44-E4CD-4C53-B7F7-A6AB849CEFD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C46AAA44-E4CD-4C53-B7F7-A6AB849CEFD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C46AAA44-E4CD-4C53-B7F7-A6AB849CEFD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C46AAA44-E4CD-4C53-B7F7-A6AB849CEFD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D01FA9E-2FE7-4F9C-A6B0-976A382612A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D01FA9E-2FE7-4F9C-A6B0-976A382612A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D01FA9E-2FE7-4F9C-A6B0-976A382612A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D01FA9E-2FE7-4F9C-A6B0-976A382612A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F09EAA7-E699-4E96-A3A6-5E38752B4682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F09EAA7-E699-4E96-A3A6-5E38752B4682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F09EAA7-E699-4E96-A3A6-5E38752B4682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F09EAA7-E699-4E96-A3A6-5E38752B4682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B8EAD21-0BB8-4C13-B892-848848C66178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B8EAD21-0BB8-4C13-B892-848848C66178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B8EAD21-0BB8-4C13-B892-848848C66178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B8EAD21-0BB8-4C13-B892-848848C66178}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F8FC3D7-BF5D-4150-A8A6-9E555A6A0CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F8FC3D7-BF5D-4150-A8A6-9E555A6A0CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F8FC3D7-BF5D-4150-A8A6-9E555A6A0CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F8FC3D7-BF5D-4150-A8A6-9E555A6A0CBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D886A211-AA4E-4352-9CC5-F0317921566F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D886A211-AA4E-4352-9CC5-F0317921566F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D886A211-AA4E-4352-9CC5-F0317921566F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D886A211-AA4E-4352-9CC5-F0317921566F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A440E38D-B810-437C-BBA4-534E04F8A0BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A440E38D-B810-437C-BBA4-534E04F8A0BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A440E38D-B810-437C-BBA4-534E04F8A0BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A440E38D-B810-437C-BBA4-534E04F8A0BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6B3D6587-CA12-4467-9824-8C6C36F454E5} = {515FFECF-3FF1-4C67-AA9C-F2D9DD72096E}
+		{91ABBB5C-A32A-45D5-B361-DCA01CA6F496} = {515FFECF-3FF1-4C67-AA9C-F2D9DD72096E}
+		{A02F1E05-39C3-4088-A5A3-52C4ED83B5CB} = {515FFECF-3FF1-4C67-AA9C-F2D9DD72096E}
+		{C46AAA44-E4CD-4C53-B7F7-A6AB849CEFD9} = {515FFECF-3FF1-4C67-AA9C-F2D9DD72096E}
+		{0D01FA9E-2FE7-4F9C-A6B0-976A382612A5} = {515FFECF-3FF1-4C67-AA9C-F2D9DD72096E}
+		{7F09EAA7-E699-4E96-A3A6-5E38752B4682} = {515FFECF-3FF1-4C67-AA9C-F2D9DD72096E}
+		{7B8EAD21-0BB8-4C13-B892-848848C66178} = {5805268D-ECEF-416F-AF35-17BB7F5DCB17}
+		{6F8FC3D7-BF5D-4150-A8A6-9E555A6A0CBB} = {5805268D-ECEF-416F-AF35-17BB7F5DCB17}
+		{D886A211-AA4E-4352-9CC5-F0317921566F} = {5805268D-ECEF-416F-AF35-17BB7F5DCB17}
+		{A440E38D-B810-437C-BBA4-534E04F8A0BF} = {5805268D-ECEF-416F-AF35-17BB7F5DCB17}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11024C5B-35F1-4B11-8069-5210E29FB1E5}
+	EndGlobalSection
+EndGlobal

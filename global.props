@@ -1,0 +1,65 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* FileName:             global.props
+* Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <TACDevLibsRepoPath>$(MSBuildThisFileDirectory)</TACDevLibsRepoPath>
+    <TACDevLibsProjectBasePath>$(TACDevLibsRepoPath)$(TACDevLibsProjectCategory)\</TACDevLibsProjectBasePath>
+    <TACDevLibsProjectPath>$(TACDevLibsProjectBasePath)$(MSBuildProjectName)</TACDevLibsProjectPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TACDevLibsBaseBuildPath>$(TACDevLibsRepoPath)build\</TACDevLibsBaseBuildPath>
+    <TACDevLibsProjectCategoryBuildPath>$(TACDevLibsBaseBuildPath)$(TACDevLibsProjectCategory)\</TACDevLibsProjectCategoryBuildPath>
+    <TACDevLibsProjectBuildPath>$(TACDevLibsProjectCategoryBuildPath)$(Configuration)\$(MSBuildProjectName)\$(TargetFramework)\</TACDevLibsProjectBuildPath>
+    <TACDevLibsProjectBuildBinPath>$(TACDevLibsProjectBuildPath)bin\</TACDevLibsProjectBuildBinPath>
+    <TACDevLibsProjectBuildObjPath>$(TACDevLibsProjectBuildPath)obj\</TACDevLibsProjectBuildObjPath>
+    <TACDevLibsProjectBuildDocPath>$(TACDevLibsProjectBuildPath)doc\</TACDevLibsProjectBuildDocPath>
+    <TACDevLibsProjectBuildPkgPath>$(TACDevLibsProjectBuildPath)pkg\</TACDevLibsProjectBuildPkgPath>
+    
+    <BaseOutputPath>$(TACDevLibsProjectBuildBinPath)</BaseOutputPath>
+    <OutputPath>$(BaseOutputPath)</OutputPath>
+    <BaseIntermediateOutputPath>$(TACDevLibsProjectBuildPath)</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+  </PropertyGroup>
+
+  <!-- We do this ourselves in dir.targets.  -->
+  <!-- See here: https://github.com/dotnet/sdk/blob/cd25d6bbfc2aac61cc790c511900427ac64fdaa8/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.TargetFrameworkInference.targets#L167-L174 -->
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+    <Platform>Any CPU</Platform>
+    <NeutralLanguage>en</NeutralLanguage>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  
+  <Choose>
+    <When Condition="'$(Configuration)' == 'Debug'">
+      <PropertyGroup>
+        <Optimize>false</Optimize>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+      </PropertyGroup>
+    </When>
+    <When Condition="'$(Configuration)' == 'Release'">
+      <PropertyGroup>
+        <Optimize>true</Optimize>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>embedded</DebugType>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+</Project>

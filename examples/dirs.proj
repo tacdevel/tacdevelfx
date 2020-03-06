@@ -1,11 +1,10 @@
-<Project Sdk="Microsoft.Build.Traversal" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~ FileName:             /sources/dirs.proj
+~ Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<Project Sdk="Microsoft.Build.Traversal" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ProjectReference Include="ControlGalleryExample\ControlGalleryExample.csproj" />
-    <!--<ProjectReference Include="DisposableExample\DisposableExample.csproj" />-->
-    <!--<ProjectReference Include="MultiValueDictionaryExample\MultiValueDictionaryExample.csproj" />-->
-    <ProjectReference Include="NativeAssemblyExample\NativeAssemblyExample.csproj" />
-    <ProjectReference Include="PlatformExample\PlatformExample.csproj" />
-    <ProjectReference Include="SimpleWindowExample\SimpleWindowExample.csproj" />
-    <ProjectReference Include="SimpleWindowWithMenuExample\SimpleWindowWithMenuExample.csproj" />
+    <ProjectReference Include="**\*.csproj" />
   </ItemGroup>
 </Project>
