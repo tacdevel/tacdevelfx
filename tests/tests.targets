@@ -1,0 +1,20 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~ FileName:             /sources/sources.targets
+~ Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <_TestingProjectName>$(MSBuildProjectName.TrimEnd('.Tests'))</_TestingProjectName>
+    <_TestingProjectReference>..\source\$(_TestingProjectName)\$(_TestingProjectName).csproj</_TestingProjectReference>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(_TestingProjectReference)" />
+  </ItemGroup>
+
+  <!--TODO: Add PackageReferences for whatever testing framework that is eventually used. -->
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('global.targets', '$(MSBuildThisFileDirectory)../'))" />
+</Project>
