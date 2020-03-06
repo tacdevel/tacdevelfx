@@ -1,20 +1,15 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* FileName:             /sources/TACDevel.Runtime.InteropServices/TACDevel.Runtime.InteropServices.csproj
+* FileName:             TACDevel.Runtime.InteropServices.csproj
 * Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('sources.props', '$(MSBuildThisFileDirectory)../'))" />
-
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);TACDEVEL_RUNTIME_INTEROPSERVICES</DefineConstants>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\TACDevel.GenericEventHandler\TACDevel.GenericEventHandler.csproj" />
     <ProjectReference Include="..\TACDevel.Disposable\TACDevel.Disposable.csproj" />
     <ProjectReference Include="..\TACDevel.Runtime\TACDevel.Runtime.csproj" />
   </ItemGroup>
-
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('sources.targets', '$(MSBuildThisFileDirectory)../'))" />
 </Project>

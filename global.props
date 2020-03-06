@@ -1,17 +1,13 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* FileName:             /global.props
+* FileName:             global.props
 * Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <_IsAutomatedBuild></_IsAutomatedBuild>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <TACDevLibsRepoPath>$(MSBuildThisFileDirectory)</TACDevLibsRepoPath>
-    <TACDevLibsProjectBasePath>$(TACDevLibsModulePath)$(TACDevLibsProjectCategory)\</TACDevLibsProjectBasePath>
+    <TACDevLibsProjectBasePath>$(TACDevLibsRepoPath)$(TACDevLibsProjectCategory)\</TACDevLibsProjectBasePath>
     <TACDevLibsProjectPath>$(TACDevLibsProjectBasePath)$(MSBuildProjectName)</TACDevLibsProjectPath>
   </PropertyGroup>
 

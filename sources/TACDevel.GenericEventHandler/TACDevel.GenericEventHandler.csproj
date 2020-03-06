@@ -1,14 +1,10 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* FileName:             /sources/TACDevel.GenericEventHandler/TACDevel.GenericEventHandler.props
+* FileName:             TACDevel.GenericEventHandler.props
 * Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('sources.props', '$(MSBuildThisFileDirectory)../'))" />
-  
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);TACDEVEL_GENERICEVENTHANDLER</DefineConstants>
   </PropertyGroup>
-
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('sources.targets', '$(MSBuildThisFileDirectory)../'))" />
 </Project>

@@ -1,5 +1,5 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-~ FileName:             /global.targets
+~ FileName:             global.targets
 ~ Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
@@ -48,7 +48,7 @@
   </UsingTask>
 
   <Target Name="GenerateSharedVersion" Condition="$(TACDevLibsSharedVersion)' == ''" BeforeTargets="Build">
-    <SharedVersionEditor IsAutoBuild="$(_IsAutomatedBuild)" RepoRootDir="$(MSBuildThisFileDirectory)" OriginalVersion="$(TACDevLibsVersion)">
+    <SharedVersionEditor IsAutoBuild="$(_IsAutomatedBuild)" RepoRootDir="$(TACDevLibsRepoPath)" OriginalVersion="$(TACDevLibsVersion)">
       <Output PropertyName="TACDevLibsSharedVersion" TaskParameter="GeneratedVersion" />
     </SharedVersionEditor>
     <Message Text="Generated Shared Version: $(TACDevLibsSharedVersion)" Importance="High" />
@@ -69,17 +69,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="res\**\*.resx" />
+    <EmbeddedResource Include="res\Strings.resx" Condition="Exists('$(TACDevLibsProjectPath)res\Strings.resx')">
+      <LogicalName>$(MSBuildProjectName).Resources.Strings</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Content Condition="Exists('$(MSBuildThisFileDirectory)LICENSE.md')" Include="$(MSBuildThisFileDirectory)LICENSE.md">
+    <Content Condition="Exists('$(TACDevLibsRepoPath)LICENSE.md')" Include="$(TACDevLibsRepoPath)LICENSE.md">
       <CopyToOutputDirectory>true</CopyToOutputDirectory>
       <Visible>false</Visible>
     </Content>
   </ItemGroup>
 
-  <!-- Default Items ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+  <!-- Code Analysis ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
   <PropertyGroup Condition="'$(TACDevLibsProjectCategory)' != 'examples'">
     <RunCodeAnalysis>false</RunCodeAnalysis>

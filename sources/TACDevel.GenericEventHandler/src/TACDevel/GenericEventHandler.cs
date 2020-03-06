@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * FileName:            /sources/TACDevel.GenericEventHandler/src/TACDevel/GenericEventHandler.cs
+ * FileName:            GenericEventHandler.cs
  * Copyright/License:   https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ***********************************************************************************************************************/
 
