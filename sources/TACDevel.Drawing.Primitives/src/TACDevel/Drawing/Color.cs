@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TCDFx.Drawing
+namespace TACDevel.Drawing
 {
     /// <summary>
     /// Represents an ARGB (alpha, red, green, blue) color.

@@ -5,17 +5,35 @@
  **********************************************************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
-using TCDFx.ComponentModel;
-using TCDFx.Resources;
+using TACDevel.Runtime.InteropServices.Resources;
 
-namespace TCDFx.Runtime.InteropServices
+namespace TACDevel.Runtime.InteropServices
 {
+    /// <summary>
+    /// Represents the base class for a native object.
+    /// </summary>
+    public abstract class NativeObject : Disposable, INativeObject
+    {
+        /// <summary>
+        /// Initializes a new instance if the <see cref="NativeObject"/> class.
+        /// </summary>
+        protected internal NativeObject() : base() { }
+
+        /// <summary>
+        /// Gets a value indicating whether this native object is invalid.
+        /// </summary>
+        /// <value><c>true</c> if this object is invalid; otherwise, <c>false</c>.</value>
+        public abstract bool IsInvalid { get; }
+    }
+
     /// <summary>
     /// Provides the base implementation of the <see cref="INativeComponent{T}"/> interface.
     /// </summary>
     /// <typeparam name="T">The type of handle.</typeparam>
-    public abstract class NativeObject<T> : IEquatable<NativeObject<T>>, INativeComponent<T>
+    public abstract class NativeObject<T> : NativeObject, IEquatable<NativeObject<T>>, INativeObject<T>
+        where T : unmanaged
     {
         private T handle = default;
 
@@ -38,16 +56,14 @@ namespace TCDFx.Runtime.InteropServices
             get => handle;
             protected internal set
             {
-                if (value == null)
+                if (value.Equals(IntPtr.Zero))
                     throw new ArgumentNullException(nameof(value), string.Format(CultureInfo.InvariantCulture, Strings.ObjectMustNotBeNull, nameof(value)));
                 if (IsHandleImmutable)
                     throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Strings.ObjectIsImmutable, nameof(value)), nameof(value));
 
-                OnPropertyChanging(nameof(Handle));
-                if (handle == null || !handle.Equals(value))
+                if (handle.Equals(IntPtr.Zero) || !handle.Equals(value))
                     handle = value;
                 IsHandleImmutable = true;
-                OnPropertyChanged(nameof(Handle));
             }
         }
 
@@ -55,14 +71,16 @@ namespace TCDFx.Runtime.InteropServices
         /// Gets a value indicating whether this component is invalid.
         /// </summary>
         /// <value><c>true</c> if this component is invalid; otherwise, <c>false</c>.</value>
-        public abstract override bool IsInvalid { get; }
+        public override bool IsInvalid => EqualityComparer<T>.Default.Equals(Handle, default);
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="other">The object to compare with the current object.</param>
         /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
-        public bool Equals(NativeObject<T> other) => Handle.Equals(other.Handle);
+#pragma warning disable CA1062 // Validate arguments of public methods
+        public bool Equals(NativeObject<T> other) => EqualityComparer<T>.Default.Equals(Handle, other.Handle);
+#pragma warning restore CA1062 // Validate arguments of public methods
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.

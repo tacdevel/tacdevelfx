@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TCDFx.Collections
+namespace TACDevel.Collections
 {
     public class MultiObjectContainer<TValue1, TValue2> : IEquatable<MultiObjectContainer<TValue1, TValue2>>
     {

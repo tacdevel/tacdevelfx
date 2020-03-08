@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace TCDFx.Runtime.InteropServices
+namespace TACDevel.Runtime.InteropServices
 {
     /// <summary>
     /// The exception that is thrown when a duplicate handle has been created.

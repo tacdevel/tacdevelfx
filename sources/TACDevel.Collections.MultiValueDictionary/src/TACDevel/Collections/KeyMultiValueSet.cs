@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace TCDFx.Collections
+namespace TACDevel.Collections
 {
     /// <summary>
     /// Defines a key/multi-value set with two values that can be set or retrieved.

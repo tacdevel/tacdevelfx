@@ -11,9 +11,9 @@ using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
-using TCDFx.Resources;
+using TACDevel.Resources;
 
-namespace TCDFx.Collections
+namespace TACDevel.Collections
 {
     /// <summary>
     /// A wrapper class for a <see cref="Dictionary{TKey, TValue}"/>, representing a collection of keys with two values.

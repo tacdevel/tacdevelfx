@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TCDFx.Drawing
+namespace TACDevel.Drawing
 {
     /// <summary>
     /// Represents an ordered pair of double-precision floating-point x- and y-coordinates that defines a point in a two-dimensional plane.

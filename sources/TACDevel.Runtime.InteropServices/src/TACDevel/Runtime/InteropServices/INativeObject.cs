@@ -4,18 +4,19 @@
  * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
-using TCDFx.ComponentModel;
-
-namespace TCDFx.Runtime.InteropServices
+namespace TACDevel.Runtime.InteropServices
 {
+    public interface INativeObject : IDisposableEx { }
+
     /// <summary>
-    /// Provides functionality required by all components that have a native handle.
+    /// Provides functionality required by all objects that have a native handle.
     /// </summary>
     /// <typeparam name="T">The type of handle.</typeparam>
-    public interface INativeComponent<T> : IComponent, IDisposableEx
+    public interface INativeObject<T> : IDisposableEx
+        where T : unmanaged
     {
         /// <summary>
-        /// Gets the native handle representing this native component.
+        /// Gets the native handle representing this native object.
         /// </summary>
         T Handle { get; }
     }

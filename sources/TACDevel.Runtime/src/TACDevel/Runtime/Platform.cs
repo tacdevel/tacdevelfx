@@ -81,7 +81,9 @@ namespace TACDevel.Runtime
                 else
                     Architecture = Enum.TryParse(ridParts[1], true, out PlatformArch arch) ? arch : PlatformArch.Unknown;
 
+#pragma warning disable CA1308 // Normalize strings to uppercase
                 RuntimeID = pRIDEnv.ToLowerInvariant();
+#pragma warning restore CA1308 // Normalize strings to uppercase
             }
             else
             {
@@ -273,7 +275,9 @@ namespace TACDevel.Runtime
             return (PlatformOS.FreeBSD, new Version(0, 0));
         }
 
+#pragma warning disable CA1308 // Normalize strings to uppercase
         private static string GetRIDArch() => Architecture == PlatformArch.ARM32 ? "-arm" : $"-{Architecture.ToString().ToLowerInvariant()}";
+#pragma warning restore CA1308 // Normalize strings to uppercase
 
         private static string GetRIDVersion()
         {

@@ -11,11 +11,10 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
-using TCDFx.Native;
-using TCDFx.Resources;
-using TCDFx.SafeHandles;
+using TACDevel.Native;
+using TACDevel.Runtime.InteropServices.Resources;
 
-namespace TCDFx.Runtime.InteropServices
+namespace TACDevel.Runtime.InteropServices
 {
     public sealed class NativeAssemblyLoadedEventArgs : EventArgs
     {
@@ -24,26 +23,24 @@ namespace TCDFx.Runtime.InteropServices
         public string AssemblyName { get; }
     }
 
+    //TODO: Look into the files here:
+    //TODO: https://github.com/tlgkccampbell/ultraviolet/tree/develop/Source/Ultraviolet.Core/Shared/Native
     /// <summary>
     /// Represents a native (shared) assembly.
     /// </summary>
     [SuppressUnmanagedCodeSecurity]
-    public class NativeAssembly : SafeNativeComponent<SafeAssemblyHandle>, INativeComponent<SafeAssemblyHandle>
+    public class NativeAssembly : NativeObject<IntPtr>, INativeObject<IntPtr>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NativeAssembly"/> class.
         /// </summary>
         /// <param name="names">An ordered list of assembly names to attempt to load.</param>
-        public NativeAssembly(params string[] names)
-        {
-            IntPtr asmHnd = LoadAssembly(names);
-            Handle = new SafeAssemblyHandle(asmHnd);
-        }
+        public NativeAssembly(params string[] names) => Handle = LoadAssembly(names);
 
         /// <summary>
         /// Occurs when an assembly is loaded.
         /// </summary>
-        public event EventHandler<NativeAssembly, NativeAssemblyLoadedEventArgs> Loaded;
+        public event GenericEventHandler<NativeAssembly, NativeAssemblyLoadedEventArgs> Loaded;
 
         /// <summary>
         /// Loads a function whose signature and name match the given delegate type's signature and name.

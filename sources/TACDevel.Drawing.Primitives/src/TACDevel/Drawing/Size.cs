@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TCDFx.Drawing
+namespace TACDevel.Drawing
 {
     /// <summary>
     /// Represents an ordered pair of integers that defines a size in a two-dimensional plane.
