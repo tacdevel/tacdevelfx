@@ -1,7 +1,9 @@
 /***********************************************************************************************************************
- * FileName:            /sources/TACDevel.Disposable/src/TACDevel/IDisposableEx.cs
+ * FileName:            IDisposableEx.cs
  * Copyright/License:   https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ***********************************************************************************************************************/
+
+using System;
 
 namespace TACDevel
 {
@@ -44,7 +46,9 @@ namespace TACDevel
             {
                 return true; // Already disposed.
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
+#pragma warning restore CA1031 // Do not catch general exception types
             {
                 exceptionHandler?.Invoke(ex);
                 return false;
@@ -60,6 +64,5 @@ namespace TACDevel
         /// Performs tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         void ReleaseUnmanagedResources() { }
-
     }
 }

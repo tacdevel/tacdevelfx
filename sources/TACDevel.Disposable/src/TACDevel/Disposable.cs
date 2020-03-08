@@ -1,7 +1,9 @@
 /***********************************************************************************************************************
- * FileName:            /sources/TACDevel.Disposable/src/TACDevel/Disposable.cs
+ * FileName:            TACDevel/Disposable.cs
  * Copyright/License:   https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ***********************************************************************************************************************/
+
+using System;
 
 namespace TACDevel
 {
@@ -64,7 +66,9 @@ namespace TACDevel
         /// </summary>
         protected virtual void ReleaseUnmanagedResources() { }
 
+#pragma warning disable CA1063 // Implement IDisposable Correctly
         private void Dispose(bool disposing)
+#pragma warning restore CA1063 // Implement IDisposable Correctly
         {
             OnDisposing();
             if (disposing)

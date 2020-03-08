@@ -1,8 +1,7 @@
 /***********************************************************************************************************************
- * FileName:             Ntdll.cs
- * Copyright:            Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
- **********************************************************************************************************************/
+ * FileName:            Ntdll.cs
+ * Copyright/License:   https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+***********************************************************************************************************************/
 
 using System.Runtime.InteropServices;
 using System.Security;
