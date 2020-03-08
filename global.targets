@@ -5,58 +5,52 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <!-- Package Versioning ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
+  <!-- Package Versioning ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->  
   <PropertyGroup>
-    <TACDevLibsVersion Condition="'$(TACDevLibsVersion)' == ''">0.0.1</TACDevLibsVersion>
+    <VersionBase>0.1.0</VersionBase>
   </PropertyGroup>
   
-  <UsingTask TaskName="GenerateSharedVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+  <UsingTask TaskName="GenerateBuildVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(RoslynCodeTaskFactory)" Condition="'$(RoslynCodeTaskFactory)' != '' ">
     <ParameterGroup>
       <IsAutoBuild ParameterType="System.Boolean" Required="true" />
-      <RepoRootDir ParameterType="System.String" Required="true" />
-      <OriginalVersion ParameterType="System.String" Required="true" />
-      <GeneratedVersion ParameterType="System.String" Output="true" />
+      <VersionPrefix ParameterType="System.String" Required="true" />
+      <DotGitPath ParameterType="System.String" Required="true" />
+      <BuildVersion ParameterType="System.String" Output="true" />
     </ParameterGroup>
     <Task>
       <Using Namespace="System" />
       <Using Namespace="System.IO" />
       <Code Type="Fragment" Language="cs">
         <![CDATA[
-        string timestamp = DateTime.Now.ToString("yyMMdd");
-        string[] gitFetchHead = File.ReadAllLines($"{RepoRootDir}.git\FETCH_HEAD");
-        string commit = gitFetchHead[0].Substring(0, 7);
-        if (!IsAutoBuild)
-        {
-          GeneratedVersion = $"{InputVersion}-local-{timestamp}-{commit}";
-        else
-        {
-          if (gitFetchHead[0].Contains(@"branch 'release/v"))
-            GeneratedVersion = $"{InputVersion}+{timestamp}-{commit}";
-          else if (gitFetchHead[0].Contains(@"branch 'pull/"))
-          {
-            string pullNumberStr = gitFetchHead[0].Remove(0, 40).TrimStart('\t').Remove(0, 13);
-            int pullNumber = int.Parse(pullNumberStr.Substring(0, pullNumberStr.IndexOf('/'));
-            GeneratedVersion = $"{InputVersion}-dev-{timestamp}-pr{prNumber}-{commit}";
-          }
+          string timestamp = DateTime.Now.ToString("yyMMdd");
+          string[] gitFetchHead = File.ReadAllLines($"{DotGitPath}FETCH_HEAD");
+          string commitID = gitFetchHead[0].Substring(0, 7);
+          if (!IsAutoBuild)
+              BuildVersion = $"{VersionPrefix}-local-{timestamp}-{commitID}";
           else
-            GeneratedVersion = $"{InputVersion}-dev-{timestamp}-{commit}";
-        }
+          {
+              if (gitFetchHead[0].Contains(@"branch 'release/v"))
+                  BuildVersion = $"{VersionPrefix}+{timestamp}-{commitID}";
+              else if (gitFetchHead[0].Contains(@"branch 'pull/"))
+              {
+                  string pullNumberStr = gitFetchHead[0].Remove(0, 40).TrimStart('\t').Remove(0, 13);
+                  int pullNumber = int.Parse(pullNumberStr.Substring(0, pullNumberStr.IndexOf('/')));
+                  BuildVersion = $"{VersionPrefix}-auto-{timestamp}-pr{pullNumber}-{commitID}";
+              }
+              else
+                  BuildVersion = $"{VersionPrefix}-auto-{timestamp}-{commitID}";
+          }
         ]]>
       </Code>
     </Task>
   </UsingTask>
 
-  <Target Name="GenerateSharedVersion" Condition="$(TACDevLibsSharedVersion)' == ''" BeforeTargets="Build">
-    <SharedVersionEditor IsAutoBuild="$(_IsAutomatedBuild)" RepoRootDir="$(TACDevLibsRepoPath)" OriginalVersion="$(TACDevLibsVersion)">
-      <Output PropertyName="TACDevLibsSharedVersion" TaskParameter="GeneratedVersion" />
-    </SharedVersionEditor>
-    <Message Text="Generated Shared Version: $(TACDevLibsSharedVersion)" Importance="High" />
+  <Target Name="GetBuildVersion" Condition="'$(Version)' == ''" BeforeTargets="GetAssemblyVersion" >
+    <GenerateBuildVersion IsAutoBuild="$(_IsAutomatedBuild)" v="$(TACDevLibsRepoPath)" VersionPrefix="$(VersionBase)">
+      <Output TaskParameter="BuildVersion" PropertyName="Version" />
+    </GenerateBuildVersion>
+    <Message Text="Generated Build Version: $(Version)" Importance="High" />
   </Target>
-
-  <PropertyGroup>
-    <Version>$(TACDevLibsSharedVersion)</Version>
-  </PropertyGroup>
 
   <!-- Default Items ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
