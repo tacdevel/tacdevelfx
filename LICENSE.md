@@ -65,9 +65,9 @@ attention by either posting an issue, or contacting [tom-corwin](https://github.
   <summary><b>Used In</b><sub> (Click to Expand)<sub></summary>
   <br/>
 
-  - [`/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Runtime/InteropServices/NativeAssembly.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Runtime/InteropServices/NativeAssembly.cs)
-  - [`/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Native/Kernel32.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Native/Kernel32.cs)
-  - [`/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Native/Libdl.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Native/Libdl.cs)
+  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs)
+  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Kernel32.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Kernel32.cs)
+  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Libdl.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Libdl.cs)
 
 </details>
 
@@ -112,11 +112,11 @@ attention by either posting an issue, or contacting [tom-corwin](https://github.
   <summary><b>Code Used</b><sub> (Click to Expand)<sub></summary>
   <br/>
 
-  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/RuntimeEnvironment.cs`](https://github.com/dotnet/runtime/blob/master/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/RuntimeEnvironment.cs)
-  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Darwin.cs`](https://github.com/dotnet/runtime/blob/master/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Darwin.cs)
-  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Unix.cs`](https://github.com/dotnet/runtime/blob/master/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Unix.cs)
-  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Windows.cs`](https://github.com/dotnet/runtime/blob/master/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Windows.cs)
-  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/PlatformApis.cs`](https://github.com/dotnet/runtime/blob/master/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/PlatformApis.cs)
+  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/RuntimeEnvironment.cs`](https://github.com/dotnet/runtime/blob/502d96dbfb1d38fed0dbb7ddf2390f948cd54107/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/RuntimeEnvironment.cs)
+  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Darwin.cs`](https://github.com/dotnet/runtime/blob/502d96dbfb1d38fed0dbb7ddf2390f948cd54107/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Darwin.cs)
+  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Unix.cs`](https://github.com/dotnet/runtime/blob/502d96dbfb1d38fed0dbb7ddf2390f948cd54107/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Unix.cs)
+  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Windows.cs`](https://github.com/dotnet/runtime/blob/502d96dbfb1d38fed0dbb7ddf2390f948cd54107/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/NativeMethods.Windows.cs)
+  - [`/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/PlatformApis.cs`](https://github.com/dotnet/runtime/blob/502d96dbfb1d38fed0dbb7ddf2390f948cd54107/src/installer/managed/Microsoft.DotNet.PlatformAbstractions/Native/PlatformApis.cs)
 
 </details>
 
@@ -124,9 +124,9 @@ attention by either posting an issue, or contacting [tom-corwin](https://github.
   <summary><b>Used In</b><sub> (Click to Expand)<sub></summary>
   <br/>
 
-  - [`/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Runtime/Platform.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Runtime/InteropServices/NativeAssembly.cs)
-  - [`/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Native/Ntdll.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Native/Kernel32.cs)
-  - [`/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Native/Libc.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/modules/TACDevel.Runtime.InteropServices/sources/TACDevel/Native/Libdl.cs)
+  - [`/sources/TACDevel.Runtime/src/TACDevel/Runtime/Platform.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs)
+  - [`/sources/TACDevel.Runtime/src/TACDevel/Native/Ntdll.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Native/Kernel32.cs)
+  - [`/sources/TACDevel.Runtime/src/TACDevel/Native/Libc.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Native/Libdl.cs)
 
 </details>
 
@@ -159,6 +159,47 @@ attention by either posting an issue, or contacting [tom-corwin](https://github.
   NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
   DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  ```
+
+</details>
+
+### [RazorSharp](https://github.com/Decimation/RazorSharp)
+
+*Low-level utilities and tools for working with the CLR and memory.*
+
+<details>
+  <summary><b>Code Used</b><sub> (Click to Expand)<sub></summary>
+  <br/>
+
+  - [`/RazorSharp/Memory/Pointers/Handle.cs`](https://github.com/Decimation/RazorSharp/blob/dd99e98a6be6232714e02142445f10d84f9b288d/RazorSharp/Memory/Pointers/Handle.cs)
+  - [`/RazorSharp/Memory/Pointers/Pointer.cs`](https://github.com/Decimation/RazorSharp/blob/dd99e98a6be6232714e02142445f10d84f9b288d/RazorSharp/Memory/Pointers/Pointer.cs)
+
+</details>
+
+<details>
+  <summary><b>Used In</b><sub> (Click to Expand)<sub></summary>
+  <br/>
+
+  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer.cs)
+  - [``/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer`1.cs``](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer`1.cs)
+
+</details>
+
+<details>
+  <summary><b>Copyright Notice(s)</b><sub> (Click to Expand)<sub></summary>
+  <br/>
+
+  ```
+  Unspecified
+  ```
+
+</details>
+
+<details>
+  <summary><b>License Terms (Unpecified)</b><sub> (Click to Expand)<sub></summary>
+  <br/>
+
+  ```
   ```
 
 </details>
