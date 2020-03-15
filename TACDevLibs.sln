@@ -48,6 +48,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		global.targets = global.targets
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericEventHandlerExample", "examples\GenericEventHandlerExample\GenericEventHandlerExample.csproj", "{29610F86-CAEE-4FA6-AC3D-B15693DC8276}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{A440E38D-B810-437C-BBA4-534E04F8A0BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A440E38D-B810-437C-BBA4-534E04F8A0BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A440E38D-B810-437C-BBA4-534E04F8A0BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29610F86-CAEE-4FA6-AC3D-B15693DC8276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29610F86-CAEE-4FA6-AC3D-B15693DC8276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29610F86-CAEE-4FA6-AC3D-B15693DC8276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29610F86-CAEE-4FA6-AC3D-B15693DC8276}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +105,7 @@ Global
 		{6F8FC3D7-BF5D-4150-A8A6-9E555A6A0CBB} = {5805268D-ECEF-416F-AF35-17BB7F5DCB17}
 		{D886A211-AA4E-4352-9CC5-F0317921566F} = {5805268D-ECEF-416F-AF35-17BB7F5DCB17}
 		{A440E38D-B810-437C-BBA4-534E04F8A0BF} = {5805268D-ECEF-416F-AF35-17BB7F5DCB17}
+		{29610F86-CAEE-4FA6-AC3D-B15693DC8276} = {5805268D-ECEF-416F-AF35-17BB7F5DCB17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {11024C5B-35F1-4B11-8069-5210E29FB1E5}
