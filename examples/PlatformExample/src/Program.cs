@@ -1,5 +1,5 @@
 using System;
-using TCDFx.Runtime;
+using TACDevel.Runtime;
 
 namespace PlatformExample
 {
@@ -13,9 +13,10 @@ namespace PlatformExample
             Console.WriteLine($@"Operating System Version: {Platform.Version}");
             Console.WriteLine($@"Runtime ID: {Platform.RuntimeID}");
             Console.WriteLine($@"Runtime ID (Generic): {Platform.GenericRuntimeID}");
+
             Console.WriteLine();
             Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+            _ = Console.ReadKey();
         }
     }
 }

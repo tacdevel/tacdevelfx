@@ -9,13 +9,13 @@ using TACDevel;
 namespace GenericEventHandlerExample
 {
     /// <summary>
-    /// Represents an example program, using the <see cref="TACDevel.GenericEventHandler{TSender, TEventArgs}"/>
+    /// Represents an example program using the <see cref="TACDevel.GenericEventHandler{TSender, TEventArgs}"/> delegate
     /// as an alternative to <see cref="System.EventHandler"/> and <see cref="System.EventHandler{TEventArgs}"/>.
     /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Creates a new <see cref="Foo"/> class, subscribes to it's <see cref="Foo.BarChanged"/> event, and sets a new
+        /// Creates a new <see cref="Foo"/> instance, subscribes to it's <see cref="Foo.BarChanged"/> event, and sets a new
         /// value to it's <see cref="Foo.Bar"/> property. When the <see cref="Foo.Bar"/> property is changed, it will
         /// raise the <see cref="Foo.BarChanged"/> event, writing the old value and new value to the console.
         /// </summary>

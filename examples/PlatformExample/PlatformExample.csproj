@@ -1,11 +1,10 @@
-<!--================================================================================================
-* FileName:             NativeAssemblyExample.csproj
-* Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
-* License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
-=================================================================================================-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* FileName:             PlatformExample.csproj
+* Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ProjectReference Include="$(TCDFxBasePath)sources\TACDevel.Core\TACDevel.Core.csproj" />
+    <ProjectReference Include="$(TACDevLibsRepoPath)sources\TACDevel.Runtime\TACDevel.Runtime.csproj" />
   </ItemGroup>
 </Project>
