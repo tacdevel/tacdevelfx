@@ -1,5 +1,3 @@
-<small>
-
 **NOTICE**: ***This project is a work-in-progress, and is in early stages of development.***  
 **NOTICE**: *This README is a work-in-progress.*
 
@@ -28,7 +26,7 @@
 | TACDevel.Drawing.Primitives               | [![Windowsx86][Build.TACDevel.Drawing.Primitives.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Drawing.Primitives.WindowsX64]][Build.Link]<br/>[![MacOSX64][Build.TACDevel.Drawing.Primitives.MacOSX64]][Build.Link]<br/>[![LinuxX64][Build.TACDevel.Drawing.Primitives.LinuxX64]][Build.Link] | [![Stable][Package.TACDevel.Drawing.Primitives.Stable]][Package.TACDevel.Drawing.Primitives.Stable.Link]<br/>[![Preview][Package.TACDevel.Drawing.Primitives.Preview]][Package.TACDevel.Drawing.Primitives.Preview.Link]<br/>[![Build][Package.TACDevel.Drawing.Primitives.Build]][Package.TACDevel.Drawing.Primitives.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
 | TACDevel.Collections.MultiValueDictionary | [![Windowsx86][Build.TACDevel.Collections.MultiValueDictionary.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Collections.MultiValueDictionary.WindowsX64]][Build.Link]<br/>[![MacOSX64][Build.TACDevel.Collections.MultiValueDictionary.MacOSX64]][Build.Link]<br/>[![LinuxX64][Build.TACDevel.Collections.MultiValueDictionary.LinuxX64]][Build.Link] | [![Stable][Package.TACDevel.Collections.MultiValueDictionary.Stable]][Package.TACDevel.Collections.MultiValueDictionary.Stable.Link]<br/>[![Preview][Package.TACDevel.Collections.MultiValueDictionary.Preview]][Package.TACDevel.Collections.MultiValueDictionary.Preview.Link]<br/>[![Build][Package.TACDevel.Collections.MultiValueDictionary.Build]][Package.TACDevel.Collections.MultiValueDictionary.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
 
-[Repository.License.Badge]: https://img.shields.io/badge/License-MIT-gray?logo=github
+[Repository.License.Badge]: https://img.shields.io/badge/License-MIT-gray?logo=open-source-initiative&logoColor=white
 [Repository.License.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 [Repository.Contributors.Badge]: https://img.shields.io/github/contributors-anon/tom-corwin/tacdevlibs?color=gray&label=Contributors&logo=github
 [Repository.Contributors.Link]: https://github.com/tom-corwin/tacdevlibs/graphs/contributors
@@ -100,6 +98,8 @@
 [Package.TACDevel.Collections.MultiValueDictionary.Stable.Link]: http://localhost
 [Package.TACDevel.Collections.MultiValueDictionary.Preview.Link]: http://localhost
 [Package.TACDevel.Collections.MultiValueDictionary.Build.Link]: http://localhost
+[Repository.CodeOfConduct.Badge]: https://img.shields.io/badge/Contributor%20Covenent-2.0-gray?logo=open-source-initiative&logoColor=white
+[Repository.CodeOfConduct.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/CODE_OF_CONDUCT.md
 [Repository.OpenIssues.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tacdevlibs?color=brightgreen&label=Issues%3AOpen&logo=github
 [Repository.OpenIssues.Link]: https://github.com/tom-corwin/tacdevlibs/issues?q=is%3Aissue+is%3Aopen
 [Repository.ClosedIssues.Badge]: https://img.shields.io/github/issues-closed-raw/tom-corwin/tacdevlibs?color=red&label=Issues%3AClosed&logo=github
@@ -111,14 +111,13 @@
 
 ## Contributing
 
+[![CodeOfConduct][Repository.CodeOfConduct.Badge]][Repository.CodeOfConduct.Link]
 [![OpenIssues][Repository.OpenIssues.Badge]][Repository.OpenIssues.Link]
 [![ClosedIssues][Repository.ClosedIssues.Badge]][Repository.ClosedIssues.Link]
 [![AvailableIssues][Repository.AvailableIssues.Badge]][Repository.AvailableIssues.Link]
 [![GoodFirstIssues][Repository.GoodFirstIssues.Badge]][Repository.GoodFirstIssues.Link]
 
 <small>**MISSING**: *Contributing Information*</small>
-
-</small>
 
 <!--
 
