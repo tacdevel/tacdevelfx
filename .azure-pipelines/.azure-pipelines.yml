@@ -7,7 +7,7 @@
 ## Global Configuration
 ################################################################################
 
-name: $(Date:yyMMdd)$(Rev:rrr)
+name: $(Date:yyMMdd)$(Rev:rr)
 
 trigger:
   batch: false
@@ -44,6 +44,7 @@ jobs:
 
 ## Build Jobs
 ################################################################################
+
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
     osName: 'Ubuntu1604'
@@ -56,16 +57,6 @@ jobs:
     configuration: 'Release'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
-    osName: 'macOS1013'
-    vmImage: 'macOS-10.13'
-    configuration: 'Debug'
-- template: ./.azure-pipelines/jobs/build.yml
-  parameters:
-    osName: 'macOS1013'
-    vmImage: 'macOS-10.13'
-    configuration: 'Release'
-- template: ./.azure-pipelines/jobs/build.yml
-  parameters:
     osName: 'macOS1014'
     vmImage: 'macOS-10.14'
     configuration: 'Debug'
@@ -73,16 +64,6 @@ jobs:
   parameters:
     osName: 'macOS1014'
     vmImage: 'macOS-10.14'
-    configuration: 'Release'
-- template: ./.azure-pipelines/jobs/build.yml
-  parameters:
-    osName: 'Windows81'
-    vmImage: 'vs2015-win2012r2'
-    configuration: 'Debug'
-- template: ./.azure-pipelines/jobs/build.yml
-  parameters:
-    osName: 'Windows81'
-    vmImage: 'vs2015-win2012r2'
     configuration: 'Release'
 - template: ./.azure-pipelines/jobs/build.yml
   parameters:
