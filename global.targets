@@ -7,13 +7,13 @@
 
   <!-- Package Versioning ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <PropertyGroup>
-    <VersionBase>0.1.0</VersionBase>
+    <_VersionBase>0.1.0</_VersionBase>
   </PropertyGroup>
 
   <UsingTask TaskName="GenerateBuildVersion" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
     <ParameterGroup>
       <IsAutoBuild ParameterType="System.Boolean" Required="true" />
-      <VersionPrefix ParameterType="System.String" Required="true" />
+      <VersionInput ParameterType="System.String" Required="true" />
       <DotGitPath ParameterType="System.String" Required="true" />
       <BuildVersion ParameterType="System.String" Output="true" />
     </ParameterGroup>
@@ -26,33 +26,34 @@
           string[] gitFetchHead = File.ReadAllLines(Path.Combine(DotGitPath, "FETCH_HEAD"));
           string commitID = gitFetchHead[0].Substring(0, 7);
           if (!IsAutoBuild)
-              BuildVersion = $"{VersionPrefix}-local-{timestamp}-{commitID}";
+              BuildVersion = $"{VersionInput}-local-{timestamp}-{commitID}";
           else
           {
               if (gitFetchHead[0].Contains(@"branch 'release/v"))
-                  BuildVersion = $"{VersionPrefix}+{timestamp}-{commitID}";
+                  BuildVersion = $"{VersionInput}+{timestamp}-{commitID}";
               else if (gitFetchHead[0].Contains(@"branch 'pull/"))
               {
                   string pullNumberStr = gitFetchHead[0].Remove(0, 40).TrimStart('\t').Remove(0, 13);
                   int pullNumber = int.Parse(pullNumberStr.Substring(0, pullNumberStr.IndexOf('/')));
-                  BuildVersion = $"{VersionPrefix}-build-{timestamp}-{commitID}-pr{pullNumber}";
+                  BuildVersion = $"{VersionInput}-build-{timestamp}-{commitID}-pr{pullNumber}";
               }
               else
-                  BuildVersion = $"{VersionPrefix}-build-{timestamp}-{commitID}";
+                  BuildVersion = $"{VersionInput}-build-{timestamp}-{commitID}";
           }
         ]]>
       </Code>
     </Task>
   </UsingTask>
 
-  <Target Name="GetBuildVersion" Condition="'$(Version)' == ''" BeforeTargets="GetAssemblyVersion" >
-    <GenerateBuildVersion IsAutoBuild="$(_IsAutomatedBuild)" DotGitPath="$(TACDevLibsRepoPath).git" VersionPrefix="$(VersionBase)">
-      <Output TaskParameter="BuildVersion" PropertyName="GeneratedBuildVersion" />
+  <Target Name="GetBuildVersion" BeforeTargets="GetAssemblyVersion;Restore;Build" >
+    <GenerateBuildVersion IsAutoBuild="$(_IsAutoBuild)" DotGitPath="$(TACDevLibsRepoPath).git" VersionInput="$(_VersionBase)">
+      <Output TaskParameter="BuildVersion" PropertyName="GeneratedBuildVersion"  />
     </GenerateBuildVersion>
-    <Message Text="GeneratedBuildVersion: $(GeneratedBuildVersion)" Importance="High" />
+    <Message Text="Old Version: '$(Version)'" Importance="High" />
     <PropertyGroup>
       <Version>$(GeneratedBuildVersion)</Version>
     </PropertyGroup>
+    <Message Text="New Version: '$(Version)'" Importance="High" />
   </Target>
 
   <!-- Default Items ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
