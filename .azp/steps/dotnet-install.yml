@@ -1,0 +1,15 @@
+########################################################################################################################
+# FileName:             dotnet-install.yml
+# Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+########################################################################################################################
+
+steps:
+- task: UseDotNet@2
+  name: 'InstallDotNetCoreSDK'
+  displayName: 'Install .NET Core SDK(s) (from `global.json`)'
+  continueOnError: false
+  inputs:
+    packageType: sdk
+    useGlobalJson: true
+    workingDirectory: '$(Build.Repository.LocalPath)'
+    includePreviewVersions: true

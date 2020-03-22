@@ -1,0 +1,59 @@
+########################################################################################################################
+# FileName:             build.yml
+# Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+########################################################################################################################
+
+parameters:
+- name: projectNameSafe
+  type: string
+  default: ''
+- name: projectName
+  type: string
+  default: ''
+- name: projectCategory
+  type: string
+  default: ''
+  values:
+  - 'sources'
+  - 'examples'
+  - 'tests'
+- name: dependsOn
+  type: object
+  default: {}
+
+stages:
+- stage: 'Build_${{ parameters.projectNameSafe }}'
+  displayName: 'Build (${{ parameters.projectName }})'
+  dependsOn: ${{ parameters.dependsOn }}
+  jobs:
+  - template: ./../jobs/build-package.yml
+    parameters:
+      jobNamePrefix: 'Build_${{ parameters.projectNameSafe }}_Windows'
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'
+      pool:
+        vmImage: 'windows-latest'
+  - template: ./../jobs/build-package.yml
+    parameters:
+      jobNamePrefix: 'Build_${{ parameters.projectNameSafe }}_Linux'
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'
+      pool:
+        vmImage: 'ubuntu-latest'
+  - template: ./../jobs/build-package.yml
+    parameters:
+      jobNamePrefix: 'Build_${{ parameters.projectNameSafe }}_MacOS'
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'
+      pool:
+        vmImage: 'macOS-latest'
+- stage: 'Publish_${{ parameters.projectNameSafe }}'
+  displayName: 'Publish (${{ parameters.projectName }})'
+  dependsOn:
+  - 'Build_${{ parameters.projectNameSafe }}'
+  jobs:
+  - template: ./../jobs/publish-package.yml
+    parameters:
+      jobNamePrefix: 'Publish_${{ parameters.projectNameSafe }}_AnyOS'
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'

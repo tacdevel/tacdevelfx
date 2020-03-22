@@ -1,0 +1,45 @@
+########################################################################################################################
+# FileName:             publish-package.yml
+# Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+########################################################################################################################
+
+parameters:
+- name: jobNamePrefix
+  type: string
+  default: ''
+- name: projectName
+  type: string
+  default: ''
+- name: projectCategory
+  type: string
+  default: ''
+  values:
+  - 'sources'
+  - 'examples'
+  - 'tests'
+
+jobs:
+- job: '${{ parameters.jobNamePrefix }}_Publish'
+  pool:
+    vmImage: 'windows-latest'
+  workspace:
+    clean: all
+  steps:
+  - template: ../steps/install-dotnetcore-sdk.yml
+  - template: ../steps/run-dotnet-restore.yml
+    parameters:
+      projectName: '${{ parameters.projectName }}' 
+      projectCategory: '${{ parameters.projectCategory }}'
+      configuration: 'Release'
+  - template: ../steps/run-dotnet-build.yml
+    parameters:
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'
+      configuration: 'Release'
+  - template: ../steps/nuget-push.yml
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'
+    ${{ if eq(contains(variables['Build.SourceBranchName'], 'release/v'), false }}:
+        feedCredentials: 'TACDevelGitHubFeed'
+    ${{ if eq(contains(variables['Build.SourceBranchName'], 'release/v'), true }}:
+        feedCredentials: 'TACDevelNuGetFeed'

@@ -1,0 +1,56 @@
+########################################################################################################################
+# FileName:             build-package.yml
+# Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+########################################################################################################################
+
+parameters:
+- name: jobNamePrefix
+  type: string
+  default: ''
+- name: projectName
+  type: string
+  default: ''
+- name: projectCategory
+  type: string
+  default: ''
+  values:
+  - 'sources'
+  - 'examples'
+  - 'tests'
+- name: pool
+  type: object
+  default: {}
+
+jobs:
+- job: '${{ parameters.jobNamePrefix }}_Debug'
+  pool: ${{ parameters.pool }}
+  workspace:
+    clean: all
+  steps:
+  - template: ../steps/install-dotnetcore-sdk.yml
+  - template: ../steps/run-dotnet-restore.yml
+    parameters:
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'
+      configuration: 'Debug'
+  - template: ../steps/run-dotnet-build.yml
+    parameters:
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'
+      configuration: 'Debug'
+- job: '${{ parameters.jobNamePrefix }}_Release'
+  pool: ${{ parameters.pool }}
+  workspace:
+    clean: all
+  steps:
+  - template: ../steps/install-dotnetcore-sdk.yml
+  - template: ../steps/run-dotnet-restore.yml
+    parameters:
+      projectName: '${{ parameters.projectName }}' 
+      projectCategory: '${{ parameters.projectCategory }}'
+      configuration: 'Release'
+  - template: ../steps/run-dotnet-build.yml
+    parameters:
+      projectName: '${{ parameters.projectName }}'
+      projectCategory: '${{ parameters.projectCategory }}'
+      configuration: 'Release'

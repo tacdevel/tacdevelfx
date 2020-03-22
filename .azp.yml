@@ -1,0 +1,84 @@
+########################################################################################################################
+# FileName:             build-pipeline.json
+# Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+########################################################################################################################
+
+# Global Configuration
+####################################################################################################
+
+name: $(Date:yyMMdd)$(Rev:rr)
+
+trigger:
+  batch: false
+  branches:
+    include:
+    - master
+    - feature/*
+    - hotfix/*
+  paths:
+    exclude:
+    - "*.md"
+    - ".gitignore"
+    - ".gitattributes"
+    - ".editorconfig"
+    - ".github/*"
+
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - master
+    - feature/*
+    - hotfix/*
+  paths:
+    exclude:
+    - "*.md"
+    - ".gitignore"
+    - ".gitattributes"
+    - ".editorconfig"
+    - ".github/*"
+
+# Stages
+####################################################################################################
+
+stages:
+
+# Build Stages
+################################################################################
+
+# TACDevel.GenericEventHandler
+- template: ./.azp/stages/build.yml
+  parameters:
+    projectNameSafe: 'TACDevelGenericEventHandler'
+    projectName: 'TACDevel.GenericEventHandler'
+    projectCategory: 'sources'
+
+# TACDevel.Disposable
+- template: ./.azp/stages/build.yml
+  parameters:
+    projectNameSafe: 'TACDevelDisposable'
+    projectName: 'TACDevel.Disposable'
+    projectCategory: 'sources'
+    dependsOn:
+    - Build_TACDevelGenericEventHandler
+
+# TACDevel.Runtime
+- template: ./.azp/stages/build.yml
+  parameters:
+    projectNameSafe: 'TACDevelRuntime'
+    projectName: 'TACDevel.Runtime'
+    projectCategory: 'sources'
+    dependsOn:
+    - Build_TACDevelGenericEventHandler
+    - Build_TACDevelDisposable
+
+# TACDevel.Runtime.InteropServices
+- template: ./.azp/stages/build.yml
+  parameters:
+    projectNameSafe: 'TACDevelRuntimeInteropServices'
+    projectName: 'TACDevel.Runtime.InteropServices'
+    projectCategory: 'sources'
+    dependsOn:
+    - Build_TACDevelGenericEventHandler
+    - Build_TACDevelDisposable
+    - Build_TACDevelRuntime

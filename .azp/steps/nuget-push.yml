@@ -1,0 +1,37 @@
+########################################################################################################################
+# FileName:             nuget-push.yml
+# Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+########################################################################################################################
+
+parameters:
+  projectName: ''
+- name: projectName
+  type: string
+  default: ''
+- name: projectCategory
+  type: string
+  default: ''
+  values:
+  - 'sources'
+  - 'examples'
+  - 'tests'
+- name: feedCredentials
+  type: string
+  default: ''
+  values:
+  - 'TACDevelGitHubFeed'
+  - 'TACDevelNuGetFeed'
+
+steps:
+- task: NuGetCommand@2
+  name: 'NuGetPush'
+  displayName: 'Publish Package (via `nuget push`)'
+  continueOnError: false
+  inputs:
+    command: 'push'
+    ${{ if eq(variables['Agent.OS'], 'Windows_NT') }}:
+      packagesToPush: '$(Build.Repository.LocalPath)\build\${{ parameters.projectCategory }}\${{ parameters.projectName }}\Release\pkg\*.nupkg'
+    ${{ if ne(variables['Agent.OS'], 'Windows_NT') }}:
+      packagesToPush: '$(Build.Repository.LocalPath)/build/${{ parameters.projectCategory }}/${{ parameters.projectName }}/Release/pkg/*.nupkg'
+    nugetFeedType: 'external'
+    publishFeedCredentials: '${{ parameters.feedCredentials }}'
