@@ -35,10 +35,10 @@
               {
                   string pullNumberStr = gitFetchHead[0].Remove(0, 40).TrimStart('\t').Remove(0, 13);
                   int pullNumber = int.Parse(pullNumberStr.Substring(0, pullNumberStr.IndexOf('/')));
-                  BuildVersion = $"{VersionPrefix}-auto-{timestamp}-pr{pullNumber}-{commitID}";
+                  BuildVersion = $"{VersionPrefix}-build-{timestamp}-{commitID}-pr{pullNumber}";
               }
               else
-                  BuildVersion = $"{VersionPrefix}-auto-{timestamp}-{commitID}";
+                  BuildVersion = $"{VersionPrefix}-build-{timestamp}-{commitID}";
           }
         ]]>
       </Code>
@@ -46,11 +46,15 @@
   </UsingTask>
 
   <Target Name="GetBuildVersion" Condition="'$(Version)' == ''" BeforeTargets="GetAssemblyVersion" >
-    <GenerateBuildVersion IsAutoBuild="$(_IsAutomatedBuild)" v="$(TACDevLibsRepoPath)" VersionPrefix="$(VersionBase)">
-      <Output TaskParameter="BuildVersion" PropertyName="Version" />
+    <GenerateBuildVersion IsAutoBuild="$(_IsAutomatedBuild)" DotGitPath="$(TACDevLibsRepoPath).git" VersionPrefix="$(VersionBase)">
+      <Output TaskParameter="GeneratedBuildVersion" PropertyName="Version" />
     </GenerateBuildVersion>
-    <Message Text="Generated Build Version: $(Version)" Importance="High" />
+    <Message Text="GeneratedBuildVersion: $(GeneratedBuildVersion)" Importance="High" />
   </Target>
+
+  <PropertyGroup>
+    <Version>$(GeneratedBuildVersion)</Version>
+  </PropertyGroup>
 
   <!-- Default Items ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 

@@ -14,7 +14,7 @@
   <PropertyGroup>
     <TACDevLibsBaseBuildPath>$(TACDevLibsRepoPath)build\</TACDevLibsBaseBuildPath>
     <TACDevLibsProjectCategoryBuildPath>$(TACDevLibsBaseBuildPath)$(TACDevLibsProjectCategory)\</TACDevLibsProjectCategoryBuildPath>
-    <TACDevLibsProjectBuildPath>$(TACDevLibsProjectCategoryBuildPath)$(Configuration)\$(MSBuildProjectName)\$(TargetFramework)\</TACDevLibsProjectBuildPath>
+    <TACDevLibsProjectBuildPath>$(TACDevLibsProjectCategoryBuildPath)$(MSBuildProjectName)\$(Configuration)\</TACDevLibsProjectBuildPath>
     <TACDevLibsProjectBuildBinPath>$(TACDevLibsProjectBuildPath)bin\</TACDevLibsProjectBuildBinPath>
     <TACDevLibsProjectBuildObjPath>$(TACDevLibsProjectBuildPath)obj\</TACDevLibsProjectBuildObjPath>
     <TACDevLibsProjectBuildDocPath>$(TACDevLibsProjectBuildPath)doc\</TACDevLibsProjectBuildDocPath>
@@ -26,7 +26,6 @@
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
 
-  <!-- We do this ourselves in dir.targets.  -->
   <!-- See here: https://github.com/dotnet/sdk/blob/cd25d6bbfc2aac61cc790c511900427ac64fdaa8/src/Tasks/Microsoft.NET.Build.Tasks/build/Microsoft.NET.TargetFrameworkInference.targets#L167-L174 -->
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
