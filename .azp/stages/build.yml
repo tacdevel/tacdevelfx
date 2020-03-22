@@ -19,28 +19,28 @@ parameters:
   - 'tests'
 - name: dependsOn
   type: object
-  default: {}
+  default: []
 
 stages:
 - stage: 'Build_${{ parameters.projectNameSafe }}'
   displayName: 'Build (${{ parameters.projectName }})'
   dependsOn: ${{ parameters.dependsOn }}
   jobs:
-  - template: ./../jobs/build-package.yml
+  - template: ../jobs/build-package.yml
     parameters:
       jobNamePrefix: 'Build_${{ parameters.projectNameSafe }}_Windows'
       projectName: '${{ parameters.projectName }}'
       projectCategory: '${{ parameters.projectCategory }}'
       pool:
         vmImage: 'windows-latest'
-  - template: ./../jobs/build-package.yml
+  - template: ../jobs/build-package.yml
     parameters:
       jobNamePrefix: 'Build_${{ parameters.projectNameSafe }}_Linux'
       projectName: '${{ parameters.projectName }}'
       projectCategory: '${{ parameters.projectCategory }}'
       pool:
         vmImage: 'ubuntu-latest'
-  - template: ./../jobs/build-package.yml
+  - template: ../jobs/build-package.yml
     parameters:
       jobNamePrefix: 'Build_${{ parameters.projectNameSafe }}_MacOS'
       projectName: '${{ parameters.projectName }}'
@@ -52,7 +52,7 @@ stages:
   dependsOn:
   - 'Build_${{ parameters.projectNameSafe }}'
   jobs:
-  - template: ./../jobs/publish-package.yml
+  - template: ../jobs/publish-package.yml
     parameters:
       jobNamePrefix: 'Publish_${{ parameters.projectNameSafe }}_AnyOS'
       projectName: '${{ parameters.projectName }}'

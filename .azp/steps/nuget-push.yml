@@ -4,7 +4,6 @@
 ########################################################################################################################
 
 parameters:
-  projectName: ''
 - name: projectName
   type: string
   default: ''
@@ -19,7 +18,7 @@ parameters:
   type: string
   default: ''
   values:
-  - 'TACDevelGitHubFeed'
+  - 'TACDevelMyGetFeed'
   - 'TACDevelNuGetFeed'
 
 steps:

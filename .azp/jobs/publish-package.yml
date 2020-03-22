@@ -25,21 +25,22 @@ jobs:
   workspace:
     clean: all
   steps:
-  - template: ../steps/install-dotnetcore-sdk.yml
-  - template: ../steps/run-dotnet-restore.yml
+  - template: ../steps/dotnet-install.yml
+  - template: ../steps/dotnet-restore.yml
     parameters:
       projectName: '${{ parameters.projectName }}' 
       projectCategory: '${{ parameters.projectCategory }}'
       configuration: 'Release'
-  - template: ../steps/run-dotnet-build.yml
+  - template: ../steps/dotnet-build.yml
     parameters:
       projectName: '${{ parameters.projectName }}'
       projectCategory: '${{ parameters.projectCategory }}'
       configuration: 'Release'
   - template: ../steps/nuget-push.yml
+    parameters:
       projectName: '${{ parameters.projectName }}'
       projectCategory: '${{ parameters.projectCategory }}'
-    ${{ if eq(contains(variables['Build.SourceBranchName'], 'release/v'), false }}:
-        feedCredentials: 'TACDevelGitHubFeed'
-    ${{ if eq(contains(variables['Build.SourceBranchName'], 'release/v'), true }}:
+      ${{ if eq(contains(variables['Build.SourceBranchName'], 'release/v'), false) }}:
+        feedCredentials: 'TACDevelMyGetFeed'
+      ${{ if eq(contains(variables['Build.SourceBranchName'], 'release/v'), true) }}:
         feedCredentials: 'TACDevelNuGetFeed'
