@@ -10,6 +10,5 @@ steps:
   continueOnError: false
   inputs:
     packageType: sdk
-    useGlobalJson: true
-    workingDirectory: '$(Build.Repository.LocalPath)'
+    version: '3.1.200'
     includePreviewVersions: true
