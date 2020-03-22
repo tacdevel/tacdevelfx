@@ -5,12 +5,12 @@
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <!-- Package Versioning ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->  
+  <!-- Package Versioning ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <PropertyGroup>
     <VersionBase>0.1.0</VersionBase>
   </PropertyGroup>
-  
-  <UsingTask TaskName="GenerateBuildVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(RoslynCodeTaskFactory)" Condition="'$(RoslynCodeTaskFactory)' != '' ">
+
+  <UsingTask TaskName="GenerateBuildVersion" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
     <ParameterGroup>
       <IsAutoBuild ParameterType="System.Boolean" Required="true" />
       <VersionPrefix ParameterType="System.String" Required="true" />
@@ -23,7 +23,7 @@
       <Code Type="Fragment" Language="cs">
         <![CDATA[
           string timestamp = DateTime.Now.ToString("yyMMdd");
-          string[] gitFetchHead = File.ReadAllLines($"{DotGitPath}FETCH_HEAD");
+          string[] gitFetchHead = File.ReadAllLines(Path.Combine(DotGitPath, "FETCH_HEAD"));
           string commitID = gitFetchHead[0].Substring(0, 7);
           if (!IsAutoBuild)
               BuildVersion = $"{VersionPrefix}-local-{timestamp}-{commitID}";
@@ -47,14 +47,13 @@
 
   <Target Name="GetBuildVersion" Condition="'$(Version)' == ''" BeforeTargets="GetAssemblyVersion" >
     <GenerateBuildVersion IsAutoBuild="$(_IsAutomatedBuild)" DotGitPath="$(TACDevLibsRepoPath).git" VersionPrefix="$(VersionBase)">
-      <Output TaskParameter="GeneratedBuildVersion" PropertyName="Version" />
+      <Output TaskParameter="BuildVersion" PropertyName="GeneratedBuildVersion" />
     </GenerateBuildVersion>
     <Message Text="GeneratedBuildVersion: $(GeneratedBuildVersion)" Importance="High" />
+    <PropertyGroup>
+      <Version>$(GeneratedBuildVersion)</Version>
+    </PropertyGroup>
   </Target>
-
-  <PropertyGroup>
-    <Version>$(GeneratedBuildVersion)</Version>
-  </PropertyGroup>
 
   <!-- Default Items ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
