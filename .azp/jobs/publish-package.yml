@@ -26,11 +26,6 @@ jobs:
     clean: all
   steps:
   - template: ../steps/dotnet-install.yml
-  - template: ../steps/dotnet-restore.yml
-    parameters:
-      projectName: '${{ parameters.projectName }}' 
-      projectCategory: '${{ parameters.projectCategory }}'
-      configuration: 'Release'
   - template: ../steps/dotnet-build.yml
     parameters:
       projectName: '${{ parameters.projectName }}'
