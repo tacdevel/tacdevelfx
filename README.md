@@ -19,12 +19,15 @@
 
 | Package Name                              | Build Status(es) | Latest Version(s) | Target Framework(s) |
 | :---------------------------------------- | :--------------- | :---------------- | :------------------ |
-| TACDevel.GenericEventHandler              | [![Windowsx86][Build.TACDevel.GenericEventHandler.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.GenericEventHandler.WindowsX64]][Build.Link]<br/>[![MacOSX64][Build.TACDevel.GenericEventHandler.MacOSX64]][Build.Link]<br/>[![LinuxX64][Build.TACDevel.GenericEventHandler.LinuxX64]][Build.Link] | [![Stable][Package.TACDevel.GenericEventHandler.Stable]][Package.TACDevel.GenericEventHandler.Stable.Link]<br/>[![Preview][Package.TACDevel.GenericEventHandler.Preview]][Package.TACDevel.GenericEventHandler.Preview.Link]<br/>[![Build][Package.TACDevel.GenericEventHandler.Build]][Package.TACDevel.GenericEventHandler.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
-| TACDevel.Disposable                       | [![Windowsx86][Build.TACDevel.Disposable.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Disposable.WindowsX64]][Build.Link]<br/>[![MacOSX64][Build.TACDevel.Disposable.MacOSX64]][Build.Link]<br/>[![LinuxX64][Build.TACDevel.Disposable.LinuxX64]][Build.Link] | [![Stable][Package.TACDevel.Disposable.Stable]][Package.TACDevel.Disposable.Stable.Link]<br/>[![Preview][Package.TACDevel.Disposable.Preview]][Package.TACDevel.Disposable.Preview.Link]<br/>[![Build][Package.TACDevel.Disposable.Build]][Package.TACDevel.Disposable.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
-| TACDevel.Runtime                          | [![Windowsx86][Build.TACDevel.Runtime.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Runtime.WindowsX64]][Build.Link]<br/>[![MacOSX64][Build.TACDevel.Runtime.MacOSX64]][Build.Link]<br/>[![LinuxX64][Build.TACDevel.Runtime.LinuxX64]][Build.Link] | [![Stable][Package.TACDevel.Runtime.Stable]][Package.TACDevel.Runtime.Stable.Link]<br/>[![Preview][Package.TACDevel.Runtime.Preview]][Package.TACDevel.Runtime.Preview.Link]<br/>[![Build][Package.TACDevel.Runtime.Build]][Package.TACDevel.Runtime.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
-| TACDevel.Runtime.InteropServices          | [![Windowsx86][Build.TACDevel.Runtime.InteropServices.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Runtime.InteropServices.WindowsX64]][Build.Link]<br/>[![MacOSX64][Build.TACDevel.Runtime.InteropServices.MacOSX64]][Build.Link]<br/>[![LinuxX64][Build.TACDevel.Runtime.InteropServices.LinuxX64]][Build.Link] | [![Stable][Package.TACDevel.Runtime.InteropServices.Stable]][Package.TACDevel.Runtime.InteropServices.Stable.Link]<br/>[![Preview][Package.TACDevel.Runtime.InteropServices.Preview]][Package.TACDevel.Runtime.InteropServices.Preview.Link]<br/>[![Build][Package.TACDevel.Runtime.InteropServices.Build]][Package.TACDevel.Runtime.InteropServices.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
-| TACDevel.Drawing.Primitives               | [![Windowsx86][Build.TACDevel.Drawing.Primitives.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Drawing.Primitives.WindowsX64]][Build.Link]<br/>[![MacOSX64][Build.TACDevel.Drawing.Primitives.MacOSX64]][Build.Link]<br/>[![LinuxX64][Build.TACDevel.Drawing.Primitives.LinuxX64]][Build.Link] | [![Stable][Package.TACDevel.Drawing.Primitives.Stable]][Package.TACDevel.Drawing.Primitives.Stable.Link]<br/>[![Preview][Package.TACDevel.Drawing.Primitives.Preview]][Package.TACDevel.Drawing.Primitives.Preview.Link]<br/>[![Build][Package.TACDevel.Drawing.Primitives.Build]][Package.TACDevel.Drawing.Primitives.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
-| TACDevel.Collections.MultiValueDictionary | [![Windowsx86][Build.TACDevel.Collections.MultiValueDictionary.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Collections.MultiValueDictionary.WindowsX64]][Build.Link]<br/>[![MacOSX64][Build.TACDevel.Collections.MultiValueDictionary.MacOSX64]][Build.Link]<br/>[![LinuxX64][Build.TACDevel.Collections.MultiValueDictionary.LinuxX64]][Build.Link] | [![Stable][Package.TACDevel.Collections.MultiValueDictionary.Stable]][Package.TACDevel.Collections.MultiValueDictionary.Stable.Link]<br/>[![Preview][Package.TACDevel.Collections.MultiValueDictionary.Preview]][Package.TACDevel.Collections.MultiValueDictionary.Preview.Link]<br/>[![Build][Package.TACDevel.Collections.MultiValueDictionary.Build]][Package.TACDevel.Collections.MultiValueDictionary.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+| TACDevel.GenericEventHandler              | [![Windows][Build.TACDevel.GenericEventHandler.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.GenericEventHandler.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.GenericEventHandler.Linux]][Build.Link] | [![Stable][Package.TACDevel.GenericEventHandler.Stable]][Package.TACDevel.GenericEventHandler.Stable.Link]<br/>[![Preview][Package.TACDevel.GenericEventHandler.Preview]][Package.TACDevel.GenericEventHandler.Preview.Link]<br/>[![Build][Package.TACDevel.GenericEventHandler.Build]][Package.TACDevel.GenericEventHandler.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+| TACDevel.Disposable                       | [![Windows][Build.TACDevel.Disposable.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Disposable.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Disposable.Linux]][Build.Link] | [![Stable][Package.TACDevel.Disposable.Stable]][Package.TACDevel.Disposable.Stable.Link]<br/>[![Preview][Package.TACDevel.Disposable.Preview]][Package.TACDevel.Disposable.Preview.Link]<br/>[![Build][Package.TACDevel.Disposable.Build]][Package.TACDevel.Disposable.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+| TACDevel.Runtime                          | [![Windows][Build.TACDevel.Runtime.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Runtime.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Runtime.Linux]][Build.Link] | [![Stable][Package.TACDevel.Runtime.Stable]][Package.TACDevel.Runtime.Stable.Link]<br/>[![Preview][Package.TACDevel.Runtime.Preview]][Package.TACDevel.Runtime.Preview.Link]<br/>[![Build][Package.TACDevel.Runtime.Build]][Package.TACDevel.Runtime.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+| TACDevel.Runtime.InteropServices          | [![Windows][Build.TACDevel.Runtime.InteropServices.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Runtime.InteropServices.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Runtime.InteropServices.Linux]][Build.Link] | [![Stable][Package.TACDevel.Runtime.InteropServices.Stable]][Package.TACDevel.Runtime.InteropServices.Stable.Link]<br/>[![Preview][Package.TACDevel.Runtime.InteropServices.Preview]][Package.TACDevel.Runtime.InteropServices.Preview.Link]<br/>[![Build][Package.TACDevel.Runtime.InteropServices.Build]][Package.TACDevel.Runtime.InteropServices.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+
+<!--
+| TACDevel.Drawing.Primitives               | [![Windowsx86][Build.TACDevel.Drawing.Primitives.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Drawing.Primitives.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Drawing.Primitives.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Drawing.Primitives.Linux]][Build.Link] | [![Stable][Package.TACDevel.Drawing.Primitives.Stable]][Package.TACDevel.Drawing.Primitives.Stable.Link]<br/>[![Preview][Package.TACDevel.Drawing.Primitives.Preview]][Package.TACDevel.Drawing.Primitives.Preview.Link]<br/>[![Build][Package.TACDevel.Drawing.Primitives.Build]][Package.TACDevel.Drawing.Primitives.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+| TACDevel.Collections.MultiValueDictionary | [![Windowsx86][Build.TACDevel.Collections.MultiValueDictionary.WindowsX86]][Build.Link]<br/>[![Windowsx64][Build.TACDevel.Collections.MultiValueDictionary.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Collections.MultiValueDictionary.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Collections.MultiValueDictionary.Linux]][Build.Link] | [![Stable][Package.TACDevel.Collections.MultiValueDictionary.Stable]][Package.TACDevel.Collections.MultiValueDictionary.Stable.Link]<br/>[![Preview][Package.TACDevel.Collections.MultiValueDictionary.Preview]][Package.TACDevel.Collections.MultiValueDictionary.Preview.Link]<br/>[![Build][Package.TACDevel.Collections.MultiValueDictionary.Build]][Package.TACDevel.Collections.MultiValueDictionary.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+-->
 
 [Repository.License.Badge]: https://img.shields.io/badge/License-MIT-gray?logo=open-source-initiative&logoColor=white
 [Repository.License.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
@@ -35,69 +38,63 @@
 [Dependabot.Badge]: https://badgen.net/dependabot/tom-corwin/tacdevlibs/?icon=dependabot&label=Dependabot
 [Codacy.Badge]: https://img.shields.io/codacy/grade/ddc482a56b6349b0958d1eb65d0c047a?label=Code%20Quality&logo=codacy
 [Codacy.Link]: https://app.codacy.com/manual/tom-corwin/tacdevlibs/dashboard
-[Build.Link]: http://localhost
+[Build.Link]: https://dev.azure.com/tacdevlibs/tacdevlibs/_build/latest?definitionId=1&branchName=master
 [Framework.NETStandard21]: https://img.shields.io/badge/TargetFramework-netstandard2.1-blue?logo=.net
 [Framework.NETCoreApp31]: https://img.shields.io/badge/TargetFramework-netcoreapp3.1-blue?logo=.net
-[Build.TACDevel.GenericEventHandler.WindowsX86]: http://localhost
-[Build.TACDevel.GenericEventHandler.WindowsX64]: http://localhost
-[Build.TACDevel.GenericEventHandler.MacOSX64]: http://localhost
-[Build.TACDevel.GenericEventHandler.LinuxX64]: http://localhost
+[Build.TACDevel.GenericEventHandler.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelGenericEventHandler_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.GenericEventHandler%29
+[Build.TACDevel.GenericEventHandler.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelGenericEventHandler_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.GenericEventHandler%29
+[Build.TACDevel.GenericEventHandler.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelGenericEventHandler_Linux_Release&label=Linux&logo=ubuntu&logoColor=white&stage=Build%20%28TACDevel.GenericEventHandler%29
 [Package.TACDevel.GenericEventHandler.Stable]: https://img.shields.io/nuget/v/TACDevel.GenericEventHandler?color=blue&label=Stable&logo=nuget&logoColor=blue
 [Package.TACDevel.GenericEventHandler.Preview]: https://img.shields.io/nuget/vpre/TACDevel.GenericEventHandler?color=blueviolet&label=Preview&logo=nuget&logoColor=blue
 [Package.TACDevel.GenericEventHandler.Build]: https://img.shields.io/myget/tacdevlibs/vpre/TACDevel.GenericEventHandler?color=orange&label=Build&logo=nuget&logoColor=green
 [Package.TACDevel.GenericEventHandler.Stable.Link]: http://localhost
 [Package.TACDevel.GenericEventHandler.Preview.Link]: http://localhost
-[Package.TACDevel.GenericEventHandler.Build.Link]: http://localhost
-[Build.TACDevel.Disposable.WindowsX86]: http://localhost
-[Build.TACDevel.Disposable.WindowsX64]: http://localhost
-[Build.TACDevel.Disposable.MacOSX64]: http://localhost
-[Build.TACDevel.Disposable.LinuxX64]: http://localhost
+[Package.TACDevel.GenericEventHandler.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.GenericEventHandler
+[Build.TACDevel.Disposable.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDisposable_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.Disposable%29
+[Build.TACDevel.Disposable.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDisposable_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.Disposable%29
+[Build.TACDevel.Disposable.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDisposable_Linux_Release&label=Linux&logo=linux&logoColor=white&stage=Build%20%28TACDevel.Disposable%29
 [Package.TACDevel.Disposable.Stable]: https://img.shields.io/nuget/v/TACDevel.Disposable?color=blue&label=Stable&logo=nuget&logoColor=blue
 [Package.TACDevel.Disposable.Preview]: https://img.shields.io/nuget/vpre/TACDevel.Disposable?color=blueviolet&label=Preview&logo=nuget&logoColor=blue
 [Package.TACDevel.Disposable.Build]: https://img.shields.io/myget/tacdevlibs/vpre/TACDevel.Disposable?color=orange&label=Build&logo=nuget&logoColor=green
 [Package.TACDevel.Disposable.Stable.Link]: http://localhost
 [Package.TACDevel.Disposable.Preview.Link]: http://localhost
-[Package.TACDevel.Disposable.Build.Link]: http://localhost
-[Build.TACDevel.Runtime.WindowsX86]: http://localhost
-[Build.TACDevel.Runtime.WindowsX64]: http://localhost
-[Build.TACDevel.Runtime.MacOSX64]: http://localhost
-[Build.TACDevel.Runtime.LinuxX64]: http://localhost
+[Package.TACDevel.Disposable.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Disposable
+[Build.TACDevel.Runtime.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntime_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.Runtime%29
+[Build.TACDevel.Runtime.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntime_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.Runtime%29
+[Build.TACDevel.Runtime.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntime_Linux_Release&label=Linux&logo=linux&logoColor=white&stage=Build%20%28TACDevel.Runtime%29
 [Package.TACDevel.Runtime.Stable]: https://img.shields.io/nuget/v/TACDevel.Runtime?color=blue&label=Stable&logo=nuget&logoColor=blue
 [Package.TACDevel.Runtime.Preview]: https://img.shields.io/nuget/vpre/TACDevel.Runtime?color=blueviolet&label=Preview&logo=nuget&logoColor=blue
 [Package.TACDevel.Runtime.Build]: https://img.shields.io/myget/tacdevlibs/vpre/TACDevel.Runtime?color=orange&label=Build&logo=nuget&logoColor=green
 [Package.TACDevel.Runtime.Stable.Link]: http://localhost
 [Package.TACDevel.Runtime.Preview.Link]: http://localhost
-[Package.TACDevel.Runtime.Build.Link]: http://localhost
-[Build.TACDevel.Runtime.InteropServices.WindowsX86]: http://localhost
-[Build.TACDevel.Runtime.InteropServices.WindowsX64]: http://localhost
-[Build.TACDevel.Runtime.InteropServices.MacOSX64]: http://localhost
-[Build.TACDevel.Runtime.InteropServices.LinuxX64]: http://localhost
+[Package.TACDevel.Runtime.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Runtime
+[Build.TACDevel.Runtime.InteropServices.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.Runtime.InteropServices%29
+[Build.TACDevel.Runtime.InteropServices.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.Runtime.InteropServices%29
+[Build.TACDevel.Runtime.InteropServices.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_Linux_Release&label=Linux&logo=linux&logoColor=white&stage=Build%20%28TACDevel.Runtime.InteropServices%29
 [Package.TACDevel.Runtime.InteropServices.Stable]: https://img.shields.io/nuget/v/TACDevel.Runtime.InteropServices?color=blue&label=Stable&logo=nuget&logoColor=blue
 [Package.TACDevel.Runtime.InteropServices.Preview]: https://img.shields.io/nuget/vpre/TACDevel.Runtime.InteropServices?color=blueviolet&label=Preview&logo=nuget&logoColor=blue
 [Package.TACDevel.Runtime.InteropServices.Build]: https://img.shields.io/myget/tacdevlibs/vpre/TACDevel.Runtime.InteropServices?color=orange&label=Build&logo=nuget&logoColor=green
 [Package.TACDevel.Runtime.InteropServices.Stable.Link]: http://localhost
 [Package.TACDevel.Runtime.InteropServices.Preview.Link]: http://localhost
-[Package.TACDevel.Runtime.InteropServices.Build.Link]: http://localhost
-[Build.TACDevel.Drawing.Primitives.WindowsX86]: http://localhost
-[Build.TACDevel.Drawing.Primitives.WindowsX64]: http://localhost
-[Build.TACDevel.Drawing.Primitives.MacOSX64]: http://localhost
-[Build.TACDevel.Drawing.Primitives.LinuxX64]: http://localhost
+[Package.TACDevel.Runtime.InteropServices.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Runtime.InteropServices
+[Build.TACDevel.Drawing.Primitives.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDrawingPrimitives_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.Drawing.Primitives%29
+[Build.TACDevel.Drawing.Primitives.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDrawingPrimitives_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.Drawing.Primitives%29
+[Build.TACDevel.Drawing.Primitives.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDrawingPrimitives_Linux_Release&label=Linux&logo=linux&logoColor=white&stage=Build%20%28TACDevel.Drawing.Primitives%29
 [Package.TACDevel.Drawing.Primitives.Stable]: https://img.shields.io/nuget/v/TACDevel.Drawing.Primitives?color=blue&label=Stable&logo=nuget&logoColor=blue
 [Package.TACDevel.Drawing.Primitives.Preview]: https://img.shields.io/nuget/vpre/TACDevel.Drawing.Primitives?color=blueviolet&label=Preview&logo=nuget&logoColor=blue
 [Package.TACDevel.Drawing.Primitives.Build]: https://img.shields.io/myget/tacdevlibs/vpre/TACDevel.Drawing.Primitives?color=orange&label=Build&logo=nuget&logoColor=green
 [Package.TACDevel.Drawing.Primitives.Stable.Link]: http://localhost
 [Package.TACDevel.Drawing.Primitives.Preview.Link]: http://localhost
-[Package.TACDevel.Drawing.Primitives.Build.Link]: http://localhost
-[Build.TACDevel.Collections.MultiValueDictionary.WindowsX86]: http://localhost
-[Build.TACDevel.Collections.MultiValueDictionary.WindowsX64]: http://localhost
-[Build.TACDevel.Collections.MultiValueDictionary.MacOSX64]: http://localhost
-[Build.TACDevel.Collections.MultiValueDictionary.LinuxX64]: http://localhost
+[Package.TACDevel.Drawing.Primitives.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Drawing.Primitives
+[Build.TACDevel.Collections.MultiValueDictionary.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelCollectionsMultiValueDictionary_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.Collections.MultiValueDictionary%29
+[Build.TACDevel.Collections.MultiValueDictionary.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelCollectionsMultiValueDictionary_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.Collections.MultiValueDictionary%29
+[Build.TACDevel.Collections.MultiValueDictionary.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelCollectionsMultiValueDictionary_Linux_Release&label=Linux&logo=linux&logoColor=white&stage=Build%20%28TACDevel.Collections.MultiValueDictionary%29
 [Package.TACDevel.Collections.MultiValueDictionary.Stable]: https://img.shields.io/nuget/v/TACDevel.Collections.MultiValueDictionary?color=blue&label=Stable&logo=nuget&logoColor=blue
 [Package.TACDevel.Collections.MultiValueDictionary.Preview]: https://img.shields.io/nuget/vpre/TACDevel.Collections.MultiValueDictionary?color=blueviolet&label=Preview&logo=nuget&logoColor=blue
 [Package.TACDevel.Collections.MultiValueDictionary.Build]: https://img.shields.io/myget/tacdevlibs/vpre/TACDevel.Collections.MultiValueDictionary?color=orange&label=Build&logo=nuget&logoColor=green
 [Package.TACDevel.Collections.MultiValueDictionary.Stable.Link]: http://localhost
 [Package.TACDevel.Collections.MultiValueDictionary.Preview.Link]: http://localhost
-[Package.TACDevel.Collections.MultiValueDictionary.Build.Link]: http://localhost
+[Package.TACDevel.Collections.MultiValueDictionary.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Collections.MultiValueDictionary
 [Repository.CodeOfConduct.Badge]: https://img.shields.io/badge/Contributor%20Covenent-2.0-gray?logo=open-source-initiative&logoColor=white
 [Repository.CodeOfConduct.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/CODE_OF_CONDUCT.md
 [Repository.OpenIssues.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tacdevlibs?color=brightgreen&label=Issues%3AOpen&logo=github
