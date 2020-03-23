@@ -82,3 +82,10 @@ stages:
     - Build_TACDevelGenericEventHandler
     - Build_TACDevelDisposable
     - Build_TACDevelRuntime
+
+# TACDevel.Drawing.Primitives
+- template: ./.azp/stages/build.yml
+  parameters:
+    projectNameSafe: 'TACDevelDrawingPrimitives'
+    projectName: 'TACDevel.Drawing.Primitives'
+    projectCategory: 'sources'
