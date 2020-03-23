@@ -10,7 +10,7 @@
     <_VersionBase>0.1.0</_VersionBase>
   </PropertyGroup>
 
-  <UsingTask TaskName="GenerateBuildVersion" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+  <UsingTask TaskName="BuildVersionGenerator" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
     <ParameterGroup>
       <IsAutoBuild ParameterType="System.Boolean" Required="true" />
       <VersionInput ParameterType="System.String" Required="true" />
@@ -45,13 +45,16 @@
     </Task>
   </UsingTask>
 
-  <Target Name="GetBuildVersion" BeforeTargets="GetAssemblyVersion;Restore;Build" >
-    <GenerateBuildVersion IsAutoBuild="$(_IsAutoBuild)" DotGitPath="$(TACDevLibsRepoPath).git" VersionInput="$(_VersionBase)">
+  <Target Name="GenerateBuildVersion">
+    <BuildVersionGenerator IsAutoBuild="$(_IsAutoBuild)" DotGitPath="$(TACDevLibsRepoPath).git" VersionInput="$(_VersionBase)">
       <Output TaskParameter="BuildVersion" PropertyName="GeneratedBuildVersion"  />
-    </GenerateBuildVersion>
+    </BuildVersionGenerator>
     <Message Text="Old Version: '$(Version)'" Importance="High" />
     <PropertyGroup>
       <Version>$(GeneratedBuildVersion)</Version>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+      <PackageVersion>$(GeneratedBuildVersion)</PackageVersion>
     </PropertyGroup>
     <Message Text="New Version: '$(Version)'" Importance="High" />
   </Target>

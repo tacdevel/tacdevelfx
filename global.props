@@ -25,7 +25,7 @@
     
     <BaseOutputPath>$(TACDevLibsProjectBuildBinPath)</BaseOutputPath>
     <OutputPath>$(BaseOutputPath)</OutputPath>
-    <BaseIntermediateOutputPath>$(TACDevLibsProjectBuildPath)</BaseIntermediateOutputPath>
+    <BaseIntermediateOutputPath>$(TACDevLibsProjectBuildObjPath)</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
   </PropertyGroup>
 

@@ -27,12 +27,12 @@
     <RepositoryUrl>https://github.com/tom-corwin/tacdevlibs</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageOutputPath>$(TACDevLibsProjectBuildPkgPath)</PackageOutputPath>
     <PackageId>$(MSBuildProjectName)</PackageId>
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="('$(_IsAutomatedBuild)|$(Configuration)' == 'true|Release')">
+  <PropertyGroup Condition="('$(_IsAutoBuild)|$(Configuration)' == 'true|Release')">
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageOutputPath>$(TACDevLibsProjectBuildPkgPath)</PackageOutputPath>
   </PropertyGroup>
 </Project>

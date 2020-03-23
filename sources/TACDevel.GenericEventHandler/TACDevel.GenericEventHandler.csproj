@@ -3,7 +3,7 @@
 * Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" InitialTargets="GenerateBuildVersion" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);TACDEVEL_GENERICEVENTHANDLER</DefineConstants>
   </PropertyGroup>
