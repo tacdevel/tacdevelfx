@@ -10,7 +10,9 @@ using System.Security;
 namespace TACDevel.Native
 {
     [SuppressUnmanagedCodeSecurity]
+#pragma warning disable CA1060 // Move pinvokes to native methods class
     internal static class Kernel32
+#pragma warning restore CA1060 // Move pinvokes to native methods class
     {
         private const string AssemblyRef = "kernel32";
 

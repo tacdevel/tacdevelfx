@@ -8,7 +8,9 @@ namespace TACDevel.Runtime
     /// <summary>
     /// Indicates the operating system type.
     /// </summary>
+#pragma warning disable CA1717 // Only FlagsAttribute enums should have plural names
     public enum PlatformOS
+#pragma warning restore CA1717 // Only FlagsAttribute enums should have plural names
     {
         /// <summary>
         /// An unknown operating system.

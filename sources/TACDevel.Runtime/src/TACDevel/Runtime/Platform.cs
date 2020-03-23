@@ -8,6 +8,7 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+
 using TACDevel.Native;
 
 namespace TACDevel.Runtime
@@ -210,9 +211,9 @@ namespace TACDevel.Runtime
                     if (Version.TryParse(Marshal.PtrToStringAnsi((IntPtr)buf, (int)*len), out Version version))
                         return (PlatformOS.MacOS, new Version(10, version.Major));
             }
-            catch
-            {
-            }
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch { }
+#pragma warning restore CA1031 // Do not catch general exception types
             return (PlatformOS.MacOS, new Version(0, 0));
         }
 
@@ -271,7 +272,9 @@ namespace TACDevel.Runtime
             {
                 return (PlatformOS.FreeBSD, new Version(RuntimeInformation.OSDescription.Split()[1].Split('-')[0]));
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch { }
+#pragma warning restore CA1031 // Do not catch general exception types
             return (PlatformOS.FreeBSD, new Version(0, 0));
         }
 
@@ -332,7 +335,9 @@ namespace TACDevel.Runtime
                 case PlatformOS.SLES:
                 case PlatformOS.CentOS:
                 case PlatformOS.Alpine:
+#pragma warning disable CA1308 // Normalize strings to uppercase
                     return OperatingSystem.ToString().ToLowerInvariant();
+#pragma warning restore CA1308 // Normalize strings to uppercase
                 case PlatformOS.Unknown:
                 default:
                     return "unknown";

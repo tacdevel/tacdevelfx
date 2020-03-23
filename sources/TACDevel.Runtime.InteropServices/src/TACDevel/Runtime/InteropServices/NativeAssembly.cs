@@ -5,12 +5,14 @@
  **************************************************************************************************/
 
 using Microsoft.Extensions.DependencyModel;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
+
 using TACDevel.Native;
 using TACDevel.Runtime.InteropServices.Resources;
 
@@ -192,7 +194,9 @@ namespace TACDevel.Runtime.InteropServices
 
                             depsResolvedPath = Path.Combine(
                                 GetNugetPackagesRootDirectory(),
+#pragma warning disable CA1308 // Normalize strings to uppercase
                                 runtimeLib.Name.ToLowerInvariant(),
+#pragma warning restore CA1308 // Normalize strings to uppercase
                                 runtimeLib.Version,
                                 nativeAsset);
                             depsResolvedPath = Path.GetFullPath(depsResolvedPath);
@@ -232,7 +236,7 @@ namespace TACDevel.Runtime.InteropServices
             return false;
         }
 
-        private string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
+        private static string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
 
         private static string GetUserDirectory() => Platform.PlatformType == PlatformType.Windows ? Environment.GetEnvironmentVariable("USERPROFILE") : Environment.GetEnvironmentVariable("HOME");
     }

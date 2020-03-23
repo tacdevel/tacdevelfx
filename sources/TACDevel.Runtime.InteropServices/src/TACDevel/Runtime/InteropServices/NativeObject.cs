@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+
 using TACDevel.Runtime.InteropServices.Resources;
 
 namespace TACDevel.Runtime.InteropServices
