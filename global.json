@@ -9,6 +9,6 @@
         "rollForward": "disable"
     },
     "msbuild-sdks": {
-        "Microsoft.Build.Traversal": "2.0.31"
+        "Microsoft.Build.Traversal": "2.0.32"
     }
 }
