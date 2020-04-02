@@ -62,6 +62,13 @@ stages:
     dependsOn:
     - Build_TACDevelGenericEventHandler
 
+# TACDevel.Native
+- template: ./.azp/stages/build.yml
+  parameters:
+    projectNameSafe: 'TACDevelNative'
+    projectName: 'TACDevel.Native'
+    projectCategory: 'sources'
+
 # TACDevel.Runtime
 - template: ./.azp/stages/build.yml
   parameters:
@@ -71,17 +78,7 @@ stages:
     dependsOn:
     - Build_TACDevelGenericEventHandler
     - Build_TACDevelDisposable
-
-# TACDevel.Runtime.InteropServices
-- template: ./.azp/stages/build.yml
-  parameters:
-    projectNameSafe: 'TACDevelRuntimeInteropServices'
-    projectName: 'TACDevel.Runtime.InteropServices'
-    projectCategory: 'sources'
-    dependsOn:
-    - Build_TACDevelGenericEventHandler
-    - Build_TACDevelDisposable
-    - Build_TACDevelRuntime
+    - Build_TACDevelNative
 
 # TACDevel.Drawing.Primitives
 - template: ./.azp/stages/build.yml
