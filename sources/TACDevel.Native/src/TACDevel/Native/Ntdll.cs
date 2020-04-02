@@ -8,10 +8,10 @@ using System.Security;
 
 namespace TACDevel.Native
 {
-    [SuppressUnmanagedCodeSecurity]
 #pragma warning disable CA1060 // Move pinvokes to native methods class
+#pragma warning disable IDE1006 // Naming Styles
+    [SuppressUnmanagedCodeSecurity]
     internal static class Ntdll
-#pragma warning restore CA1060 // Move pinvokes to native methods class
     {
         private const string AssemblyRef = "ntdll";
 
@@ -30,4 +30,6 @@ namespace TACDevel.Native
         [DllImport(AssemblyRef)]
         internal static extern int RtlGetVersion(out RTL_OSVERSIONINFOEX lpVersionInformation);
     }
+#pragma warning restore IDE1006 // Naming Styles
+#pragma warning restore CA1060 // Move pinvokes to native methods class
 }
