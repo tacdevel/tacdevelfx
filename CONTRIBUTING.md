@@ -34,17 +34,17 @@ Basic guidelines are listed below:
 For the most part, everything should be formatted as per the suggestions in the error list in either Visual Studio or
 Visual Studio Code, since we use an `.editorconfig` file.
 
-## Issue Reporting
+## Issue/Bug Reporting
 
-Reporting an issue is even easier than submitting a pull request. Just follow the step below to write and report an
-issue/bug:
+Reporting an issue is even easier than submitting a pull request. Just
+[click here](https://github.com/tom-corwin/tacdevlibs/issues/new?template=bug-report.md) and follow the steps in the
+issue template, and create the issue!
 
-  1. [Write a descriptive issue and submit](https://github.com/tom-corwin/tacdevlibs/issue/new)
-    - Provide a summary of the issue you would like to report.
-    - Explain what should have happened.
-    - Explain what actually happens.
-    - Show the steps you need to take to reproduce the problem. be as specific as you can, and provide sample code if possible.
-    - Add any additional notes, including operating system information.
+## Requesting a Feature/Enhancement
+
+Requesting a feature or enhancement is just like reporting an issue.
+[Click here](https://github.com/tom-corwin/tacdevlibs/issues/new?template=feature-request.md) and follow the steps in the
+issue template, and create the issue!
 
 ## Contribution Licensing
 

@@ -3,7 +3,7 @@
 
 # TAC Development Libraries
 
-**MISSING**: *Project Summary*
+TAC Development Libraries, or *TACDevLibs* for short, is eventually going to be a set of libraries that provide APIs for audio, graphics, UI, and more.
 
 ## Project Status
 
@@ -14,15 +14,25 @@
 ![DependabotStatus][Dependabot.Badge]
 [![CodacyGrade][Codacy.Badge]][Codacy.Link]
 
-**MISSING**: *Project Status Summary/Information*
+This project is still not much more than started so don't expect much from it, yet!
 
 | Package Name                 | Build Status(es) | Latest Version(s) | Target Framework(s) |
 | :--------------------------- | :--------------- | :---------------- | :------------------ |
 | TACDevel.GenericEventHandler | [![Windows][Build.TACDevel.GenericEventHandler.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.GenericEventHandler.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.GenericEventHandler.Linux]][Build.Link] | [![Stable][Package.TACDevel.GenericEventHandler.Stable]][Package.TACDevel.GenericEventHandler.Stable.Link]<br/>[![Preview][Package.TACDevel.GenericEventHandler.Preview]][Package.TACDevel.GenericEventHandler.Preview.Link]<br/>[![Build][Package.TACDevel.GenericEventHandler.Build]][Package.TACDevel.GenericEventHandler.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
 | TACDevel.Disposable          | [![Windows][Build.TACDevel.Disposable.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Disposable.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Disposable.Linux]][Build.Link] | [![Stable][Package.TACDevel.Disposable.Stable]][Package.TACDevel.Disposable.Stable.Link]<br/>[![Preview][Package.TACDevel.Disposable.Preview]][Package.TACDevel.Disposable.Preview.Link]<br/>[![Build][Package.TACDevel.Disposable.Build]][Package.TACDevel.Disposable.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
-| TACDevel.Native              | [![Windows][Build.TACDevel.Native.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Native.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Native.Linux]][Build.Link] | [![Stable][Package.TACDevel.Native.Stable]][Package.TACDevel.Native.Stable.Link]<br/>[![Preview][Package.TACDevel.Native.Preview]][Package.TACDevel.Native.Preview.Link]<br/>[![Build][Package.TACDevel.Native.Build]][Package.TACDevel.Native.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
 | TACDevel.Runtime             | [![Windows][Build.TACDevel.Runtime.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Runtime.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Runtime.Linux]][Build.Link] | [![Stable][Package.TACDevel.Runtime.Stable]][Package.TACDevel.Runtime.Stable.Link]<br/>[![Preview][Package.TACDevel.Runtime.Preview]][Package.TACDevel.Runtime.Preview.Link]<br/>[![Build][Package.TACDevel.Runtime.Build]][Package.TACDevel.Runtime.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
 | TACDevel.Drawing.Primitives  | [![Windows][Build.TACDevel.Drawing.Primitives.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Drawing.Primitives.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Drawing.Primitives.Linux]][Build.Link] | [![Stable][Package.TACDevel.Drawing.Primitives.Stable]][Package.TACDevel.Drawing.Primitives.Stable.Link]<br/>[![Preview][Package.TACDevel.Drawing.Primitives.Preview]][Package.TACDevel.Drawing.Primitives.Preview.Link]<br/>[![Build][Package.TACDevel.Drawing.Primitives.Build]][Package.TACDevel.Drawing.Primitives.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+| TACDevel.Audio               | [![Windows][Build.TACDevel.Audio.Windows]][Build.Link]<br/>[![MacOS][Build.TACDevel.Audio.MacOS]][Build.Link]<br/>[![Linux][Build.TACDevel.Audio.Linux]][Build.Link] | [![Stable][Package.TACDevel.Audio.Stable]][Package.TACDevel.Audio.Stable.Link]<br/>[![Preview][Package.TACDevel.Audio.Preview]][Package.TACDevel.Audio.Preview.Link]<br/>[![Build][Package.TACDevel.Audio.Build]][Package.TACDevel.Audio.Build.Link] | ![NETStandard21][Framework.NETStandard21] |
+
+## Contributing
+
+[![CodeOfConduct][Repository.CodeOfConduct.Badge]][Repository.CodeOfConduct.Link]
+[![OpenIssues][Repository.OpenIssues.Badge]][Repository.OpenIssues.Link]
+[![ClosedIssues][Repository.ClosedIssues.Badge]][Repository.ClosedIssues.Link]
+[![AvailableIssues][Repository.AvailableIssues.Badge]][Repository.AvailableIssues.Link]
+[![GoodFirstIssues][Repository.GoodFirstIssues.Badge]][Repository.GoodFirstIssues.Link]
+
+For information on contributing to TACDevLibs, see the [CONTRIBUTING.md][File.Contributing.Link] file.
 
 [Repository.License.Badge]: https://img.shields.io/badge/License-MIT-gray?logo=open-source-initiative&logoColor=white
 [Repository.License.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
@@ -63,15 +73,15 @@
 [Package.TACDevel.Runtime.Stable.Link]: http://localhost
 [Package.TACDevel.Runtime.Preview.Link]: http://localhost
 [Package.TACDevel.Runtime.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Runtime
-[Build.TACDevel.Native.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.Native%29
-[Build.TACDevel.Native.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.Native%29
-[Build.TACDevel.Native.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_Linux_Release&label=Linux&logo=linux&logoColor=white&stage=Build%20%28TACDevel.Native%29
-[Package.TACDevel.Native.Stable]: https://img.shields.io/nuget/v/TACDevel.Native?color=blue&label=Stable&logo=nuget&logoColor=blue
-[Package.TACDevel.Native.Preview]: https://img.shields.io/nuget/vpre/TACDevel.Native?color=blueviolet&label=Preview&logo=nuget&logoColor=blue
-[Package.TACDevel.Native.Build]: https://img.shields.io/myget/tacdevlibs/vpre/TACDevel.Native?color=orange&label=Build&logo=nuget&logoColor=green
-[Package.TACDevel.Native.Stable.Link]: http://localhost
-[Package.TACDevel.Native.Preview.Link]: http://localhost
-[Package.TACDevel.Native.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Native
+[Build.TACDevel.Audio.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.Audio%29
+[Build.TACDevel.Audio.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.Audio%29
+[Build.TACDevel.Audio.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelRuntimeInteropServices_Linux_Release&label=Linux&logo=linux&logoColor=white&stage=Build%20%28TACDevel.Audio%29
+[Package.TACDevel.Audio.Stable]: https://img.shields.io/nuget/v/TACDevel.Audio?color=blue&label=Stable&logo=nuget&logoColor=blue
+[Package.TACDevel.Audio.Preview]: https://img.shields.io/nuget/vpre/TACDevel.Audio?color=blueviolet&label=Preview&logo=nuget&logoColor=blue
+[Package.TACDevel.Audio.Build]: https://img.shields.io/myget/tacdevlibs/vpre/TACDevel.Audio?color=orange&label=Build&logo=nuget&logoColor=green
+[Package.TACDevel.Audio.Stable.Link]: http://localhost
+[Package.TACDevel.Audio.Preview.Link]: http://localhost
+[Package.TACDevel.Audio.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Audio
 [Build.TACDevel.Drawing.Primitives.Windows]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDrawingPrimitives_Windows_Release&label=Windows&logo=windows&logoColor=white&stage=Build%20%28TACDevel.Drawing.Primitives%29
 [Build.TACDevel.Drawing.Primitives.MacOS]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDrawingPrimitives_MacOS_Release&label=macOS&logo=apple&logoColor=white&stage=Build%20%28TACDevel.Drawing.Primitives%29
 [Build.TACDevel.Drawing.Primitives.Linux]: https://img.shields.io/azure-devops/build/tacdevlibs/16361502-19e3-44ec-b71b-2915cc6a7eee/1/master?job=Build_TACDevelDrawingPrimitives_Linux_Release&label=Linux&logo=linux&logoColor=white&stage=Build%20%28TACDevel.Drawing.Primitives%29
@@ -91,16 +101,7 @@
 [Repository.AvailableIssues.Link]: https://github.com/tom-corwin/tacdevlibs/issues?q=is%3Aissue+is%3Aopen+label%3AStatus%3AAvailable
 [Repository.GoodFirstIssues.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tacdevlibs/Meta:GoodFirstIssue?color=green&label=Issue%3AMeta%3AGoodFirstIssue&logo=github
 [Repository.GoodFirstIssues.Link]: https://github.com/tom-corwin/tacdevlibs/issues?q=is%3Aissue+is%3Aopen+label%3AMeta%3AGoodFirstIssue
-
-## Contributing
-
-[![CodeOfConduct][Repository.CodeOfConduct.Badge]][Repository.CodeOfConduct.Link]
-[![OpenIssues][Repository.OpenIssues.Badge]][Repository.OpenIssues.Link]
-[![ClosedIssues][Repository.ClosedIssues.Badge]][Repository.ClosedIssues.Link]
-[![AvailableIssues][Repository.AvailableIssues.Badge]][Repository.AvailableIssues.Link]
-[![GoodFirstIssues][Repository.GoodFirstIssues.Badge]][Repository.GoodFirstIssues.Link]
-
-**MISSING**: *Contributing Information*
+[File.Contributing.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/CONTRIBUTING.md
 
 <!--
 
@@ -161,7 +162,6 @@ Run the following command in a command-line interface in the root directory of t
 dotnet build dirs.proj
 ```
 
-[File.Contributing.Link]: https://github.com/tom-corwin/tcdfx/blob/master/CONTRIBUTING.md
 [AzurePipelines.Link]: https://azure.microsoft.com/en-us/services/devops/pipelines/
 [DotNetCore.SupportedOS.Link]: https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md
 [BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=15&branchName=master

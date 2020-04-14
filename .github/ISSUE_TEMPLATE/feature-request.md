@@ -1,6 +1,6 @@
 ---
 name: Feature/Enhancement Request
-about: Suggest a new feature or functionality for TACDevelFx.
+about: Suggest a new feature or functionality for TACDevLibs.
 
 ---
 

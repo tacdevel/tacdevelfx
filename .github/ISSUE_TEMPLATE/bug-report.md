@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Create a new bug report to help us improve TACDevelFx.
+about: Create a new bug report to help us improve TACDevLibs.
 
 ---
 
@@ -17,14 +17,17 @@ Steps to reproduce the behavior:
 **Expected Behavior**
 A clear and concise description of what you expected to happen.
 
+**Actual Behavior**
+A clear and concise description of what you expected to happen.
+
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
+
+**Additional Information**
+Add any other information about the problem here.
 
 **System Information:**
  - Platform: [e.g. Windows, macOS, etc.]
  - Runtime: [e.g. .NET Core 2.1, .NET Framework 4.6, etc.]
  - Package(s): [e.g. TACDevel.Disposable, TACDevel.Drawing.Primitives, etc.]
  - Package Version: [e.g. 0.1.0]
-
-**Additional Information**
-Add any other information about the problem here.
