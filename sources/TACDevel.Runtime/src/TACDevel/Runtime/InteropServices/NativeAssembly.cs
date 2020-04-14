@@ -25,8 +25,6 @@ namespace TACDevel.Runtime.InteropServices
         public string AssemblyName { get; }
     }
 
-    //TODO: Look into the files here:
-    //TODO: https://github.com/tlgkccampbell/ultraviolet/tree/develop/Source/Ultraviolet.Core/Shared/Native
     /// <summary>
     /// Represents a native (shared) assembly.
     /// </summary>

@@ -1,16 +1,34 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* FileName:             TACDevel.Runtime.csproj
+* FileName:             TACDevel.Audio.csproj
 * Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="16.0" InitialTargets="GenerateBuildVersion" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);TACDEVEL_RUNTIME</DefineConstants>
+    <DefineConstants>$(DefineConstants);TACDEVEL_AUDIO</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="lib\linux-x64\miniaudio.so">
+      <PackagePath>runtimes\linux-x64\libminiaudio.so</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="lib\osx-x64\miniaudio.dylib">
+      <PackagePath>runtimes\osx-x64\libminiaudio.dylib</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+    <Content Include="lib\win-x64\miniaudio.dll">
+      <PackagePath>runtimes\win-x64\miniaudio.dll</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TACDevel.GenericEventHandler\TACDevel.GenericEventHandler.csproj" />
     <ProjectReference Include="..\TACDevel.Disposable\TACDevel.Disposable.csproj" />
+    <ProjectReference Include="..\TACDevel.Runtime\TACDevel.Runtime.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version=" 3.1.3" />

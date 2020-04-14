@@ -11,6 +11,7 @@ namespace TACDevel.Native
 {
 #pragma warning disable CA1060 // Move pinvokes to native methods class
 #pragma warning disable IDE1006 // Naming Styles
+#pragma warning disable CA2101 // Specify marshaling for P/Invoke string arguments
     [SuppressUnmanagedCodeSecurity]
     internal static class Libdl
     {
@@ -27,6 +28,7 @@ namespace TACDevel.Native
         [DllImport(AssemblyRef)]
         internal static extern int dlclose(IntPtr handle);
     }
+#pragma warning restore CA2101 // Specify marshaling for P/Invoke string arguments
 #pragma warning restore IDE1006 // Naming Styles
 #pragma warning restore CA1060 // Move pinvokes to native methods class
 }
