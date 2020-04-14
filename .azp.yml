@@ -62,13 +62,6 @@ stages:
     dependsOn:
     - Build_TACDevelGenericEventHandler
 
-# TACDevel.Native
-- template: ./.azp/stages/build.yml
-  parameters:
-    projectNameSafe: 'TACDevelNative'
-    projectName: 'TACDevel.Native'
-    projectCategory: 'sources'
-
 # TACDevel.Runtime
 - template: ./.azp/stages/build.yml
   parameters:
@@ -78,7 +71,6 @@ stages:
     dependsOn:
     - Build_TACDevelGenericEventHandler
     - Build_TACDevelDisposable
-    - Build_TACDevelNative
 
 # TACDevel.Drawing.Primitives
 - template: ./.azp/stages/build.yml
@@ -86,3 +78,14 @@ stages:
     projectNameSafe: 'TACDevelDrawingPrimitives'
     projectName: 'TACDevel.Drawing.Primitives'
     projectCategory: 'sources'
+
+# TACDevel.Audio
+- template: ./.azp/stages/build.yml
+  parameters:
+    projectNameSafe: 'TACDevelAudio'
+    projectName: 'TACDevel.Audio'
+    projectCategory: 'sources'
+    dependsOn:
+    - Build_TACDevelGenericEventHandler
+    - Build_TACDevelDisposable
+    - Build_TACDevelRuntime
