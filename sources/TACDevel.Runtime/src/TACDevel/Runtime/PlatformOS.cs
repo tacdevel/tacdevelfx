@@ -3,14 +3,15 @@
  * Copyright/License:   https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
 ***********************************************************************************************************************/
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace TACDevel.Runtime
 {
     /// <summary>
     /// Indicates the operating system type.
     /// </summary>
-#pragma warning disable CA1717 // Only FlagsAttribute enums should have plural names
+    [SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
     public enum PlatformOS
-#pragma warning restore CA1717 // Only FlagsAttribute enums should have plural names
     {
         /// <summary>
         /// An unknown operating system.
@@ -20,71 +21,71 @@ namespace TACDevel.Runtime
         /// <summary>
         /// A Microsoft Windows operating system.
         /// </summary>
-        Windows,     // win
+        Windows,
 
         /// <summary>
         /// An Apple OSX/macOS operating system.
         /// </summary>
-        MacOS,       // osx
+        MacOS,
 
         /// <summary>
         /// A Linux operating system.
         /// </summary>
-        Linux,       // linux
+        Linux,
 
         /// <summary>
         /// A FreeBSD operating system.
         /// </summary>
-        FreeBSD,     // freebsd
+        FreeBSD,
 
         /// <summary>
         /// A Debian operating system.
         /// </summary>
-        Debian,      // debian
+        Debian,
 
         /// <summary>
         /// An Ubuntu operating system.
         /// </summary>
-        Ubuntu,      // ubuntu
+        Ubuntu,
 
         /// <summary>
         /// A Linux Mint operating system.
         /// </summary>
-        LinuxMint,   // linuxmint
+        LinuxMint,
 
         /// <summary>
         /// A Fedora operating system.
         /// </summary>
-        Fedora,      // fedora
+        Fedora,
 
         /// <summary>
         /// A Red Hat Enterprise Linux operating system.
         /// </summary>
-        RHEL,        // rhel
+        RHEL,
 
         /// <summary>
         /// An Oracle Linux operating system.
         /// </summary>
-        OL,          // ol
+        OL,
 
         /// <summary>
         /// An openSUSE operating system.
         /// </summary>
-        OpenSUSE,    // opensuse
+        OpenSUSE,
 
         /// <summary>
         /// A SUSE Linux Entrprise Server operating system.
         /// </summary>
-        SLES,        // sles
+        SLES,
 
         /// <summary>
         /// A CentOS operating system.
         /// </summary>
-        CentOS,      // centos
+        CentOS,
 
         /// <summary>
         /// An Alpine operating system.
         /// </summary>
-        Alpine       // alpine
+        Alpine
     }
 }

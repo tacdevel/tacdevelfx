@@ -4,98 +4,44 @@
 ***********************************************************************************************************************/
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-
 using TACDevel.Native;
 
 namespace TACDevel.Runtime
 {
     /// <summary>
-    /// Contains information about the current running platform.
+    /// Contains information about the current platform.
     /// </summary>
     public static class Platform
     {
-        private static readonly string pRIDEnv = Environment.GetEnvironmentVariable("DOTNET_RUNTIME_ID");
+        private static readonly string pRidEnv = Environment.GetEnvironmentVariable("DOTNET_RUNTIME_ID");
 
+        [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
         static Platform()
         {
-            if (pRIDEnv != null)
+            if (!string.IsNullOrWhiteSpace(pRidEnv))
             {
-                string[] ridParts = pRIDEnv.Split('-');
-
-                string osStr = Regex.Replace(ridParts[0], "[^0-9.]", "");
-                if (osStr == "win")
-                    OperatingSystem = PlatformOS.Windows;
-#pragma warning disable IDE0045 // 'if' statement can be simplified
-                else if (osStr == "osx")
-#pragma warning restore IDE0045 // 'if' statement can be simplified
-                    OperatingSystem = PlatformOS.MacOS;
-                else
-                    OperatingSystem = Enum.TryParse(osStr, true, out PlatformOS os) ? os : PlatformOS.Unknown;
-
-                switch (OperatingSystem)
-                {
-                    case PlatformOS.Windows:
-                        PlatformType = PlatformType.Windows;
-                        break;
-                    case PlatformOS.MacOS:
-                        PlatformType = PlatformType.MacOS;
-                        break;
-                    case PlatformOS.FreeBSD:
-                        PlatformType = PlatformType.FreeBSD;
-                        break;
-                    case PlatformOS.Linux:
-                    case PlatformOS.Debian:
-                    case PlatformOS.Ubuntu:
-                    case PlatformOS.LinuxMint:
-                    case PlatformOS.Fedora:
-                    case PlatformOS.RHEL:
-                    case PlatformOS.OL:
-                    case PlatformOS.OpenSUSE:
-                    case PlatformOS.SLES:
-                    case PlatformOS.CentOS:
-                    case PlatformOS.Alpine:
-                        PlatformType = PlatformType.Linux;
-                        break;
-                    case PlatformOS.Unknown:
-                    default:
-                        PlatformType = PlatformType.Unknown;
-                        break;
-                }
-
-                string versionStr = Regex.Replace(ridParts[0], "[^a-zA-Z]", "");
-                if (!versionStr.Contains(".", StringComparison.OrdinalIgnoreCase))
-                    Version = new Version(int.Parse(versionStr, CultureInfo.InvariantCulture), 0);
-                else
-                {
-                    string[] splitVersion = versionStr.Split('.');
-                    Version = new Version(int.Parse(splitVersion[0], CultureInfo.InvariantCulture), int.Parse(splitVersion[1], CultureInfo.InvariantCulture));
-                }
-
-#pragma warning disable IDE0045 // 'if' statement can be simplified
-                if (ridParts[1] == "arm")
-#pragma warning restore IDE0045 // 'if' statement can be simplified
-                    Architecture = PlatformArch.ARM32;
-                else
-                    Architecture = Enum.TryParse(ridParts[1], true, out PlatformArch arch) ? arch : PlatformArch.Unknown;
-
-#pragma warning disable CA1308 // Normalize strings to uppercase
-                RuntimeID = pRIDEnv.ToLowerInvariant();
-#pragma warning restore CA1308 // Normalize strings to uppercase
+                PlatformOS os = GetOSFromRid(pRidEnv);
+                OS = os;
+                Type = GetTypeFromOS(os);
+                Version = GetVersionFromRid(pRidEnv);
+                Arch = GetArchFromRid(pRidEnv);
+                RuntimeID = pRidEnv.ToLowerInvariant();
+                GenericRuntimeID = $"{GetRIDOS(OS)}{GetRIDArch(Arch)}";
             }
             else
             {
-                Architecture = (PlatformArch)RuntimeInformation.ProcessArchitecture;
-
-                PlatformType = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? PlatformType.Windows
-                : RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? PlatformType.Linux
-                : RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? PlatformType.MacOS
-                : RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")) ? PlatformType.FreeBSD
-                : PlatformType.Unknown;
-                (PlatformOS OS, Version Version) osInfo = PlatformType switch
+                Arch = (PlatformArch)RuntimeInformation.ProcessArchitecture;
+                Type = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? PlatformType.Windows
+                    : RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? PlatformType.Linux
+                    : RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? PlatformType.MacOS
+                    : RuntimeInformation.IsOSPlatform(OSPlatform.Create("FREEBSD")) ? PlatformType.FreeBSD
+                    : PlatformType.Unknown;
+                (PlatformOS, Version) osInfo = Type switch
                 {
                     PlatformType.Windows => GetWindowsInfo(),
                     PlatformType.Linux => GetLinuxInfo(),
@@ -103,27 +49,27 @@ namespace TACDevel.Runtime
                     PlatformType.FreeBSD => GetFreeBSDInfo(),
                     _ => (PlatformOS.Unknown, new Version(0, 0)),
                 };
-                OperatingSystem = osInfo.OS;
-                Version = osInfo.Version;
-                RuntimeID = $"{GetRIDOS()}{GetRIDVersion()}{GetRIDArch()}";
-                GenericRuntimeID = $"{GetRIDOS()}{GetRIDArch()}";
+                OS = osInfo.Item1;
+                Version = osInfo.Item2;
+                RuntimeID = $"{GetRIDOS(OS)}{GetRIDVersion(Type, Version)}{GetRIDArch(Arch)}";
+                GenericRuntimeID = $"{GetRIDOS(OS)}{GetRIDArch(Arch)}";
             }
         }
 
         /// <summary>
         /// The processor architecture.
         /// </summary>
-        public static PlatformArch Architecture { get; }
+        public static PlatformArch Arch { get; }
 
         /// <summary>
         /// The operating system platform.
         /// </summary>
-        public static PlatformType PlatformType { get; }
+        public static PlatformType Type { get; }
 
         /// <summary>
         /// The operating system type.
         /// </summary>
-        public static PlatformOS OperatingSystem { get; }
+        public static PlatformOS OS { get; }
 
         /// <summary>
         /// The operating system version.
@@ -143,44 +89,160 @@ namespace TACDevel.Runtime
         /// <summary>
         /// Determines whether the current operating system is a Windows-based operating system.
         /// </summary>
-        public static bool IsWindows => PlatformType == PlatformType.Windows;
+        public static bool IsWindows => Type == PlatformType.Windows;
 
         /// <summary>
         /// Determines whether the current operating system is a macOS-based operating system.
         /// </summary>
-        public static bool IsMacOS => PlatformType == PlatformType.MacOS;
+        public static bool IsMacOS => Type == PlatformType.MacOS;
 
         /// <summary>
         /// Determines whether the current operating system is a Linux-based operating system.
         /// </summary>
-        public static bool IsLinux => PlatformType == PlatformType.Linux;
+        public static bool IsLinux => Type == PlatformType.Linux;
 
         /// <summary>
         /// Determines whether the current operating system is a FreeBSD-based operating system.
         /// </summary>
-        public static bool IsFreeBSD => PlatformType == PlatformType.FreeBSD;
+        public static bool IsFreeBSD => Type == PlatformType.FreeBSD;
 
         /// <summary>
         /// Determines whether the current operating system is a 32-bit operating system.
         /// </summary>
-        public static bool Is32Bit => Architecture == PlatformArch.X86;
+        public static bool Is32Bit => Arch == PlatformArch.X86;
 
         /// <summary>
         /// Determines whether the current operating system is a 64-bit operating system.
         /// </summary>
-        public static bool Is64Bit => Architecture == PlatformArch.X64;
+        public static bool Is64Bit => Arch == PlatformArch.X64;
 
         /// <summary>
         /// Determines whether the current operating system is a 32-bit ARM operating system.
         /// </summary>
-        public static bool IsARM32 => Architecture == PlatformArch.ARM32;
+        public static bool IsARM => Arch == PlatformArch.ARM;
 
         /// <summary>
         /// Determines whether the current operating system is a 64-bit ARM operating system.
         /// </summary>
-        public static bool IsARM64 => Architecture == PlatformArch.ARM64;
+        public static bool IsARM64 => Arch == PlatformArch.ARM64;
 
-        private static (PlatformOS OS, Version Version) GetWindowsInfo()
+        [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase")]
+        private static string GetRIDArch(PlatformArch arch) => $"-{arch.ToString().ToLowerInvariant()}";
+
+        private static string GetRIDVersion(PlatformType type, Version version)
+        {
+            if (version.Major == 0 && version.Minor == 0)
+                return string.Empty;
+
+            switch (type)
+            {
+                // Windows RIDs do not separate OS name and version by "."
+                case PlatformType.Windows:
+                    if (version.Major == 6)
+                    {
+                        if (version.Minor == 1)
+                            return "7";
+                        else if (version.Minor == 2)
+                            return "8";
+                        else if (version.Minor == 3)
+                            return "81";
+                    }
+                    else if (version.Major >= 10)
+                        return version.Major.ToString(CultureInfo.InvariantCulture);
+                    return string.Empty;
+                case PlatformType.MacOS:
+                case PlatformType.Linux:
+                case PlatformType.FreeBSD:
+                    if (version.Minor == 0)
+                        return $".{version.Major}";
+                    return $".{version.Major}.{version.Minor}";
+                case PlatformType.Unknown:
+                default:
+                    return string.Empty;
+            }
+        }
+
+        [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
+        private static string GetRIDOS(PlatformOS os)
+        {
+            switch (os)
+            {
+                case PlatformOS.Windows:
+                    return "win";
+                case PlatformOS.MacOS:
+                    return "osx";
+                case PlatformOS.Linux:
+                case PlatformOS.FreeBSD:
+                case PlatformOS.Debian:
+                case PlatformOS.Ubuntu:
+                case PlatformOS.LinuxMint:
+                case PlatformOS.Fedora:
+                case PlatformOS.RHEL:
+                case PlatformOS.OL:
+                case PlatformOS.OpenSUSE:
+                case PlatformOS.SLES:
+                case PlatformOS.CentOS:
+                case PlatformOS.Alpine:
+                    return os.ToString().ToLowerInvariant();
+                case PlatformOS.Unknown:
+                default:
+                    return "unknown";
+            }
+        }
+
+        private static PlatformOS GetOSFromRid(string rid)
+        {
+            string[] ridParts = rid.Split('-');
+            string ridOS = Regex.Replace(ridParts[0], "[^0-9.]", "");
+            return ridOS == "win"
+                ? PlatformOS.Windows : ridOS == "osx"
+                ? PlatformOS.MacOS : Enum.TryParse(ridOS, true, out PlatformOS os)
+                ? os : PlatformOS.Unknown;
+        }
+
+        private static PlatformType GetTypeFromOS(PlatformOS os)
+        {
+            switch (os)
+            {
+                case PlatformOS.Windows:
+                    return PlatformType.Windows;
+                case PlatformOS.MacOS:
+                    return PlatformType.MacOS;
+                case PlatformOS.FreeBSD:
+                    return PlatformType.FreeBSD;
+                case PlatformOS.Linux:
+                case PlatformOS.Debian:
+                case PlatformOS.Ubuntu:
+                case PlatformOS.LinuxMint:
+                case PlatformOS.Fedora:
+                case PlatformOS.RHEL:
+                case PlatformOS.OL:
+                case PlatformOS.OpenSUSE:
+                case PlatformOS.SLES:
+                case PlatformOS.CentOS:
+                case PlatformOS.Alpine:
+                    return PlatformType.Linux;
+                case PlatformOS.Unknown:
+                default:
+                    return PlatformType.Unknown;
+            }
+        }
+
+        private static Version GetVersionFromRid(string rid)
+        {
+            string versionStr = Regex.Replace(rid.Split('-')[0], "[^a-zA-Z]", "");
+            if (!versionStr.Contains(".", StringComparison.OrdinalIgnoreCase))
+                return new Version(int.Parse(versionStr, CultureInfo.InvariantCulture), 0);
+            else
+            {
+                string[] splitVersion = versionStr.Split('.');
+                return new Version(int.Parse(splitVersion[0], CultureInfo.InvariantCulture), int.Parse(splitVersion[1], CultureInfo.InvariantCulture));
+            }
+        }
+
+        private static PlatformArch GetArchFromRid(string rid) => Enum.TryParse(rid.Split('-')[1], true, out PlatformArch arch) ? arch : PlatformArch.Unknown;
+
+        private static (PlatformOS, Version) GetWindowsInfo()
         {
             Ntdll.RTL_OSVERSIONINFOEX osvi = new Ntdll.RTL_OSVERSIONINFOEX();
             osvi.dwOSVersionInfoSize = (uint)Marshal.SizeOf(osvi);
@@ -190,34 +252,28 @@ namespace TACDevel.Runtime
                 : (PlatformOS.Windows, new Version(0, 0));
         }
 
-        private static unsafe (PlatformOS OS, Version Version) GetMacOSInfo()
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types")]
+        private static unsafe (PlatformOS, Version) GetMacOSInfo()
         {
-            int CTL_KERN = 1;
-            int KERN_OSRELEASE = 2;
-
-            const uint BUFFER_LENGTH = 32;
-
             int* name = stackalloc int[2];
-            name[0] = CTL_KERN;
-            name[1] = KERN_OSRELEASE;
+            name[0] = 1;
+            name[1] = 2;
 
-            byte* buf = stackalloc byte[(int)BUFFER_LENGTH];
+            byte* buf = stackalloc byte[(int)32U];
             uint* len = stackalloc uint[1];
-            *len = BUFFER_LENGTH;
+            *len = 32U;
 
             try
             {
-                if (Libc.sysctl(name, 2, buf, len, IntPtr.Zero, 0) == 0 && *len < BUFFER_LENGTH)
+                if (Libc.sysctl(name, 2, buf, len, IntPtr.Zero, 0) == 0 && *len < 32U)
                     if (Version.TryParse(Marshal.PtrToStringAnsi((IntPtr)buf, (int)*len), out Version version))
                         return (PlatformOS.MacOS, new Version(10, version.Major));
             }
-#pragma warning disable CA1031 // Do not catch general exception types
             catch { }
-#pragma warning restore CA1031 // Do not catch general exception types
             return (PlatformOS.MacOS, new Version(0, 0));
         }
 
-        private static (PlatformOS OS, Version Version) GetLinuxInfo()
+        private static (PlatformOS, Version) GetLinuxInfo()
         {
             string osID = "linux";
             string osVersion = "0.0";
@@ -264,7 +320,8 @@ namespace TACDevel.Runtime
             return (Enum.TryParse(osID, true, out PlatformOS os) ? os : PlatformOS.Linux, Version.TryParse(osVersion, out Version version) ? version : new Version(0, 0));
         }
 
-        private static (PlatformOS OS, Version Version) GetFreeBSDInfo()
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types")]
+        private static (PlatformOS, Version) GetFreeBSDInfo()
         {
             // This is same as sysctl kern.version.
             // FreeBSD 11.0-RELEASE-p1 FreeBSD 11.0-RELEASE-p1 #0 r306420: Thu Sep 29 01:43:23 UTC 2016
@@ -272,76 +329,8 @@ namespace TACDevel.Runtime
             {
                 return (PlatformOS.FreeBSD, new Version(RuntimeInformation.OSDescription.Split()[1].Split('-')[0]));
             }
-#pragma warning disable CA1031 // Do not catch general exception types
             catch { }
-#pragma warning restore CA1031 // Do not catch general exception types
             return (PlatformOS.FreeBSD, new Version(0, 0));
-        }
-
-#pragma warning disable CA1308 // Normalize strings to uppercase
-        private static string GetRIDArch() => Architecture == PlatformArch.ARM32 ? "-arm" : $"-{Architecture.ToString().ToLowerInvariant()}";
-#pragma warning restore CA1308 // Normalize strings to uppercase
-
-        private static string GetRIDVersion()
-        {
-            if (Version.Major == 0 && Version.Minor == 0)
-                return string.Empty;
-
-            switch (PlatformType)
-            {
-                // Windows RIDs do not separate OS name and version by "."
-                case PlatformType.Windows:
-                    if (Version.Major == 6)
-                    {
-                        if (Version.Minor == 1)
-                            return "7";
-                        else if (Version.Minor == 2)
-                            return "8";
-                        else if (Version.Minor == 3)
-                            return "81";
-                    }
-                    else if (Version.Major >= 10)
-                        return Version.Major.ToString(CultureInfo.InvariantCulture);
-                    return string.Empty;
-                case PlatformType.MacOS:
-                case PlatformType.Linux:
-                case PlatformType.FreeBSD:
-                    if (Version.Minor > 0)
-                        return $".{Version.Major}";
-                    return $".{Version.Major}.{Version.Minor}";
-                case PlatformType.Unknown:
-                default:
-                    return string.Empty;
-            }
-        }
-
-        private static string GetRIDOS()
-        {
-            switch (OperatingSystem)
-            {
-                case PlatformOS.Windows:
-                    return "win";
-                case PlatformOS.MacOS:
-                    return "osx";
-                case PlatformOS.Linux:
-                case PlatformOS.FreeBSD:
-                case PlatformOS.Debian:
-                case PlatformOS.Ubuntu:
-                case PlatformOS.LinuxMint:
-                case PlatformOS.Fedora:
-                case PlatformOS.RHEL:
-                case PlatformOS.OL:
-                case PlatformOS.OpenSUSE:
-                case PlatformOS.SLES:
-                case PlatformOS.CentOS:
-                case PlatformOS.Alpine:
-#pragma warning disable CA1308 // Normalize strings to uppercase
-                    return OperatingSystem.ToString().ToLowerInvariant();
-#pragma warning restore CA1308 // Normalize strings to uppercase
-                case PlatformOS.Unknown:
-                default:
-                    return "unknown";
-            }
         }
     }
 }

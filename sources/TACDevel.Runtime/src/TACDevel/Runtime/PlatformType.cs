@@ -18,21 +18,21 @@ namespace TACDevel.Runtime
         /// <summary>
         /// A Microsoft Windows platform.
         /// </summary>
-        Windows, // win
+        Windows,
 
         /// <summary>
         /// An Apple OSX/macOS platform.
         /// </summary>
-        MacOS,   // osx
+        MacOS,
 
         /// <summary>
         /// A Linux platform.
         /// </summary>
-        Linux,   // linux
+        Linux, 
 
         /// <summary>
         /// A FreeBSD platform.
         /// </summary>
-        FreeBSD, // freebsd
+        FreeBSD,
     }
 }

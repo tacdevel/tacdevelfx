@@ -18,21 +18,21 @@ namespace TACDevel.Runtime
         /// <summary>
         /// An Intel-based 32-bit processor architecture.
         /// </summary>
-        X86 = 0,   // x86
+        X86 = 0,
 
         /// <summary>
         /// An Intel-based 64-bit processor architecture.
         /// </summary>
-        X64 = 1,   // x64
+        X64 = 1,
 
         /// <summary>
         /// A 32-bit ARM processor architecture.
         /// </summary>
-        ARM32 = 2, // arm
+        ARM = 2,
 
         /// <summary>
         /// A 64-bit ARM processor architecture.
         /// </summary>
-        ARM64 = 3  // arm64
+        ARM64 = 3
     }
 }
