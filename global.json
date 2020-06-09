@@ -5,7 +5,7 @@
 
 {
     "sdk": {
-        "version": "3.1.200",
+        "version": "3.1.300",
         "rollForward": "disable"
     },
     "msbuild-sdks": {
