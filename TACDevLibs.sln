@@ -52,6 +52,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACDevel.Drawing.Primitives
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACDevel.Audio", "sources\TACDevel.Audio\TACDevel.Audio.csproj", "{DC735BEA-A570-460E-A219-D2E279C76C4F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{1D6031EF-2F4C-4D23-8F25-CE5120B8F19F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

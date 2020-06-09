@@ -1,0 +1,19 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* FileName:             /sources/sources.props
+* Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <TACDevLibsProjectCategory>tools</TACDevLibsProjectCategory>
+  </PropertyGroup>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('global.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+</Project>
