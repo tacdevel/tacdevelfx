@@ -1,6 +1,6 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 * FileName:             sources.props
-* Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+* Copyright/License:    https://github.com/tacdevel/tacdevlibs/blob/master/LICENSE.md
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
@@ -24,7 +24,7 @@
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <Copyright>Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.</Copyright>
-    <RepositoryUrl>https://github.com/tom-corwin/tacdevlibs</RepositoryUrl>
+    <RepositoryUrl>https://github.com/tacdevel/tacdevlibs</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>$(MSBuildProjectName)</PackageId>

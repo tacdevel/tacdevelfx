@@ -1,5 +1,9 @@
-root = true
+########################################################################################################################
+# FileName:             .editorconfig
+# Copyright/License:    https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+########################################################################################################################
 
+root = true
 [*]
 charset = utf-8
 end_of_line = crlf

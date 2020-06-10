@@ -1,14 +1,15 @@
 /***********************************************************************************************************************
  * FileName:             NativeObject.cs
  * Copyright:            Copyright © 2017-2020 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+ * License:              https://github.com/tacdevel/tacdevlibs/blob/master/LICENSE.md
  **********************************************************************************************************************/
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 
-using TACDevel.Runtime.InteropServices.Resources;
+using TACDevel.Runtime.Resources;
 
 namespace TACDevel.Runtime.InteropServices
 {
@@ -30,7 +31,7 @@ namespace TACDevel.Runtime.InteropServices
     }
 
     /// <summary>
-    /// Provides the base implementation of the <see cref="INativeComponent{T}"/> interface.
+    /// Provides the base implementation of the <see cref="INativeObject{T}"/> interface.
     /// </summary>
     /// <typeparam name="T">The type of handle.</typeparam>
     public abstract class NativeObject<T> : NativeObject, IEquatable<NativeObject<T>>, INativeObject<T>
@@ -74,20 +75,20 @@ namespace TACDevel.Runtime.InteropServices
         /// <value><c>true</c> if this component is invalid; otherwise, <c>false</c>.</value>
         public override bool IsInvalid => EqualityComparer<T>.Default.Equals(Handle, default);
 
+
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="other">The object to compare with the current object.</param>
-        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
-#pragma warning disable CA1062 // Validate arguments of public methods
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.</returns>
+        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>")]
         public bool Equals(NativeObject<T> other) => EqualityComparer<T>.Default.Equals(Handle, other.Handle);
-#pragma warning restore CA1062 // Validate arguments of public methods
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.
+        /// <returns><see langword="true"/> if the specified object is equal to the current object; otherwise, <see langword="false"/>.</returns>
         public override bool Equals(object obj) => !(obj is NativeObject<T>) ? false : Equals((NativeObject<T>)obj);
 
         /// <summary>

@@ -3,7 +3,7 @@
 
 # TAC Development Libraries
 
-TAC Development Libraries, or *TACDevLibs* for short, is eventually going to be a set of libraries that provide APIs for audio, graphics, UI, and more.
+TACDevLibs is eventually going to be a set of libraries that provide APIs for audio, graphics, UI, and more.
 
 ## Project Status
 
@@ -35,14 +35,14 @@ This project is still not much more than started so don't expect much from it, y
 For information on contributing to TACDevLibs, see the [CONTRIBUTING.md][File.Contributing.Link] file.
 
 [Repository.License.Badge]: https://img.shields.io/badge/License-MIT-gray?logo=open-source-initiative&logoColor=white
-[Repository.License.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
-[Repository.Contributors.Badge]: https://img.shields.io/github/contributors-anon/tom-corwin/tacdevlibs?color=gray&label=Contributors&logo=github
-[Repository.Contributors.Link]: https://github.com/tom-corwin/tacdevlibs/graphs/contributors
-[Repository.TopLanguage.Badge]: https://img.shields.io/github/languages/top/tom-corwin/tacdevlibs?color=%2305930C&label=C%23%20%288.0%29&logo=github
-[Repository.Size.Badge]: https://img.shields.io/github/repo-size/tom-corwin/tacdevlibs?color=gray&label=Size&logo=github
-[Dependabot.Badge]: https://badgen.net/dependabot/tom-corwin/tacdevlibs/?icon=dependabot&label=Dependabot
+[Repository.License.Link]: https://github.com/tacdevel/tacdevlibs/blob/master/LICENSE.md
+[Repository.Contributors.Badge]: https://img.shields.io/github/contributors-anon/tacdevel/tacdevlibs?color=gray&label=Contributors&logo=github
+[Repository.Contributors.Link]: https://github.com/tacdevel/tacdevlibs/graphs/contributors
+[Repository.TopLanguage.Badge]: https://img.shields.io/github/languages/top/tacdevel/tacdevlibs?color=%2305930C&label=C%23%20%288.0%29&logo=github
+[Repository.Size.Badge]: https://img.shields.io/github/repo-size/tacdevel/tacdevlibs?color=gray&label=Size&logo=github
+[Dependabot.Badge]: https://badgen.net/dependabot/tacdevel/tacdevlibs/?icon=dependabot&label=Dependabot
 [Codacy.Badge]: https://img.shields.io/codacy/grade/ddc482a56b6349b0958d1eb65d0c047a?label=Code%20Quality&logo=codacy
-[Codacy.Link]: https://app.codacy.com/manual/tom-corwin/tacdevlibs/dashboard
+[Codacy.Link]: https://app.codacy.com/manual/tacdevel/tacdevlibs/dashboard
 [Build.Link]: https://dev.azure.com/tacdevlibs/tacdevlibs/_build/latest?definitionId=1&branchName=master
 [Framework.NETStandard21]: https://img.shields.io/badge/TargetFramework-netstandard2.1-blue?logo=.net
 [Framework.NETCoreApp31]: https://img.shields.io/badge/TargetFramework-netcoreapp3.1-blue?logo=.net
@@ -92,16 +92,16 @@ For information on contributing to TACDevLibs, see the [CONTRIBUTING.md][File.Co
 [Package.TACDevel.Drawing.Primitives.Preview.Link]: http://localhost
 [Package.TACDevel.Drawing.Primitives.Build.Link]: https://www.myget.org/feed/tacdevlibs/package/nuget/TACDevel.Drawing.Primitives
 [Repository.CodeOfConduct.Badge]: https://img.shields.io/badge/Contributor%20Covenent-2.0-gray?logo=open-source-initiative&logoColor=white
-[Repository.CodeOfConduct.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/CODE_OF_CONDUCT.md
-[Repository.OpenIssues.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tacdevlibs?color=brightgreen&label=Issues%3AOpen&logo=github
-[Repository.OpenIssues.Link]: https://github.com/tom-corwin/tacdevlibs/issues?q=is%3Aissue+is%3Aopen
-[Repository.ClosedIssues.Badge]: https://img.shields.io/github/issues-closed-raw/tom-corwin/tacdevlibs?color=red&label=Issues%3AClosed&logo=github
-[Repository.ClosedIssues.Link]: https://github.com/tom-corwin/tacdevlibs/issues?q=is%3Aissue+is%3Aclosed
-[Repository.AvailableIssues.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tacdevlibs/Status:Available?color=green&label=Issue%3AStatus%3AAvailable&logo=github
-[Repository.AvailableIssues.Link]: https://github.com/tom-corwin/tacdevlibs/issues?q=is%3Aissue+is%3Aopen+label%3AStatus%3AAvailable
-[Repository.GoodFirstIssues.Badge]: https://img.shields.io/github/issues-raw/tom-corwin/tacdevlibs/Meta:GoodFirstIssue?color=green&label=Issue%3AMeta%3AGoodFirstIssue&logo=github
-[Repository.GoodFirstIssues.Link]: https://github.com/tom-corwin/tacdevlibs/issues?q=is%3Aissue+is%3Aopen+label%3AMeta%3AGoodFirstIssue
-[File.Contributing.Link]: https://github.com/tom-corwin/tacdevlibs/blob/master/CONTRIBUTING.md
+[Repository.CodeOfConduct.Link]: https://github.com/tacdevel/tacdevlibs/blob/master/CODE_OF_CONDUCT.md
+[Repository.OpenIssues.Badge]: https://img.shields.io/github/issues-raw/tacdevel/tacdevlibs?color=brightgreen&label=Issues%3AOpen&logo=github
+[Repository.OpenIssues.Link]: https://github.com/tacdevel/tacdevlibs/issues?q=is%3Aissue+is%3Aopen
+[Repository.ClosedIssues.Badge]: https://img.shields.io/github/issues-closed-raw/tacdevel/tacdevlibs?color=red&label=Issues%3AClosed&logo=github
+[Repository.ClosedIssues.Link]: https://github.com/tacdevel/tacdevlibs/issues?q=is%3Aissue+is%3Aclosed
+[Repository.AvailableIssues.Badge]: https://img.shields.io/github/issues-raw/tacdevel/tacdevlibs/Status:Available?color=green&label=Issue%3AStatus%3AAvailable&logo=github
+[Repository.AvailableIssues.Link]: https://github.com/tacdevel/tacdevlibs/issues?q=is%3Aissue+is%3Aopen+label%3AStatus%3AAvailable
+[Repository.GoodFirstIssues.Badge]: https://img.shields.io/github/issues-raw/tacdevel/tacdevlibs/Meta:GoodFirstIssue?color=green&label=Issue%3AMeta%3AGoodFirstIssue&logo=github
+[Repository.GoodFirstIssues.Link]: https://github.com/tacdevel/tacdevlibs/issues?q=is%3Aissue+is%3Aopen+label%3AMeta%3AGoodFirstIssue
+[File.Contributing.Link]: https://github.com/tacdevel/tacdevlibs/blob/master/CONTRIBUTING.md
 
 <!--
 
@@ -161,32 +161,4 @@ Run the following command in a command-line interface in the root directory of t
 ```
 dotnet build dirs.proj
 ```
-
-[AzurePipelines.Link]: https://azure.microsoft.com/en-us/services/devops/pipelines/
-[DotNetCore.SupportedOS.Link]: https://github.com/dotnet/core/blob/master/release-notes/3.0/3.0-supported-os.md
-[BuildStatus.Link]: https://dev.azure.com/tom-corwin/tcdfx/_build/latest?definitionId=15&branchName=master
-[BuildStatus.TCDFxCore_Windows81_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows81_Debug
-[BuildStatus.TCDFxCore_Windows81_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows81_Release
-[BuildStatus.TCDFxCore_Windows10_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows10_Debug
-[BuildStatus.TCDFxCore_Windows10_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Windows10_Release
-[BuildStatus.TCDFxCore_Ubuntu1604_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Ubuntu1604_Debug
-[BuildStatus.TCDFxCore_Ubuntu1604_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_Ubuntu1604_Release
-[BuildStatus.TCDFxCore_macOS1013_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1013_Debug
-[BuildStatus.TCDFxCore_macOS1013_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1013_Release
-[BuildStatus.TCDFxCore_macOS1014_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1014_Debug
-[BuildStatus.TCDFxCore_macOS1014_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxCore_macOS1014_Release
-[BuildStatus.TCDFxUI_Windows81_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows81_Debug
-[BuildStatus.TCDFxUI_Windows81_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows81_Release
-[BuildStatus.TCDFxUI_Windows10_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows10_Debug
-[BuildStatus.TCDFxUI_Windows10_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Windows10_Release
-[BuildStatus.TCDFxUI_Ubuntu1604_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Ubuntu1604_Debug
-[BuildStatus.TCDFxUI_Ubuntu1604_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_Ubuntu1604_Release
-[BuildStatus.TCDFxUI_macOS1013_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1013_Debug
-[BuildStatus.TCDFxUI_macOS1013_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1013_Release
-[BuildStatus.TCDFxUI_macOS1014_Debug.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1014_Debug
-[BuildStatus.TCDFxUI_macOS1014_Release.Badge]: https://dev.azure.com/tom-corwin/tcdfx/_apis/build/status/TCDFx?branchName=master&jobName=TCDFxUI_macOS1014_Release
-[Versions.TCDFxCore.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.Core.svg?color=blue&label=Stable&logo=nuget
-[Versions.TCDFxCore.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.Core.svg?color=orange&label=Preview&logo=nuget
-[Versions.TCDFxUI.Stable.Badge]: https://img.shields.io/nuget/v/TCDFx.UI.svg?color=blue&label=Stable&logo=nuget
-[Versions.TCDFxUI.Preview.Badge]: https://img.shields.io/nuget/vpre/TCDFx.UI.svg?color=orange&label=Preview&logo=nuget
 -->

@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
  * FileName:            PointD.cs
- * Copyright/License:   https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+ * Copyright/License:   https://github.com/tacdevel/tacdevlibs/blob/master/LICENSE.md
 ***********************************************************************************************************************/
 
 using System;

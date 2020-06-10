@@ -1,4 +1,4 @@
-# Contributing to TAC Development Libraries
+# Contributing to TACDevLibs
 
 It's great to not only see the community take an interest in this project, but also take an interest in contributing as
 well. The goal of this document is to make the contibuting process as simple and transperent as possible, whether it's:
@@ -21,7 +21,7 @@ Submitting a pull request is easy. Just follow the steps below:
   3. If you have changed/added any public APIs, update the corresponding documentation.
   4. Ensure to run all tests (if any) and make sure they pass.
   5. Make sure your documentation follows our [coding styles](#coding-styles)
-  6. [Submit your pull request](https://github.com/tom-corwin/tacdevlibs/pull/new)!
+  6. [Submit your pull request](https://github.com/tacdevel/tacdevlibs/pull/new)!
 
 ### Coding Styles
 
@@ -37,17 +37,17 @@ Visual Studio Code, since we use an `.editorconfig` file.
 ## Issue/Bug Reporting
 
 Reporting an issue is even easier than submitting a pull request. Just
-[click here](https://github.com/tom-corwin/tacdevlibs/issues/new?template=bug-report.md) and follow the steps in the
+[click here](https://github.com/tacdevel/tacdevlibs/issues/new?template=bug-report.md) and follow the steps in the
 issue template, and create the issue!
 
 ## Requesting a Feature/Enhancement
 
 Requesting a feature or enhancement is just like reporting an issue.
-[Click here](https://github.com/tom-corwin/tacdevlibs/issues/new?template=feature-request.md) and follow the steps in the
+[Click here](https://github.com/tacdevel/tacdevlibs/issues/new?template=feature-request.md) and follow the steps in the
 issue template, and create the issue!
 
 ## Contribution Licensing
 
 When you submit a pull request or issue, your submissions are understood to be under the same
-[license](https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md) that covers the project. Feel free to contact
+[license](https://github.com/tacdevel/tacdevlibs/blob/master/LICENSE.md) that covers the project. Feel free to contact
 a project maintainer if that is a concern.

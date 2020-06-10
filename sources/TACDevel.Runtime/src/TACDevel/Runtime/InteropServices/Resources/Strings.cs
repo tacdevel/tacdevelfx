@@ -3,12 +3,12 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Resources;
 
-namespace TACDevel.Runtime.InteropServices.Resources
+namespace TACDevel.Runtime.Resources
 {
     [DebuggerNonUserCode()]
-    internal class Strings
+    internal static class Strings
     {
-        internal Strings() => ResourceManager = new ResourceManager("TACDevel.Runtime.InteropServices.Resources.String", typeof(Strings).Assembly);
+        static Strings() => ResourceManager = new ResourceManager("TACDevel.Runtime.InteropServices.Resources.String", typeof(Strings).Assembly);
 
         [EditorBrowsable(EditorBrowsableState.Advanced)]
         internal static ResourceManager ResourceManager { get; private set; }

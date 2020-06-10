@@ -1,20 +1,21 @@
 /***************************************************************************************************
  * FileName:             NativeAssemblyBase.cs
  * Copyright:            Copyright © 2017-2019 Thomas Corwin, et al. All Rights Reserved.
- * License:              https://github.com/tom-corwin/tcdfx/blob/master/LICENSE.md
+ * License:              https://github.com/tacdevel/tcdfx/blob/master/LICENSE.md
  **************************************************************************************************/
 
 using Microsoft.Extensions.DependencyModel;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
 
 using TACDevel.Native;
-using TACDevel.Runtime.InteropServices.Resources;
+using TACDevel.Runtime.Resources;
 
 namespace TACDevel.Runtime.InteropServices
 {
@@ -80,7 +81,7 @@ namespace TACDevel.Runtime.InteropServices
             return ret;
         }
 
-        private IEnumerable<string> EnumerateLoadTargets(string name)
+        private static IEnumerable<string> EnumerateLoadTargets(string name)
         {
             yield return name;
             yield return Path.Combine(AppContext.BaseDirectory, name);
@@ -125,7 +126,7 @@ namespace TACDevel.Runtime.InteropServices
 
         private static IntPtr LoadAssembly(string name)
         {
-            switch (Platform.PlatformType)
+            switch (Platform.Type)
             {
                 case PlatformType.Windows:
                     return Kernel32.LoadLibrary(name);
@@ -141,7 +142,7 @@ namespace TACDevel.Runtime.InteropServices
 
         private static IntPtr LoadFunctionPointer(IntPtr handle, string name)
         {
-            switch (Platform.PlatformType)
+            switch (Platform.Type)
             {
                 case PlatformType.Windows:
                     return Kernel32.GetProcAddress(handle, name);
@@ -155,7 +156,8 @@ namespace TACDevel.Runtime.InteropServices
             }
         }
 
-        private bool TryLocateNativeAssetFromDeps(string name, out string appLocalNativePath, out string depsResolvedPath)
+        [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", Justification = "<Pending>")]
+        private static bool TryLocateNativeAssetFromDeps(string name, out string appLocalNativePath, out string depsResolvedPath)
         {
             DependencyContext defaultContext = DependencyContext.Default;
             if (defaultContext == null)
@@ -192,9 +194,7 @@ namespace TACDevel.Runtime.InteropServices
 
                             depsResolvedPath = Path.Combine(
                                 GetNugetPackagesRootDirectory(),
-#pragma warning disable CA1308 // Normalize strings to uppercase
                                 runtimeLib.Name.ToLowerInvariant(),
-#pragma warning restore CA1308 // Normalize strings to uppercase
                                 runtimeLib.Version,
                                 nativeAsset);
                             depsResolvedPath = Path.GetFullPath(depsResolvedPath);
@@ -236,6 +236,6 @@ namespace TACDevel.Runtime.InteropServices
 
         private static string GetNugetPackagesRootDirectory() => Path.Combine(GetUserDirectory(), ".nuget", "packages");
 
-        private static string GetUserDirectory() => Platform.PlatformType == PlatformType.Windows ? Environment.GetEnvironmentVariable("USERPROFILE") : Environment.GetEnvironmentVariable("HOME");
+        private static string GetUserDirectory() => Platform.IsWindows ? Environment.GetEnvironmentVariable("USERPROFILE") : Environment.GetEnvironmentVariable("HOME");
     }
 }

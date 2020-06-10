@@ -1,4 +1,4 @@
-# License for TACDevel Libraries
+# License for TACDevelLibs
 
 <details>
   <summary><b>Copyright Notice(s)</b><sub> (Click to Expand)<sub></summary>
@@ -35,11 +35,11 @@
 
 ## Third-Party Notices
 
-Some TACDevel Libraries use third-party code (that is also licensed under the MIT license) and/or other resources that may be distributed under
+Some TACDevLibs use third-party code (that is also licensed under the MIT license) and/or other resources that may be distributed under
 different copyrights. This file contains a list of third-party notices.
 
 If you notice that we accidentally failed to list a required notice, please bring it to our
-attention by either posting an issue, or contacting [tom-corwin](https://github.com/tom-corwin).
+attention by either posting an issue, or contacting [tacdevel](https://github.com/tacdevel).
 
 ***The following notices are provided for informational use only, and have been reformatted.***
 
@@ -65,9 +65,9 @@ attention by either posting an issue, or contacting [tom-corwin](https://github.
   <summary><b>Used In</b><sub> (Click to Expand)<sub></summary>
   <br/>
 
-  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs)
-  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Kernel32.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Kernel32.cs)
-  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Libdl.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Libdl.cs)
+  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs`](https://github.com/tacdevel/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs)
+  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Kernel32.cs`](https://github.com/tacdevel/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Kernel32.cs)
+  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Libdl.cs`](https://github.com/tacdevel/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Native/Libdl.cs)
 
 </details>
 
@@ -124,9 +124,9 @@ attention by either posting an issue, or contacting [tom-corwin](https://github.
   <summary><b>Used In</b><sub> (Click to Expand)<sub></summary>
   <br/>
 
-  - [`/sources/TACDevel.Runtime/src/TACDevel/Runtime/Platform.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs)
-  - [`/sources/TACDevel.Runtime/src/TACDevel/Native/Ntdll.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Native/Kernel32.cs)
-  - [`/sources/TACDevel.Runtime/src/TACDevel/Native/Libc.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Native/Libdl.cs)
+  - [`/sources/TACDevel.Runtime/src/TACDevel/Runtime/Platform.cs`](https://github.com/tacdevel/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Runtime/InteropServices/NativeAssembly.cs)
+  - [`/sources/TACDevel.Runtime/src/TACDevel/Native/Ntdll.cs`](https://github.com/tacdevel/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Native/Kernel32.cs)
+  - [`/sources/TACDevel.Runtime/src/TACDevel/Native/Libc.cs`](https://github.com/tacdevel/tacdevlibs/tree/master/sources/TACDevel.Runtime/src/TACDevel/Native/Libdl.cs)
 
 </details>
 
@@ -180,8 +180,8 @@ attention by either posting an issue, or contacting [tom-corwin](https://github.
   <summary><b>Used In</b><sub> (Click to Expand)<sub></summary>
   <br/>
 
-  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer.cs`](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer.cs)
-  - [``/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer`1.cs``](https://github.com/tom-corwin/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer`1.cs)
+  - [`/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer.cs`](https://github.com/tacdevel/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer.cs)
+  - [``/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer`1.cs``](https://github.com/tacdevel/tacdevlibs/tree/master/sources/TACDevel.Runtime.InteropServices/src/TACDevel/Runtime/InteropServices/Pointer`1.cs)
 
 </details>
 

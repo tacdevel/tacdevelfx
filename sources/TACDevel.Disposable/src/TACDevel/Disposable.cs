@@ -1,9 +1,10 @@
 /***********************************************************************************************************************
  * FileName:            Disposable.cs
- * Copyright/License:   https://github.com/tom-corwin/tacdevlibs/blob/master/LICENSE.md
+ * Copyright/License:   https://github.com/tacdevel/tacdevlibs/blob/master/LICENSE.md
 ***********************************************************************************************************************/
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TACDevel
 {
@@ -66,9 +67,9 @@ namespace TACDevel
         /// </summary>
         protected virtual void ReleaseUnmanagedResources() { }
 
-#pragma warning disable CA1063 // Implement IDisposable Correctly
+        //TODO: Add justification to SuppressMessage:CA1063
+        [SuppressMessage("Design", "CA1063:Implement IDisposable Correctly")]
         private void Dispose(bool disposing)
-#pragma warning restore CA1063 // Implement IDisposable Correctly
         {
             OnDisposing();
             if (disposing)
